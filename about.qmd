@@ -1,5 +1,5 @@
 ---
-title: "Christian Badillo"
+title: "Christian Francisco Badillo Hernández"
 about:
   id: hero-heading
   template: trestles
@@ -16,28 +16,41 @@ about:
       href: https://www.linkedin.com/in/christian-badillo/
 ---
 
-# Objetivo del Curso
-
 # Acerca del Instructor
 
 :::{#hero-heading}
 
-Finley Malloc is the Chief Data Scientist at Wengo Analytics. When not innovating on data platforms, Finley enjoys spending time unicycling and playing with her pet iguana.
+**Christian Badiillo** es egresado de la Facultad de Psicología, UNAM con apasionado interés por el estudio del comportamiento humano su modelamiento computacional y el análisis estadístico bayesiano de datos. Actualmente es miembro del Lab25 "Aprendizaje y Comportamiento Adaptable" de la Facultad de Psicología, UNAM donde se dedica a la investigación en el campo del modelamiento computacional del comportamiento y su intersección con la inteligencia artificial. 
 
-## Education
+## Educación
 
-University of California, San Diego | San Diego, CA
-PhD in Mathematics | Sept 2011 - June 2015
+Facultad de Psicología UNAM | Ciudad de México, México
+Licenciatura en Psicología | Ago 2019 - Ago 2023
 
-Macalester College | St. Paul MA
-B.A in Economics | Sept 2007 - June 2011
+## Experiencia
 
-## Experience
+IIMAS | Servicio Social - Desarrollo de sistemas inteligentes usando deep
+learning | Feb 2024 - presente
 
-Wengo Analytics | Head Data Scientist | April 2018 - present
+Facultad de Psicología UNAM | Impartición de Curso Intersemestral - Temas Selectos en Estadística | Periodo 2024-1
 
-GeoScynce | Chief Analyst | Sept 2012 - April 2018
+UNAM | Curso de Verano - Macroentrenamiento en Inteligencia Artificial (MeIA) 2023. | Jun 2023
+
+Neuromatch Academy | Curso de Verano - NMA Computational Neuroscience | Jul 2022
 
 :::
 
-# Lab 25
+# Acerca del Lab 25
+
+![Lab25](img/logo-members/lab25.jpg){width=100% height=650px}
+
+<left> <p1> 
+El **Laboratorio 25**, también conocido como ***Lab25***, se encuentra dentro de las instalaciones de la Facultad de Psicología de la Universidad Nacional Autónoma de México (UNAM). Nuestro enfoque de investigación se centra en el análisis del comportamiento adaptable, el proceso de aprendizaje, la toma de decisiones y el modelamiento computacional. Nuestro objetivo principal es contribuir a una comprensión más profunda del comportamiento y su interacción con el ambiente tanto de agentes biológicos como artificiales al considerar las restricciones de su entorno y de los agentes.</p1>
+</br>
+
+<p2><left><b> Temas de Investigación:</p2></left></b>
+
+<p3> <i> Modelamiento Cognitivo Bayesiano, Teoría de Juegos, Planeación, Causalidad, Psiquiatría Computacional, Comportamiento Adaptable, Aprendizaje por Refuerzo y Elección Intertemporal. </i> </p3> </left>
+
+<p2><b>Sitio Web </b> (Provisional):
+[Lab 25](https://christian-badillo.quarto.pub/aprendizaje-comportamiento-adaptable-material-de-apoyo/) </p2>

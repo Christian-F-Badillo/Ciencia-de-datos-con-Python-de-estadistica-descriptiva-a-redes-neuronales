@@ -26,7 +26,7 @@ website:
   
   sidebar:
     search: true
-    style: floating
+    style: docked
     logo: img/logo-members/Lab25_logo_2015.png
     title: "Ciencia de Datos con Python"
     subtitle: "De Estadística Descriptiva a Redes Neuronales"
@@ -34,18 +34,23 @@ website:
     background: primary
     foreground: secondary
     border: true
-    pinned: true
+    pinned: false
+    collapse-level: 2
     tools: 
       - icon: github
         menu:
         - text: Source Code
           url: https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales
   
+  # Contenido
     contents:
       - href: index.qmd
-        text: Home
+        text: Inicio
       - href: about.qmd
-        text: Acerca
+        text: Conócenos
+      
+      - text: "---"
+
       - href: test.qmd
         text: Test
 
@@ -60,9 +65,10 @@ website:
 format:
   html:
     theme:
-      light: flatly
+      light: cerulean
       dark: darkly
     css: styles.css
     toc: true
     toc-title: "Tabla de Contenido"
     toc-depth: 3
+    

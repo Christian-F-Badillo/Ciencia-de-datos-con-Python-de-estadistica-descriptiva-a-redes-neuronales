@@ -2,21 +2,21 @@
   {
     "objectID": "about.html#education",
     "href": "about.html#education",
-    "title": "Christian Badillo",
-    "section": "Education",
-    "text": "Education\nUniversity of California, San Diego | San Diego, CA PhD in Mathematics | Sept 2011 - June 2015\nMacalester College | St. Paul MA B.A in Economics | Sept 2007 - June 2011",
+    "title": "Christian Francisco Badillo Hernández",
+    "section": "",
+    "text": "Facultad de Psicología UNAM | Ciudad de México, México Licenciatura en Psicología | Ago 2019 - Ago 2023",
     "crumbs": [
-      "Acerca"
+      "Conócenos"
     ]
   },
   {
     "objectID": "about.html#experience",
     "href": "about.html#experience",
-    "title": "Christian Badillo",
-    "section": "Experience",
-    "text": "Experience\nWengo Analytics | Head Data Scientist | April 2018 - present\nGeoScynce | Chief Analyst | Sept 2012 - April 2018",
+    "title": "Christian Francisco Badillo Hernández",
+    "section": "",
+    "text": "Wengo Analytics | Head Data Scientist | April 2018 - present\nGeoScynce | Chief Analyst | Sept 2012 - April 2018",
     "crumbs": [
-      "Acerca"
+      "Conócenos"
     ]
   },
   {
@@ -33,7 +33,7 @@
     "section": "",
     "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n\n\n Volver arriba",
     "crumbs": [
-      "Home"
+      "Inicio"
     ]
   },
   {
@@ -44,6 +44,56 @@
     "text": "This is a pyodide-enabled code cell in a Quarto HTML document.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n Volver arriba",
     "crumbs": [
       "Test"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Christian Francisco Badillo Hernández",
+    "section": "",
+    "text": "twitter\n  \n  \n    \n     Github\n  \n  \n    \n     LinkedIn\n  \n\n  \n  \nChristian Badiillo es egresado de la Facultad de Psicología, UNAM con apasionado interés por el estudio del comportamiento humano su modelamiento computacional y el análisis estadístico bayesiano de datos. Actualmente es miembro del Lab25 “Aprendizaje y Comportamiento Adaptable” de la Facultad de Psicología, UNAM donde se dedica a la investigación en el campo del modelamiento computacional del comportamiento y su intersección con la inteligencia artificial.\n\n\nFacultad de Psicología UNAM | Ciudad de México, México Licenciatura en Psicología | Ago 2019 - Ago 2023\n\n\n\nIIMAS | Servicio Social - Desarrollo de sistemas inteligentes usando deep learning | Feb 2024 - presente\nFacultad de Psicología UNAM | Impartición de Curso Intersemestral - Temas Selectos en Estadística | Periodo 2024-1\nUNAM | Curso de Verano - Macroentrenamiento en Inteligencia Artificial (MeIA) 2023. | Jun 2023\nNeuromatch Academy | Curso de Verano - NMA Computational Neuroscience | Jul 2022",
+    "crumbs": [
+      "Conócenos"
+    ]
+  },
+  {
+    "objectID": "about.html#resumen",
+    "href": "about.html#resumen",
+    "title": "Christian Francisco Badillo Hernández",
+    "section": "",
+    "text": "Christian Badiillo es egresado de la Facultad de Psicología, UNAM con apasionado interés por el estudio del comportamiento humano su modelamiento computacional y el análisis estadístico bayesiano de datos. Actualmente es miembro del Lab25 “Aprendizaje y Comportamiento Adaptable” de la Facultad de Psicología, UNAM donde se dedica a la investigación en el campo del modelamiento computacional del comportamiento y su intersección con la inteligencia artificial.",
+    "crumbs": [
+      "Conocenos"
+    ]
+  },
+  {
+    "objectID": "about.html#educacn",
+    "href": "about.html#educacn",
+    "title": "Christian Francisco Badillo Hernández",
+    "section": "",
+    "text": "Facultad de Psicología UNAM | Ciudad de México, México Licenciatura en Psicología | Ago 2019 - Ago 2023",
+    "crumbs": [
+      "Conócenos"
+    ]
+  },
+  {
+    "objectID": "about.html#educación",
+    "href": "about.html#educación",
+    "title": "Christian Francisco Badillo Hernández",
+    "section": "",
+    "text": "Facultad de Psicología UNAM | Ciudad de México, México Licenciatura en Psicología | Ago 2019 - Ago 2023",
+    "crumbs": [
+      "Conócenos"
+    ]
+  },
+  {
+    "objectID": "about.html#experiencia",
+    "href": "about.html#experiencia",
+    "title": "Christian Francisco Badillo Hernández",
+    "section": "",
+    "text": "IIMAS | Servicio Social - Desarrollo de sistemas inteligentes usando deep learning | Feb 2024 - presente\nFacultad de Psicología UNAM | Impartición de Curso Intersemestral - Temas Selectos en Estadística | Periodo 2024-1\nUNAM | Curso de Verano - Macroentrenamiento en Inteligencia Artificial (MeIA) 2023. | Jun 2023\nNeuromatch Academy | Curso de Verano - NMA Computational Neuroscience | Jul 2022",
+    "crumbs": [
+      "Conócenos"
     ]
   }
 ]
