@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyw
+*.pyz
+*.pyzw
+
+# Virtual Environments
+venv/
+env/
+*.venv
+pip-selfcheck.json
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Compiled files
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Logs and Databases
+*.log
+*.sqlite
+*.db
+
+# Quarto
+*.qhtml
+*.qpdf
+*.qpub
