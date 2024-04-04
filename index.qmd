@@ -1,0 +1,8 @@
+---
+title: "Ciencia de Datos con Python"
+subtitle: "De Estadística Descriptiva a Redes Neuronales"
+---
+
+This is a Quarto website.
+
+To learn more about Quarto websites visit <https://quarto.org/docs/websites>.

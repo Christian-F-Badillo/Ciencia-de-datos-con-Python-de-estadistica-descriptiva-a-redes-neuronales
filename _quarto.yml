@@ -1,0 +1,65 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Ciencia de Datos con Python"
+  page-navigation: true
+  back-to-top-navigation: true
+  twitter-card: true
+  page-footer: 
+    left: "Copyright 2024, Christian F. Badillo" 
+    right: 
+      - icon: github
+        href: https://github.com/Christian-F-Badillo
+      - icon: twitter 
+        href: https://twitter.com/Christi91084601
+
+  repo-url: https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales
+  
+  repo-actions: [edit, issue]
+
+  open-graph: 
+    locale: es_MX
+    site-name: Ciencia de Datos con Python
+  
+  sidebar:
+    search: true
+    style: floating
+    logo: img/Lab25_logo_2015.png
+    title: "Ciencia de Datos con Python"
+    subtitle: "De Estadística Descriptiva a Redes Neuronales"
+    type: light
+    background: primary
+    foreground: secondary
+    border: true
+    pinned: true
+    tools: 
+      - icon: github
+        menu:
+        - text: Source Code
+          url: https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales
+  
+    contents:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+
+      - section: "Fundamentos de Python"
+
+      - section: "Manejo de Datos"
+
+      - section: "Estadística con Python"
+      
+      - section: "Redes Neuronales"
+
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+    css: styles.css
+    toc: true
+
+
+
