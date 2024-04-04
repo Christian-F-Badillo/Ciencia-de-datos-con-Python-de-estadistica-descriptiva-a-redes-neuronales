@@ -2,16 +2,17 @@ project:
   type: website
   output-dir: docs
 
+lang: es
 website:
   title: "Ciencia de Datos con Python"
   page-navigation: true
   back-to-top-navigation: true
   twitter-card: true
   page-footer: 
-    left: "Copyright 2024, Christian F. Badillo" 
+    left: "Copyright © 2024 Christian Francisco Badillo Hernández" 
     right: 
       - icon: github
-        href: https://github.com/Christian-F-Badillo
+        href: https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales
       - icon: twitter 
         href: https://twitter.com/Christi91084601
 
@@ -26,7 +27,7 @@ website:
   sidebar:
     search: true
     style: floating
-    logo: img/Lab25_logo_2015.png
+    logo: img/logo-members/Lab25_logo_2015.png
     title: "Ciencia de Datos con Python"
     subtitle: "De Estadística Descriptiva a Redes Neuronales"
     type: light
@@ -43,7 +44,10 @@ website:
     contents:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: about.qmd
+        text: Acerca
+      - href: test.qmd
+        text: Test
 
       - section: "Fundamentos de Python"
 
@@ -60,6 +64,5 @@ format:
       dark: darkly
     css: styles.css
     toc: true
-
-
-
+    toc-title: "Tabla de Contenido"
+    toc-depth: 3
