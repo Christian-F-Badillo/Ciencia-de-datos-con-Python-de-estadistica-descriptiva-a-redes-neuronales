@@ -1,6 +1,9 @@
 project:
   type: website
   output-dir: docs
+  preview: 
+    port: 4000
+    timeout: 200
 
 lang: es
 website:
@@ -55,6 +58,7 @@ website:
         text: Test
 
       - section: "Fundamentos de Python"
+        contents: intro_python/*.qmd
 
       - section: "Manejo de Datos"
 
@@ -64,6 +68,7 @@ website:
 
 format:
   html:
+    link-external-icon: true
     theme:
       light: cerulean
       dark: darkly
@@ -71,4 +76,7 @@ format:
     toc: true
     toc-title: "Tabla de Contenido"
     toc-depth: 3
-    
+
+execute: 
+  cache: true
+
