@@ -37,3 +37,8 @@ pip-selfcheck.json
 *.qpdf
 *.qpub
 /.quarto/
+_extensions/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+.jupiter_cache/
