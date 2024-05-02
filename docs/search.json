@@ -37,6 +37,17 @@
     "text": "MIT License\nCopyright (c) 2024 Christian Francisco Badillo Hernández\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\n\n Volver arriba"
   },
   {
+    "objectID": "intro_python/VarType.html",
+    "href": "intro_python/VarType.html",
+    "title": "Variables y Tipos de Datos en Python",
+    "section": "",
+    "text": "Variables y tipos de variables\nEn Python utilizamos variables para almacenar información en la memoria de la computadora. Las variables son como cajas en las que podemos guardar información. Cada caja tiene un nombre y un contenido. Existen reglas para nombrar las variables en Python:\n\nEl nombre de una variable debe comenzar con una letra o un guión bajo.\nEl nombre de una variable no puede comenzar con un número.\nEl nombre de una variable puede contener letras, números y guiones bajos.\n\nEn Python, las variables son sensibles a mayúsculas y minúsculas. Esto significa que las variables nombre, Nombre y NOMBRE son diferentes. Veamos un ejemplo:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n Volver arriba",
+    "crumbs": [
+      "Fundamentos de Python",
+      "Variables y Tipos de Datos en Python"
+    ]
+  },
+  {
     "objectID": "intro_python/Cloud.html",
     "href": "intro_python/Cloud.html",
     "title": "Instalación de Python",
@@ -45,59 +56,6 @@
     "crumbs": [
       "Fundamentos de Python",
       "Instalación de Python"
-    ]
-  },
-  {
-    "objectID": "intro_python/Cloud.html#qué-es-python",
-    "href": "intro_python/Cloud.html#qué-es-python",
-    "title": "Instalación de Python",
-    "section": "",
-    "text": "Python  es un lenguaje de programación de alto nivel, interpretado y orientado a objetos con semántica dinámica. Es un lenguaje de programación muy popular en la actualidad debido a su simplicidad y versatilidad. Y ampliamente utilizado en la ciencia de datos, inteligencia artificial, desarrollo web, desarrollo de videojuegos, entre otros.\nVamos a deshilar un poco la definición anterior para entender mejor lo que significa.\n\n\nUn lenguaje de programación de alto nivel es un lenguaje de programación que se encuentra más cerca del lenguaje humano que del lenguaje de máquina. Por ejemplo para imprimir el resultado de la suma de dos números en Python se escribe:\n\na = 5\nb = 3\nprint(a + b)\n\n8\n\n\nCualquier persona que entienda aritmética básica y sepa un poco de inglés puede entender lo que hace este código. Esto hace que los programas escritos en Python sean más fáciles de leer y de escribir que los programas escritos en lenguajes de programación de bajo nivel como el lenguaje ensamblador o C++. Por ejemplo en C++ el mismo programa se escribiría de la siguiente forma:\n#include &lt;iostream&gt;\n\nint main() {\n    int a = 5;\n    int b = 3;\n    std::cout &lt;&lt; a + b &lt;&lt; std::endl;\n    return 0;\n} \nY en lenguaje ensamblador se escribiría de la siguiente forma:\nsection .data\n    a db 5\n    b db 3\nsection .text\n    global _start\n_start:\n    mov al, [a]\n    mov bl, [b]\n    add al, bl\n    mov dl, al\n    mov eax, 4\n    mov ebx, 1\n    mov ecx, dl\n    mov edx, 1\n    int 0x80\n    mov eax, 1\n    xor ebx, ebx\n    int 0x80\n\n\n\nUn lenguaje de programación interpretado es un lenguaje de programación que utiliza un programa llamado intérprete para ejecutar el código fuente. El intérprete de Python se encarga de leer el código fuente escrito en Python y ejecutarlo línea por línea.\nPor otro lado, los lenguajes de programación compilados utilizan un programa llamado compilador para traducir el código fuente a un lenguaje de máquina que la computadora pueda entender. El código fuente compilado se convierte en un archivo ejecutable que puede ser ejecutado por la computadora lo que da como resultado un programa más rápido que un programa interpretado y con mayor control sobre el hardware.\n\n\n\nPython es un lenguaje de programación orientado a objetos lo que significa que todo en Python es un objeto. Un objeto es una entidad que tiene un estado y un comportamiento. Por ejemplo, un objeto de la clase Persona tiene un estado que incluye el nombre, la edad y la dirección de la persona y un comportamiento que incluye caminar, hablar y comer.\nEl ejemplo más claro de la orientación a objetos en Python es la creación de clases y objetos. Una clase es una plantilla que define las propiedades y los métodos de un objeto y un objeto es una instancia de una clase. Por ejemplo, la clase Persona define las propiedades y los métodos de una persona y un objeto de la clase Persona es una persona en particular.\nEsto en Python se ve de la siguiente forma:\n\nclass Persona:\n    def __init__(self, nombre, edad, direccion):\n        self.nombre = nombre\n        self.edad = edad\n        self.direccion = direccion\n\n    def caminar(self):\n        print(f\"{self.nombre} está caminando\")\n\n    def hablar(self):\n        print(f\"{self.nombre} está hablando\")\n\n    def comer(self):\n        print(f\"{self.nombre} está comiendo\")\n\npersona = Persona(\"Juan\", 25, \"Calle 123\")\npersona.caminar()\npersona.hablar()\npersona.comer()\n\nJuan está caminando\nJuan está hablando\nJuan está comiendo\n\n\n\n\n\nPython es un lenguaje de programación con semántica dinámica lo que significa que el tipo de una variable se determina en tiempo de ejecución y no en tiempo de compilación. Por ejemplo, en Python no es necesario declarar el tipo de una variable antes de utilizarla como en otros lenguajes de programación como C++ o Java. Por ejemplo, en Python se puede escribir:\n\na = 5\nb = \"Hola\"\nc = 3.14\n\nEn este caso, Python determina que a es un entero, b es una cadena de texto y c es un número de punto flotante en tiempo de ejecución.\nEn otro lenguaes de programación como C++ o Java se tendría que declarar el tipo de las variables antes de utilizarlas. Por ejemplo, en C++ se tendría que escribir:\nint a = 5;\nstd::string b = \"Hola\";\nfloat c = 3.14;\nEl tipo puede ser modificado en cualquier momento, por ejemplo:\n\na = 5\nprint(a)\na = \"Hola\"\nprint(a)\na = 3.14\nprint(a)\n\n5\nHola\n3.14",
-    "crumbs": [
-      "Fundamentos de Python",
-      "Instalación de Python"
-    ]
-  },
-  {
-    "objectID": "intro_python/Cloud.html#cómo-instalar-python-localmente",
-    "href": "intro_python/Cloud.html#cómo-instalar-python-localmente",
-    "title": "Instalación de Python",
-    "section": "",
-    "text": "Para utilizar Python localmente en tu computadora necesitas instalar Python y un editor de código:\n\nVim (si eres usuario avanzado y quieres complicarte la vida).\nVisual Studio Code. \\(\\textcolor{limegreen}{Recomendado}\\)\nSublime Text.\nAtom.\nSpyder.\nJupyter Notebook.\nAnaconda.\n\nLos editores de código son programas que te permiten escribir código en distintos lenguajes de programación y tienen distintas funcionalidades para facilitar el proceso de creación y depuración del código. Muchos editores de código como Visual Studio Code, Sublime Text y Atom tienen extensiones que te permiten añadir funcionalidades para resaltar la sintaxis del código, autocompletar código, depurar código, usar IA, control de versiones, entre otras cosas.\nPor otro lado, Jupyter Notebook es un entorno de programación interactivo que te permite escribir código en celdas y visualizar los resultados de forma dinámica. Anaconda es una distribución de Python que incluye Jupyter Notebook y otras herramientas útiles para la programación en Python.\nPython (versión 3.8) viene preinstalado en sistemas operativos basados en Unix (Linux  y MacOS  ) en la mayoría de los equipos actuales a diferencia de Windows  donde debe ser instalado manualmente.\n\n\nEl siguiente video te muestra cómo instalar Python en Mac.\n\n\n\n\nEl siguiente video te muestra cómo instalar Python en Windows.\n\n\n\n\n\nLa instalación de Visual Studio Code es muy sencilla, solo debes de ir a la página oficial de Visual Studio Code y descargar el instalador correspondiente a tu sistema operativo, pero si prefieres ver un video que te guíe en la instalación aquí te dejo uno para MacOS y otro para Windows.",
-    "crumbs": [
-      "Fundamentos de Python",
-      "Instalación de Python"
-    ]
-  },
-  {
-    "objectID": "intro_python/Cloud.html#python-en-la-nube",
-    "href": "intro_python/Cloud.html#python-en-la-nube",
-    "title": "Instalación de Python",
-    "section": "Python en la Nube ",
-    "text": "Python en la Nube \nSi no quieres instalar Python en tu computadora o no puedes hacerlo, puedes utilizar Python en la nube.\nUno de los principales servicios para correr Python en la nube es Google Colaboratory    (mejor conocido como Colab) el cual es un entorno de programación en la nube que te permite escribir y correr código en Python sin la necesidad de intalar ningún software. Colab se ejecuta en el formato de Jupyer Notebook       que permite obtener visualizaciones dinámicas del código y permite ejecutar código en celdas separadas, además de que permite escribir texto en formato Markdown que permite introducir ecuaciones matemáticas.\nUn video execelente para introducirse a Goocle Colaboratory es el del canal oficial  de TensorFlow  , la cual es una popular librería para inteligencia artificial.",
-    "crumbs": [
-      "Fundamentos de Python",
-      "Instalación de Python"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Ciencia de Datos con Python",
-    "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n\n\n Volver arriba",
-    "crumbs": [
-      "Inicio"
-    ]
-  },
-  {
-    "objectID": "test.html",
-    "href": "test.html",
-    "title": "Pyodide in Quarto HTML Documents",
-    "section": "",
-    "text": "This is a pyodide-enabled code cell in a Quarto HTML document.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n Volver arriba",
-    "crumbs": [
-      "Test"
     ]
   },
   {
@@ -167,36 +125,50 @@
     ]
   },
   {
-    "objectID": "intro_python/Cloud.html#bien",
-    "href": "intro_python/Cloud.html#bien",
-    "title": "Instalación de Python",
-    "section": "Bien",
-    "text": "Bien",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Ciencia de Datos con Python",
+    "section": "",
+    "text": "Este curso tiene como objetivo introducir a los estudiantes de la Facultad de Psicología al mundo de la ciencia de datos utilizando Python. A lo largo del curso, los estudiantes aprenderán a utilizar las librerías más populares de Python para el análisis de datos, la visualización de datos, y la creación de redes neuronales.\nEl curso no supone ningún conocimiento previo de programación, pero se espera que los estudiantes tengan una actitud proactiva y estén dispuestos a aprender. Además cuando sea necesario, se deberan utilizar conceptos de matemáticas y estadística básica con el fin de entender los conceptos de ciencia de datos de manera más profunda pero no es necesario tener un conocimiento previo de estos temas.",
     "crumbs": [
-      "Fundamentos de Python",
-      "Instalación de Python"
+      "Inicio"
     ]
   },
   {
-    "objectID": "intro_python/Cloud.html#bienvenida-a-python",
-    "href": "intro_python/Cloud.html#bienvenida-a-python",
-    "title": "Instalación de Python",
-    "section": "Bienvenida a Python ",
-    "text": "Bienvenida a Python",
+    "objectID": "index.html#acerca-de-este-curso",
+    "href": "index.html#acerca-de-este-curso",
+    "title": "Ciencia de Datos con Python",
+    "section": "",
+    "text": "Este curso tiene como objetivo introducir a los estudiantes de la Facultad de Psicología al mundo de la ciencia de datos utilizando Python. A lo largo del curso, los estudiantes aprenderán a utilizar las librerías más populares de Python para el análisis de datos, la visualización de datos, y la creación de redes neuronales.\nEl curso no supone ningún conocimiento previo de programación, pero se espera que los estudiantes tengan una actitud proactiva y estén dispuestos a aprender. Además cuando sea necesario, se deberan utilizar conceptos de matemáticas y estadística básica con el fin de entender los conceptos de ciencia de datos de manera más profunda pero no es necesario tener un conocimiento previo de estos temas.",
     "crumbs": [
-      "Fundamentos de Python",
-      "Instalación de Python"
+      "Inicio"
     ]
   },
   {
-    "objectID": "intro_python/Cloud.html#bienvenidos-a-python",
-    "href": "intro_python/Cloud.html#bienvenidos-a-python",
-    "title": "Instalación de Python",
-    "section": "Bienvenidos a Python ",
-    "text": "Bienvenidos a Python",
+    "objectID": "index.html#objetivos-del-curso",
+    "href": "index.html#objetivos-del-curso",
+    "title": "Ciencia de Datos con Python",
+    "section": "Objetivos del curso",
+    "text": "Objetivos del curso\n\nAprender a utilizar Python para el análisis de datos, visualización de datos y creación de redes neuronales.\nEntender los conceptos básicos de las redes neuronales.\nEntender los conceptos básicos de la estadística descriptiva e inferencial a través de ejemplos prácticos.\n\n\n\nInstructor\n\n   Christian Francisco Badillo Hernández\n   Lab 25, Facultad de Psicología, UNAM\n   cris.badillo1408@gmail.com\n\n\n\nDetalles del curso\n\n   Lunes - Viernes\n   10 de junio - 28 de junio de 2024\n   13:30 - 15:30 hrs\n   Salón Pendiente\n   Classroom",
     "crumbs": [
-      "Fundamentos de Python",
-      "Instalación de Python"
+      "Inicio"
     ]
+  },
+  {
+    "objectID": "index.html#temario",
+    "href": "index.html#temario",
+    "title": "Ciencia de Datos con Python",
+    "section": "Temario",
+    "text": "Temario",
+    "crumbs": [
+      "Inicio"
+    ]
+  },
+  {
+    "objectID": "test.html",
+    "href": "test.html",
+    "title": "Pyodide in Quarto HTML Documents",
+    "section": "",
+    "text": "This is a pyodide-enabled code cell in a Quarto HTML document.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n Volver arriba"
   }
 ]

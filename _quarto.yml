@@ -1,9 +1,6 @@
 project:
   type: website
   output-dir: docs
-  preview: 
-    port: 4000
-    timeout: 200
 
 lang: es
 website:
@@ -12,12 +9,15 @@ website:
   back-to-top-navigation: true
   twitter-card: true
   page-footer: 
-    left: "Copyright © 2024 Christian Francisco Badillo Hernández" 
-    right: 
-      - icon: github
-        href: https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales
-      - icon: twitter 
-        href: https://twitter.com/Christi91084601
+    left: |
+      Copyright {{< fa brands creative-commons >}} 2024 por Christian Francisco Badillo Hernández <br>
+      Contenido con licencia {{< fa brands creative-commons >}}
+      {{< fa brands creative-commons-by >}} {{< fa brands creative-commons-nc >}}
+      [Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/) 
+    right: |
+      Hecho con {{< fa brands python >}} y [Quarto](https://quarto.org) <br>
+      Código fuente disponible en [GitHub](https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales)
+
 
   repo-url: https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales
   
@@ -53,9 +53,6 @@ website:
         text: Conócenos
       
       - text: "---"
-
-      - href: test.qmd
-        text: Test
 
       - section: "Fundamentos de Python"
         contents: intro_python/*.qmd

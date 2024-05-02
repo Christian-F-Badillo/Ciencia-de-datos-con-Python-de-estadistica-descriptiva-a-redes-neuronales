@@ -1,0 +1,32 @@
+---
+title: "Variables y Tipos de Datos en Python"
+author: "Christian Badillo"
+format: html
+date: today
+order: 2
+filters:
+  - pyodide
+  - fontawesome
+  - iconify
+---
+
+# Variables y tipos de variables
+
+En Python utilizamos variables para almacenar información en la memoria de la computadora. Las variables son como cajas en las que podemos guardar información. Cada caja tiene un nombre y un contenido. Existen reglas para nombrar las variables en Python:
+
+- El nombre de una variable debe comenzar con una letra o un guión bajo.
+- El nombre de una variable no puede comenzar con un número.
+- El nombre de una variable puede contener letras, números y guiones bajos.
+
+En Python, las variables son sensibles a mayúsculas y minúsculas. Esto significa que las variables `nombre`, `Nombre` y `NOMBRE` son diferentes. Veamos un ejemplo:
+
+```{pyodide-python}
+nombre = "Christian"
+Nombre = "Jimena"
+NOMBRE = "Luis"
+
+print(nombre)
+print(Nombre)
+print(NOMBRE)
+```
+

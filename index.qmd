@@ -1,8 +1,49 @@
 ---
 title: "Ciencia de Datos con Python"
 subtitle: "De Estadística Descriptiva a Redes Neuronales"
+author: "Christian Francisco Badillo Hernández"
+format: html
+date: today
+filters:
+    - downloadthis
 ---
 
-This is a Quarto website.
+## Acerca de este curso
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Este curso tiene como objetivo introducir a los estudiantes de la Facultad de Psicología al mundo de la ciencia de datos utilizando Python. A lo largo del curso, los estudiantes aprenderán a utilizar las librerías más populares de Python para el análisis de datos, la visualización de datos, y la creación de redes neuronales.
+
+El curso no supone ningún conocimiento previo de programación, pero se espera que los estudiantes tengan una actitud proactiva y estén dispuestos a aprender. Además cuando sea necesario, se deberan utilizar conceptos de matemáticas y estadística básica con el fin de entender los conceptos de ciencia de datos de manera más profunda pero no es necesario tener un conocimiento previo de estos temas.
+
+## Objetivos del curso
+
+- Aprender a utilizar Python para el análisis de datos, visualización de datos y creación de redes neuronales.
+- Entender los conceptos básicos de las redes neuronales.
+- Entender los conceptos básicos de la estadística descriptiva e inferencial a través de ejemplos prácticos.
+
+
+::: {.grid .course-details .course-details-smaller}
+
+::: {.g-col-6}
+
+### Instructor
+
+- {{< fa user >}} &nbsp; Christian Francisco Badillo Hernández
+- {{< fa university >}} &nbsp; Lab 25, Facultad de Psicología, UNAM
+- {{< fa envelope >}} &nbsp; [cris.badillo1408@gmail.com](mailto:cris.badillo1408@gmail.com)
+:::
+
+::: {.g-col-6}
+### Detalles del curso
+
+- {{< fa calendar >}} &nbsp; Lunes - Viernes
+- {{< fa calendar-alt >}} &nbsp; 10 de junio - 28 de junio de 2024
+- {{< fa clock >}} &nbsp; 13:30 - 15:30 hrs
+- {{< fa location-dot >}} &nbsp; Salón Pendiente
+- {{< fa chalkboard-user >}} &nbsp; [Classroom](https://classroom.google.com)
+:::
+
+:::
+
+## Temario
+
+<embed src="Temario.pdf" width="100%" height="500px" type='application/pdf'>

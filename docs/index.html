@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Christian Francisco Badillo Hernández">
 
 <title>Ciencia de Datos con Python</title>
 <style>
@@ -42,6 +43,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -144,12 +147,6 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Test</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
@@ -163,6 +160,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./intro_python/Cloud.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Instalación de Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_python/VarType.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Variables y Tipos de Datos en Python</span></a>
   </div>
 </li>
       </ul>
@@ -185,7 +188,15 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de Contenido</h2>
+   
+  <ul>
+  <li><a href="#acerca-de-este-curso" id="toc-acerca-de-este-curso" class="nav-link active" data-scroll-target="#acerca-de-este-curso">Acerca de este curso</a></li>
+  <li><a href="#objetivos-del-curso" id="toc-objetivos-del-curso" class="nav-link" data-scroll-target="#objetivos-del-curso">Objetivos del curso</a></li>
+  <li><a href="#temario" id="toc-temario" class="nav-link" data-scroll-target="#temario">Temario</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -200,7 +211,19 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Autor/a</div>
+    <div class="quarto-title-meta-contents">
+             <p>Christian Francisco Badillo Hernández </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">1 de mayo de 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -210,10 +233,45 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This is a Quarto website.</p>
-<p>To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.</p>
+<section id="acerca-de-este-curso" class="level2">
+<h2 class="anchored" data-anchor-id="acerca-de-este-curso">Acerca de este curso</h2>
+<p>Este curso tiene como objetivo introducir a los estudiantes de la Facultad de Psicología al mundo de la ciencia de datos utilizando Python. A lo largo del curso, los estudiantes aprenderán a utilizar las librerías más populares de Python para el análisis de datos, la visualización de datos, y la creación de redes neuronales.</p>
+<p>El curso no supone ningún conocimiento previo de programación, pero se espera que los estudiantes tengan una actitud proactiva y estén dispuestos a aprender. Además cuando sea necesario, se deberan utilizar conceptos de matemáticas y estadística básica con el fin de entender los conceptos de ciencia de datos de manera más profunda pero no es necesario tener un conocimiento previo de estos temas.</p>
+</section>
+<section id="objetivos-del-curso" class="level2">
+<h2 class="anchored" data-anchor-id="objetivos-del-curso">Objetivos del curso</h2>
+<ul>
+<li>Aprender a utilizar Python para el análisis de datos, visualización de datos y creación de redes neuronales.</li>
+<li>Entender los conceptos básicos de las redes neuronales.</li>
+<li>Entender los conceptos básicos de la estadística descriptiva e inferencial a través de ejemplos prácticos.</li>
+</ul>
+<div class="grid course-details course-details-smaller">
+<section id="instructor" class="level3 g-col-6">
+<h3 class="anchored" data-anchor-id="instructor">Instructor</h3>
+<ul>
+<li><i class="fa-solid fa-user" aria-label="user"></i> &nbsp; Christian Francisco Badillo Hernández</li>
+<li><i class="fa-solid fa-university" aria-label="university"></i> &nbsp; Lab 25, Facultad de Psicología, UNAM</li>
+<li><i class="fa-solid fa-envelope" aria-label="envelope"></i> &nbsp; <a href="mailto:cris.badillo1408@gmail.com">cris.badillo1408@gmail.com</a></li>
+</ul>
+</section>
+<section id="detalles-del-curso" class="level3 g-col-6">
+<h3 class="anchored" data-anchor-id="detalles-del-curso">Detalles del curso</h3>
+<ul>
+<li><i class="fa-solid fa-calendar" aria-label="calendar"></i> &nbsp; Lunes - Viernes</li>
+<li><i class="fa-solid fa-calendar-alt" aria-label="calendar-alt"></i> &nbsp; 10 de junio - 28 de junio de 2024</li>
+<li><i class="fa-solid fa-clock" aria-label="clock"></i> &nbsp; 13:30 - 15:30 hrs</li>
+<li><i class="fa-solid fa-location-dot" aria-label="location-dot"></i> &nbsp; Salón Pendiente</li>
+<li><i class="fa-solid fa-chalkboard-user" aria-label="chalkboard-user"></i> &nbsp; <a href="https://classroom.google.com">Classroom</a></li>
+</ul>
+</section>
+</div>
+</section>
+<section id="temario" class="level2">
+<h2 class="anchored" data-anchor-id="temario">Temario</h2>
+<embed src="Temario.pdf" width="100%" height="500px" type="application/pdf">
 
 
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Volver arriba</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -784,27 +842,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Copyright © 2024 Christian Francisco Badillo Hernández</p>
+<p>Copyright <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 por Christian Francisco Badillo Hernández <br> Contenido con licencia <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></div>
     <div class="nav-footer-right">
-      <ul class="footer-items list-unstyled">
-    <li class="nav-item compact">
-    <a class="nav-link active" href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales" aria-current="page">
-      <i class="bi bi-github" role="img">
-</i> 
-    </a>
-  </li>  
-    <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/Christi91084601">
-      <i class="bi bi-twitter" role="img">
-</i> 
-    </a>
-  </li>  
-</ul>
-    </div>
+<p>Hecho con <i class="fa-brands fa-python" aria-label="python"></i> y <a href="https://quarto.org">Quarto</a> <br> Código fuente disponible en <a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales">GitHub</a></p>
+</div>
   </div>
 </footer>
 
