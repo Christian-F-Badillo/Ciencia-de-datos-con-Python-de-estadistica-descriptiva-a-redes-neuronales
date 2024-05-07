@@ -15,7 +15,7 @@ website:
       {{< fa brands creative-commons-by >}} {{< fa brands creative-commons-nc >}}
       [Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/) 
     right: |
-      Hecho con {{< fa brands python >}} y [Quarto](https://quarto.org) <br>
+      Hecho con [{{< fa brands python >}}](https://www.python.org/) y [Quarto](https://quarto.org) <br>
       Código fuente disponible en [GitHub](https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales)
 
 
@@ -73,7 +73,26 @@ format:
     toc: true
     toc-title: "Tabla de Contenido"
     toc-depth: 3
+    code-line-numbers: true
+    code-fold: show
+    code-copy: true
+    code-overflow: scroll
+    code-tools:
+      source: repo
+    code-summary: "Ver código"
+    code-block-border-left: warning
+    code-block-bg: true
+    highlight-style: github
+    code-link: true
+
+    fig-align: center
+
+    plotly-connected: true
 
 execute: 
   cache: true
+  echo: fenced
+  output: asis
+  freeze: auto
+  keep-ipynb: true
 

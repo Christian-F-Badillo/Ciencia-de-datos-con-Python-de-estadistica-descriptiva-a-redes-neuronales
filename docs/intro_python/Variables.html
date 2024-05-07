@@ -1,0 +1,2704 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.551">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Christian Badillo">
+
+<title>Ciencia de Datos con Python - Declaración de Variables y Operaciones</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../intro_python/functions_and_loops.html" rel="next">
+<link href="../intro_python/Cloud.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.46.0/min/vs/editor/editor.main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+<style type="text/css">
+.monaco-editor pre {
+  background-color: unset !important;
+}
+
+.qpyodide-editor-toolbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.qpyodide-editor-toolbar-left-buttons, .qpyodide-editor-toolbar-right-buttons {
+  display: flex;
+}
+
+.qpyodide-non-interactive-loading-container.qpyodide-cell-needs-evaluation, .qpyodide-non-interactive-loading-container.qpyodide-cell-evaluated {
+  justify-content: center;
+  display: flex;
+  background-color: rgba(250, 250, 250, 0.65);
+  border: 1px solid rgba(233, 236, 239, 0.65);
+  border-radius: 0.5rem;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.qpyodide-r-project-logo {
+  color: #2767B0; /* R Project's blue color */
+}
+
+.qpyodide-icon-status-spinner {
+  color: #7894c4;
+}
+
+.qpyodide-icon-run-code {
+  color: #0d9c29
+}
+
+.qpyodide-output-code-stdout {
+  color: #111;
+}
+
+.qpyodide-output-code-stderr {
+  color: #db4133;
+}
+
+.qpyodide-editor {
+  border: 1px solid #EEEEEE;
+}
+
+.qpyodide-editor-toolbar {
+  background-color: #EEEEEE;
+  padding: 0.2rem 0.5rem;
+}
+
+.qpyodide-button {
+  background-color: #EEEEEE;
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1;
+  text-decoration: none;
+  text-align: center;
+  color: #000;
+  border-color: #dee2e6;
+  border: 1px solid rgba(0,0,0,0);
+  padding: 0.375rem 0.75rem;
+  font-size: .9rem;
+  border-radius: 0.25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.qpyodide-button:hover {
+  color: #000;
+  background-color: #d9dce0;
+  border-color: #c8ccd0;
+}
+
+.qpyodide-button:disabled,.qpyodide-button.disabled,fieldset:disabled .qpyodide-button {
+  pointer-events: none;
+  opacity: .65
+}
+
+.qpyodide-button-reset {
+  color: #696969; /*#4682b4;*/
+}
+
+.qpyodide-button-copy {
+  color: #696969;
+}
+
+
+/* Custom styling for RevealJS Presentations*/
+
+/* Reset the style of the interactive area */
+.reveal div.qpyodide-interactive-area {
+  display: block;
+  box-shadow: none;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 0;
+} 
+
+/* Provide space to entries */
+.reveal div.qpyodide-output-code-area pre div {
+  margin: 1px 2px 1px 10px;
+}
+
+/* Collapse the inside code tags to avoid extra space between line outputs */
+.reveal pre div code.qpyodide-output-code-stdout, .reveal pre div code.qpyodide-output-code-stderr {
+  padding: 0;
+  display: contents;
+}
+
+.reveal pre div code.qpyodide-output-code-stdout {
+  color: #111;
+}
+
+.reveal pre div code.qpyodide-output-code-stderr {
+  color: #db4133;
+}
+
+
+/* Create a border around console and output (does not effect graphs) */
+.reveal div.qpyodide-console-area {
+  border: 1px solid #EEEEEE;
+  box-shadow: 2px 2px 10px #EEEEEE;
+}
+
+/* Cap output height and allow text to scroll */
+/* TODO: Is there a better way to fit contents/max it parallel to the monaco editor size? */
+.reveal div.qpyodide-output-code-area pre {
+  max-height: 400px;
+  overflow: scroll;
+}
+</style>
+<script type="module">
+// Document level settings ----
+
+// Determine if we need to install python packages
+globalThis.qpyodideInstallPythonPackagesList = [''];
+
+// Check to see if we have an empty array, if we do set to skip the installation.
+globalThis.qpyodideSetupPythonPackages = !(qpyodideInstallPythonPackagesList.indexOf("") !== -1);
+
+// Display a startup message?
+globalThis.qpyodideShowStartupMessage = true;
+
+// Describe the webR settings that should be used
+globalThis.qpyodideCustomizedPyodideOptions = {
+  "indexURL": "https://cdn.jsdelivr.net/pyodide/v0.25.0/full/",
+  "env": {
+    "HOME": "/home/pyodide",
+  }, 
+  stdout: (text) => {qpyodideAddToOutputArray(text, "out");},
+  stderr: (text) => {qpyodideAddToOutputArray(text, "error");}
+}
+
+// Store cell data
+globalThis.qpyodideCellDetails = [{"options":{"fig-height":5,"out-height":"","message":"true","results":"markup","label":"","read-only":"false","warning":"true","autorun":"","classes":"","dpi":72,"out-width":"700px","comment":"","output":"true","fig-cap":"","context":"interactive","fig-width":7},"id":1,"code":"# Ejemplo de cómo deberán comentar su código\n# Nombre: Christian Badillo\n# Fecha: 10 de junio de 2024\n\n# Ejercicio 1\nprint(\"Solución del ejercicio 1\")\n\n# Ejercicio 2\nprint(\"\"\"Solución \ndel ejercicio 2\"\"\")"},{"options":{"fig-height":5,"out-height":"","message":"true","results":"markup","label":"","read-only":"false","warning":"true","autorun":"","classes":"","dpi":72,"out-width":"700px","comment":"","output":"true","fig-cap":"","context":"interactive","fig-width":7},"id":2,"code":"# Tu código aquí"},{"options":{"fig-height":5,"out-height":"","message":"true","results":"markup","label":"","read-only":"false","warning":"true","autorun":"","classes":"","dpi":72,"out-width":"700px","comment":"","output":"true","fig-cap":"","context":"interactive","fig-width":7},"id":3,"code":"# Tu código aquí"},{"options":{"fig-height":5,"out-height":"","message":"true","results":"markup","label":"","read-only":"false","warning":"true","autorun":"","classes":"","dpi":72,"out-width":"700px","comment":"","output":"true","fig-cap":"","context":"interactive","fig-width":7},"id":4,"code":"# Tu código aquí"},{"options":{"fig-height":5,"out-height":"","message":"true","results":"markup","label":"","read-only":"false","warning":"true","autorun":"","classes":"","dpi":72,"out-width":"700px","comment":"","output":"true","fig-cap":"","context":"interactive","fig-width":7},"id":5,"code":"# Tu código aquí"},{"options":{"fig-height":5,"out-height":"","message":"true","results":"markup","label":"","read-only":"false","warning":"true","autorun":"","classes":"","dpi":72,"out-width":"700px","comment":"","output":"true","fig-cap":"","context":"interactive","fig-width":7},"id":6,"code":"# Tu código aquí"}];
+
+
+</script>
+<script type="module">
+// Declare startupMessageqpyodide globally
+globalThis.qpyodideStartupMessage = document.createElement("p");
+
+// Function to set the button text
+globalThis.qpyodideSetInteractiveButtonState = function(buttonText, enableCodeButton = true) {
+  document.querySelectorAll(".qpyodide-button-run").forEach((btn) => {
+    btn.innerHTML = buttonText;
+    btn.disabled = !enableCodeButton;
+  });
+}
+
+// Function to update the status message in non-interactive cells
+globalThis.qpyodideUpdateStatusMessage = function(message) {
+  document.querySelectorAll(".qpyodide-status-text.qpyodide-cell-needs-evaluation").forEach((elem) => {
+    elem.innerText = message;
+  });
+}
+
+// Function to update the status message
+globalThis.qpyodideUpdateStatusHeader = function(message) {
+
+  if (!qpyodideShowStartupMessage) return;
+
+  qpyodideStartupMessage.innerHTML = message;
+}
+
+// Status header update with customized spinner message
+globalThis.qpyodideUpdateStatusHeaderSpinner = function(message) {
+
+  qpyodideUpdateStatusHeader(`
+    <i class="fa-solid fa-spinner fa-spin qpyodide-icon-status-spinner"></i>
+    <span>${message}</span>
+  `);
+}
+
+
+// Function that attaches the document status message
+function qpyodideDisplayStartupMessage(showStartupMessage) {
+  if (!showStartupMessage) {
+    return;
+  }
+
+  // Get references to header elements
+  const headerHTML = document.getElementById("title-block-header");
+  const headerRevealJS = document.getElementById("title-slide");
+
+  // Create the outermost div element for metadata
+  const quartoTitleMeta = document.createElement("div");
+  quartoTitleMeta.classList.add("quarto-title-meta");
+
+  // Create the first inner div element
+  const firstInnerDiv = document.createElement("div");
+  firstInnerDiv.setAttribute("id", "qpyodide-status-message-area");
+
+  // Create the second inner div element for "Pyodide Status" heading and contents
+  const secondInnerDiv = document.createElement("div");
+  secondInnerDiv.setAttribute("id", "qpyodide-status-message-title");
+  secondInnerDiv.classList.add("quarto-title-meta-heading");
+  secondInnerDiv.innerText = "Pyodide Status";
+
+  // Create another inner div for contents
+  const secondInnerDivContents = document.createElement("div");
+  secondInnerDivContents.setAttribute("id", "qpyodide-status-message-body");
+  secondInnerDivContents.classList.add("quarto-title-meta-contents");
+
+  // Describe the Pyodide state
+  qpyodideStartupMessage.innerText = "🟡 Loading...";
+  qpyodideStartupMessage.setAttribute("id", "qpyodide-status-message-text");
+  // Add `aria-live` to auto-announce the startup status to screen readers
+  qpyodideStartupMessage.setAttribute("aria-live", "assertive");
+
+  // Append the startup message to the contents
+  secondInnerDivContents.appendChild(qpyodideStartupMessage);
+
+  // Combine the inner divs and contents
+  firstInnerDiv.appendChild(secondInnerDiv);
+  firstInnerDiv.appendChild(secondInnerDivContents);
+  quartoTitleMeta.appendChild(firstInnerDiv);
+
+  // Determine where to insert the quartoTitleMeta element
+  if (headerHTML || headerRevealJS) {
+    // Append to the existing "title-block-header" element or "title-slide" div
+    (headerHTML || headerRevealJS).appendChild(quartoTitleMeta);
+  } else {
+    // If neither headerHTML nor headerRevealJS is found, insert after "Pyodide-monaco-editor-init" script
+    const monacoScript = document.getElementById("qpyodide-monaco-editor-init");
+    const header = document.createElement("header");
+    header.setAttribute("id", "title-block-header");
+    header.appendChild(quartoTitleMeta);
+    monacoScript.after(header);
+  }
+}
+
+qpyodideDisplayStartupMessage(qpyodideShowStartupMessage);
+</script>
+<script type="module">
+// Create a logging setup
+globalThis.qpyodideMessageArray = []
+
+// Add messages to array
+globalThis.qpyodideAddToOutputArray = function(message, type) {
+  qpyodideMessageArray.push({ message, type });
+}
+
+// Function to reset the output array
+globalThis.qpyodideResetOutputArray = function() {
+  qpyodideMessageArray = [];
+}
+
+globalThis.qpyodideRetrieveOutput = function() {
+  return qpyodideMessageArray.map(entry => entry.message).join('\n');
+}
+
+// Start a timer
+const initializePyodideTimerStart = performance.now();
+
+// Encase with a dynamic import statement
+globalThis.qpyodideInstance = await import(
+  qpyodideCustomizedPyodideOptions.indexURL + "pyodide.mjs").then(
+   async({ loadPyodide }) => {
+
+    console.log("Start loading Pyodide");
+    
+    // Populate Pyodide options with defaults or new values based on `pyodide`` meta
+    let mainPyodide = await loadPyodide(
+      qpyodideCustomizedPyodideOptions
+    );
+    
+    // Setup a namespace for global scoping
+    // await loadedPyodide.runPythonAsync("globalScope = {}"); 
+    
+    // Update status to reflect the next stage of the procedure
+    qpyodideUpdateStatusHeaderSpinner("Initializing Python Packages");
+
+    // Load the `micropip` package to allow installation of packages.
+    await mainPyodide.loadPackage("micropip");
+    await mainPyodide.runPythonAsync(`import micropip`);
+
+    // Load the `pyodide_http` package to shim uses of `requests` and `urllib3`.
+    // This allows for `pd.read_csv(url)` to work flawlessly.
+    // Details: https://github.com/coatless-quarto/pyodide/issues/9
+    await mainPyodide.loadPackage("pyodide_http");
+    await mainPyodide.runPythonAsync(`
+    import pyodide_http
+    pyodide_http.patch_all()  # Patch all libraries
+    `);
+
+    // Load the `matplotlib` package with necessary environment hook
+    await mainPyodide.loadPackage("matplotlib");
+
+    // Set the backend for matplotlib to be interactive.
+    await mainPyodide.runPythonAsync(`
+    import matplotlib
+    matplotlib.use("module://matplotlib_pyodide.html5_canvas_backend")
+    from matplotlib import pyplot as plt
+    `);
+
+    // Unlock interactive buttons
+    qpyodideSetInteractiveButtonState(
+      `<i class="fa-solid fa-play qpyodide-icon-run-code"></i> <span>Run Code</span>`, 
+      true
+    );
+
+    // Set document status to viable
+    qpyodideUpdateStatusHeader(
+      "🟢 Ready!"
+    );
+
+    // Assign Pyodide into the global environment
+    globalThis.mainPyodide = mainPyodide;
+
+    console.log("Completed loading Pyodide");
+    return mainPyodide;
+  }
+);
+
+// Stop timer
+const initializePyodideTimerEnd = performance.now();
+
+// Create a function to retrieve the promise object.
+globalThis._qpyodideGetInstance = function() {
+    return qpyodideInstance;
+}
+
+</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+<meta property="og:title" content="Ciencia de Datos con Python - Declaración de Variables y Operaciones">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="Ciencia de Datos con Python">
+<meta property="og:locale" content="es_MX">
+<meta name="twitter:title" content="Ciencia de Datos con Python - Declaración de Variables y Operaciones">
+<meta name="twitter:description" content="">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro_python/Cloud.html">Fundamentos de Python</a></li><li class="breadcrumb-item"><a href="../intro_python/Variables.html">Declaración de Variables y Operaciones</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../img/logo-members/Lab25_logo_2015.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Ciencia de Datos con Python</a> 
+        <div class="sidebar-tools-main">
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales">
+            Source Code
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inicio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conócenos</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Fundamentos de Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro_python/Cloud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instalación de Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro_python/Variables.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Declaración de Variables y Operaciones</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro_python/functions_and_loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Funciones y Bucles de Control</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Manejo de Datos</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Estadística con Python</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Redes Neuronales</span></span>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de Contenido</h2>
+   
+  <ul>
+  <li><a href="#variables-y-tipos-de-variables" id="toc-variables-y-tipos-de-variables" class="nav-link active" data-scroll-target="#variables-y-tipos-de-variables">Variables y tipos de variables</a>
+  <ul class="collapse">
+  <li><a href="#tipos-de-variables" id="toc-tipos-de-variables" class="nav-link" data-scroll-target="#tipos-de-variables">Tipos de Variables</a>
+  <ul class="collapse">
+  <li><a href="#números-enteros-y-decimales" id="toc-números-enteros-y-decimales" class="nav-link" data-scroll-target="#números-enteros-y-decimales">Números enteros y decimales</a></li>
+  <li><a href="#cadenas-de-texto" id="toc-cadenas-de-texto" class="nav-link" data-scroll-target="#cadenas-de-texto">Cadenas de texto</a></li>
+  <li><a href="#valores-booleanos" id="toc-valores-booleanos" class="nav-link" data-scroll-target="#valores-booleanos">Valores booleanos</a></li>
+  <li><a href="#documentación-de-código" id="toc-documentación-de-código" class="nav-link" data-scroll-target="#documentación-de-código">Documentación de código</a></li>
+  <li><a href="#ejercicios-1.1" id="toc-ejercicios-1.1" class="nav-link" data-scroll-target="#ejercicios-1.1">Ejercicios 1.1</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#operaciones-de-variables" id="toc-operaciones-de-variables" class="nav-link" data-scroll-target="#operaciones-de-variables">Operaciones de variables</a>
+  <ul class="collapse">
+  <li><a href="#operaciones-aritméticas" id="toc-operaciones-aritméticas" class="nav-link" data-scroll-target="#operaciones-aritméticas">Operaciones aritméticas</a></li>
+  <li><a href="#operaciones-de-comparación" id="toc-operaciones-de-comparación" class="nav-link" data-scroll-target="#operaciones-de-comparación">Operaciones de comparación</a></li>
+  <li><a href="#operaciones-con-cadenas-de-texto" id="toc-operaciones-con-cadenas-de-texto" class="nav-link" data-scroll-target="#operaciones-con-cadenas-de-texto">Operaciones con cadenas de texto</a>
+  <ul class="collapse">
+  <li><a href="#ejercicios-1.2" id="toc-ejercicios-1.2" class="nav-link" data-scroll-target="#ejercicios-1.2">Ejercicios 1.2</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#conclusiones" id="toc-conclusiones" class="nav-link" data-scroll-target="#conclusiones">Conclusiones</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/edit/main/intro_python/Variables.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.46.0/min/vs/loader.js"></script>
+<script type="module" id="qpyodide-monaco-editor-init">
+
+  // Configure the Monaco Editor's loader
+  require.config({
+    paths: {
+      'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.46.0/min/vs'
+    }
+  });
+</script>
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro_python/Cloud.html">Fundamentos de Python</a></li><li class="breadcrumb-item"><a href="../intro_python/Variables.html">Declaración de Variables y Operaciones</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Declaración de Variables y Operaciones</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar todo el código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Ocultar todo el código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Ver el código fuente</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Autor/a</div>
+    <div class="quarto-title-meta-contents">
+             <p>Christian Badillo </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">6 de mayo de 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="variables-y-tipos-de-variables" class="level1">
+<h1>Variables y tipos de variables</h1>
+<p>En Python utilizamos variables para almacenar información en la memoria de la computadora. Las variables son como cajas en las que podemos guardar información, cada caja tiene un nombre y un contenido. Existen varias reglas para dar nombre a las variables en Python:</p>
+<ul>
+<li>El nombre debe comenzar con una letra o un guión bajo.</li>
+<li>No puede comenzar con un número.</li>
+<li>Puede contener letras, números y guiones bajos.</li>
+</ul>
+<p>El proceso de crear (dar valor) a una variable se conoce como <strong><em>declaración de variables</em></strong> y es sensible a mayúsculas y minúsculas. Esto significa que si declaramos las variables <code>nombre</code>, <code>Nombre</code> y <code>NOMBRE</code> serán diferentes.</p>
+<div id="5b8c3394" class="cell" data-execution_count="2">
+<details open="" class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>nombre <span class="op">=</span> <span class="st">"Christian"</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>Nombre <span class="op">=</span> <span class="st">"Jimena"</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>NOMBRE <span class="op">=</span> <span class="st">"Luis"</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="bu">print</span>(nombre <span class="op">==</span> Nombre)</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="bu">print</span>(Nombre <span class="op">==</span> NOMBRE)</span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="bu">print</span>(NOMBRE <span class="op">==</span> nombre)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>False
+False
+False</code></pre>
+</div>
+</div>
+<p>Por lo cual podemos ver que las variables <code>nombre</code>, <code>Nombre</code> y <code>NOMBRE</code> son diferentes, pues al realizar la comparación entre ellas, el resultado es <code>False</code>, también podemos observar la forma de declarar variables en Python, la cual es <code>nombre_variable = valor_variable</code>.</p>
+<p>Podemos sobrescribir el contenido de una variable en cualquier momento.</p>
+<div id="6b8dd446" class="cell" data-execution_count="3">
+<details open="" class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="bu">print</span>(nombre)</span>
+<span id="cb3-2"><a href="#cb3-2"></a>nombre <span class="op">=</span> <span class="st">"Cesar"</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="bu">print</span>(nombre)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Christian
+Cesar</code></pre>
+</div>
+</div>
+<p>En el ejemplo anterior, hemos cambiado el contenido de la variable <code>nombre</code> de “Christian” a “Cesar”. En Python, podemos asignar cualquier tipo de dato a una variable. Los tipos de datos más comunes en Python son:</p>
+<ul>
+<li><code>int</code>: Números enteros.</li>
+<li><code>float</code>: Números decimales.</li>
+<li><code>str</code>: Cadenas de texto.</li>
+<li><code>bool</code>: Valores booleanos (verdadero o falso).</li>
+<li><code>list</code>: Listas de elementos.</li>
+<li><code>tuple</code>: Tuplas de elementos.</li>
+<li><code>dict</code>: Diccionarios de elementos.</li>
+</ul>
+<section id="tipos-de-variables" class="level2">
+<h2 class="anchored" data-anchor-id="tipos-de-variables">Tipos de Variables</h2>
+<section id="números-enteros-y-decimales" class="level3">
+<h3 class="anchored" data-anchor-id="números-enteros-y-decimales">Números enteros y decimales</h3>
+<p>Los <strong><em>números enteros</em></strong> son números que no tienen parte decimal. En Python, podemos declarar un número entero de la siguiente manera:</p>
+<div id="3cfd7772" class="cell" data-execution_count="4">
+<details open="" class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>numero_entero <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="bu">print</span>(numero_entero)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>10</code></pre>
+</div>
+</div>
+<p>Otra forma de declarar un número entero es utilizando la función <code>int()</code> para convertir un número decimal o un booleano a un número entero. Veamos un ejemplo:</p>
+<div id="09959f81" class="cell" data-execution_count="5">
+<details open="" class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>numero_entero <span class="op">=</span> <span class="bu">int</span>(<span class="fl">10.5</span>)</span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="bu">print</span>(numero_entero)</span>
+<span id="cb7-3"><a href="#cb7-3"></a>numero_entero <span class="op">=</span> <span class="bu">int</span>(<span class="fl">10.6</span>)</span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="bu">print</span>(numero_entero)</span>
+<span id="cb7-5"><a href="#cb7-5"></a></span>
+<span id="cb7-6"><a href="#cb7-6"></a>numero_entero <span class="op">=</span> <span class="bu">int</span>(<span class="va">True</span>)</span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="bu">print</span>(numero_entero)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>10
+10
+1</code></pre>
+</div>
+</div>
+<p>Los <strong><em>números decimales</em></strong> son números que tienen parte decimal. En Python, podemos declarar un número decimal de la siguiente manera:</p>
+<div id="8e6c09db" class="cell" data-execution_count="6">
+<details open="" class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>numero_decimal <span class="op">=</span> <span class="fl">10.5</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="bu">print</span>(numero_decimal)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>10.5</code></pre>
+</div>
+</div>
+<p>Otra forma de declarar un número decimal es utilizando la función <code>float()</code> para convertir un número entero o un booleano a un número decimal.</p>
+<div id="b69b3ab3" class="cell" data-execution_count="7">
+<details open="" class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>numero_decimal <span class="op">=</span> <span class="bu">float</span>(<span class="dv">10</span>)</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="bu">print</span>(numero_decimal)</span>
+<span id="cb11-3"><a href="#cb11-3"></a></span>
+<span id="cb11-4"><a href="#cb11-4"></a>numero_decimal <span class="op">=</span> <span class="bu">float</span>(<span class="va">True</span>)</span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="bu">print</span>(numero_decimal)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>10.0
+1.0</code></pre>
+</div>
+</div>
+<p>Igualmente podemos utilizar la nota científica para declarar un número decimal en Python con la letra <code>e</code> seguida de un número entero por ejemplo, <code>22e10</code> es equivalente a <span class="math inline">\(22 * 10^10\)</span>. En código:</p>
+<div id="f107989f" class="cell" data-execution_count="8">
+<details open="" class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>numero_decimal <span class="op">=</span> <span class="fl">1.5e2</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="bu">print</span>(numero_decimal)</span>
+<span id="cb13-3"><a href="#cb13-3"></a></span>
+<span id="cb13-4"><a href="#cb13-4"></a>numero_decimal <span class="op">=</span> <span class="fl">1.5e-2</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="bu">print</span>(numero_decimal)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>150.0
+0.015</code></pre>
+</div>
+</div>
+</section>
+<section id="cadenas-de-texto" class="level3">
+<h3 class="anchored" data-anchor-id="cadenas-de-texto">Cadenas de texto</h3>
+<p>Las <strong><em>cadenas de texto</em></strong> son una secuencia de carácteres (letras, números y símbolos). En Python, se pueden declarar cadenas de texto utilizando comillas simples <code>'</code> o comillas dobles <code>"</code>. Veamos un ejemplo:</p>
+<div id="8c865063" class="cell" data-execution_count="9">
+<details open="" class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>cadena_texto <span class="op">=</span> <span class="st">"Hola Mundo"</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="bu">print</span>(cadena_texto)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hola Mundo</code></pre>
+</div>
+</div>
+<p>Otra forma de declarar una cadena de texto es utilizando la función <code>str()</code> para convertir un número entero, decimal o booleano a una cadena de texto. También podemos combinar las comillas simples y dobles para poder usar una o la otra dentro de la cadena de texto. Por ejemplo:</p>
+<div id="33f2c0b8" class="cell" data-execution_count="10">
+<details open="" class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>texto<span class="op">=</span> <span class="st">'No te procupes, solo es un "amigo" / "amiga"'</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="bu">print</span>(texto)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>No te procupes, solo es un "amigo" / "amiga"</code></pre>
+</div>
+</div>
+<p>Tambén podemos imprimir saltos de línea (<code>\n</code>), tabulaciones (<code>\t</code>) y caracteres especiales en una cadena de texto. Por ejemplo:</p>
+<div id="4f6bcfe2" class="cell" data-execution_count="11">
+<details open="" class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>texto <span class="op">=</span> <span class="st">"Las rosas son rojas,</span><span class="ch">\n</span><span class="st">Las violetas son azules,</span><span class="ch">\n</span><span class="st">Viva el team frio,</span><span class="ch">\n</span><span class="st">Quiero un pan </span><span class="ch">\U0001F35E\n</span><span class="st">"</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="bu">print</span>(texto)</span>
+<span id="cb19-4"><a href="#cb19-4"></a></span>
+<span id="cb19-5"><a href="#cb19-5"></a>texto <span class="op">=</span> <span class="st">"</span><span class="ch">\n\t</span><span class="st"> Aqui no se habla</span><span class="ch">\n\t</span><span class="st">del formato APA</span><span class="ch">\n\t</span><span class="st">No, no, no 🫠"</span></span>
+<span id="cb19-6"><a href="#cb19-6"></a></span>
+<span id="cb19-7"><a href="#cb19-7"></a><span class="bu">print</span>(texto)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Las rosas son rojas,
+Las violetas son azules,
+Viva el team frio,
+Quiero un pan 🍞
+
+
+     Aqui no se habla
+    del formato APA
+    No, no, no 🫠</code></pre>
+</div>
+</div>
+</section>
+<section id="valores-booleanos" class="level3">
+<h3 class="anchored" data-anchor-id="valores-booleanos">Valores booleanos</h3>
+<p>Los <strong><em>valores booleanos</em></strong> son valores lógicos que pueden ser <code>True</code> (verdadero) o <code>False</code> (falso). En Python, podemos declarar un valor booleano de la siguiente manera:</p>
+<div id="42111b11" class="cell" data-execution_count="12">
+<details open="" class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>valor_booleano <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="bu">print</span>(valor_booleano)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>True</code></pre>
+</div>
+</div>
+<p>Igualmente existe la función <code>bool()</code> pero su uso es poco utilizado, ya que los valores booleanos se utilizan principalmente en condicionales y bucles, además es necesario conocer que cosas se consideran <code>True</code> y <code>False</code> en Python.</p>
+<div id="bbb3f102" class="cell" data-execution_count="13">
+<details open="" class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>valor_booleano <span class="op">=</span> <span class="bu">bool</span>(<span class="dv">0</span>)</span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="bu">print</span>(valor_booleano)</span>
+<span id="cb23-3"><a href="#cb23-3"></a>valor_booleano <span class="op">=</span> <span class="bu">bool</span>(<span class="dv">1</span>)</span>
+<span id="cb23-4"><a href="#cb23-4"></a><span class="bu">print</span>(valor_booleano)</span>
+<span id="cb23-5"><a href="#cb23-5"></a></span>
+<span id="cb23-6"><a href="#cb23-6"></a>valor_booleano <span class="op">=</span> <span class="bu">bool</span>([])</span>
+<span id="cb23-7"><a href="#cb23-7"></a><span class="bu">print</span>(valor_booleano)</span>
+<span id="cb23-8"><a href="#cb23-8"></a>valor_booleano <span class="op">=</span> <span class="bu">bool</span>([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
+<span id="cb23-9"><a href="#cb23-9"></a><span class="bu">print</span>(valor_booleano)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>False
+True
+False
+True</code></pre>
+</div>
+</div>
+<p>Si recuerdan sus clases de Lógica, podrán crear una tabla de verdad para evaluar proposiciones lógicas en Python.</p>
+</section>
+<section id="documentación-de-código" class="level3">
+<h3 class="anchored" data-anchor-id="documentación-de-código">Documentación de código</h3>
+<p>La <strong><em>documentación</em></strong> de código es una práctica común en programación y una buena costumbre para escribir código limpio y legible. En Python, podemos documentar nuestro código utilizando comentarios.</p>
+<p>Los <strong><em>comentarios</em></strong> son líneas de código que no se ejecutan y se utilizan para explicar el código. En Python, los comentarios se crean utilizando el símbolo <code>#</code> y cualquier texto que se escriba después de este símbolo se considera un comentario y no se ejecuta.</p>
+<div id="694197b0" class="cell" data-execution_count="14">
+<details open="" class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># Esto es un comentario</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="bu">print</span>(<span class="st">"Hola Mundo"</span>) <span class="co"># Aquí podemos comentar que hace esta línea de código</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hola Mundo</code></pre>
+</div>
+</div>
+<p>También podemos crear comentarios multilínea utilizando tres comillas simples <code>'''</code> o tres comillas dobles <code>"""</code>, se utiliza mucho esta forma de comentar para documentar funciones o clases, como lo veremos más adelante.</p>
+</section>
+<section id="ejercicios-1.1" class="level3">
+<h3 class="anchored" data-anchor-id="ejercicios-1.1">Ejercicios 1.1</h3>
+<p>En el siguiente bloque podrán ejecutar código de Python usando su navegador web. Igualmente pueden hacerlo en su computadora o en la nube utilizando <a href="https://colab.research.google.com/">Google Colab</a> o <a href="https://www.kaggle.com/">Kaggle</a>. Para cada ejercicio deber de escribir su propio código, crear un comentario con sus datos, crear su solución y tomar una captura de pantalla del resultado. Finalmente, subir la captura a la asignación correspondiente en Google Classroom.</p>
+<ol type="1">
+<li><p>Declarar una variable de cada tipo de dato en Python (entero, decimal, cadena de texto y booleano) e imprimir su valor.</p></li>
+<li><p>Declarar una variable con el nombre <code>poema</code> y asignarle un poema de su elección. Imprimir el poema en la consola con el formato adecuado. (Pueden utilizar emojis si lo desean).</p></li>
+</ol>
+<div id="qpyodide-insertion-location-1"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+</section>
+</section>
+<section id="operaciones-de-variables" class="level1">
+<h1>Operaciones de variables</h1>
+<p>En Python, podemos realizar operaciones matemáticas con variables de tipo entero y decimal. Las operaciones matemáticas más comunes en Python son:</p>
+<ul>
+<li>Suma: <code>+</code>.</li>
+<li>Resta: <code>-</code>.</li>
+<li>Multiplicación: <code>*</code>.</li>
+<li>División: <code>/</code>.</li>
+<li>Módulo: <code>%</code>.</li>
+<li>Potencia: <code>**</code>.</li>
+<li>División entera: <code>//</code>.</li>
+<li>Raíz cuadrada: <code>sqrt()</code> ó <code>** 0.5</code>.</li>
+<li>Operaciones de comparación: <code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>.</li>
+<li>Operaciones lógicas: <code>and</code>, <code>or</code>, <code>not</code>.</li>
+</ul>
+<section id="operaciones-aritméticas" class="level2">
+<h2 class="anchored" data-anchor-id="operaciones-aritméticas">Operaciones aritméticas</h2>
+<p>Las <strong><em>operaciones aritméticas</em></strong> son operaciones matemáticas que se realizan con números. En Python, podemos realizar operaciones aritméticas con variables de tipo entero y decimal, como si fuese una calculadora.</p>
+<div id="cfb7bcb4" class="cell" data-execution_count="15">
+<details open="" class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="im">from</span> math <span class="im">import</span> sqrt</span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="co"># Sumemos dos numeros</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a>numero1 <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb27-4"><a href="#cb27-4"></a>numero2 <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb27-5"><a href="#cb27-5"></a></span>
+<span id="cb27-6"><a href="#cb27-6"></a>suma <span class="op">=</span> numero1 <span class="op">+</span> numero2 <span class="co"># 10 + 5 = 15</span></span>
+<span id="cb27-7"><a href="#cb27-7"></a><span class="bu">print</span>(suma)</span>
+<span id="cb27-8"><a href="#cb27-8"></a></span>
+<span id="cb27-9"><a href="#cb27-9"></a><span class="co"># Restemos dos numeros</span></span>
+<span id="cb27-10"><a href="#cb27-10"></a>resta <span class="op">=</span> numero1 <span class="op">-</span> numero2 <span class="co"># 10 - 5 = 5</span></span>
+<span id="cb27-11"><a href="#cb27-11"></a><span class="bu">print</span>(resta)</span>
+<span id="cb27-12"><a href="#cb27-12"></a></span>
+<span id="cb27-13"><a href="#cb27-13"></a><span class="co"># Multipliquemos dos numeros</span></span>
+<span id="cb27-14"><a href="#cb27-14"></a>multiplicacion <span class="op">=</span> numero1 <span class="op">*</span> numero2 <span class="co"># 10 * 5 = 50</span></span>
+<span id="cb27-15"><a href="#cb27-15"></a><span class="bu">print</span>(multiplicacion)</span>
+<span id="cb27-16"><a href="#cb27-16"></a></span>
+<span id="cb27-17"><a href="#cb27-17"></a><span class="co"># Dividamos dos numeros</span></span>
+<span id="cb27-18"><a href="#cb27-18"></a>division <span class="op">=</span> numero1 <span class="op">/</span> numero2 <span class="co"># 10 / 5 = 2.0</span></span>
+<span id="cb27-19"><a href="#cb27-19"></a><span class="bu">print</span>(division)</span>
+<span id="cb27-20"><a href="#cb27-20"></a></span>
+<span id="cb27-21"><a href="#cb27-21"></a><span class="co"># Dividamos y solo tomemos la parte entera</span></span>
+<span id="cb27-22"><a href="#cb27-22"></a>division_entera <span class="op">=</span> numero1 <span class="op">//</span> numero2 <span class="co"># 10 // 5 = 2</span></span>
+<span id="cb27-23"><a href="#cb27-23"></a><span class="bu">print</span>(division_entera)</span>
+<span id="cb27-24"><a href="#cb27-24"></a></span>
+<span id="cb27-25"><a href="#cb27-25"></a><span class="co"># Calculemos el residuo de la división</span></span>
+<span id="cb27-26"><a href="#cb27-26"></a>modulo <span class="op">=</span> numero1 <span class="op">%</span> numero2 <span class="co"># 10 % 5 = 0</span></span>
+<span id="cb27-27"><a href="#cb27-27"></a><span class="bu">print</span>(modulo)</span>
+<span id="cb27-28"><a href="#cb27-28"></a></span>
+<span id="cb27-29"><a href="#cb27-29"></a><span class="co"># Elevemos un numero a una potencia</span></span>
+<span id="cb27-30"><a href="#cb27-30"></a>potencia <span class="op">=</span> numero1 <span class="op">**</span> numero2 <span class="co"># 10 ^ 5 = 100000</span></span>
+<span id="cb27-31"><a href="#cb27-31"></a><span class="bu">print</span>(potencia)</span>
+<span id="cb27-32"><a href="#cb27-32"></a></span>
+<span id="cb27-33"><a href="#cb27-33"></a><span class="co"># Calculemos la raiz cuadrada de un numero</span></span>
+<span id="cb27-34"><a href="#cb27-34"></a>raiz_cuadrada <span class="op">=</span> numero1 <span class="op">**</span> <span class="fl">0.5</span> <span class="co"># sqrt(10) = 3.1622776601683795</span></span>
+<span id="cb27-35"><a href="#cb27-35"></a>raiz_cuadrada2 <span class="op">=</span> sqrt(numero2) <span class="co"># sqrt(5) = 2.23606797749979</span></span>
+<span id="cb27-36"><a href="#cb27-36"></a><span class="bu">print</span>(raiz_cuadrada)</span>
+<span id="cb27-37"><a href="#cb27-37"></a><span class="bu">print</span>(raiz_cuadrada2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>15
+5
+50
+2.0
+2
+0
+100000
+3.1622776601683795
+2.23606797749979</code></pre>
+</div>
+</div>
+</section>
+<section id="operaciones-de-comparación" class="level2">
+<h2 class="anchored" data-anchor-id="operaciones-de-comparación">Operaciones de comparación</h2>
+<p>Las <strong><em>operaciones de comparación</em></strong> son operaciones que se utilizan para comparar dos valores y devuelven un valor booleano (<code>True</code> o <code>False</code>).</p>
+<div id="4b910a0c" class="cell" data-execution_count="16">
+<details open="" class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># Comparar si dos numeros son iguales</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>numero1 <span class="op">=</span> <span class="dv">148</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a>numero2 <span class="op">=</span> <span class="dv">47</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a></span>
+<span id="cb29-5"><a href="#cb29-5"></a>comparacion <span class="op">=</span> numero1 <span class="op">==</span> numero2</span>
+<span id="cb29-6"><a href="#cb29-6"></a><span class="bu">print</span>(comparacion)</span>
+<span id="cb29-7"><a href="#cb29-7"></a></span>
+<span id="cb29-8"><a href="#cb29-8"></a><span class="co"># Comparar si dos numeros son diferentes</span></span>
+<span id="cb29-9"><a href="#cb29-9"></a>comparacion <span class="op">=</span> numero1 <span class="op">!=</span> numero2</span>
+<span id="cb29-10"><a href="#cb29-10"></a><span class="bu">print</span>(comparacion)</span>
+<span id="cb29-11"><a href="#cb29-11"></a></span>
+<span id="cb29-12"><a href="#cb29-12"></a><span class="co"># Comparar si un numero es mayor que otro</span></span>
+<span id="cb29-13"><a href="#cb29-13"></a>comparacion <span class="op">=</span> numero1 <span class="op">&gt;</span> numero2</span>
+<span id="cb29-14"><a href="#cb29-14"></a><span class="bu">print</span>(comparacion)</span>
+<span id="cb29-15"><a href="#cb29-15"></a></span>
+<span id="cb29-16"><a href="#cb29-16"></a><span class="co"># Comparar si un numero es menor que otro</span></span>
+<span id="cb29-17"><a href="#cb29-17"></a>comparacion <span class="op">=</span> numero1 <span class="op">&lt;</span> numero2</span>
+<span id="cb29-18"><a href="#cb29-18"></a><span class="bu">print</span>(comparacion)</span>
+<span id="cb29-19"><a href="#cb29-19"></a></span>
+<span id="cb29-20"><a href="#cb29-20"></a><span class="co"># Comparar si un numero es mayor o igual que otro</span></span>
+<span id="cb29-21"><a href="#cb29-21"></a>comparacion <span class="op">=</span> numero1 <span class="op">&gt;=</span> numero2</span>
+<span id="cb29-22"><a href="#cb29-22"></a><span class="bu">print</span>(comparacion)</span>
+<span id="cb29-23"><a href="#cb29-23"></a></span>
+<span id="cb29-24"><a href="#cb29-24"></a><span class="co"># Comparar si un numero es menor o igual que otro</span></span>
+<span id="cb29-25"><a href="#cb29-25"></a>comparacion <span class="op">=</span> numero1 <span class="op">&lt;=</span> numero2</span>
+<span id="cb29-26"><a href="#cb29-26"></a><span class="bu">print</span>(comparacion)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>False
+True
+True
+False
+True
+False</code></pre>
+</div>
+</div>
+</section>
+<section id="operaciones-con-cadenas-de-texto" class="level2">
+<h2 class="anchored" data-anchor-id="operaciones-con-cadenas-de-texto">Operaciones con cadenas de texto</h2>
+<p>Las <strong><em>operaciones con cadenas de texto</em></strong> son operaciones que se utilizan para concatenar, multiplicar y comparar cadenas de texto. Se utilizan principalmente para manipular texto en Python.</p>
+<p>Para concatenar dos cadenas de texto, simplemente se utilizan el operador <code>+</code>.</p>
+<div id="f6f0f095" class="cell" data-execution_count="17">
+<details open="" class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a><span class="co"># Concatenar dos cadenas de texto</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>cadena1 <span class="op">=</span> <span class="st">"Hola"</span></span>
+<span id="cb31-3"><a href="#cb31-3"></a>cadena2 <span class="op">=</span> <span class="st">"Mundo"</span></span>
+<span id="cb31-4"><a href="#cb31-4"></a></span>
+<span id="cb31-5"><a href="#cb31-5"></a>concatenacion <span class="op">=</span> cadena1 <span class="op">+</span> <span class="st">" "</span> <span class="op">+</span> cadena2</span>
+<span id="cb31-6"><a href="#cb31-6"></a><span class="bu">print</span>(concatenacion)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hola Mundo</code></pre>
+</div>
+</div>
+<p>Para multiplicar una cadena de texto por un número entero, simplemente se utiliza el operador <code>*</code>.</p>
+<div id="6740602d" class="cell" data-execution_count="18">
+<details open="" class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a><span class="co"># Multiplicar una cadena de texto</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a>cadena <span class="op">=</span> <span class="st">"Me gusta programar en Python</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb33-3"><a href="#cb33-3"></a></span>
+<span id="cb33-4"><a href="#cb33-4"></a>multiplicacion <span class="op">=</span> cadena <span class="op">*</span> <span class="dv">5</span></span>
+<span id="cb33-5"><a href="#cb33-5"></a><span class="bu">print</span>(multiplicacion)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Me gusta programar en Python
+Me gusta programar en Python
+Me gusta programar en Python
+Me gusta programar en Python
+Me gusta programar en Python
+</code></pre>
+</div>
+</div>
+<p>Para comparar dos cadenas de texto, simplemente se utilizan los operadores de comparación.</p>
+<div id="8c1f2769" class="cell" data-execution_count="19">
+<details open="" class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a><span class="co"># Comparar dos cadenas de texto</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a>cadena1 <span class="op">=</span> <span class="st">"Muchas gracias"</span></span>
+<span id="cb35-3"><a href="#cb35-3"></a>cadena2 <span class="op">=</span> <span class="st">"De nada"</span></span>
+<span id="cb35-4"><a href="#cb35-4"></a></span>
+<span id="cb35-5"><a href="#cb35-5"></a>comparacion <span class="op">=</span> cadena1 <span class="op">==</span> cadena2 <span class="co"># Comparar si dos cadenas son iguales</span></span>
+<span id="cb35-6"><a href="#cb35-6"></a><span class="bu">print</span>(comparacion)</span>
+<span id="cb35-7"><a href="#cb35-7"></a></span>
+<span id="cb35-8"><a href="#cb35-8"></a>comparacion <span class="op">=</span> cadena1 <span class="op">!=</span> cadena2 <span class="co"># Comparar si dos cadenas son diferentes</span></span>
+<span id="cb35-9"><a href="#cb35-9"></a><span class="bu">print</span>(comparacion)</span>
+<span id="cb35-10"><a href="#cb35-10"></a></span>
+<span id="cb35-11"><a href="#cb35-11"></a>comparacion <span class="op">=</span> cadena1 <span class="op">&gt;</span> cadena2 <span class="co"># Comparar si una cadena tiene más caracteres que otra</span></span>
+<span id="cb35-12"><a href="#cb35-12"></a><span class="bu">print</span>(comparacion)</span>
+<span id="cb35-13"><a href="#cb35-13"></a></span>
+<span id="cb35-14"><a href="#cb35-14"></a>comparacion <span class="op">=</span> cadena1 <span class="op">&lt;</span> cadena2 <span class="co"># Comparar si una cadena tiene menos caracteres que otra</span></span>
+<span id="cb35-15"><a href="#cb35-15"></a><span class="bu">print</span>(comparacion)</span>
+<span id="cb35-16"><a href="#cb35-16"></a></span>
+<span id="cb35-17"><a href="#cb35-17"></a>comparacion <span class="op">=</span> cadena1 <span class="op">&gt;=</span> cadena2 <span class="co"># Comparar si una cadena tiene más o igual cantidad de caracteres que otra</span></span>
+<span id="cb35-18"><a href="#cb35-18"></a><span class="bu">print</span>(comparacion)</span>
+<span id="cb35-19"><a href="#cb35-19"></a></span>
+<span id="cb35-20"><a href="#cb35-20"></a>comparacion <span class="op">=</span> cadena1 <span class="op">&lt;=</span> cadena2 <span class="co"># Comparar si una cadena tiene menos o igual cantidad de caracteres que otra</span></span>
+<span id="cb35-21"><a href="#cb35-21"></a><span class="bu">print</span>(comparacion)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>False
+True
+True
+False
+True
+False</code></pre>
+</div>
+</div>
+<section id="ejercicios-1.2" class="level3">
+<h3 class="anchored" data-anchor-id="ejercicios-1.2">Ejercicios 1.2</h3>
+<h4 class="anchored">
+<b> Instrucciones </b>
+</h4>
+<p>En el siguiente bloque podrán ejecutar código de Python usando su navegador web. Igualmente pueden hacerlo en su computadora o en la nube utilizando <a href="https://colab.research.google.com/">Google Colab</a> o <a href="https://www.kaggle.com/">Kaggle</a>. Para cada ejercicio deber de escribir su propio código, crear un comentario con sus datos, crear su solución y tomar una captura de pantalla del resultado. Finalmente, subir la captura a la asignación correspondiente en Google Classroom.</p>
+<ol type="1">
+<li>Sabiendo que el Teorema de Pitágoras es <span class="math inline">\(a^2 + b^2 = c^2\)</span>, calcular la hipotenusa de un triángulo rectángulo con catetos de 3 y 4 unidades.</li>
+</ol>
+<div id="qpyodide-insertion-location-2"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="2" type="1">
+<li>Si la velocidad de la luz es de <span class="math inline">\(299,792,458\)</span> m/s, y el tiempo que tarda en llegar la luz del Sol a la Tierra es de <span class="math inline">\(8.3\)</span> minutos, calcular la distancia en kilómetros que hay entre el Sol y la Tierra.</li>
+</ol>
+<div id="qpyodide-insertion-location-3"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="3" type="1">
+<li>Crea dos variables con tu nombre y apellido, y concaténalas en una sola variable. Imprime el resultado.</li>
+</ol>
+<div id="qpyodide-insertion-location-4"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="4" type="1">
+<li>Crea una variable con tu canción favorita y multiplica por 4 la parte de la letra que más te gusta. Imprime el resultado.</li>
+</ol>
+<div id="qpyodide-insertion-location-5"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="5" type="1">
+<li>Crea una variable con tu película favorita y compara si la longitud de la cadena de texto es mayor a 10 caracteres. Imprime el resultado.</li>
+</ol>
+<div id="qpyodide-insertion-location-6"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+</section>
+</section>
+<section id="conclusiones" class="level1">
+<h1>Conclusiones</h1>
+<p>En esta lección hemos aprendido a declarar variables y a realizar operaciones con ellas en Python. Hemos visto los tipos de datos más comunes en Python y cómo realizar operaciones aritméticas, de comparación y con cadenas de texto. En la siguiente lección, aprenderemos a utilizar estructuras de control de flujo en Python para crear programas más complejos y cómo utilizar funciones para reutilizar código.</p>
+<p>¡Recuerda practicar y experimentar con los ejercicios para mejorar tus habilidades de programación en Python!</p>
+<p>Cualquier duda o comentario, no dudes en escribirme a mi <a href="mailto:cris.badillo1408@gmail.com">correo electrónico</a> o escribir un comentario en la plataforma de Google Classroom.</p>
+
+
+<!-- -->
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Volver arriba</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../intro_python/Cloud.html" class="pagination-link" aria-label="Instalación de Python">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Instalación de Python</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../intro_python/functions_and_loops.html" class="pagination-link" aria-label="Funciones y Bucles de Control">
+        <span class="nav-page-text">Funciones y Bucles de Control</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb37" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb37-1"><a href="#cb37-1"></a><span class="co">---</span></span>
+<span id="cb37-2"><a href="#cb37-2"></a><span class="an">title:</span><span class="co"> "Declaración de Variables y Operaciones"</span></span>
+<span id="cb37-3"><a href="#cb37-3"></a><span class="an">author:</span><span class="co"> "Christian Badillo"</span></span>
+<span id="cb37-4"><a href="#cb37-4"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb37-5"><a href="#cb37-5"></a><span class="an">date:</span><span class="co"> today</span></span>
+<span id="cb37-6"><a href="#cb37-6"></a><span class="an">order:</span><span class="co"> 2</span></span>
+<span id="cb37-7"><a href="#cb37-7"></a><span class="an">filters:</span></span>
+<span id="cb37-8"><a href="#cb37-8"></a><span class="co">  - pyodide</span></span>
+<span id="cb37-9"><a href="#cb37-9"></a><span class="co">  - fontawesome</span></span>
+<span id="cb37-10"><a href="#cb37-10"></a><span class="co">  - iconify</span></span>
+<span id="cb37-11"><a href="#cb37-11"></a><span class="co">---</span></span>
+<span id="cb37-12"><a href="#cb37-12"></a></span>
+<span id="cb37-13"><a href="#cb37-13"></a><span class="fu"># Variables y tipos de variables</span></span>
+<span id="cb37-14"><a href="#cb37-14"></a></span>
+<span id="cb37-15"><a href="#cb37-15"></a>En Python utilizamos variables para almacenar información en la memoria de la computadora. Las variables son como cajas en las que podemos guardar información, cada caja tiene un nombre y un contenido. Existen varias reglas para dar nombre a las variables en Python:</span>
+<span id="cb37-16"><a href="#cb37-16"></a></span>
+<span id="cb37-17"><a href="#cb37-17"></a><span class="ss">- </span>El nombre debe comenzar con una letra o un guión bajo.</span>
+<span id="cb37-18"><a href="#cb37-18"></a><span class="ss">- </span>No puede comenzar con un número.</span>
+<span id="cb37-19"><a href="#cb37-19"></a><span class="ss">- </span>Puede contener letras, números y guiones bajos.</span>
+<span id="cb37-20"><a href="#cb37-20"></a></span>
+<span id="cb37-21"><a href="#cb37-21"></a>El proceso de crear (dar valor) a una variable se conoce como ***declaración de variables*** y es sensible a mayúsculas y minúsculas. Esto significa que si declaramos las variables <span class="in">`nombre`</span>, <span class="in">`Nombre`</span> y <span class="in">`NOMBRE`</span> serán diferentes.</span>
+<span id="cb37-22"><a href="#cb37-22"></a></span>
+<span id="cb37-25"><a href="#cb37-25"></a><span class="in">```{python}</span></span>
+<span id="cb37-26"><a href="#cb37-26"></a>nombre <span class="op">=</span> <span class="st">"Christian"</span></span>
+<span id="cb37-27"><a href="#cb37-27"></a>Nombre <span class="op">=</span> <span class="st">"Jimena"</span></span>
+<span id="cb37-28"><a href="#cb37-28"></a>NOMBRE <span class="op">=</span> <span class="st">"Luis"</span></span>
+<span id="cb37-29"><a href="#cb37-29"></a></span>
+<span id="cb37-30"><a href="#cb37-30"></a><span class="bu">print</span>(nombre <span class="op">==</span> Nombre)</span>
+<span id="cb37-31"><a href="#cb37-31"></a><span class="bu">print</span>(Nombre <span class="op">==</span> NOMBRE)</span>
+<span id="cb37-32"><a href="#cb37-32"></a><span class="bu">print</span>(NOMBRE <span class="op">==</span> nombre)</span>
+<span id="cb37-33"><a href="#cb37-33"></a><span class="in">```</span></span>
+<span id="cb37-34"><a href="#cb37-34"></a></span>
+<span id="cb37-35"><a href="#cb37-35"></a>Por lo cual podemos ver que las variables <span class="in">`nombre`</span>, <span class="in">`Nombre`</span> y <span class="in">`NOMBRE`</span> son diferentes, pues al realizar la comparación entre ellas, el resultado es <span class="in">`False`</span>, también podemos observar la forma de declarar variables en Python, la cual es <span class="in">`nombre_variable = valor_variable`</span>.</span>
+<span id="cb37-36"><a href="#cb37-36"></a></span>
+<span id="cb37-37"><a href="#cb37-37"></a>Podemos sobrescribir el contenido de una variable en cualquier momento.</span>
+<span id="cb37-38"><a href="#cb37-38"></a></span>
+<span id="cb37-41"><a href="#cb37-41"></a><span class="in">```{python}</span></span>
+<span id="cb37-42"><a href="#cb37-42"></a><span class="bu">print</span>(nombre)</span>
+<span id="cb37-43"><a href="#cb37-43"></a>nombre <span class="op">=</span> <span class="st">"Cesar"</span></span>
+<span id="cb37-44"><a href="#cb37-44"></a><span class="bu">print</span>(nombre)</span>
+<span id="cb37-45"><a href="#cb37-45"></a><span class="in">```</span></span>
+<span id="cb37-46"><a href="#cb37-46"></a></span>
+<span id="cb37-47"><a href="#cb37-47"></a>En el ejemplo anterior, hemos cambiado el contenido de la variable <span class="in">`nombre`</span> de "Christian" a "Cesar". En Python, podemos asignar cualquier tipo de dato a una variable. Los tipos de datos más comunes en Python son:</span>
+<span id="cb37-48"><a href="#cb37-48"></a></span>
+<span id="cb37-49"><a href="#cb37-49"></a><span class="ss">- </span><span class="in">`int`</span>: Números enteros.</span>
+<span id="cb37-50"><a href="#cb37-50"></a><span class="ss">- </span><span class="in">`float`</span>: Números decimales.</span>
+<span id="cb37-51"><a href="#cb37-51"></a><span class="ss">- </span><span class="in">`str`</span>: Cadenas de texto.</span>
+<span id="cb37-52"><a href="#cb37-52"></a><span class="ss">- </span><span class="in">`bool`</span>: Valores booleanos (verdadero o falso).</span>
+<span id="cb37-53"><a href="#cb37-53"></a><span class="ss">- </span><span class="in">`list`</span>: Listas de elementos.</span>
+<span id="cb37-54"><a href="#cb37-54"></a><span class="ss">- </span><span class="in">`tuple`</span>: Tuplas de elementos.</span>
+<span id="cb37-55"><a href="#cb37-55"></a><span class="ss">- </span><span class="in">`dict`</span>: Diccionarios de elementos.</span>
+<span id="cb37-56"><a href="#cb37-56"></a></span>
+<span id="cb37-57"><a href="#cb37-57"></a><span class="fu">## Tipos de Variables</span></span>
+<span id="cb37-58"><a href="#cb37-58"></a></span>
+<span id="cb37-59"><a href="#cb37-59"></a><span class="fu">### Números enteros y decimales</span></span>
+<span id="cb37-60"><a href="#cb37-60"></a></span>
+<span id="cb37-61"><a href="#cb37-61"></a>Los ***números enteros*** son números que no tienen parte decimal. En Python, podemos declarar un número entero de la siguiente manera:</span>
+<span id="cb37-62"><a href="#cb37-62"></a></span>
+<span id="cb37-65"><a href="#cb37-65"></a><span class="in">```{python}</span></span>
+<span id="cb37-66"><a href="#cb37-66"></a>numero_entero <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb37-67"><a href="#cb37-67"></a><span class="bu">print</span>(numero_entero)</span>
+<span id="cb37-68"><a href="#cb37-68"></a><span class="in">```</span></span>
+<span id="cb37-69"><a href="#cb37-69"></a></span>
+<span id="cb37-70"><a href="#cb37-70"></a>Otra forma de declarar un número entero es utilizando la función <span class="in">`int()`</span> para convertir un número decimal o un booleano a un número entero. Veamos un ejemplo:</span>
+<span id="cb37-71"><a href="#cb37-71"></a></span>
+<span id="cb37-74"><a href="#cb37-74"></a><span class="in">```{python}</span></span>
+<span id="cb37-75"><a href="#cb37-75"></a>numero_entero <span class="op">=</span> <span class="bu">int</span>(<span class="fl">10.5</span>)</span>
+<span id="cb37-76"><a href="#cb37-76"></a><span class="bu">print</span>(numero_entero)</span>
+<span id="cb37-77"><a href="#cb37-77"></a>numero_entero <span class="op">=</span> <span class="bu">int</span>(<span class="fl">10.6</span>)</span>
+<span id="cb37-78"><a href="#cb37-78"></a><span class="bu">print</span>(numero_entero)</span>
+<span id="cb37-79"><a href="#cb37-79"></a></span>
+<span id="cb37-80"><a href="#cb37-80"></a>numero_entero <span class="op">=</span> <span class="bu">int</span>(<span class="va">True</span>)</span>
+<span id="cb37-81"><a href="#cb37-81"></a><span class="bu">print</span>(numero_entero)</span>
+<span id="cb37-82"><a href="#cb37-82"></a><span class="in">```</span></span>
+<span id="cb37-83"><a href="#cb37-83"></a></span>
+<span id="cb37-84"><a href="#cb37-84"></a>Los ***números decimales*** son números que tienen parte decimal. En Python, podemos declarar un número decimal de la siguiente manera:</span>
+<span id="cb37-85"><a href="#cb37-85"></a></span>
+<span id="cb37-88"><a href="#cb37-88"></a><span class="in">```{python}</span></span>
+<span id="cb37-89"><a href="#cb37-89"></a>numero_decimal <span class="op">=</span> <span class="fl">10.5</span></span>
+<span id="cb37-90"><a href="#cb37-90"></a><span class="bu">print</span>(numero_decimal)</span>
+<span id="cb37-91"><a href="#cb37-91"></a><span class="in">```</span></span>
+<span id="cb37-92"><a href="#cb37-92"></a></span>
+<span id="cb37-93"><a href="#cb37-93"></a>Otra forma de declarar un número decimal es utilizando la función <span class="in">`float()`</span> para convertir un número entero o un booleano a un número decimal.</span>
+<span id="cb37-94"><a href="#cb37-94"></a></span>
+<span id="cb37-97"><a href="#cb37-97"></a><span class="in">```{python}</span></span>
+<span id="cb37-98"><a href="#cb37-98"></a>numero_decimal <span class="op">=</span> <span class="bu">float</span>(<span class="dv">10</span>)</span>
+<span id="cb37-99"><a href="#cb37-99"></a><span class="bu">print</span>(numero_decimal)</span>
+<span id="cb37-100"><a href="#cb37-100"></a></span>
+<span id="cb37-101"><a href="#cb37-101"></a>numero_decimal <span class="op">=</span> <span class="bu">float</span>(<span class="va">True</span>)</span>
+<span id="cb37-102"><a href="#cb37-102"></a><span class="bu">print</span>(numero_decimal)</span>
+<span id="cb37-103"><a href="#cb37-103"></a><span class="in">```</span></span>
+<span id="cb37-104"><a href="#cb37-104"></a></span>
+<span id="cb37-105"><a href="#cb37-105"></a>Igualmente podemos utilizar la nota científica para declarar un número decimal en Python con la letra <span class="in">`e`</span> seguida de un número entero por ejemplo, <span class="in">`22e10`</span> es equivalente a $22 * 10^10$. En código:</span>
+<span id="cb37-106"><a href="#cb37-106"></a></span>
+<span id="cb37-109"><a href="#cb37-109"></a><span class="in">```{python}</span></span>
+<span id="cb37-110"><a href="#cb37-110"></a>numero_decimal <span class="op">=</span> <span class="fl">1.5e2</span></span>
+<span id="cb37-111"><a href="#cb37-111"></a><span class="bu">print</span>(numero_decimal)</span>
+<span id="cb37-112"><a href="#cb37-112"></a></span>
+<span id="cb37-113"><a href="#cb37-113"></a>numero_decimal <span class="op">=</span> <span class="fl">1.5e-2</span></span>
+<span id="cb37-114"><a href="#cb37-114"></a><span class="bu">print</span>(numero_decimal)</span>
+<span id="cb37-115"><a href="#cb37-115"></a><span class="in">```</span></span>
+<span id="cb37-116"><a href="#cb37-116"></a></span>
+<span id="cb37-117"><a href="#cb37-117"></a><span class="fu">### Cadenas de texto</span></span>
+<span id="cb37-118"><a href="#cb37-118"></a></span>
+<span id="cb37-119"><a href="#cb37-119"></a>Las ***cadenas de texto*** son una secuencia de carácteres (letras, números y símbolos). En Python, se pueden declarar cadenas de texto utilizando comillas simples <span class="in">`'`</span> o comillas dobles <span class="in">`"`</span>. Veamos un ejemplo:</span>
+<span id="cb37-120"><a href="#cb37-120"></a></span>
+<span id="cb37-123"><a href="#cb37-123"></a><span class="in">```{python}</span></span>
+<span id="cb37-124"><a href="#cb37-124"></a>cadena_texto <span class="op">=</span> <span class="st">"Hola Mundo"</span></span>
+<span id="cb37-125"><a href="#cb37-125"></a><span class="bu">print</span>(cadena_texto)</span>
+<span id="cb37-126"><a href="#cb37-126"></a><span class="in">```</span></span>
+<span id="cb37-127"><a href="#cb37-127"></a></span>
+<span id="cb37-128"><a href="#cb37-128"></a>Otra forma de declarar una cadena de texto es utilizando la función <span class="in">`str()`</span> para convertir un número entero, decimal o booleano a una cadena de texto. También podemos combinar las comillas simples y dobles para poder usar una o la otra dentro de la cadena de texto. Por ejemplo:</span>
+<span id="cb37-129"><a href="#cb37-129"></a></span>
+<span id="cb37-132"><a href="#cb37-132"></a><span class="in">```{python}</span></span>
+<span id="cb37-133"><a href="#cb37-133"></a>texto<span class="op">=</span> <span class="st">'No te procupes, solo es un "amigo" / "amiga"'</span></span>
+<span id="cb37-134"><a href="#cb37-134"></a><span class="bu">print</span>(texto)</span>
+<span id="cb37-135"><a href="#cb37-135"></a><span class="in">```</span></span>
+<span id="cb37-136"><a href="#cb37-136"></a></span>
+<span id="cb37-137"><a href="#cb37-137"></a>Tambén podemos imprimir saltos de línea (<span class="in">`\n`</span>), tabulaciones (<span class="in">`\t`</span>) y caracteres especiales en una cadena de texto. Por ejemplo:</span>
+<span id="cb37-138"><a href="#cb37-138"></a></span>
+<span id="cb37-141"><a href="#cb37-141"></a><span class="in">```{python}</span></span>
+<span id="cb37-142"><a href="#cb37-142"></a>texto <span class="op">=</span> <span class="st">"Las rosas son rojas,</span><span class="ch">\n</span><span class="st">Las violetas son azules,</span><span class="ch">\n</span><span class="st">Viva el team frio,</span><span class="ch">\n</span><span class="st">Quiero un pan </span><span class="ch">\U0001F35E\n</span><span class="st">"</span></span>
+<span id="cb37-143"><a href="#cb37-143"></a></span>
+<span id="cb37-144"><a href="#cb37-144"></a><span class="bu">print</span>(texto)</span>
+<span id="cb37-145"><a href="#cb37-145"></a></span>
+<span id="cb37-146"><a href="#cb37-146"></a>texto <span class="op">=</span> <span class="st">"</span><span class="ch">\n\t</span><span class="st"> Aqui no se habla</span><span class="ch">\n\t</span><span class="st">del formato APA</span><span class="ch">\n\t</span><span class="st">No, no, no 🫠"</span></span>
+<span id="cb37-147"><a href="#cb37-147"></a></span>
+<span id="cb37-148"><a href="#cb37-148"></a><span class="bu">print</span>(texto)</span>
+<span id="cb37-149"><a href="#cb37-149"></a><span class="in">```</span></span>
+<span id="cb37-150"><a href="#cb37-150"></a></span>
+<span id="cb37-151"><a href="#cb37-151"></a><span class="fu">### Valores booleanos</span></span>
+<span id="cb37-152"><a href="#cb37-152"></a></span>
+<span id="cb37-153"><a href="#cb37-153"></a>Los ***valores booleanos*** son valores lógicos que pueden ser <span class="in">`True`</span> (verdadero) o <span class="in">`False`</span> (falso). En Python, podemos declarar un valor booleano de la siguiente manera:</span>
+<span id="cb37-154"><a href="#cb37-154"></a></span>
+<span id="cb37-157"><a href="#cb37-157"></a><span class="in">```{python}</span></span>
+<span id="cb37-158"><a href="#cb37-158"></a>valor_booleano <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb37-159"><a href="#cb37-159"></a><span class="bu">print</span>(valor_booleano)</span>
+<span id="cb37-160"><a href="#cb37-160"></a><span class="in">```</span></span>
+<span id="cb37-161"><a href="#cb37-161"></a></span>
+<span id="cb37-162"><a href="#cb37-162"></a>Igualmente existe la función <span class="in">`bool()`</span> pero su uso es poco utilizado, ya que los valores booleanos se utilizan principalmente en condicionales y bucles, además es necesario conocer que cosas se consideran <span class="in">`True`</span> y <span class="in">`False`</span> en Python.</span>
+<span id="cb37-163"><a href="#cb37-163"></a></span>
+<span id="cb37-166"><a href="#cb37-166"></a><span class="in">```{python}</span></span>
+<span id="cb37-167"><a href="#cb37-167"></a>valor_booleano <span class="op">=</span> <span class="bu">bool</span>(<span class="dv">0</span>)</span>
+<span id="cb37-168"><a href="#cb37-168"></a><span class="bu">print</span>(valor_booleano)</span>
+<span id="cb37-169"><a href="#cb37-169"></a>valor_booleano <span class="op">=</span> <span class="bu">bool</span>(<span class="dv">1</span>)</span>
+<span id="cb37-170"><a href="#cb37-170"></a><span class="bu">print</span>(valor_booleano)</span>
+<span id="cb37-171"><a href="#cb37-171"></a></span>
+<span id="cb37-172"><a href="#cb37-172"></a>valor_booleano <span class="op">=</span> <span class="bu">bool</span>([])</span>
+<span id="cb37-173"><a href="#cb37-173"></a><span class="bu">print</span>(valor_booleano)</span>
+<span id="cb37-174"><a href="#cb37-174"></a>valor_booleano <span class="op">=</span> <span class="bu">bool</span>([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
+<span id="cb37-175"><a href="#cb37-175"></a><span class="bu">print</span>(valor_booleano)</span>
+<span id="cb37-176"><a href="#cb37-176"></a><span class="in">```</span></span>
+<span id="cb37-177"><a href="#cb37-177"></a></span>
+<span id="cb37-178"><a href="#cb37-178"></a>Si recuerdan sus clases de Lógica, podrán crear una tabla de verdad para evaluar proposiciones lógicas en Python.</span>
+<span id="cb37-179"><a href="#cb37-179"></a></span>
+<span id="cb37-180"><a href="#cb37-180"></a><span class="fu">### Documentación de código</span></span>
+<span id="cb37-181"><a href="#cb37-181"></a></span>
+<span id="cb37-182"><a href="#cb37-182"></a>La ***documentación*** de código es una práctica común en programación y una buena costumbre para escribir código limpio y legible. En Python, podemos documentar nuestro código utilizando comentarios.</span>
+<span id="cb37-183"><a href="#cb37-183"></a></span>
+<span id="cb37-184"><a href="#cb37-184"></a>Los ***comentarios*** son líneas de código que no se ejecutan y se utilizan para explicar el código. En Python, los comentarios se crean utilizando el símbolo <span class="in">`#`</span> y cualquier texto que se escriba después de este símbolo se considera un comentario y no se ejecuta.</span>
+<span id="cb37-185"><a href="#cb37-185"></a></span>
+<span id="cb37-188"><a href="#cb37-188"></a><span class="in">```{python}</span></span>
+<span id="cb37-189"><a href="#cb37-189"></a><span class="co"># Esto es un comentario</span></span>
+<span id="cb37-190"><a href="#cb37-190"></a><span class="bu">print</span>(<span class="st">"Hola Mundo"</span>) <span class="co"># Aquí podemos comentar que hace esta línea de código</span></span>
+<span id="cb37-191"><a href="#cb37-191"></a><span class="in">```</span></span>
+<span id="cb37-192"><a href="#cb37-192"></a></span>
+<span id="cb37-193"><a href="#cb37-193"></a>También podemos crear comentarios multilínea utilizando tres comillas simples <span class="in">`'''`</span> o tres comillas dobles <span class="in">`"""`</span>, se utiliza mucho esta forma de comentar para documentar funciones o clases, como lo veremos más adelante.</span>
+<span id="cb37-194"><a href="#cb37-194"></a></span>
+<span id="cb37-195"><a href="#cb37-195"></a><span class="fu">### Ejercicios 1.1</span></span>
+<span id="cb37-196"><a href="#cb37-196"></a></span>
+<span id="cb37-197"><a href="#cb37-197"></a>En el siguiente bloque podrán ejecutar código de Python usando su navegador web. Igualmente pueden hacerlo en su computadora o en la nube utilizando <span class="co">[</span><span class="ot">Google Colab</span><span class="co">](https://colab.research.google.com/)</span> o <span class="co">[</span><span class="ot">Kaggle</span><span class="co">](https://www.kaggle.com/)</span>. Para cada ejercicio deber de escribir su propio código, crear un comentario con sus datos, crear su solución y tomar una captura de pantalla del resultado. Finalmente, subir la captura a la asignación correspondiente en Google Classroom.</span>
+<span id="cb37-198"><a href="#cb37-198"></a></span>
+<span id="cb37-199"><a href="#cb37-199"></a><span class="ss">1. </span>Declarar una variable de cada tipo de dato en Python (entero, decimal, cadena de texto y booleano) e imprimir su valor.</span>
+<span id="cb37-200"><a href="#cb37-200"></a></span>
+<span id="cb37-201"><a href="#cb37-201"></a><span class="ss">2. </span>Declarar una variable con el nombre <span class="in">`poema`</span> y asignarle un poema de su elección. Imprimir el poema en la consola con el formato adecuado. (Pueden utilizar emojis si lo desean).</span>
+<span id="cb37-202"><a href="#cb37-202"></a></span>
+<span id="cb37-203"><a href="#cb37-203"></a><span class="in">```{pyodide-python}</span></span>
+<span id="cb37-204"><a href="#cb37-204"></a><span class="in"># Ejemplo de cómo deberán comentar su código</span></span>
+<span id="cb37-205"><a href="#cb37-205"></a><span class="in"># Nombre: Christian Badillo</span></span>
+<span id="cb37-206"><a href="#cb37-206"></a><span class="in"># Fecha: 10 de junio de 2024</span></span>
+<span id="cb37-207"><a href="#cb37-207"></a></span>
+<span id="cb37-208"><a href="#cb37-208"></a><span class="in"># Ejercicio 1</span></span>
+<span id="cb37-209"><a href="#cb37-209"></a><span class="in">print("Solución del ejercicio 1")</span></span>
+<span id="cb37-210"><a href="#cb37-210"></a></span>
+<span id="cb37-211"><a href="#cb37-211"></a><span class="in"># Ejercicio 2</span></span>
+<span id="cb37-212"><a href="#cb37-212"></a><span class="in">print("""Solución </span></span>
+<span id="cb37-213"><a href="#cb37-213"></a><span class="in">del ejercicio 2""")</span></span>
+<span id="cb37-214"><a href="#cb37-214"></a><span class="in">```</span></span>
+<span id="cb37-215"><a href="#cb37-215"></a></span>
+<span id="cb37-216"><a href="#cb37-216"></a><span class="fu"># Operaciones de variables</span></span>
+<span id="cb37-217"><a href="#cb37-217"></a></span>
+<span id="cb37-218"><a href="#cb37-218"></a>En Python, podemos realizar operaciones matemáticas con variables de tipo entero y decimal. Las operaciones matemáticas más comunes en Python son:</span>
+<span id="cb37-219"><a href="#cb37-219"></a></span>
+<span id="cb37-220"><a href="#cb37-220"></a><span class="ss">- </span>Suma: <span class="in">`+`</span>.</span>
+<span id="cb37-221"><a href="#cb37-221"></a><span class="ss">- </span>Resta: <span class="in">`-`</span>.</span>
+<span id="cb37-222"><a href="#cb37-222"></a><span class="ss">- </span>Multiplicación: <span class="in">`*`</span>.</span>
+<span id="cb37-223"><a href="#cb37-223"></a><span class="ss">- </span>División: <span class="in">`/`</span>.</span>
+<span id="cb37-224"><a href="#cb37-224"></a><span class="ss">- </span>Módulo: <span class="in">`%`</span>.</span>
+<span id="cb37-225"><a href="#cb37-225"></a><span class="ss">- </span>Potencia: <span class="in">`**`</span>.</span>
+<span id="cb37-226"><a href="#cb37-226"></a><span class="ss">- </span>División entera: <span class="in">`//`</span>.</span>
+<span id="cb37-227"><a href="#cb37-227"></a><span class="ss">- </span>Raíz cuadrada: <span class="in">`sqrt()`</span> ó <span class="in">`** 0.5`</span>.</span>
+<span id="cb37-228"><a href="#cb37-228"></a><span class="ss">- </span>Operaciones de comparación: <span class="in">`==`</span>, <span class="in">`!=`</span>, <span class="in">`&gt;`</span>, <span class="in">`&lt;`</span>, <span class="in">`&gt;=`</span>, <span class="in">`&lt;=`</span>.</span>
+<span id="cb37-229"><a href="#cb37-229"></a><span class="ss">- </span>Operaciones lógicas: <span class="in">`and`</span>, <span class="in">`or`</span>, <span class="in">`not`</span>.</span>
+<span id="cb37-230"><a href="#cb37-230"></a></span>
+<span id="cb37-231"><a href="#cb37-231"></a><span class="fu">## Operaciones aritméticas</span></span>
+<span id="cb37-232"><a href="#cb37-232"></a></span>
+<span id="cb37-233"><a href="#cb37-233"></a>Las ***operaciones aritméticas*** son operaciones matemáticas que se realizan con números. En Python, podemos realizar operaciones aritméticas con variables de tipo entero y decimal, como si fuese una calculadora.</span>
+<span id="cb37-234"><a href="#cb37-234"></a></span>
+<span id="cb37-237"><a href="#cb37-237"></a><span class="in">```{python}</span></span>
+<span id="cb37-238"><a href="#cb37-238"></a><span class="im">from</span> math <span class="im">import</span> sqrt</span>
+<span id="cb37-239"><a href="#cb37-239"></a><span class="co"># Sumemos dos numeros</span></span>
+<span id="cb37-240"><a href="#cb37-240"></a>numero1 <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb37-241"><a href="#cb37-241"></a>numero2 <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb37-242"><a href="#cb37-242"></a></span>
+<span id="cb37-243"><a href="#cb37-243"></a>suma <span class="op">=</span> numero1 <span class="op">+</span> numero2 <span class="co"># 10 + 5 = 15</span></span>
+<span id="cb37-244"><a href="#cb37-244"></a><span class="bu">print</span>(suma)</span>
+<span id="cb37-245"><a href="#cb37-245"></a></span>
+<span id="cb37-246"><a href="#cb37-246"></a><span class="co"># Restemos dos numeros</span></span>
+<span id="cb37-247"><a href="#cb37-247"></a>resta <span class="op">=</span> numero1 <span class="op">-</span> numero2 <span class="co"># 10 - 5 = 5</span></span>
+<span id="cb37-248"><a href="#cb37-248"></a><span class="bu">print</span>(resta)</span>
+<span id="cb37-249"><a href="#cb37-249"></a></span>
+<span id="cb37-250"><a href="#cb37-250"></a><span class="co"># Multipliquemos dos numeros</span></span>
+<span id="cb37-251"><a href="#cb37-251"></a>multiplicacion <span class="op">=</span> numero1 <span class="op">*</span> numero2 <span class="co"># 10 * 5 = 50</span></span>
+<span id="cb37-252"><a href="#cb37-252"></a><span class="bu">print</span>(multiplicacion)</span>
+<span id="cb37-253"><a href="#cb37-253"></a></span>
+<span id="cb37-254"><a href="#cb37-254"></a><span class="co"># Dividamos dos numeros</span></span>
+<span id="cb37-255"><a href="#cb37-255"></a>division <span class="op">=</span> numero1 <span class="op">/</span> numero2 <span class="co"># 10 / 5 = 2.0</span></span>
+<span id="cb37-256"><a href="#cb37-256"></a><span class="bu">print</span>(division)</span>
+<span id="cb37-257"><a href="#cb37-257"></a></span>
+<span id="cb37-258"><a href="#cb37-258"></a><span class="co"># Dividamos y solo tomemos la parte entera</span></span>
+<span id="cb37-259"><a href="#cb37-259"></a>division_entera <span class="op">=</span> numero1 <span class="op">//</span> numero2 <span class="co"># 10 // 5 = 2</span></span>
+<span id="cb37-260"><a href="#cb37-260"></a><span class="bu">print</span>(division_entera)</span>
+<span id="cb37-261"><a href="#cb37-261"></a></span>
+<span id="cb37-262"><a href="#cb37-262"></a><span class="co"># Calculemos el residuo de la división</span></span>
+<span id="cb37-263"><a href="#cb37-263"></a>modulo <span class="op">=</span> numero1 <span class="op">%</span> numero2 <span class="co"># 10 % 5 = 0</span></span>
+<span id="cb37-264"><a href="#cb37-264"></a><span class="bu">print</span>(modulo)</span>
+<span id="cb37-265"><a href="#cb37-265"></a></span>
+<span id="cb37-266"><a href="#cb37-266"></a><span class="co"># Elevemos un numero a una potencia</span></span>
+<span id="cb37-267"><a href="#cb37-267"></a>potencia <span class="op">=</span> numero1 <span class="op">**</span> numero2 <span class="co"># 10 ^ 5 = 100000</span></span>
+<span id="cb37-268"><a href="#cb37-268"></a><span class="bu">print</span>(potencia)</span>
+<span id="cb37-269"><a href="#cb37-269"></a></span>
+<span id="cb37-270"><a href="#cb37-270"></a><span class="co"># Calculemos la raiz cuadrada de un numero</span></span>
+<span id="cb37-271"><a href="#cb37-271"></a>raiz_cuadrada <span class="op">=</span> numero1 <span class="op">**</span> <span class="fl">0.5</span> <span class="co"># sqrt(10) = 3.1622776601683795</span></span>
+<span id="cb37-272"><a href="#cb37-272"></a>raiz_cuadrada2 <span class="op">=</span> sqrt(numero2) <span class="co"># sqrt(5) = 2.23606797749979</span></span>
+<span id="cb37-273"><a href="#cb37-273"></a><span class="bu">print</span>(raiz_cuadrada)</span>
+<span id="cb37-274"><a href="#cb37-274"></a><span class="bu">print</span>(raiz_cuadrada2)</span>
+<span id="cb37-275"><a href="#cb37-275"></a><span class="in">```</span></span>
+<span id="cb37-276"><a href="#cb37-276"></a></span>
+<span id="cb37-277"><a href="#cb37-277"></a><span class="fu">## Operaciones de comparación</span></span>
+<span id="cb37-278"><a href="#cb37-278"></a></span>
+<span id="cb37-279"><a href="#cb37-279"></a>Las ***operaciones de comparación*** son operaciones que se utilizan para comparar dos valores y devuelven un valor booleano (<span class="in">`True`</span> o <span class="in">`False`</span>).</span>
+<span id="cb37-280"><a href="#cb37-280"></a></span>
+<span id="cb37-283"><a href="#cb37-283"></a><span class="in">```{python}</span></span>
+<span id="cb37-284"><a href="#cb37-284"></a><span class="co"># Comparar si dos numeros son iguales</span></span>
+<span id="cb37-285"><a href="#cb37-285"></a>numero1 <span class="op">=</span> <span class="dv">148</span></span>
+<span id="cb37-286"><a href="#cb37-286"></a>numero2 <span class="op">=</span> <span class="dv">47</span></span>
+<span id="cb37-287"><a href="#cb37-287"></a></span>
+<span id="cb37-288"><a href="#cb37-288"></a>comparacion <span class="op">=</span> numero1 <span class="op">==</span> numero2</span>
+<span id="cb37-289"><a href="#cb37-289"></a><span class="bu">print</span>(comparacion)</span>
+<span id="cb37-290"><a href="#cb37-290"></a></span>
+<span id="cb37-291"><a href="#cb37-291"></a><span class="co"># Comparar si dos numeros son diferentes</span></span>
+<span id="cb37-292"><a href="#cb37-292"></a>comparacion <span class="op">=</span> numero1 <span class="op">!=</span> numero2</span>
+<span id="cb37-293"><a href="#cb37-293"></a><span class="bu">print</span>(comparacion)</span>
+<span id="cb37-294"><a href="#cb37-294"></a></span>
+<span id="cb37-295"><a href="#cb37-295"></a><span class="co"># Comparar si un numero es mayor que otro</span></span>
+<span id="cb37-296"><a href="#cb37-296"></a>comparacion <span class="op">=</span> numero1 <span class="op">&gt;</span> numero2</span>
+<span id="cb37-297"><a href="#cb37-297"></a><span class="bu">print</span>(comparacion)</span>
+<span id="cb37-298"><a href="#cb37-298"></a></span>
+<span id="cb37-299"><a href="#cb37-299"></a><span class="co"># Comparar si un numero es menor que otro</span></span>
+<span id="cb37-300"><a href="#cb37-300"></a>comparacion <span class="op">=</span> numero1 <span class="op">&lt;</span> numero2</span>
+<span id="cb37-301"><a href="#cb37-301"></a><span class="bu">print</span>(comparacion)</span>
+<span id="cb37-302"><a href="#cb37-302"></a></span>
+<span id="cb37-303"><a href="#cb37-303"></a><span class="co"># Comparar si un numero es mayor o igual que otro</span></span>
+<span id="cb37-304"><a href="#cb37-304"></a>comparacion <span class="op">=</span> numero1 <span class="op">&gt;=</span> numero2</span>
+<span id="cb37-305"><a href="#cb37-305"></a><span class="bu">print</span>(comparacion)</span>
+<span id="cb37-306"><a href="#cb37-306"></a></span>
+<span id="cb37-307"><a href="#cb37-307"></a><span class="co"># Comparar si un numero es menor o igual que otro</span></span>
+<span id="cb37-308"><a href="#cb37-308"></a>comparacion <span class="op">=</span> numero1 <span class="op">&lt;=</span> numero2</span>
+<span id="cb37-309"><a href="#cb37-309"></a><span class="bu">print</span>(comparacion)</span>
+<span id="cb37-310"><a href="#cb37-310"></a><span class="in">```</span></span>
+<span id="cb37-311"><a href="#cb37-311"></a></span>
+<span id="cb37-312"><a href="#cb37-312"></a><span class="fu">## Operaciones con cadenas de texto</span></span>
+<span id="cb37-313"><a href="#cb37-313"></a></span>
+<span id="cb37-314"><a href="#cb37-314"></a>Las ***operaciones con cadenas de texto*** son operaciones que se utilizan para concatenar, multiplicar y comparar cadenas de texto. Se utilizan principalmente para manipular texto en Python.</span>
+<span id="cb37-315"><a href="#cb37-315"></a></span>
+<span id="cb37-316"><a href="#cb37-316"></a>Para concatenar dos cadenas de texto, simplemente se utilizan el operador <span class="in">`+`</span>.</span>
+<span id="cb37-319"><a href="#cb37-319"></a><span class="in">```{python}</span></span>
+<span id="cb37-320"><a href="#cb37-320"></a><span class="co"># Concatenar dos cadenas de texto</span></span>
+<span id="cb37-321"><a href="#cb37-321"></a>cadena1 <span class="op">=</span> <span class="st">"Hola"</span></span>
+<span id="cb37-322"><a href="#cb37-322"></a>cadena2 <span class="op">=</span> <span class="st">"Mundo"</span></span>
+<span id="cb37-323"><a href="#cb37-323"></a></span>
+<span id="cb37-324"><a href="#cb37-324"></a>concatenacion <span class="op">=</span> cadena1 <span class="op">+</span> <span class="st">" "</span> <span class="op">+</span> cadena2</span>
+<span id="cb37-325"><a href="#cb37-325"></a><span class="bu">print</span>(concatenacion)</span>
+<span id="cb37-326"><a href="#cb37-326"></a><span class="in">```</span></span>
+<span id="cb37-327"><a href="#cb37-327"></a></span>
+<span id="cb37-328"><a href="#cb37-328"></a>Para multiplicar una cadena de texto por un número entero, simplemente se utiliza el operador <span class="in">`*`</span>.</span>
+<span id="cb37-329"><a href="#cb37-329"></a></span>
+<span id="cb37-332"><a href="#cb37-332"></a><span class="in">```{python}</span></span>
+<span id="cb37-333"><a href="#cb37-333"></a><span class="co"># Multiplicar una cadena de texto</span></span>
+<span id="cb37-334"><a href="#cb37-334"></a>cadena <span class="op">=</span> <span class="st">"Me gusta programar en Python</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb37-335"><a href="#cb37-335"></a></span>
+<span id="cb37-336"><a href="#cb37-336"></a>multiplicacion <span class="op">=</span> cadena <span class="op">*</span> <span class="dv">5</span></span>
+<span id="cb37-337"><a href="#cb37-337"></a><span class="bu">print</span>(multiplicacion)</span>
+<span id="cb37-338"><a href="#cb37-338"></a><span class="in">```</span></span>
+<span id="cb37-339"><a href="#cb37-339"></a></span>
+<span id="cb37-340"><a href="#cb37-340"></a>Para comparar dos cadenas de texto, simplemente se utilizan los operadores de comparación.</span>
+<span id="cb37-341"><a href="#cb37-341"></a></span>
+<span id="cb37-344"><a href="#cb37-344"></a><span class="in">```{python}</span></span>
+<span id="cb37-345"><a href="#cb37-345"></a><span class="co"># Comparar dos cadenas de texto</span></span>
+<span id="cb37-346"><a href="#cb37-346"></a>cadena1 <span class="op">=</span> <span class="st">"Muchas gracias"</span></span>
+<span id="cb37-347"><a href="#cb37-347"></a>cadena2 <span class="op">=</span> <span class="st">"De nada"</span></span>
+<span id="cb37-348"><a href="#cb37-348"></a></span>
+<span id="cb37-349"><a href="#cb37-349"></a>comparacion <span class="op">=</span> cadena1 <span class="op">==</span> cadena2 <span class="co"># Comparar si dos cadenas son iguales</span></span>
+<span id="cb37-350"><a href="#cb37-350"></a><span class="bu">print</span>(comparacion)</span>
+<span id="cb37-351"><a href="#cb37-351"></a></span>
+<span id="cb37-352"><a href="#cb37-352"></a>comparacion <span class="op">=</span> cadena1 <span class="op">!=</span> cadena2 <span class="co"># Comparar si dos cadenas son diferentes</span></span>
+<span id="cb37-353"><a href="#cb37-353"></a><span class="bu">print</span>(comparacion)</span>
+<span id="cb37-354"><a href="#cb37-354"></a></span>
+<span id="cb37-355"><a href="#cb37-355"></a>comparacion <span class="op">=</span> cadena1 <span class="op">&gt;</span> cadena2 <span class="co"># Comparar si una cadena tiene más caracteres que otra</span></span>
+<span id="cb37-356"><a href="#cb37-356"></a><span class="bu">print</span>(comparacion)</span>
+<span id="cb37-357"><a href="#cb37-357"></a></span>
+<span id="cb37-358"><a href="#cb37-358"></a>comparacion <span class="op">=</span> cadena1 <span class="op">&lt;</span> cadena2 <span class="co"># Comparar si una cadena tiene menos caracteres que otra</span></span>
+<span id="cb37-359"><a href="#cb37-359"></a><span class="bu">print</span>(comparacion)</span>
+<span id="cb37-360"><a href="#cb37-360"></a></span>
+<span id="cb37-361"><a href="#cb37-361"></a>comparacion <span class="op">=</span> cadena1 <span class="op">&gt;=</span> cadena2 <span class="co"># Comparar si una cadena tiene más o igual cantidad de caracteres que otra</span></span>
+<span id="cb37-362"><a href="#cb37-362"></a><span class="bu">print</span>(comparacion)</span>
+<span id="cb37-363"><a href="#cb37-363"></a></span>
+<span id="cb37-364"><a href="#cb37-364"></a>comparacion <span class="op">=</span> cadena1 <span class="op">&lt;=</span> cadena2 <span class="co"># Comparar si una cadena tiene menos o igual cantidad de caracteres que otra</span></span>
+<span id="cb37-365"><a href="#cb37-365"></a><span class="bu">print</span>(comparacion)</span>
+<span id="cb37-366"><a href="#cb37-366"></a><span class="in">```</span></span>
+<span id="cb37-367"><a href="#cb37-367"></a></span>
+<span id="cb37-368"><a href="#cb37-368"></a><span class="fu">### Ejercicios 1.2</span></span>
+<span id="cb37-369"><a href="#cb37-369"></a></span>
+<span id="cb37-370"><a href="#cb37-370"></a>&lt;h4&gt;&lt;b&gt; Instrucciones &lt;/b&gt;&lt;/h4&gt;</span>
+<span id="cb37-371"><a href="#cb37-371"></a></span>
+<span id="cb37-372"><a href="#cb37-372"></a>En el siguiente bloque podrán ejecutar código de Python usando su navegador web. Igualmente pueden hacerlo en su computadora o en la nube utilizando <span class="co">[</span><span class="ot">Google Colab</span><span class="co">](https://colab.research.google.com/)</span> o <span class="co">[</span><span class="ot">Kaggle</span><span class="co">](https://www.kaggle.com/)</span>. Para cada ejercicio deber de escribir su propio código, crear un comentario con sus datos, crear su solución y tomar una captura de pantalla del resultado. Finalmente, subir la captura a la asignación correspondiente en Google Classroom.</span>
+<span id="cb37-373"><a href="#cb37-373"></a></span>
+<span id="cb37-374"><a href="#cb37-374"></a><span class="ss">1. </span>Sabiendo que el Teorema de Pitágoras es $a^2 + b^2 = c^2$, calcular la hipotenusa de un triángulo rectángulo con catetos de 3 y 4 unidades.</span>
+<span id="cb37-375"><a href="#cb37-375"></a></span>
+<span id="cb37-376"><a href="#cb37-376"></a><span class="in">```{pyodide-python}</span></span>
+<span id="cb37-377"><a href="#cb37-377"></a><span class="in"># Tu código aquí</span></span>
+<span id="cb37-378"><a href="#cb37-378"></a><span class="in">```</span></span>
+<span id="cb37-379"><a href="#cb37-379"></a></span>
+<span id="cb37-380"><a href="#cb37-380"></a><span class="ss">2. </span>Si la velocidad de la luz es de $299,792,458$ m/s, y el tiempo que tarda en llegar la luz del Sol a la Tierra es de $8.3$ minutos, calcular la distancia en kilómetros que hay entre el Sol y la Tierra.</span>
+<span id="cb37-381"><a href="#cb37-381"></a></span>
+<span id="cb37-382"><a href="#cb37-382"></a><span class="in">```{pyodide-python}</span></span>
+<span id="cb37-383"><a href="#cb37-383"></a><span class="in"># Tu código aquí</span></span>
+<span id="cb37-384"><a href="#cb37-384"></a><span class="in">```</span></span>
+<span id="cb37-385"><a href="#cb37-385"></a></span>
+<span id="cb37-386"><a href="#cb37-386"></a><span class="ss">3. </span>Crea dos variables con tu nombre y apellido, y concaténalas en una sola variable. Imprime el resultado.</span>
+<span id="cb37-387"><a href="#cb37-387"></a></span>
+<span id="cb37-388"><a href="#cb37-388"></a><span class="in">```{pyodide-python}</span></span>
+<span id="cb37-389"><a href="#cb37-389"></a><span class="in"># Tu código aquí</span></span>
+<span id="cb37-390"><a href="#cb37-390"></a><span class="in">```</span></span>
+<span id="cb37-391"><a href="#cb37-391"></a></span>
+<span id="cb37-392"><a href="#cb37-392"></a><span class="ss">4. </span>Crea una variable con tu canción favorita y multiplica por 4 la parte de la letra que más te gusta. Imprime el resultado.</span>
+<span id="cb37-393"><a href="#cb37-393"></a></span>
+<span id="cb37-394"><a href="#cb37-394"></a><span class="in">```{pyodide-python}</span></span>
+<span id="cb37-395"><a href="#cb37-395"></a><span class="in"># Tu código aquí</span></span>
+<span id="cb37-396"><a href="#cb37-396"></a><span class="in">```</span></span>
+<span id="cb37-397"><a href="#cb37-397"></a></span>
+<span id="cb37-398"><a href="#cb37-398"></a><span class="ss">5. </span>Crea una variable con tu película favorita y compara si la longitud de la cadena de texto es mayor a 10 caracteres. Imprime el resultado.</span>
+<span id="cb37-399"><a href="#cb37-399"></a></span>
+<span id="cb37-400"><a href="#cb37-400"></a><span class="in">```{pyodide-python}</span></span>
+<span id="cb37-401"><a href="#cb37-401"></a><span class="in"># Tu código aquí</span></span>
+<span id="cb37-402"><a href="#cb37-402"></a><span class="in">```</span></span>
+<span id="cb37-403"><a href="#cb37-403"></a></span>
+<span id="cb37-404"><a href="#cb37-404"></a><span class="fu"># Conclusiones</span></span>
+<span id="cb37-405"><a href="#cb37-405"></a></span>
+<span id="cb37-406"><a href="#cb37-406"></a>En esta lección hemos aprendido a declarar variables y a realizar operaciones con ellas en Python. Hemos visto los tipos de datos más comunes en Python y cómo realizar operaciones aritméticas, de comparación y con cadenas de texto. En la siguiente lección, aprenderemos a utilizar estructuras de control de flujo en Python para crear programas más complejos y cómo utilizar funciones para reutilizar código.</span>
+<span id="cb37-407"><a href="#cb37-407"></a></span>
+<span id="cb37-408"><a href="#cb37-408"></a>¡Recuerda practicar y experimentar con los ejercicios para mejorar tus habilidades de programación en Python!</span>
+<span id="cb37-409"><a href="#cb37-409"></a></span>
+<span id="cb37-410"><a href="#cb37-410"></a>Cualquier duda o comentario, no dudes en escribirme a mi <span class="co">[</span><span class="ot">correo electrónico</span><span class="co">](mailto:cris.badillo1408@gmail.com)</span> o escribir un comentario en la plataforma de Google Classroom.</span>
+</code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Copyright <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 por Christian Francisco Badillo Hernández <br> Contenido con licencia <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/edit/main/intro_python/Variables.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Hecho con <a href="https://www.python.org/"><i class="fa-brands fa-python" aria-label="python"></i></a> y <a href="https://quarto.org">Quarto</a> <br> Código fuente disponible en <a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales">GitHub</a></p>
+</div>
+  </div>
+</footer>
+<script type="module">
+/**
+ * Factory function to create different types of cells based on options.
+ * @param {Object} cellData - JSON object containing code, id, and options.
+ * @returns {BaseCell} Instance of the appropriate cell class.
+ */
+globalThis.qpyodideCreateCell = function(cellData) {
+    switch (cellData.options.context) {
+        case 'interactive':
+            return new InteractiveCell(cellData);
+        case 'output':
+            return new OutputCell(cellData);
+        case 'setup':
+            return new SetupCell(cellData);
+        default:
+            return new InteractiveCell(cellData);
+            // throw new Error('Invalid cell type specified in options.');
+    }
+}  
+
+/**
+ * CellContainer class for managing a collection of cells.
+ * @class
+ */
+class CellContainer {
+    /**
+     * Constructor for CellContainer.
+     * Initializes an empty array to store cells.
+     * @constructor
+     */
+    constructor() {
+        this.cells = [];
+    }
+
+    /**
+     * Add a cell to the container.
+     * @param {BaseCell} cell - Instance of a cell (BaseCell or its subclasses).
+     */
+    addCell(cell) {
+        this.cells.push(cell);
+    }
+
+    /**
+     * Execute all cells in the container.
+     */
+    async executeAllCells() {
+        for (const cell of this.cells) {
+            await cell.executeCode();
+        }
+    }
+
+    /**
+     * Execute all cells in the container.
+     */
+    async autoRunExecuteAllCells() {
+        for (const cell of this.cells) {
+            await cell.autoRunExecuteCode();
+        }
+    }
+}
+  
+
+/**
+ * BaseCell class for handling code execution using Pyodide.
+ * @class
+ */
+class BaseCell {
+    /**
+     * Constructor for BaseCell.
+     * @constructor
+     * @param {Object} cellData - JSON object containing code, id, and options.
+     */
+    constructor(cellData) {
+        this.code = cellData.code;
+        this.id = cellData.id;
+        this.options = cellData.options;
+        this.insertionLocation = document.getElementById(`qpyodide-insertion-location-${this.id}`);
+        this.executionLock = false;
+    }
+
+    cellOptions() {
+        // Subclass this? 
+        console.log(this.options);
+        return this.options;
+    }
+
+    /**
+     * Execute the Python code using Pyodide.
+     * @returns {*} Result of the code execution.
+     */
+    async executeCode() {
+        // Execute code using Pyodide
+        const result = getPyodide().runPython(this.code);
+        return result;
+    }
+};
+
+/**
+ * InteractiveCell class for creating editable code editor with Monaco Editor.
+ * @class
+ * @extends BaseCell
+ */
+class InteractiveCell extends BaseCell {
+
+    /**
+     * Constructor for InteractiveCell.
+     * @constructor
+     * @param {Object} cellData - JSON object containing code, id, and options.
+     */
+    constructor(cellData) {
+        super(cellData);
+        this.editor = null;
+        this.setupElement();
+        this.setupMonacoEditor();
+    }
+
+    /**
+     * Set up the interactive cell elements
+     */
+    setupElement() {
+
+        // Create main div element
+        var mainDiv = document.createElement('div');
+        mainDiv.id = `qpyodide-interactive-area-${this.id}`;
+        mainDiv.className = `qpyodide-interactive-area`;
+        if (this.options.classes) {
+            mainDiv.className += " " + this.options.classes
+        }
+
+        // Add a unique cell identifier that users can customize
+        if (this.options.label) {
+            mainDiv.setAttribute('data-id', this.options.label);
+        }
+
+        // Create toolbar div
+        var toolbarDiv = document.createElement('div');
+        toolbarDiv.className = 'qpyodide-editor-toolbar';
+        toolbarDiv.id = `qpyodide-editor-toolbar-${this.id}`;
+
+        // Create a div to hold the left buttons
+        var leftButtonsDiv = document.createElement('div');
+        leftButtonsDiv.className = 'qpyodide-editor-toolbar-left-buttons';
+
+        // Create a div to hold the right buttons
+        var rightButtonsDiv = document.createElement('div');
+        rightButtonsDiv.className = 'qpyodide-editor-toolbar-right-buttons';
+
+        // Create Run Code button
+        var runCodeButton = document.createElement('button');
+        runCodeButton.className = 'btn btn-default qpyodide-button qpyodide-button-run';
+        runCodeButton.disabled = true;
+        runCodeButton.type = 'button';
+        runCodeButton.id = `qpyodide-button-run-${this.id}`;
+        runCodeButton.textContent = '🟡 Loading Pyodide...';
+        runCodeButton.title = `Run code (Shift + Enter)`;
+
+        // Append buttons to the leftButtonsDiv
+        leftButtonsDiv.appendChild(runCodeButton);
+
+        // Create Reset button
+        var resetButton = document.createElement('button');
+        resetButton.className = 'btn btn-light btn-xs qpyodide-button qpyodide-button-reset';
+        resetButton.type = 'button';
+        resetButton.id = `qpyodide-button-reset-${this.id}`;
+        resetButton.title = 'Start over';
+        resetButton.innerHTML = '<i class="fa-solid fa-arrows-rotate"></i>';
+
+        // Create Copy button
+        var copyButton = document.createElement('button');
+        copyButton.className = 'btn btn-light btn-xs qpyodide-button qpyodide-button-copy';
+        copyButton.type = 'button';
+        copyButton.id = `qpyodide-button-copy-${this.id}`;
+        copyButton.title = 'Copy code';
+        copyButton.innerHTML = '<i class="fa-regular fa-copy"></i>';
+
+        // Append buttons to the rightButtonsDiv
+        rightButtonsDiv.appendChild(resetButton);
+        rightButtonsDiv.appendChild(copyButton);
+
+        // Create console area div
+        var consoleAreaDiv = document.createElement('div');
+        consoleAreaDiv.id = `qpyodide-console-area-${this.id}`;
+        consoleAreaDiv.className = 'qpyodide-console-area';
+
+        // Create editor div
+        var editorDiv = document.createElement('div');
+        editorDiv.id = `qpyodide-editor-${this.id}`;
+        editorDiv.className = 'qpyodide-editor';
+
+        // Create output code area div
+        var outputCodeAreaDiv = document.createElement('div');
+        outputCodeAreaDiv.id = `qpyodide-output-code-area-${this.id}`;
+        outputCodeAreaDiv.className = 'qpyodide-output-code-area';
+        outputCodeAreaDiv.setAttribute('aria-live', 'assertive');
+
+        // Create pre element inside output code area
+        var preElement = document.createElement('pre');
+        preElement.style.visibility = 'hidden';
+        outputCodeAreaDiv.appendChild(preElement);
+
+        // Create output graph area div
+        var outputGraphAreaDiv = document.createElement('div');
+        outputGraphAreaDiv.id = `qpyodide-output-graph-area-${this.id}`;
+        outputGraphAreaDiv.className = 'qpyodide-output-graph-area';
+
+        // Append buttons to the toolbar
+        toolbarDiv.appendChild(leftButtonsDiv);
+        toolbarDiv.appendChild(rightButtonsDiv);
+
+        // Append all elements to the main div
+        mainDiv.appendChild(toolbarDiv);
+        consoleAreaDiv.appendChild(editorDiv);
+        consoleAreaDiv.appendChild(outputCodeAreaDiv);
+        mainDiv.appendChild(consoleAreaDiv);
+        mainDiv.appendChild(outputGraphAreaDiv);
+
+        // Insert the dynamically generated object at the document location.
+        this.insertionLocation.appendChild(mainDiv);
+    }
+
+    /**
+     * Set up Monaco Editor for code editing.
+     */
+    setupMonacoEditor() {
+
+        // Retrieve the previously created document elements
+        this.runButton = document.getElementById(`qpyodide-button-run-${this.id}`);
+        this.resetButton = document.getElementById(`qpyodide-button-reset-${this.id}`);
+        this.copyButton = document.getElementById(`qpyodide-button-copy-${this.id}`);
+        this.editorDiv = document.getElementById(`qpyodide-editor-${this.id}`);
+        this.outputCodeDiv = document.getElementById(`qpyodide-output-code-area-${this.id}`);
+        this.outputGraphDiv = document.getElementById(`qpyodide-output-graph-area-${this.id}`);
+        
+        // Store reference to the object
+        var thiz = this;
+
+        // Load the Monaco Editor and create an instance
+        require(['vs/editor/editor.main'], function () {
+            thiz.editor = monaco.editor.create(
+                thiz.editorDiv, {
+                    value: thiz.code,
+                    language: 'python',
+                    theme: 'vs-light',
+                    automaticLayout: true,           // Works wonderfully with RevealJS
+                    scrollBeyondLastLine: false,
+                    minimap: {
+                        enabled: false
+                    },
+                    fontSize: '17.5pt',              // Bootstrap is 1 rem
+                    renderLineHighlight: "none",     // Disable current line highlighting
+                    hideCursorInOverviewRuler: true,  // Remove cursor indictor in right hand side scroll bar
+                    readOnly: thiz.options['read-only'] ?? false
+                }
+            );
+        
+            // Store the official counter ID to be used in keyboard shortcuts
+            thiz.editor.__qpyodideCounter = thiz.id;
+        
+            // Store the official div container ID
+            thiz.editor.__qpyodideEditorId = `qpyodide-editor-${thiz.id}`;
+        
+            // Store the initial code value and options
+            thiz.editor.__qpyodideinitialCode = thiz.code;
+            thiz.editor.__qpyodideOptions = thiz.options;
+        
+            // Set at the model level the preferred end of line (EOL) character to LF.
+            // This prevent `\r\n` from being given to the Pyodide engine if the user is on Windows.
+            // See details in: https://github.com/coatless/quarto-Pyodide/issues/94
+            // Associated error text: 
+            // Error: <text>:1:7 unexpected input
+        
+            // Retrieve the underlying model
+            const model = thiz.editor.getModel();
+            // Set EOL for the model
+            model.setEOL(monaco.editor.EndOfLineSequence.LF);
+        
+            // Dynamically modify the height of the editor window if new lines are added.
+            let ignoreEvent = false;
+            const updateHeight = () => {
+            const contentHeight = thiz.editor.getContentHeight();
+            // We're avoiding a width change
+            //editorDiv.style.width = `${width}px`;
+            thiz.editorDiv.style.height = `${contentHeight}px`;
+                try {
+                    ignoreEvent = true;
+            
+                    // The key to resizing is this call
+                    thiz.editor.layout();
+                } finally {
+                    ignoreEvent = false;
+                }
+            };
+        
+            // Helper function to check if selected text is empty
+            function isEmptyCodeText(selectedCodeText) {
+                return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+            }
+        
+            // Registry of keyboard shortcuts that should be re-added to each editor window
+            // when focus changes.
+            const addPyodideKeyboardShortCutCommands = () => {
+            // Add a keydown event listener for Shift+Enter to run all code in cell
+            thiz.editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+                // Retrieve all text inside the editor
+                thiz.runCode(thiz.editor.getValue());
+            });
+        
+            // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+            thiz.editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+                    // Get the selected text from the editor
+                    const selectedText = thiz.editor.getModel().getValueInRange(thiz.editor.getSelection());
+                    // Check if no code is selected
+                    if (isEmptyCodeText(selectedText)) {
+                        // Obtain the current cursor position
+                        let currentPosition = thiz.editor.getPosition();
+                        // Retrieve the current line content
+                        let currentLine = thiz.editor.getModel().getLineContent(currentPosition.lineNumber);
+                
+                        // Propose a new position to move the cursor to
+                        let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+                
+                        // Check if the new position is beyond the last line of the editor
+                        if (newPosition.lineNumber > thiz.editor.getModel().getLineCount()) {
+                            // Add a new line at the end of the editor
+                            thiz.editor.executeEdits("addNewLine", [{
+                            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+                            text: "\n", 
+                            forceMoveMarkers: true,
+                            }]);
+                        }
+                        
+                        // Run the entire line of code.
+                        thiz.runCode(currentLine);
+                
+                        // Move cursor to new position
+                        thiz.editor.setPosition(newPosition);
+                    } else {
+                        // Code to run when Ctrl+Enter is pressed with selected code
+                        thiz.runCode(selectedText);
+                    }
+                });
+            }
+        
+            // Register an on focus event handler for when a code cell is selected to update
+            // what keyboard shortcut commands should work.
+            // This is a workaround to fix a regression that happened with multiple
+            // editor windows since Monaco 0.32.0 
+            // https://github.com/microsoft/monaco-editor/issues/2947
+            thiz.editor.onDidFocusEditorText(addPyodideKeyboardShortCutCommands);
+        
+            // Register an on change event for when new code is added to the editor window
+            thiz.editor.onDidContentSizeChange(updateHeight);
+        
+            // Manually re-update height to account for the content we inserted into the call
+            updateHeight();
+                
+        });
+
+        
+        // Add a click event listener to the run button
+        thiz.runButton.onclick = function () {
+            thiz.runCode(
+                thiz.editor.getValue()
+            );
+        };
+        
+        // Add a click event listener to the reset button
+        thiz.copyButton.onclick = function () {
+            // Retrieve current code data
+            const data = thiz.editor.getValue();
+            
+            // Write code data onto the clipboard.
+            navigator.clipboard.writeText(data || "");
+        };
+        
+        // Add a click event listener to the copy button
+        thiz.resetButton.onclick = function () {
+            thiz.editor.setValue(thiz.editor.__qpyodideinitialCode);
+        };
+    }
+
+    disableInteractiveCells() {
+        // Enable locking of execution for the cell
+        this.executionLock = true;
+
+        // Disallowing execution of other code cells
+        document.querySelectorAll(".qpyodide-button-run").forEach((btn) => {
+            btn.disabled = true;
+        });
+    }
+
+    enableInteractiveCells() {
+        // Remove locking of execution for the cell
+        this.executionLock = false;
+
+        // All execution of other code cells
+        document.querySelectorAll(".qpyodide-button-run").forEach((btn) => {
+            btn.disabled = false;
+        });
+    }
+
+    /**
+     * Execute the Python code inside the editor.
+     */
+    async runCode(code) {
+        
+        // Check if we have an execution lock
+        if (this.executeLock) return; 
+        
+        this.disableInteractiveCells();
+
+        // Force wait procedure
+        await mainPyodide;
+
+        // Clear the output stock
+        qpyodideResetOutputArray();
+
+        // Generate a new canvas element, avoid attaching until the end
+        let graphFigure = document.createElement("figure");
+        document.pyodideMplTarget = graphFigure;
+
+        console.log("Running code!");
+        // Obtain results from the base class
+        try {
+            // Always check to see if the user adds new packages
+            await mainPyodide.loadPackagesFromImports(code);
+
+            // Process result
+            const output = await mainPyodide.runPythonAsync(code);
+
+            // Add output
+            qpyodideAddToOutputArray(output, "stdout");
+        } catch (err) {
+            // Add error message
+            qpyodideAddToOutputArray(err, "stderr");
+            // TODO: There has to be a way to remove the Pyodide portion of the errors... 
+        }
+
+        const result = qpyodideRetrieveOutput();
+
+        // Nullify the output area of content
+        this.outputCodeDiv.innerHTML = "";
+        this.outputGraphDiv.innerHTML = "";        
+
+        // Design an output object for messages
+        const pre = document.createElement("pre");
+        if (/\S/.test(result)) {
+            // Display results as HTML elements to retain output styling
+            const div = document.createElement("div");
+            div.innerHTML = result;
+            pre.appendChild(div);
+        } else {
+            // If nothing is present, hide the element.
+            pre.style.visibility = "hidden";
+        }
+
+        // Add output under interactive div
+        this.outputCodeDiv.appendChild(pre);
+
+        // Place the graphics onto the page
+        if (graphFigure) {
+
+            if (this.options['fig-cap']) {
+                // Create figcaption element
+                const figcaptionElement = document.createElement('figcaption');
+                figcaptionElement.innerText = this.options['fig-cap'];
+                // Append figcaption to figure
+                graphFigure.appendChild(figcaptionElement);    
+            }
+
+            this.outputGraphDiv.appendChild(graphFigure);
+        }
+
+        // Re-enable execution
+        this.enableInteractiveCells();
+    }
+};
+
+/**
+ * OutputCell class for customizing and displaying output.
+ * @class
+ * @extends BaseCell
+ */
+class OutputCell extends BaseCell {
+    /**
+     * Constructor for OutputCell.
+     * @constructor
+     * @param {Object} cellData - JSON object containing code, id, and options.
+     */
+    constructor(cellData) {
+      super(cellData);
+    }
+  
+    /**
+     * Display customized output on the page.
+     * @param {*} output - Result to be displayed.
+     */
+    displayOutput(output) {
+        const results = this.executeCode();
+        return results;
+    }
+  }
+
+/**
+ * SetupCell class for suppressed output.
+ * @class
+ * @extends BaseCell
+ */
+class SetupCell extends BaseCell {
+    /**
+     * Constructor for SetupCell.
+     * @constructor
+     * @param {Object} cellData - JSON object containing code, id, and options.
+     */
+    constructor(cellData) {
+        super(cellData);
+    }
+
+    /**
+     * Execute the Python code without displaying the results.
+     */
+    runSetupCode() {
+        // Execute code without displaying output
+        this.executeCode();
+    }
+};
+</script>
+<script type="module">
+// Handle cell initialization initialization
+qpyodideCellDetails.map(
+    (entry) => {
+      // Handle the creation of the element
+      qpyodideCreateCell(entry);
+    }
+  );
+</script>
+
+
+
+
+</body></html>

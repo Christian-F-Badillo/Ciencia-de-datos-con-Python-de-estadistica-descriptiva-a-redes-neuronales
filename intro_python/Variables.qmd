@@ -1,0 +1,374 @@
+---
+title: "Declaración de Variables y Operaciones"
+author: "Christian Badillo"
+format: html
+date: today
+order: 2
+filters:
+  - pyodide
+  - fontawesome
+  - iconify
+---
+
+# Variables y tipos de variables
+
+En Python utilizamos variables para almacenar información en la memoria de la computadora. Las variables son como cajas en las que podemos guardar información, cada caja tiene un nombre y un contenido. Existen varias reglas para dar nombre a las variables en Python:
+
+- El nombre debe comenzar con una letra o un guión bajo.
+- No puede comenzar con un número.
+- Puede contener letras, números y guiones bajos.
+
+El proceso de crear (dar valor) a una variable se conoce como ***declaración de variables*** y es sensible a mayúsculas y minúsculas. Esto significa que si declaramos las variables `nombre`, `Nombre` y `NOMBRE` serán diferentes.
+
+```{python}
+nombre = "Christian"
+Nombre = "Jimena"
+NOMBRE = "Luis"
+
+print(nombre == Nombre)
+print(Nombre == NOMBRE)
+print(NOMBRE == nombre)
+```
+
+Por lo cual podemos ver que las variables `nombre`, `Nombre` y `NOMBRE` son diferentes, pues al realizar la comparación entre ellas, el resultado es `False`, también podemos observar la forma de declarar variables en Python, la cual es `nombre_variable = valor_variable`.
+
+Podemos sobrescribir el contenido de una variable en cualquier momento.
+
+```{python}
+print(nombre)
+nombre = "Cesar"
+print(nombre)
+```
+
+En el ejemplo anterior, hemos cambiado el contenido de la variable `nombre` de "Christian" a "Cesar". En Python, podemos asignar cualquier tipo de dato a una variable. Los tipos de datos más comunes en Python son:
+
+- `int`: Números enteros.
+- `float`: Números decimales.
+- `str`: Cadenas de texto.
+- `bool`: Valores booleanos (verdadero o falso).
+- `list`: Listas de elementos.
+- `tuple`: Tuplas de elementos.
+- `dict`: Diccionarios de elementos.
+
+## Tipos de Variables
+
+### Números enteros y decimales
+
+Los ***números enteros*** son números que no tienen parte decimal. En Python, podemos declarar un número entero de la siguiente manera:
+
+```{python}
+numero_entero = 10
+print(numero_entero)
+```
+
+Otra forma de declarar un número entero es utilizando la función `int()` para convertir un número decimal o un booleano a un número entero. Veamos un ejemplo:
+
+```{python}
+numero_entero = int(10.5)
+print(numero_entero)
+numero_entero = int(10.6)
+print(numero_entero)
+
+numero_entero = int(True)
+print(numero_entero)
+```
+
+Los ***números decimales*** son números que tienen parte decimal. En Python, podemos declarar un número decimal de la siguiente manera:
+
+```{python}
+numero_decimal = 10.5
+print(numero_decimal)
+```
+
+Otra forma de declarar un número decimal es utilizando la función `float()` para convertir un número entero o un booleano a un número decimal.
+
+```{python}
+numero_decimal = float(10)
+print(numero_decimal)
+
+numero_decimal = float(True)
+print(numero_decimal)
+```
+
+Igualmente podemos utilizar la nota científica para declarar un número decimal en Python con la letra `e` seguida de un número entero por ejemplo, `22e10` es equivalente a $22 * 10^10$. En código:
+
+```{python}
+numero_decimal = 1.5e2
+print(numero_decimal)
+
+numero_decimal = 1.5e-2
+print(numero_decimal)
+```
+
+### Cadenas de texto
+
+Las ***cadenas de texto*** son una secuencia de carácteres (letras, números y símbolos). En Python, se pueden declarar cadenas de texto utilizando comillas simples `'` o comillas dobles `"`. Veamos un ejemplo:
+
+```{python}
+cadena_texto = "Hola Mundo"
+print(cadena_texto)
+```
+
+Otra forma de declarar una cadena de texto es utilizando la función `str()` para convertir un número entero, decimal o booleano a una cadena de texto. También podemos combinar las comillas simples y dobles para poder usar una o la otra dentro de la cadena de texto. Por ejemplo:
+
+```{python}
+texto= 'No te procupes, solo es un "amigo" / "amiga"'
+print(texto)
+```
+
+Tambén podemos imprimir saltos de línea (`\n`), tabulaciones (`\t`) y caracteres especiales en una cadena de texto. Por ejemplo:
+
+```{python}
+texto = "Las rosas son rojas,\nLas violetas son azules,\nViva el team frio,\nQuiero un pan \U0001F35E\n"
+
+print(texto)
+
+texto = "\n\t Aqui no se habla\n\tdel formato APA\n\tNo, no, no 🫠"
+
+print(texto)
+```
+
+### Valores booleanos
+
+Los ***valores booleanos*** son valores lógicos que pueden ser `True` (verdadero) o `False` (falso). En Python, podemos declarar un valor booleano de la siguiente manera:
+
+```{python}
+valor_booleano = True
+print(valor_booleano)
+```
+
+Igualmente existe la función `bool()` pero su uso es poco utilizado, ya que los valores booleanos se utilizan principalmente en condicionales y bucles, además es necesario conocer que cosas se consideran `True` y `False` en Python.
+
+```{python}
+valor_booleano = bool(0)
+print(valor_booleano)
+valor_booleano = bool(1)
+print(valor_booleano)
+
+valor_booleano = bool([])
+print(valor_booleano)
+valor_booleano = bool([1, 2, 3])
+print(valor_booleano)
+```
+
+Si recuerdan sus clases de Lógica, podrán crear una tabla de verdad para evaluar proposiciones lógicas en Python.
+
+### Documentación de código
+
+La ***documentación*** de código es una práctica común en programación y una buena costumbre para escribir código limpio y legible. En Python, podemos documentar nuestro código utilizando comentarios.
+
+Los ***comentarios*** son líneas de código que no se ejecutan y se utilizan para explicar el código. En Python, los comentarios se crean utilizando el símbolo `#` y cualquier texto que se escriba después de este símbolo se considera un comentario y no se ejecuta.
+
+```{python}
+# Esto es un comentario
+print("Hola Mundo") # Aquí podemos comentar que hace esta línea de código
+```
+
+También podemos crear comentarios multilínea utilizando tres comillas simples `'''` o tres comillas dobles `"""`, se utiliza mucho esta forma de comentar para documentar funciones o clases, como lo veremos más adelante.
+
+### Ejercicios 1.1
+
+En el siguiente bloque podrán ejecutar código de Python usando su navegador web. Igualmente pueden hacerlo en su computadora o en la nube utilizando [Google Colab](https://colab.research.google.com/) o [Kaggle](https://www.kaggle.com/). Para cada ejercicio deber de escribir su propio código, crear un comentario con sus datos, crear su solución y tomar una captura de pantalla del resultado. Finalmente, subir la captura a la asignación correspondiente en Google Classroom.
+
+1. Declarar una variable de cada tipo de dato en Python (entero, decimal, cadena de texto y booleano) e imprimir su valor.
+
+2. Declarar una variable con el nombre `poema` y asignarle un poema de su elección. Imprimir el poema en la consola con el formato adecuado. (Pueden utilizar emojis si lo desean).
+
+```{pyodide-python}
+# Ejemplo de cómo deberán comentar su código
+# Nombre: Christian Badillo
+# Fecha: 10 de junio de 2024
+
+# Ejercicio 1
+print("Solución del ejercicio 1")
+
+# Ejercicio 2
+print("""Solución 
+del ejercicio 2""")
+```
+
+# Operaciones de variables
+
+En Python, podemos realizar operaciones matemáticas con variables de tipo entero y decimal. Las operaciones matemáticas más comunes en Python son:
+
+- Suma: `+`.
+- Resta: `-`.
+- Multiplicación: `*`.
+- División: `/`.
+- Módulo: `%`.
+- Potencia: `**`.
+- División entera: `//`.
+- Raíz cuadrada: `sqrt()` ó `** 0.5`.
+- Operaciones de comparación: `==`, `!=`, `>`, `<`, `>=`, `<=`.
+- Operaciones lógicas: `and`, `or`, `not`.
+
+## Operaciones aritméticas
+
+Las ***operaciones aritméticas*** son operaciones matemáticas que se realizan con números. En Python, podemos realizar operaciones aritméticas con variables de tipo entero y decimal, como si fuese una calculadora.
+
+```{python}
+from math import sqrt
+# Sumemos dos numeros
+numero1 = 10
+numero2 = 5
+
+suma = numero1 + numero2 # 10 + 5 = 15
+print(suma)
+
+# Restemos dos numeros
+resta = numero1 - numero2 # 10 - 5 = 5
+print(resta)
+
+# Multipliquemos dos numeros
+multiplicacion = numero1 * numero2 # 10 * 5 = 50
+print(multiplicacion)
+
+# Dividamos dos numeros
+division = numero1 / numero2 # 10 / 5 = 2.0
+print(division)
+
+# Dividamos y solo tomemos la parte entera
+division_entera = numero1 // numero2 # 10 // 5 = 2
+print(division_entera)
+
+# Calculemos el residuo de la división
+modulo = numero1 % numero2 # 10 % 5 = 0
+print(modulo)
+
+# Elevemos un numero a una potencia
+potencia = numero1 ** numero2 # 10 ^ 5 = 100000
+print(potencia)
+
+# Calculemos la raiz cuadrada de un numero
+raiz_cuadrada = numero1 ** 0.5 # sqrt(10) = 3.1622776601683795
+raiz_cuadrada2 = sqrt(numero2) # sqrt(5) = 2.23606797749979
+print(raiz_cuadrada)
+print(raiz_cuadrada2)
+```
+
+## Operaciones de comparación
+
+Las ***operaciones de comparación*** son operaciones que se utilizan para comparar dos valores y devuelven un valor booleano (`True` o `False`).
+
+```{python}
+# Comparar si dos numeros son iguales
+numero1 = 148
+numero2 = 47
+
+comparacion = numero1 == numero2
+print(comparacion)
+
+# Comparar si dos numeros son diferentes
+comparacion = numero1 != numero2
+print(comparacion)
+
+# Comparar si un numero es mayor que otro
+comparacion = numero1 > numero2
+print(comparacion)
+
+# Comparar si un numero es menor que otro
+comparacion = numero1 < numero2
+print(comparacion)
+
+# Comparar si un numero es mayor o igual que otro
+comparacion = numero1 >= numero2
+print(comparacion)
+
+# Comparar si un numero es menor o igual que otro
+comparacion = numero1 <= numero2
+print(comparacion)
+```
+
+## Operaciones con cadenas de texto
+
+Las ***operaciones con cadenas de texto*** son operaciones que se utilizan para concatenar, multiplicar y comparar cadenas de texto. Se utilizan principalmente para manipular texto en Python.
+
+Para concatenar dos cadenas de texto, simplemente se utilizan el operador `+`.
+```{python}
+# Concatenar dos cadenas de texto
+cadena1 = "Hola"
+cadena2 = "Mundo"
+
+concatenacion = cadena1 + " " + cadena2
+print(concatenacion)
+```
+
+Para multiplicar una cadena de texto por un número entero, simplemente se utiliza el operador `*`.
+
+```{python}
+# Multiplicar una cadena de texto
+cadena = "Me gusta programar en Python\n"
+
+multiplicacion = cadena * 5
+print(multiplicacion)
+```
+
+Para comparar dos cadenas de texto, simplemente se utilizan los operadores de comparación.
+
+```{python}
+# Comparar dos cadenas de texto
+cadena1 = "Muchas gracias"
+cadena2 = "De nada"
+
+comparacion = cadena1 == cadena2 # Comparar si dos cadenas son iguales
+print(comparacion)
+
+comparacion = cadena1 != cadena2 # Comparar si dos cadenas son diferentes
+print(comparacion)
+
+comparacion = cadena1 > cadena2 # Comparar si una cadena tiene más caracteres que otra
+print(comparacion)
+
+comparacion = cadena1 < cadena2 # Comparar si una cadena tiene menos caracteres que otra
+print(comparacion)
+
+comparacion = cadena1 >= cadena2 # Comparar si una cadena tiene más o igual cantidad de caracteres que otra
+print(comparacion)
+
+comparacion = cadena1 <= cadena2 # Comparar si una cadena tiene menos o igual cantidad de caracteres que otra
+print(comparacion)
+```
+
+### Ejercicios 1.2
+
+<h4><b> Instrucciones </b></h4>
+
+En el siguiente bloque podrán ejecutar código de Python usando su navegador web. Igualmente pueden hacerlo en su computadora o en la nube utilizando [Google Colab](https://colab.research.google.com/) o [Kaggle](https://www.kaggle.com/). Para cada ejercicio deber de escribir su propio código, crear un comentario con sus datos, crear su solución y tomar una captura de pantalla del resultado. Finalmente, subir la captura a la asignación correspondiente en Google Classroom.
+
+1. Sabiendo que el Teorema de Pitágoras es $a^2 + b^2 = c^2$, calcular la hipotenusa de un triángulo rectángulo con catetos de 3 y 4 unidades.
+
+```{pyodide-python}
+# Tu código aquí
+```
+
+2. Si la velocidad de la luz es de $299,792,458$ m/s, y el tiempo que tarda en llegar la luz del Sol a la Tierra es de $8.3$ minutos, calcular la distancia en kilómetros que hay entre el Sol y la Tierra.
+
+```{pyodide-python}
+# Tu código aquí
+```
+
+3. Crea dos variables con tu nombre y apellido, y concaténalas en una sola variable. Imprime el resultado.
+
+```{pyodide-python}
+# Tu código aquí
+```
+
+4. Crea una variable con tu canción favorita y multiplica por 4 la parte de la letra que más te gusta. Imprime el resultado.
+
+```{pyodide-python}
+# Tu código aquí
+```
+
+5. Crea una variable con tu película favorita y compara si la longitud de la cadena de texto es mayor a 10 caracteres. Imprime el resultado.
+
+```{pyodide-python}
+# Tu código aquí
+```
+
+# Conclusiones
+
+En esta lección hemos aprendido a declarar variables y a realizar operaciones con ellas en Python. Hemos visto los tipos de datos más comunes en Python y cómo realizar operaciones aritméticas, de comparación y con cadenas de texto. En la siguiente lección, aprenderemos a utilizar estructuras de control de flujo en Python para crear programas más complejos y cómo utilizar funciones para reutilizar código.
+
+¡Recuerda practicar y experimentar con los ejercicios para mejorar tus habilidades de programación en Python!
+
+Cualquier duda o comentario, no dudes en escribirme a mi [correo electrónico](mailto:cris.badillo1408@gmail.com) o escribir un comentario en la plataforma de Google Classroom.

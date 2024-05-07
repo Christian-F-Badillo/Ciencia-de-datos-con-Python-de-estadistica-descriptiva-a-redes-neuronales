@@ -8,7 +8,7 @@
 
 <meta name="author" content="Christian Badillo">
 
-<title>Ciencia de Datos con Python - Variables y Tipos de Datos en Python</title>
+<title>Ciencia de Datos con Python - Funciones y Bucles de Control</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,7 +65,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../intro_python/Cloud.html" rel="prev">
+<link href="../intro_python/Variables.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -234,7 +268,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"options":{"output":"true","warning":"true","out-height":"","context":"interactive","dpi":72,"read-only":"false","classes":"","comment":"","out-width":"700px","label":"","message":"true","fig-width":7,"autorun":"","results":"markup","fig-height":5,"fig-cap":""},"code":"nombre = \"Christian\"\nNombre = \"Jimena\"\nNOMBRE = \"Luis\"\n\nprint(nombre)\nprint(Nombre)\nprint(NOMBRE)","id":1}];
+globalThis.qpyodideCellDetails = [{"code":"import numpy as np\nimport matplotlib.pyplot as plt\n\ndef sine_wave(amplitude: float = None, frequency: float = None, phase: float = None, duration: float = None, sample_rate: float = None):\n    \"\"\"\n    Generate a sine wave signal.\n\n    Parameters:\n    - amplitude: The amplitude of the sine wave.\n    - frequency: The frequency of the sine wave in Hz.\n    - phase: The phase of the sine wave in radians.\n    - duration: The duration of the signal in seconds.\n    - sample_rate: The sample rate of the signal in Hz.\n\n    Returns:\n    - t: An array of time values.\n    - x: An array of signal values.\n    \"\"\"\n    t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False) # Generate time values\n    x = amplitude * np.sin(2 * np.pi * frequency * t + phase) # Generate signal values\n    return t, x\n\n# Generate a sine wave signal with amplitude 1, frequency 1 Hz, phase 0, duration 1 second, and sample rate 1000 Hz\nt, x = sine_wave(amplitude=1, frequency=1, phase=0, duration=1, sample_rate=1000) \n\n# Plot the sine wave signal\ndef plot_signal(t, x):\n    plt.figure() # Create a new figure\n    plt.plot(t, x) # Plot the signal\n    plt.xlabel('Time (s)') # Set the x-axis label\n    plt.ylabel('Amplitude') # Set the y-axis label\n    plt.grid(True) # Show grid\n    plt.show() # Show the plot\n\nplot_signal(t, x)","options":{"fig-cap":"","out-width":"700px","results":"markup","comment":"","read-only":"false","fig-height":5,"label":"","autorun":"","classes":"","output":"true","fig-width":7,"out-height":"","dpi":72,"message":"true","warning":"true","context":"interactive"},"id":1}];
 
 
 </script>
@@ -427,11 +461,11 @@ globalThis._qpyodideGetInstance = function() {
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta property="og:title" content="Ciencia de Datos con Python - Variables y Tipos de Datos en Python">
+<meta property="og:title" content="Ciencia de Datos con Python - Funciones y Bucles de Control">
 <meta property="og:description" content="">
 <meta property="og:site_name" content="Ciencia de Datos con Python">
 <meta property="og:locale" content="es_MX">
-<meta name="twitter:title" content="Ciencia de Datos con Python - Variables y Tipos de Datos en Python">
+<meta name="twitter:title" content="Ciencia de Datos con Python - Funciones y Bucles de Control">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -445,7 +479,7 @@ globalThis._qpyodideGetInstance = function() {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro_python/Cloud.html">Fundamentos de Python</a></li><li class="breadcrumb-item"><a href="../intro_python/VarType.html">Variables y Tipos de Datos en Python</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro_python/Cloud.html">Fundamentos de Python</a></li><li class="breadcrumb-item"><a href="../intro_python/functions_and_loops.html">Funciones y Bucles de Control</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -516,8 +550,14 @@ globalThis._qpyodideGetInstance = function() {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../intro_python/VarType.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Variables y Tipos de Datos en Python</span></a>
+  <a href="../intro_python/Variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Declaración de Variables y Operaciones</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro_python/functions_and_loops.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Funciones y Bucles de Control</span></a>
   </div>
 </li>
       </ul>
@@ -544,9 +584,13 @@ globalThis._qpyodideGetInstance = function() {
     <h2 id="toc-title">Tabla de Contenido</h2>
    
   <ul>
-  <li><a href="#variables-y-tipos-de-variables" id="toc-variables-y-tipos-de-variables" class="nav-link active" data-scroll-target="#variables-y-tipos-de-variables">Variables y tipos de variables</a></li>
+  <li><a href="#funciones" id="toc-funciones" class="nav-link active" data-scroll-target="#funciones">Funciones</a>
+  <ul class="collapse">
+  <li><a href="#funciones-lambda" id="toc-funciones-lambda" class="nav-link" data-scroll-target="#funciones-lambda">Funciones Lambda</a></li>
+  <li><a href="#creando-funciones-legibles" id="toc-creando-funciones-legibles" class="nav-link" data-scroll-target="#creando-funciones-legibles">Creando funciones legibles</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/edit/main/intro_python/VarType.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/edit/main/intro_python/functions_and_loops.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -561,9 +605,9 @@ globalThis._qpyodideGetInstance = function() {
   });
 </script>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro_python/Cloud.html">Fundamentos de Python</a></li><li class="breadcrumb-item"><a href="../intro_python/VarType.html">Variables y Tipos de Datos en Python</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro_python/Cloud.html">Fundamentos de Python</a></li><li class="breadcrumb-item"><a href="../intro_python/functions_and_loops.html">Funciones y Bucles de Control</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Variables y Tipos de Datos en Python</h1>
+<div class="quarto-title-block"><div><h1 class="title">Funciones y Bucles de Control</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source" data-quarto-source-url="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/blob/main/intro_python/functions_and_loops.qmd"><i class="bi"></i> Código</button></div></div>
 </div>
 
 
@@ -580,7 +624,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">1 de mayo de 2024</p>
+      <p class="date">6 de mayo de 2024</p>
     </div>
   </div>
   
@@ -592,19 +636,105 @@ globalThis._qpyodideGetInstance = function() {
 </header>
 
 
-<section id="variables-y-tipos-de-variables" class="level1">
-<h1>Variables y tipos de variables</h1>
-<p>En Python utilizamos variables para almacenar información en la memoria de la computadora. Las variables son como cajas en las que podemos guardar información. Cada caja tiene un nombre y un contenido. Existen reglas para nombrar las variables en Python:</p>
+<section id="funciones" class="level1">
+<h1>Funciones</h1>
+<p>Las <strong><em>funciones</em></strong> son bloques de código que se pueden reutilizar en diferentes partes de un programa, permitiendo que el código sea más modular y fácil de mantener. En Python, las funciones se definen con la palabra clave <code>def</code>, seguida del nombre de la función y una lista de parámetros entre paréntesis. El cuerpo de la función se define con sangría y puede contener cualquier número de instrucciones.</p>
+<p>Primero elaboremos una función sencilla, la cual se llamará <code>saludo</code> y recibirá un parámetro <code>nombre</code>:</p>
+<details open="" class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="in">def saludo(nombre):</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="in">    print(f'Hola, {nombre}!')</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="in">saludo('Christian')</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="in">```</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<p>Hola, Christian!</p>
+<p>Hemos usado una <strong>f-string</strong> para imprimir el saludo. Las f-strings son una forma de formatear cadenas de texto en Python, permitiendo la interpolación de variables dentro de una cadena. Para definir una f-string, se coloca una <code>f</code> antes de las comillas de apertura y se encierra la variable entre llaves <code>{}</code>. Es decir, le estamos diciendo a Python que reemplace <code>{nombre}</code> con el valor de la variable <code>nombre</code> que en este caso es <code>'Christian'</code>.</p>
+<p>Las funciones pueden devolver un valor usando la palabra clave <code>return</code>. Por ejemplo, la siguiente función <code>cuadrado</code> recibe un número <code>x</code> y devuelve su cuadrado:</p>
+<details open="" class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a><span class="in">```{python}</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="in">def cuadrado(x):</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="in">    return x ** 2</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="in">print(cuadrado(5))</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="in">```</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<p>25</p>
+<p>Como habrás notado en los ejemplos anteriores, hemos usado el nombre de la función seguido de paréntesis para llamarla. En el caso de la función <code>saludo</code>, hemos pasado un argumento <code>nombre</code> entre los paréntesis. En el caso de la función <code>cuadrado</code>, hemos pasado el número <code>5</code>. Estos argumentos se llaman <strong><em>parámetros</em></strong> y son los valores que la función espera recibir para realizar su tarea.</p>
+<p>Hay varias formas de poner los argumentos en una función:</p>
 <ul>
-<li>El nombre de una variable debe comenzar con una letra o un guión bajo.</li>
-<li>El nombre de una variable no puede comenzar con un número.</li>
-<li>El nombre de una variable puede contener letras, números y guiones bajos.</li>
+<li><strong>Argumentos posicionales</strong>: Los argumentos se pasan en el orden en que se definen en la función.</li>
+<li><strong>Argumentos con nombre</strong>: Los argumentos se pasan con el nombre del parámetro al que corresponden.</li>
+<li><strong>Argumentos por defecto</strong>: Los argumentos tienen un valor por defecto que se usa si no se proporciona un valor.</li>
+<li><strong>Argumentos variables</strong>: Los argumentos se pasan como una lista o un diccionario.</li>
 </ul>
-<p>En Python, las variables son sensibles a mayúsculas y minúsculas. Esto significa que las variables <code>nombre</code>, <code>Nombre</code> y <code>NOMBRE</code> son diferentes. Veamos un ejemplo:</p>
+<p>En los ejemplos hemos utilizado argumentos posicionales. A continuación, veremos cómo usar argumentos con nombre:</p>
+<details open="" class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1"></a><span class="in">```{python}</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="in">def resta(num1, num2):</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="in">    return num1 - num2</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="in">print(resta(num1=10, num2=5))</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="in">```</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<p>5</p>
+<p>En este caso, hemos pasado los argumentos <code>num1</code> y <code>num2</code> con sus nombres correspondientes y les hemos asignado valores. Esto nos permite pasar los argumentos en cualquier orden, siempre y cuando especifiquemos el nombre del parámetro al que corresponden.</p>
+<p>Ahora veamos cómo usar argumentos por defecto:</p>
+<details open="" class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1"></a><span class="in">```{python}</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="in">def potencia(base, exponente=2):</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="in">    return base ** exponente</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="in">print(potencia(2))</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="in">print(potencia(2, 3))</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="in">```</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<p>4 8</p>
+<p>En este caso, la función <code>potencia</code> tiene un argumento <code>exponente</code> con un valor por defecto de <code>2</code>. Si no se proporciona un valor para <code>exponente</code>, se usará el valor por defecto. Si se proporciona un valor, se usará ese valor en su lugar.</p>
+<section id="funciones-lambda" class="level2">
+<h2 class="anchored" data-anchor-id="funciones-lambda">Funciones Lambda</h2>
+<p>Las funciones lambda son funciones anónimas que se pueden definir en una sola línea. Se definen con la palabra clave <code>lambda</code>, seguida de una lista de parámetros y una expresión que se evalúa y devuelve el resultado. Por ejemplo, la siguiente función lambda calcula el cuadrado de un número:</p>
+<details open="" class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1"></a><span class="in">```{python}</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="in">cuadrado_lamda = lambda x: x ** 2</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="in">print(cuadrado_lamda(5))</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="in">```</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<p>25</p>
+<p>Las funciones lambda son útiles cuando se necesita una función simple y no es necesario definirla con una declaración <code>def</code>.</p>
+<p>Ahora definamos una función lambda un poco más compleja para sumar dos números:</p>
+<details open="" class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1"></a><span class="in">```{python}</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="in">suma_lambda = lambda x, y: x + y</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="in">print(suma_lambda(3, 4))</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="in">```</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<p>7</p>
+</section>
+<section id="creando-funciones-legibles" class="level2">
+<h2 class="anchored" data-anchor-id="creando-funciones-legibles">Creando funciones legibles</h2>
+<p>Es importante que las funciones sean fáciles de leer y entender. Para ello, es recomendable seguir las siguientes buenas prácticas:</p>
+<ul>
+<li><strong>Nombres descriptivos</strong>: Usa nombres descriptivos para las funciones y los parámetros.</li>
+<li><strong>Comentarios</strong>: Añade comentarios para explicar lo que hace cada parte de la función.</li>
+<li><strong>Documentación</strong>: Usa <a href="https://peps.python.org/pep-0257/">docstrings</a> para documentar la función y proporcionar información sobre su propósito, los parámetros que espera y el valor que devuelve.</li>
+<li><strong>Dividir en funciones más pequeñas</strong>: Si una función es demasiado larga o hace demasiadas cosas, divídela en funciones más pequeñas que realicen tareas específicas.</li>
+</ul>
+<p>Veamos un ejemplo de una función bien documentada y legible:</p>
 <div id="qpyodide-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>En este ejemplo, hemos definido una función <code>sine_wave</code> que genera una señal de onda sinusoidal con los parámetros de amplitud, frecuencia, fase, duración y tasa de muestreo especificados. Hemos documentado la función con un docstring que explica los parámetros que espera y el valor que devuelve. También hemos definido una función <code>plot_signal</code> que traza la señal generada. Esta función es más legible y fácil de entender gracias a los comentarios y la documentación.</p>
 
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Volver arriba</a></main> <!-- /main -->
@@ -831,6 +961,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1165,8 +1346,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../intro_python/Cloud.html" class="pagination-link" aria-label="Instalación de Python">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Instalación de Python</span>
+      <a href="../intro_python/Variables.html" class="pagination-link" aria-label="Declaración de Variables y Operaciones">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Declaración de Variables y Operaciones</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -1180,9 +1361,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/edit/main/intro_python/VarType.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/edit/main/intro_python/functions_and_loops.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>Hecho con <i class="fa-brands fa-python" aria-label="python"></i> y <a href="https://quarto.org">Quarto</a> <br> Código fuente disponible en <a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales">GitHub</a></p>
+<p>Hecho con <a href="https://www.python.org/"><i class="fa-brands fa-python" aria-label="python"></i></a> y <a href="https://quarto.org">Quarto</a> <br> Código fuente disponible en <a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales">GitHub</a></p>
 </div>
   </div>
 </footer>

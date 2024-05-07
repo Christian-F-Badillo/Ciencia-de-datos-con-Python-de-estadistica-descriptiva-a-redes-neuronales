@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../intro_python/VarType.html" rel="next">
+<link href="../intro_python/Variables.html" rel="next">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -268,7 +268,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"id":1,"options":{"fig-cap":"","comment":"","warning":"true","context":"interactive","classes":"","out-height":"","out-width":"700px","autorun":"","dpi":72,"message":"true","output":"true","label":"","results":"markup","read-only":"false","fig-width":7,"fig-height":5},"code":"msg = \"Hola Mundo\"\nprint(msg)"},{"id":2,"options":{"fig-cap":"","comment":"","warning":"true","context":"interactive","classes":"","out-height":"","out-width":"700px","autorun":"","dpi":72,"message":"true","output":"true","label":"","results":"markup","read-only":"false","fig-width":7,"fig-height":5},"code":"import random\nrandom.seed(42)\n\n## Función para calcular el valor de pi utilizando Monte Carlo\ndef monte_carlo_pi(n):\n    inside = 0\n    for _ in range(n):\n        x = random.random()\n        y = random.random()\n        if x**2 + y**2 <= 1:\n            inside += 1\n    return 4 * inside / n\n\n## Calcular el valor de pi\nn = 1000000\npi = monte_carlo_pi(n)\npi"},{"id":3,"options":{"fig-cap":"","comment":"","warning":"true","context":"interactive","classes":"","out-height":"","out-width":"700px","autorun":"","dpi":72,"message":"true","output":"true","label":"","results":"markup","read-only":"false","fig-width":7,"fig-height":5},"code":"## Importar las librerías necesarias\nimport matplotlib.pyplot as plt\nimport random\n\n## Generar datos aleatorios\nx = [random.random() for _ in range(1000)]\ny = [random.random() for _ in range(1000)]\n\n## Crear una gráfica de dispersión\nplt.scatter(x, y)\nplt.xlabel(\"x\")\nplt.ylabel(\"y\")\nplt.title(\"Gráfica de dispersión\")\nplt.show()"},{"id":4,"options":{"fig-cap":"","comment":"","warning":"true","context":"interactive","classes":"","out-height":"","out-width":"700px","autorun":"","dpi":72,"message":"true","output":"true","label":"","results":"markup","read-only":"false","fig-width":7,"fig-height":5},"code":"## Importar las librerías necesarias\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.neural_network import MLPClassifier\nfrom sklearn.metrics import accuracy_score\nimport pandas as pd\n\n## Cargar el conjunto de datos de iris\niris = load_iris()\nX = iris.data\ny = iris.target\n\n## Crear un DataFrame de pandas\ndf = pd.DataFrame(X, columns=iris.feature_names)\ndf.head()"},{"id":5,"options":{"fig-cap":"","comment":"","warning":"true","context":"interactive","classes":"","out-height":"","out-width":"700px","autorun":"","dpi":72,"message":"true","output":"true","label":"","results":"markup","read-only":"false","fig-width":7,"fig-height":5},"code":"## Dividir los datos en un conjunto de entrenamiento y un conjunto de prueba\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n\n## Crear un clasificador de redes neuronales Multilayer Perceptron\nclf = MLPClassifier(hidden_layer_sizes=(10, 10), max_iter=1000)\nclf.fit(X_train, y_train)\n\n## Predecir las etiquetas de las flores\ny_pred = clf.predict(X_test)\n\n## Calcular la precisión del clasificador\naccuracy = accuracy_score(y_test, y_pred)\naccuracy"}];
+globalThis.qpyodideCellDetails = [{"id":1,"options":{"autorun":"","results":"markup","label":"","comment":"","fig-width":7,"message":"true","fig-cap":"","read-only":"false","classes":"","context":"interactive","output":"true","dpi":72,"fig-height":5,"warning":"true","out-width":"700px","out-height":""},"code":"msg = \"Hola Mundo\"\nprint(msg)"},{"id":2,"options":{"autorun":"","results":"markup","label":"","comment":"","fig-width":7,"message":"true","fig-cap":"","read-only":"false","classes":"","context":"interactive","output":"true","dpi":72,"fig-height":5,"warning":"true","out-width":"700px","out-height":""},"code":"import random\nrandom.seed(42)\n\n## Función para calcular el valor de pi utilizando Monte Carlo\ndef monte_carlo_pi(n):\n    inside = 0\n    for _ in range(n):\n        x = random.random()\n        y = random.random()\n        if x**2 + y**2 <= 1:\n            inside += 1\n    return 4 * inside / n\n\n## Calcular el valor de pi\nn = 1000000\npi = monte_carlo_pi(n)\npi"},{"id":3,"options":{"autorun":"","results":"markup","label":"","comment":"","fig-width":7,"message":"true","fig-cap":"","read-only":"false","classes":"","context":"interactive","output":"true","dpi":72,"fig-height":5,"warning":"true","out-width":"700px","out-height":""},"code":"## Importar las librerías necesarias\nimport matplotlib.pyplot as plt\nimport random\n\n## Generar datos aleatorios\nx = [random.random() for _ in range(1000)]\ny = [random.random() for _ in range(1000)]\n\n## Crear una gráfica de dispersión\nplt.scatter(x, y)\nplt.xlabel(\"x\")\nplt.ylabel(\"y\")\nplt.title(\"Gráfica de dispersión\")\nplt.show()"},{"id":4,"options":{"autorun":"","results":"markup","label":"","comment":"","fig-width":7,"message":"true","fig-cap":"","read-only":"false","classes":"","context":"interactive","output":"true","dpi":72,"fig-height":5,"warning":"true","out-width":"700px","out-height":""},"code":"## Importar las librerías necesarias\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.neural_network import MLPClassifier\nfrom sklearn.metrics import accuracy_score\nimport pandas as pd\n\n## Cargar el conjunto de datos de iris\niris = load_iris()\nX = iris.data\ny = iris.target\n\n## Crear un DataFrame de pandas\ndf = pd.DataFrame(X, columns=iris.feature_names)\ndf.head()"},{"id":5,"options":{"autorun":"","results":"markup","label":"","comment":"","fig-width":7,"message":"true","fig-cap":"","read-only":"false","classes":"","context":"interactive","output":"true","dpi":72,"fig-height":5,"warning":"true","out-width":"700px","out-height":""},"code":"## Dividir los datos en un conjunto de entrenamiento y un conjunto de prueba\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n\n## Crear un clasificador de redes neuronales Multilayer Perceptron\nclf = MLPClassifier(hidden_layer_sizes=(10, 10), max_iter=1000)\nclf.fit(X_train, y_train)\n\n## Predecir las etiquetas de las flores\ny_pred = clf.predict(X_test)\n\n## Calcular la precisión del clasificador\naccuracy = accuracy_score(y_test, y_pred)\naccuracy"}];
 
 
 </script>
@@ -579,8 +579,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../intro_python/VarType.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Variables y Tipos de Datos en Python</span></a>
+  <a href="../intro_python/Variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Declaración de Variables y Operaciones</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro_python/functions_and_loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Funciones y Bucles de Control</span></a>
   </div>
 </li>
       </ul>
@@ -661,7 +667,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">1 de mayo de 2024</p>
+      <p class="date">5 de mayo de 2024</p>
     </div>
   </div>
   
@@ -1415,8 +1421,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../intro_python/VarType.html" class="pagination-link" aria-label="Variables y Tipos de Datos en Python">
-        <span class="nav-page-text">Variables y Tipos de Datos en Python</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../intro_python/Variables.html" class="pagination-link" aria-label="Declaración de Variables y Operaciones">
+        <span class="nav-page-text">Declaración de Variables y Operaciones</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1430,7 +1436,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/edit/main/intro_python/Cloud.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>Hecho con <i class="fa-brands fa-python" aria-label="python"></i> y <a href="https://quarto.org">Quarto</a> <br> Código fuente disponible en <a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales">GitHub</a></p>
+<p>Hecho con <a href="https://www.python.org/"><i class="fa-brands fa-python" aria-label="python"></i></a> y <a href="https://quarto.org">Quarto</a> <br> Código fuente disponible en <a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales">GitHub</a></p>
 </div>
   </div>
 </footer>
