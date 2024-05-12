@@ -35,7 +35,6 @@ website:
     subtitle: "De Estadística Descriptiva a Redes Neuronales"
     type: light
     background: primary
-    foreground: secondary
     border: true
     pinned: false
     collapse-level: 2
@@ -50,7 +49,7 @@ website:
       - href: index.qmd
         text: Inicio
       - href: about.qmd
-        text: Conócenos
+        text: Acerca
       
       - text: "---"
 
@@ -66,9 +65,11 @@ website:
 format:
   html:
     link-external-icon: true
+    
     theme:
       light: cerulean
-      dark: darkly
+      dark: superhero
+    
     css: styles.css
     toc: true
     toc-title: "Tabla de Contenido"
@@ -79,11 +80,12 @@ format:
     code-overflow: scroll
     code-tools:
       source: repo
-    code-summary: "Ver código"
+      toggle: true
+      caption: "Ver código"
     code-block-border-left: warning
-    code-block-bg: true
+    code-block-bg: false
     highlight-style: github
-    code-link: true
+    code-link: false
 
     fig-align: center
 
@@ -91,8 +93,8 @@ format:
 
 execute: 
   cache: true
-  echo: fenced
-  output: asis
+  echo: true
+  output: asis  
   freeze: auto
   keep-ipynb: true
 

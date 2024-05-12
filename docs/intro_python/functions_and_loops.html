@@ -268,7 +268,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"import numpy as np\nimport matplotlib.pyplot as plt\n\ndef sine_wave(amplitude: float = None, frequency: float = None, phase: float = None, duration: float = None, sample_rate: float = None):\n    \"\"\"\n    Generate a sine wave signal.\n\n    Parameters:\n    - amplitude: The amplitude of the sine wave.\n    - frequency: The frequency of the sine wave in Hz.\n    - phase: The phase of the sine wave in radians.\n    - duration: The duration of the signal in seconds.\n    - sample_rate: The sample rate of the signal in Hz.\n\n    Returns:\n    - t: An array of time values.\n    - x: An array of signal values.\n    \"\"\"\n    t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False) # Generate time values\n    x = amplitude * np.sin(2 * np.pi * frequency * t + phase) # Generate signal values\n    return t, x\n\n# Generate a sine wave signal with amplitude 1, frequency 1 Hz, phase 0, duration 1 second, and sample rate 1000 Hz\nt, x = sine_wave(amplitude=1, frequency=1, phase=0, duration=1, sample_rate=1000) \n\n# Plot the sine wave signal\ndef plot_signal(t, x):\n    plt.figure() # Create a new figure\n    plt.plot(t, x) # Plot the signal\n    plt.xlabel('Time (s)') # Set the x-axis label\n    plt.ylabel('Amplitude') # Set the y-axis label\n    plt.grid(True) # Show grid\n    plt.show() # Show the plot\n\nplot_signal(t, x)","options":{"fig-cap":"","out-width":"700px","results":"markup","comment":"","read-only":"false","fig-height":5,"label":"","autorun":"","classes":"","output":"true","fig-width":7,"out-height":"","dpi":72,"message":"true","warning":"true","context":"interactive"},"id":1}];
+globalThis.qpyodideCellDetails = [{"code":"import numpy as np\nimport matplotlib.pyplot as plt\n\ndef sine_wave(amplitude: float = None, frequency: float = None, phase: float = None, duration: float = None, sample_rate: float = None):\n    \"\"\"\n    Generate a sine wave signal.\n\n    Parameters:\n    - amplitude: The amplitude of the sine wave.\n    - frequency: The frequency of the sine wave in Hz.\n    - phase: The phase of the sine wave in radians.\n    - duration: The duration of the signal in seconds.\n    - sample_rate: The sample rate of the signal in Hz.\n\n    Returns:\n    - t: An array of time values.\n    - x: An array of signal values.\n    \"\"\"\n    t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False) # Generate time values\n    x = amplitude * np.sin(2 * np.pi * frequency * t + phase) # Generate signal values\n    return t, x\n\n# Generate a sine wave signal with amplitude 1, frequency 1 Hz, phase 0, duration 1 second, and sample rate 1000 Hz\nt, x = sine_wave(amplitude=1, frequency=1, phase=0, duration=1, sample_rate=1000) \n\n# Plot the sine wave signal\ndef plot_signal(t, x):\n    plt.figure() # Create a new figure\n    plt.plot(t, x) # Plot the signal\n    plt.xlabel('Time (s)') # Set the x-axis label\n    plt.ylabel('Amplitude') # Set the y-axis label\n    plt.grid(True) # Show grid\n    plt.show() # Show the plot\n\nplot_signal(t, x)","options":{"output":"true","comment":"","results":"markup","message":"true","classes":"","warning":"true","context":"interactive","read-only":"false","label":"","dpi":72,"fig-cap":"","autorun":"","fig-width":7,"fig-height":5,"out-width":"700px","out-height":""},"id":1}];
 
 
 </script>
@@ -529,7 +529,7 @@ globalThis._qpyodideGetInstance = function() {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../about.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Conócenos</span></a>
+ <span class="menu-text">Acerca</span></a>
   </div>
 </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
@@ -589,6 +589,7 @@ globalThis._qpyodideGetInstance = function() {
   <li><a href="#funciones-lambda" id="toc-funciones-lambda" class="nav-link" data-scroll-target="#funciones-lambda">Funciones Lambda</a></li>
   <li><a href="#creando-funciones-legibles" id="toc-creando-funciones-legibles" class="nav-link" data-scroll-target="#creando-funciones-legibles">Creando funciones legibles</a></li>
   </ul></li>
+  <li><a href="#bucles-de-control" id="toc-bucles-de-control" class="nav-link" data-scroll-target="#bucles-de-control">Bucles de Control</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/edit/main/intro_python/functions_and_loops.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></nav>
     </div>
@@ -607,7 +608,7 @@ globalThis._qpyodideGetInstance = function() {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro_python/Cloud.html">Fundamentos de Python</a></li><li class="breadcrumb-item"><a href="../intro_python/functions_and_loops.html">Funciones y Bucles de Control</a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Funciones y Bucles de Control</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source" data-quarto-source-url="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/blob/main/intro_python/functions_and_loops.qmd"><i class="bi"></i> Código</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Funciones y Bucles de Control</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source" data-quarto-source-url="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/blob/main/intro_python/functions_and_loops.qmd"><i class="bi"></i> Ver código</button></div></div>
 </div>
 
 
@@ -624,7 +625,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">6 de mayo de 2024</p>
+      <p class="date">11 de mayo de 2024</p>
     </div>
   </div>
   
@@ -641,7 +642,7 @@ globalThis._qpyodideGetInstance = function() {
 <p>Las <strong><em>funciones</em></strong> son bloques de código que se pueden reutilizar en diferentes partes de un programa, permitiendo que el código sea más modular y fácil de mantener. En Python, las funciones se definen con la palabra clave <code>def</code>, seguida del nombre de la función y una lista de parámetros entre paréntesis. El cuerpo de la función se define con sangría y puede contener cualquier número de instrucciones.</p>
 <p>Primero elaboremos una función sencilla, la cual se llamará <code>saludo</code> y recibirá un parámetro <code>nombre</code>:</p>
 <details open="" class="code-fold">
-<summary>Ver código</summary>
+<summary>Código</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="in">```{python}</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="in">def saludo(nombre):</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="in">    print(f'Hola, {nombre}!')</span></span>
@@ -653,7 +654,7 @@ globalThis._qpyodideGetInstance = function() {
 <p>Hemos usado una <strong>f-string</strong> para imprimir el saludo. Las f-strings son una forma de formatear cadenas de texto en Python, permitiendo la interpolación de variables dentro de una cadena. Para definir una f-string, se coloca una <code>f</code> antes de las comillas de apertura y se encierra la variable entre llaves <code>{}</code>. Es decir, le estamos diciendo a Python que reemplace <code>{nombre}</code> con el valor de la variable <code>nombre</code> que en este caso es <code>'Christian'</code>.</p>
 <p>Las funciones pueden devolver un valor usando la palabra clave <code>return</code>. Por ejemplo, la siguiente función <code>cuadrado</code> recibe un número <code>x</code> y devuelve su cuadrado:</p>
 <details open="" class="code-fold">
-<summary>Ver código</summary>
+<summary>Código</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a><span class="in">```{python}</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="in">def cuadrado(x):</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="in">    return x ** 2</span></span>
@@ -672,7 +673,7 @@ globalThis._qpyodideGetInstance = function() {
 </ul>
 <p>En los ejemplos hemos utilizado argumentos posicionales. A continuación, veremos cómo usar argumentos con nombre:</p>
 <details open="" class="code-fold">
-<summary>Ver código</summary>
+<summary>Código</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1"></a><span class="in">```{python}</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="in">def resta(num1, num2):</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="in">    return num1 - num2</span></span>
@@ -684,7 +685,7 @@ globalThis._qpyodideGetInstance = function() {
 <p>En este caso, hemos pasado los argumentos <code>num1</code> y <code>num2</code> con sus nombres correspondientes y les hemos asignado valores. Esto nos permite pasar los argumentos en cualquier orden, siempre y cuando especifiquemos el nombre del parámetro al que corresponden.</p>
 <p>Ahora veamos cómo usar argumentos por defecto:</p>
 <details open="" class="code-fold">
-<summary>Ver código</summary>
+<summary>Código</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1"></a><span class="in">```{python}</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="in">def potencia(base, exponente=2):</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="in">    return base ** exponente</span></span>
@@ -699,7 +700,7 @@ globalThis._qpyodideGetInstance = function() {
 <h2 class="anchored" data-anchor-id="funciones-lambda">Funciones Lambda</h2>
 <p>Las funciones lambda son funciones anónimas que se pueden definir en una sola línea. Se definen con la palabra clave <code>lambda</code>, seguida de una lista de parámetros y una expresión que se evalúa y devuelve el resultado. Por ejemplo, la siguiente función lambda calcula el cuadrado de un número:</p>
 <details open="" class="code-fold">
-<summary>Ver código</summary>
+<summary>Código</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1"></a><span class="in">```{python}</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="in">cuadrado_lamda = lambda x: x ** 2</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a></span>
@@ -710,7 +711,7 @@ globalThis._qpyodideGetInstance = function() {
 <p>Las funciones lambda son útiles cuando se necesita una función simple y no es necesario definirla con una declaración <code>def</code>.</p>
 <p>Ahora definamos una función lambda un poco más compleja para sumar dos números:</p>
 <details open="" class="code-fold">
-<summary>Ver código</summary>
+<summary>Código</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1"></a><span class="in">```{python}</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="in">suma_lambda = lambda x, y: x + y</span></span>
 <span id="cb6-3"><a href="#cb6-3"></a></span>
@@ -732,9 +733,12 @@ globalThis._qpyodideGetInstance = function() {
 <div id="qpyodide-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>En este ejemplo, hemos definido una función <code>sine_wave</code> que genera una señal de onda sinusoidal con los parámetros de amplitud, frecuencia, fase, duración y tasa de muestreo especificados. Hemos documentado la función con un docstring que explica los parámetros que espera y el valor que devuelve. También hemos definido una función <code>plot_signal</code> que traza la señal generada. Esta función es más legible y fácil de entender gracias a los comentarios y la documentación.</p>
-
-
 </section>
+</section>
+<section id="bucles-de-control" class="level1">
+<h1>Bucles de Control</h1>
+
+
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Volver arriba</a></main> <!-- /main -->

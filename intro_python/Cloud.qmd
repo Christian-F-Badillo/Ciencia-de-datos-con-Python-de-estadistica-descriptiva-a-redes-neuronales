@@ -23,6 +23,7 @@ Un lenguaje de programación de **alto nivel** es un lenguaje de programación q
 ```{python}
 a = 5
 b = 3
+
 print(a + b)
 ```
 

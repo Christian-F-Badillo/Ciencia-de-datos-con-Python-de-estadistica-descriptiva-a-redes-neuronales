@@ -138,3 +138,5 @@ plot_signal(t, x)
 ```
 
 En este ejemplo, hemos definido una función `sine_wave` que genera una señal de onda sinusoidal con los parámetros de amplitud, frecuencia, fase, duración y tasa de muestreo especificados. Hemos documentado la función con un docstring que explica los parámetros que espera y el valor que devuelve. También hemos definido una función `plot_signal` que traza la señal generada. Esta función es más legible y fácil de entender gracias a los comentarios y la documentación.
+
+# Bucles de Control

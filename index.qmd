@@ -10,15 +10,21 @@ filters:
 
 ## Acerca de este curso
 
-Este curso tiene como objetivo introducir a los estudiantes de la Facultad de Psicología al mundo de la ciencia de datos utilizando Python. A lo largo del curso, los estudiantes aprenderán a utilizar las librerías más populares de Python para el análisis de datos, la visualización de datos, y la creación de redes neuronales.
+Este curso tiene como meta introducir a los estudiantes de la Facultad de Psicología al mundo de la ciencia de datos utilizando Python. A lo largo del curso se abordarán temas como la programación en Python, la estadística descriptiva e inferencial, el análisis y visualización de datos, y la creación de redes neuronales.
 
-El curso no supone ningún conocimiento previo de programación, pero se espera que los estudiantes tengan una actitud proactiva y estén dispuestos a aprender. Además cuando sea necesario, se deberan utilizar conceptos de matemáticas y estadística básica con el fin de entender los conceptos de ciencia de datos de manera más profunda pero no es necesario tener un conocimiento previo de estos temas.
+El curso no supone ningún conocimiento previo de programación, pero se espera que los estudiantes tengan una actitud proactiva y estén dispuestos a aprender y a poner en práctica los conceptos que se presenten en clase.
+
+Aunque se repasarán de manera breve conceptos de estadística y probabilidad, es recomendable tener un conocimiento básico de estos temas para poder aprovechar al máximo el curso. Otro requisito importante es tener una computadora personal con acceso a internet y disponibilidad de llevar al salón, ya que la mayor parte de las actividades requerirán de una computadora personal.
+
+Una parte importante del curso es crear un ambiente de aprendizaje colaborativo, por lo que se espera que los estudiantes participen activamente en las clases, realicen las tareas y actividades que se les asignen, y que estén dispuestos a ayudar a sus compañeros en caso de que lo necesiten. Además se crearán equipos permanentes de trabajo, por lo que es importante que los estudiantes se comprometan a trabajar en equipo dado que todas las actividades se realizarán en equipo fomentando un método de trabajo llamado "[pair programming](https://es.wikipedia.org/wiki/Programaci%C3%B3n_en_pareja)".
 
 ## Objetivos del curso
 
-- Aprender a utilizar Python para el análisis de datos, visualización de datos y creación de redes neuronales.
-- Entender los conceptos básicos de las redes neuronales.
-- Entender los conceptos básicos de la estadística descriptiva e inferencial a través de ejemplos prácticos.
+- Aprender y poner en práctica los conceptos básicos de la programación en Python.
+- Comprender los conceptos básicos de la estadística descriptiva e inferencial a través de ejemplos prácticos en Python.
+- Aprender a utilizar las librerías más populares de Python para el análisis y la visualización de datos.
+- Comprender los conceptos básicos de las redes neuronales y aprender a crear redes neuronales utilizando Python.
+- Aprender a presentar y comunicar los resultados de un análisis de datos de manera efectiva y con código reproducible.
 
 
 ::: {.grid .course-details .course-details-smaller}
@@ -27,7 +33,7 @@ El curso no supone ningún conocimiento previo de programación, pero se espera 
 
 ### Instructor
 
-- {{< fa user >}} &nbsp; Christian Francisco Badillo Hernández
+- {{< fa user >}} &nbsp; [Christian Francisco Badillo Hernández](https://christian-f-badillo.github.io/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/about.html)
 - {{< fa university >}} &nbsp; Lab 25, Facultad de Psicología, UNAM
 - {{< fa envelope >}} &nbsp; [cris.badillo1408@gmail.com](mailto:cris.badillo1408@gmail.com)
 :::
@@ -39,11 +45,81 @@ El curso no supone ningún conocimiento previo de programación, pero se espera 
 - {{< fa calendar-alt >}} &nbsp; 10 de junio - 28 de junio de 2024
 - {{< fa clock >}} &nbsp; 13:30 - 15:30 hrs
 - {{< fa location-dot >}} &nbsp; Salón Pendiente
-- {{< fa chalkboard-user >}} &nbsp; [Classroom](https://classroom.google.com)
+- {{< fa chalkboard-user >}} &nbsp; [Classroom](https://classroom.google.com/c/NjgzMzUzMjU1NDQ0?cjc=2q4o7ve)
 :::
 
 :::
 
 ## Temario
 
-<embed src="Temario.pdf" width="100%" height="500px" type='application/pdf'>
+1. ***Introducción a Python y la Ciencia de Datos.***
+   1. **Tipos, variables y operaciones matemáticas básicas.**      
+      1. Strings (cadenas de texto).
+      2. Integer (Números enteros).
+      3. Floats (Décimales)
+      4. Booleanos
+      5. Expresiones y declaraciones.
+      6. Operaciones.
+   2. **Definición de funciones.**
+      1. Definición de funciones en python
+      2. Uso de funciones.
+      3. Funciones lambda
+   3. **Flujos de control.**
+      1. Flujo de control If, else, elif
+      2. Flujo de control while
+      3. Flujo de control for
+      4. Keywords de flujos de control: pass, continue, break
+    4. **Estructuras de datos.**
+       1. Set.
+       2. Tuplas.
+       3. Diccionarios.
+       4. Listas.
+       5. Matrices.
+       6. Ndarrays.
+       7. Data Frames.
+   4. **Módulos y paquetes.**
+      1. Definición de módulos y paquetes.
+
+2. ***Limpieza, manejo y creación de bases de datos con pandas.***
+   1. **Tipos de bases de datos.**
+      1. Bases de datos relacionales.
+      2. Base de datos no relacionales.
+   2. **Introducción al manejo de bases de datos con pandas.**
+      1. Carga de bases de datos locales o de la nube.
+      2. Búsqueda de datos faltantes.
+      3. Descripción de bases de datos.
+      4. Modificación de bases de datos.
+      5. Creación de bases de datos.
+   
+3. ***Análisis descriptivo y visualización de datos.***
+   1. **Visualización de datos con Matplotlib y Seaborn.**
+      1. Introducción a la visualización de datos.
+      2. Matriz de correlación.
+      3. Visualizaciones básicas (histogramas, cajas de bigotes, etc.).
+      4.  Visualizaciones en 3D y combinaciones de gráficos.
+
+4. ***Estadística Inferencial con Python.***
+   1. **Paqueterías de Análisis estadístico.**
+      1. Statsmodels.
+      2. Scikit-learn.
+      3. Paqueterías bayesianas (PyMC3, PyJAGS, PySTAN).
+   2. **Regresión lineal.**
+   3. **Regresión múltiple.**
+   4. **Modelos lineales generalizados (regresión logística, ANOVA, T-Student, etc).**
+   5. **Estimación Bayesiana (Uso de algoritmos MCMC).**
+
+5. ***Introducción a Machine learning: Redes Neuronales.***
+   1. **Conceptos básicos de Inteligencia artificial y redes neuronales.**
+   2. **Paqueterías para redes neuronales.**
+      1. Tensorflow.
+      2. Scikit-learn.
+      3. Keras.
+   3. **Programación del perceptrón multicapa.**
+   4. **Analizando datos con un red neuronal multicapa.**
+
+<center>
+Puedes descargar el temario completo en el siguiente enlace:
+
+{{< downloadthis documents/Temario.pdf label="Descarga el temario" icon=file-earmark-pdf type=info >}}
+\
+<center/>
