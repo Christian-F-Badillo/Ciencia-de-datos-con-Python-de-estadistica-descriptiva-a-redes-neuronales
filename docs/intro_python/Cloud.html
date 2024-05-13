@@ -268,7 +268,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"options":{"warning":"true","autorun":"","classes":"","comment":"","label":"","context":"interactive","out-height":"","message":"true","dpi":72,"output":"true","results":"markup","fig-cap":"","fig-width":7,"fig-height":5,"out-width":"700px","read-only":"false"},"code":"msg = \"Hola Mundo\"\nprint(msg)","id":1},{"options":{"warning":"true","autorun":"","classes":"","comment":"","label":"","context":"interactive","out-height":"","message":"true","dpi":72,"output":"true","results":"markup","fig-cap":"","fig-width":7,"fig-height":5,"out-width":"700px","read-only":"false"},"code":"import random\nrandom.seed(42)\n\n## Función para calcular el valor de pi utilizando Monte Carlo\ndef monte_carlo_pi(n):\n    inside = 0\n    for _ in range(n):\n        x = random.random()\n        y = random.random()\n        if x**2 + y**2 <= 1:\n            inside += 1\n    return 4 * inside / n\n\n## Calcular el valor de pi\nn = 1000000\npi = monte_carlo_pi(n)\npi","id":2},{"options":{"warning":"true","autorun":"","classes":"","comment":"","label":"","context":"interactive","out-height":"","message":"true","dpi":72,"output":"true","results":"markup","fig-cap":"","fig-width":7,"fig-height":5,"out-width":"700px","read-only":"false"},"code":"## Importar las librerías necesarias\nimport matplotlib.pyplot as plt\nimport random\n\n## Generar datos aleatorios\nx = [random.random() for _ in range(1000)]\ny = [random.random() for _ in range(1000)]\n\n## Crear una gráfica de dispersión\nplt.scatter(x, y)\nplt.xlabel(\"x\")\nplt.ylabel(\"y\")\nplt.title(\"Gráfica de dispersión\")\nplt.show()","id":3},{"options":{"warning":"true","autorun":"","classes":"","comment":"","label":"","context":"interactive","out-height":"","message":"true","dpi":72,"output":"true","results":"markup","fig-cap":"","fig-width":7,"fig-height":5,"out-width":"700px","read-only":"false"},"code":"## Importar las librerías necesarias\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.neural_network import MLPClassifier\nfrom sklearn.metrics import accuracy_score\nimport pandas as pd\n\n## Cargar el conjunto de datos de iris\niris = load_iris()\nX = iris.data\ny = iris.target\n\n## Crear un DataFrame de pandas\ndf = pd.DataFrame(X, columns=iris.feature_names)\ndf.head()","id":4},{"options":{"warning":"true","autorun":"","classes":"","comment":"","label":"","context":"interactive","out-height":"","message":"true","dpi":72,"output":"true","results":"markup","fig-cap":"","fig-width":7,"fig-height":5,"out-width":"700px","read-only":"false"},"code":"## Dividir los datos en un conjunto de entrenamiento y un conjunto de prueba\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n\n## Crear un clasificador de redes neuronales Multilayer Perceptron\nclf = MLPClassifier(hidden_layer_sizes=(10, 10), max_iter=1000)\nclf.fit(X_train, y_train)\n\n## Predecir las etiquetas de las flores\ny_pred = clf.predict(X_test)\n\n## Calcular la precisión del clasificador\naccuracy = accuracy_score(y_test, y_pred)\naccuracy","id":5}];
+globalThis.qpyodideCellDetails = [{"options":{"comment":"","message":"true","out-height":"","output":"true","classes":"","dpi":72,"results":"markup","context":"interactive","read-only":"false","label":"","fig-height":5,"fig-width":7,"warning":"true","out-width":"700px","autorun":"","fig-cap":""},"code":"msg = \"Hola Mundo\"\nprint(msg)","id":1},{"options":{"comment":"","message":"true","out-height":"","output":"true","classes":"","dpi":72,"results":"markup","context":"interactive","read-only":"false","label":"","fig-height":5,"fig-width":7,"warning":"true","out-width":"700px","autorun":"","fig-cap":""},"code":"import random\nrandom.seed(42)\n\n## Función para calcular el valor de pi utilizando Monte Carlo\ndef monte_carlo_pi(n):\n    inside = 0\n    for _ in range(n):\n        x = random.random()\n        y = random.random()\n        if x**2 + y**2 <= 1:\n            inside += 1\n    return 4 * inside / n\n\n## Calcular el valor de pi\nn = 1000000\npi = monte_carlo_pi(n)\npi","id":2},{"options":{"comment":"","message":"true","out-height":"","output":"true","classes":"","dpi":72,"results":"markup","context":"interactive","read-only":"false","label":"","fig-height":5,"fig-width":7,"warning":"true","out-width":"700px","autorun":"","fig-cap":""},"code":"## Importar las librerías necesarias\nimport matplotlib.pyplot as plt\nimport random\n\n## Generar datos aleatorios\nx = [random.random() for _ in range(1000)]\ny = [random.random() for _ in range(1000)]\n\n## Crear una gráfica de dispersión\nplt.scatter(x, y)\nplt.xlabel(\"x\")\nplt.ylabel(\"y\")\nplt.title(\"Gráfica de dispersión\")\nplt.show()","id":3},{"options":{"comment":"","message":"true","out-height":"","output":"true","classes":"","dpi":72,"results":"markup","context":"interactive","read-only":"false","label":"","fig-height":5,"fig-width":7,"warning":"true","out-width":"700px","autorun":"","fig-cap":""},"code":"## Importar las librerías necesarias\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.neural_network import MLPClassifier\nfrom sklearn.metrics import accuracy_score\nimport pandas as pd\n\n## Cargar el conjunto de datos de iris\niris = load_iris()\nX = iris.data\ny = iris.target\n\n## Crear un DataFrame de pandas\ndf = pd.DataFrame(X, columns=iris.feature_names)\ndf.head()","id":4},{"options":{"comment":"","message":"true","out-height":"","output":"true","classes":"","dpi":72,"results":"markup","context":"interactive","read-only":"false","label":"","fig-height":5,"fig-width":7,"warning":"true","out-width":"700px","autorun":"","fig-cap":""},"code":"## Dividir los datos en un conjunto de entrenamiento y un conjunto de prueba\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n\n## Crear un clasificador de redes neuronales Multilayer Perceptron\nclf = MLPClassifier(hidden_layer_sizes=(10, 10), max_iter=1000)\nclf.fit(X_train, y_train)\n\n## Predecir las etiquetas de las flores\ny_pred = clf.predict(X_test)\n\n## Calcular la precisión del clasificador\naccuracy = accuracy_score(y_test, y_pred)\naccuracy","id":5}];
 
 
 </script>
@@ -650,7 +650,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro_python/Cloud.html">Fundamentos de Python</a></li><li class="breadcrumb-item"><a href="../intro_python/Cloud.html">Instalación de Python</a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Instalación de Python</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source" data-quarto-source-url="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/blob/main/intro_python/Cloud.qmd"><i class="bi"></i> Ver código</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Instalación de Python</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Ver código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar todo el código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Ocultar todo el código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button" data-quarto-source-url="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/blob/main/intro_python/Cloud.qmd">Ver el código fuente</a></li></ul></div></div>
 </div>
 
 
@@ -667,7 +667,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">11 de mayo de 2024</p>
+      <p class="date">12 de mayo de 2024</p>
     </div>
   </div>
   
@@ -686,6 +686,7 @@ window.Quarto = {
 <section id="alto-nivel" class="level3">
 <h3 class="anchored" data-anchor-id="alto-nivel">Alto Nivel</h3>
 <p>Un lenguaje de programación de <strong>alto nivel</strong> es un lenguaje de programación que se encuentra más cerca del lenguaje humano que del lenguaje de máquina. Por ejemplo para imprimir el resultado de la suma de dos números en Python se escribe:</p>
+<div id="305df83b" class="cell" data-execution_count="2">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>a <span class="op">=</span> <span class="dv">5</span></span>
@@ -693,35 +694,38 @@ window.Quarto = {
 <span id="cb1-3"><a href="#cb1-3"></a></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="bu">print</span>(a <span class="op">+</span> b)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<p>8</p>
+<div class="cell-output cell-output-stdout">
+<pre><code>8</code></pre>
+</div>
+</div>
 <p>Cualquier persona que entienda aritmética básica y sepa un poco de inglés puede entender lo que hace este código. Esto hace que los programas escritos en Python sean más fáciles de leer y de escribir que los programas escritos en lenguajes de programación de bajo nivel como el lenguaje ensamblador <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 32 32"><rect width="32" height="32" fill="none"></rect><defs><lineargradient id="vscodeIconsFileTypeAssembly0" x1="836.63" x2="843.802" y1="36.205" y2="14.48" gradienttransform="rotate(180 262.961 15.125)scale(.607)" gradientunits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity="0"></stop><stop offset="1" stop-color="#fff" stop-opacity="0.275"></stop></lineargradient></defs><path fill="#0000bf" d="M16 2c-1.246 3.056-2 5.057-3.391 8.022a21.884 21.884 0 0 0 3.591 3.134a14.858 14.858 0 0 1-4-2.283C10.43 14.579 7.646 19.855 2 30c5.186-2.994 9.012-4.648 12.691-4.966V24.2h-.834v-.837h.834v.837h1.675v-1.679h-1.675v-.834h-.834v-1.674h.834v-.834h1.675v.834h.834v.837h-.837v-.837h-1.672v1.675h1.675v.834h.834V24.2h-.837v.783c3.98.1 8.006 1.772 13.634 5.021c-.863-1.589-1.636-3.021-2.372-4.385a25.526 25.526 0 0 0-4.833-3.333A14.436 14.436 0 0 1 26.65 23.8C19.17 9.872 18.565 8.02 16 2m-5.489 17.179h1.671v.834h.837v5.021h-.837v-2.513h-1.671v2.512h-.838v-5.02h.837Zm0 .834v1.675h1.671v-1.675Zm7.526-.834h.837v.834h.837v.837h.834v-.837h.837v-.834h.837v5.855h-.837V20.85h-.837v.837h-.834v-.837h-.837v4.184h-.837Z"></path><path fill="#fff" fill-opacity="0.166" d="M23.881 18.642c-6.069-8.237-7.476-14.876-7.832-16.461a175.217 175.217 0 0 0 7.832 16.461"></path><path fill="url(#vscodeIconsFileTypeAssembly0)" d="M16.051 2.12L15.6 3.227l-.461 1.131c-.15.366-.3.724-.448 1.077s-.3.7-.448 1.053s-.3.706-.465 1.066s-.329.729-.506 1.111s-.362.778-.561 1.193l-.089.181a21.872 21.872 0 0 0 3.578 3.117a14.879 14.879 0 0 1-3.989-2.276l-.14.287c-.065.133-.144.283-.212.42l-.106.219c-.878 1.793-2.006 3.984-3.524 6.822c3.551-2 7.381-4.887 14.338-2.4a225.597 225.597 0 0 1-1.812-3.507a113.443 113.443 0 0 1-1.354-2.776c-.196-.413-.38-.818-.554-1.2s-.339-.754-.5-1.118s-.3-.727-.447-1.081s-.291-.709-.434-1.066l-.109-.277c-.408-.956-.821-1.945-1.306-3.083"></path></svg> o el lenguaje C++ <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 24 24"><rect width="24" height="24" fill="none"></rect><path fill="currentColor" d="M20.66 7a1.51 1.51 0 0 0-.55-.57l-7.34-4.24a1.67 1.67 0 0 0-1.54 0L3.89 6.43a1.68 1.68 0 0 0-.77 1.33v8.48a1.57 1.57 0 0 0 .22.76a1.51 1.51 0 0 0 .55.57l7.34 4.24a1.67 1.67 0 0 0 1.54 0l7.34-4.24a1.51 1.51 0 0 0 .55-.57a1.57 1.57 0 0 0 .22-.76V7.76a1.57 1.57 0 0 0-.22-.76M12 17.92A5.92 5.92 0 1 1 17.13 9L16 9.71l-.36.2l-1 .61A3 3 0 0 0 9 12a2.88 2.88 0 0 0 .4 1.48a3 3 0 0 0 5.13 0l2.6 1.52A5.94 5.94 0 0 1 12 17.92m5.92-5.59h-.66V13h-.65v-.66H16v-.66h.66V11h.65v.66h.66zm2.47 0h-.66V13h-.66v-.66h-.65v-.66h.65V11h.66v.66h.66z"></path></svg> . Por ejemplo en C++ el mismo programa se escribiría de la siguiente forma:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>    <span class="dt">int</span> a <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>    <span class="dt">int</span> b <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> a <span class="op">+</span> b <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="op">}</span> </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="dt">int</span> a <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="dt">int</span> b <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> a <span class="op">+</span> b <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="op">}</span> </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Y en lenguaje ensamblador se escribiría de la siguiente forma:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource asm number-lines code-with-copy"><code class="sourceCode fasm"><span id="cb3-1"><a href="#cb3-1"></a><span class="bu">section</span> <span class="op">.</span>data</span>
-<span id="cb3-2"><a href="#cb3-2"></a>    a <span class="dt">db</span> <span class="dv">5</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>    b <span class="dt">db</span> <span class="dv">3</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="bu">section</span> <span class="op">.</span>text</span>
-<span id="cb3-5"><a href="#cb3-5"></a>    global _start</span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="fu">_start:</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a>    <span class="bu">mov</span> <span class="kw">al</span><span class="op">,</span> <span class="op">[</span>a<span class="op">]</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a>    <span class="bu">mov</span> <span class="kw">bl</span><span class="op">,</span> <span class="op">[</span>b<span class="op">]</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a>    <span class="bu">add</span> <span class="kw">al</span><span class="op">,</span> <span class="kw">bl</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a>    <span class="bu">mov</span> <span class="kw">dl</span><span class="op">,</span> <span class="kw">al</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a>    <span class="bu">mov</span> <span class="kw">eax</span><span class="op">,</span> <span class="dv">4</span></span>
-<span id="cb3-12"><a href="#cb3-12"></a>    <span class="bu">mov</span> <span class="kw">ebx</span><span class="op">,</span> <span class="dv">1</span></span>
-<span id="cb3-13"><a href="#cb3-13"></a>    <span class="bu">mov</span> <span class="kw">ecx</span><span class="op">,</span> <span class="kw">dl</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a>    <span class="bu">mov</span> <span class="kw">edx</span><span class="op">,</span> <span class="dv">1</span></span>
-<span id="cb3-15"><a href="#cb3-15"></a>    <span class="bu">int</span> <span class="bn">0x80</span></span>
-<span id="cb3-16"><a href="#cb3-16"></a>    <span class="bu">mov</span> <span class="kw">eax</span><span class="op">,</span> <span class="dv">1</span></span>
-<span id="cb3-17"><a href="#cb3-17"></a>    <span class="bu">xor</span> <span class="kw">ebx</span><span class="op">,</span> <span class="kw">ebx</span></span>
-<span id="cb3-18"><a href="#cb3-18"></a>    <span class="bu">int</span> <span class="bn">0x80</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource asm number-lines code-with-copy"><code class="sourceCode fasm"><span id="cb4-1"><a href="#cb4-1"></a><span class="bu">section</span> <span class="op">.</span>data</span>
+<span id="cb4-2"><a href="#cb4-2"></a>    a <span class="dt">db</span> <span class="dv">5</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>    b <span class="dt">db</span> <span class="dv">3</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="bu">section</span> <span class="op">.</span>text</span>
+<span id="cb4-5"><a href="#cb4-5"></a>    global _start</span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="fu">_start:</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>    <span class="bu">mov</span> <span class="kw">al</span><span class="op">,</span> <span class="op">[</span>a<span class="op">]</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>    <span class="bu">mov</span> <span class="kw">bl</span><span class="op">,</span> <span class="op">[</span>b<span class="op">]</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>    <span class="bu">add</span> <span class="kw">al</span><span class="op">,</span> <span class="kw">bl</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>    <span class="bu">mov</span> <span class="kw">dl</span><span class="op">,</span> <span class="kw">al</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>    <span class="bu">mov</span> <span class="kw">eax</span><span class="op">,</span> <span class="dv">4</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a>    <span class="bu">mov</span> <span class="kw">ebx</span><span class="op">,</span> <span class="dv">1</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a>    <span class="bu">mov</span> <span class="kw">ecx</span><span class="op">,</span> <span class="kw">dl</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a>    <span class="bu">mov</span> <span class="kw">edx</span><span class="op">,</span> <span class="dv">1</span></span>
+<span id="cb4-15"><a href="#cb4-15"></a>    <span class="bu">int</span> <span class="bn">0x80</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a>    <span class="bu">mov</span> <span class="kw">eax</span><span class="op">,</span> <span class="dv">1</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a>    <span class="bu">xor</span> <span class="kw">ebx</span><span class="op">,</span> <span class="kw">ebx</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a>    <span class="bu">int</span> <span class="bn">0x80</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="interpretado" class="level2">
 <h2 class="anchored" data-anchor-id="interpretado">Interpretado</h2>
@@ -733,55 +737,69 @@ window.Quarto = {
 <p>Python es un lenguaje de programación <strong>orientado a objetos</strong> lo que significa que todo en Python es un objeto. Un objeto es una entidad que tiene un estado y un comportamiento. Por ejemplo, un objeto de la clase <code>Persona</code> tiene un estado que incluye el nombre, la edad y la dirección de la persona y un comportamiento que incluye caminar, hablar y comer.</p>
 <p>El ejemplo más claro de la orientación a objetos en Python es la creación de clases y objetos. Una clase es una plantilla que define las propiedades y los métodos de un objeto y un objeto es una instancia de una clase. Por ejemplo, la clase <code>Persona</code> define las propiedades y los métodos de una persona y un objeto de la clase <code>Persona</code> es una persona en particular.</p>
 <p>Esto en Python se ve de la siguiente forma:</p>
+<div id="a6e447ae" class="cell" data-execution_count="3">
 <details open="" class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">class</span> Persona:</span>
-<span id="cb4-2"><a href="#cb4-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, nombre, edad, direccion):</span>
-<span id="cb4-3"><a href="#cb4-3"></a>        <span class="va">self</span>.nombre <span class="op">=</span> nombre</span>
-<span id="cb4-4"><a href="#cb4-4"></a>        <span class="va">self</span>.edad <span class="op">=</span> edad</span>
-<span id="cb4-5"><a href="#cb4-5"></a>        <span class="va">self</span>.direccion <span class="op">=</span> direccion</span>
-<span id="cb4-6"><a href="#cb4-6"></a></span>
-<span id="cb4-7"><a href="#cb4-7"></a>    <span class="kw">def</span> caminar(<span class="va">self</span>):</span>
-<span id="cb4-8"><a href="#cb4-8"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>nombre<span class="sc">}</span><span class="ss"> está caminando"</span>)</span>
-<span id="cb4-9"><a href="#cb4-9"></a></span>
-<span id="cb4-10"><a href="#cb4-10"></a>    <span class="kw">def</span> hablar(<span class="va">self</span>):</span>
-<span id="cb4-11"><a href="#cb4-11"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>nombre<span class="sc">}</span><span class="ss"> está hablando"</span>)</span>
-<span id="cb4-12"><a href="#cb4-12"></a></span>
-<span id="cb4-13"><a href="#cb4-13"></a>    <span class="kw">def</span> comer(<span class="va">self</span>):</span>
-<span id="cb4-14"><a href="#cb4-14"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>nombre<span class="sc">}</span><span class="ss"> está comiendo"</span>)</span>
-<span id="cb4-15"><a href="#cb4-15"></a></span>
-<span id="cb4-16"><a href="#cb4-16"></a>persona <span class="op">=</span> Persona(<span class="st">"Juan"</span>, <span class="dv">25</span>, <span class="st">"Calle 123"</span>)</span>
-<span id="cb4-17"><a href="#cb4-17"></a>persona.caminar()</span>
-<span id="cb4-18"><a href="#cb4-18"></a>persona.hablar()</span>
-<span id="cb4-19"><a href="#cb4-19"></a>persona.comer()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">class</span> Persona:</span>
+<span id="cb5-2"><a href="#cb5-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, nombre, edad, direccion):</span>
+<span id="cb5-3"><a href="#cb5-3"></a>        <span class="va">self</span>.nombre <span class="op">=</span> nombre</span>
+<span id="cb5-4"><a href="#cb5-4"></a>        <span class="va">self</span>.edad <span class="op">=</span> edad</span>
+<span id="cb5-5"><a href="#cb5-5"></a>        <span class="va">self</span>.direccion <span class="op">=</span> direccion</span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-7"><a href="#cb5-7"></a>    <span class="kw">def</span> caminar(<span class="va">self</span>):</span>
+<span id="cb5-8"><a href="#cb5-8"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>nombre<span class="sc">}</span><span class="ss"> está caminando"</span>)</span>
+<span id="cb5-9"><a href="#cb5-9"></a></span>
+<span id="cb5-10"><a href="#cb5-10"></a>    <span class="kw">def</span> hablar(<span class="va">self</span>):</span>
+<span id="cb5-11"><a href="#cb5-11"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>nombre<span class="sc">}</span><span class="ss"> está hablando"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12"></a></span>
+<span id="cb5-13"><a href="#cb5-13"></a>    <span class="kw">def</span> comer(<span class="va">self</span>):</span>
+<span id="cb5-14"><a href="#cb5-14"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>nombre<span class="sc">}</span><span class="ss"> está comiendo"</span>)</span>
+<span id="cb5-15"><a href="#cb5-15"></a></span>
+<span id="cb5-16"><a href="#cb5-16"></a>persona <span class="op">=</span> Persona(<span class="st">"Juan"</span>, <span class="dv">25</span>, <span class="st">"Calle 123"</span>)</span>
+<span id="cb5-17"><a href="#cb5-17"></a>persona.caminar()</span>
+<span id="cb5-18"><a href="#cb5-18"></a>persona.hablar()</span>
+<span id="cb5-19"><a href="#cb5-19"></a>persona.comer()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<p>Juan está caminando Juan está hablando Juan está comiendo</p>
+<div class="cell-output cell-output-stdout">
+<pre><code>Juan está caminando
+Juan está hablando
+Juan está comiendo</code></pre>
+</div>
+</div>
 </section>
 <section id="semántica-dinámica" class="level2">
 <h2 class="anchored" data-anchor-id="semántica-dinámica">Semántica Dinámica</h2>
 <p>Python es un lenguaje de programación con <strong>semántica dinámica</strong> lo que significa que el tipo de una variable se determina en tiempo de ejecución y no en tiempo de compilación. Por ejemplo, en Python no es necesario declarar el tipo de una variable antes de utilizarla como en otros lenguajes de programación como C++ o Java. Por ejemplo, en Python se puede escribir:</p>
-<details open="" class="code-fold">
-<summary>Código</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>a <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>b <span class="op">=</span> <span class="st">"Hola"</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>c <span class="op">=</span> <span class="fl">3.14</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<p>En este caso, Python determina que <code>a</code> es un entero, <code>b</code> es una cadena de texto y <code>c</code> es un número de punto flotante en tiempo de ejecución.</p>
-<p>En otro lenguaes de programación como C++ o Java se tendría que declarar el tipo de las variables antes de utilizarlas. Por ejemplo, en C++ se tendría que escribir:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource {c++} number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>int a = 5;</span>
-<span id="cb6-2"><a href="#cb6-2"></a>std::string b = "Hola";</span>
-<span id="cb6-3"><a href="#cb6-3"></a>float c = 3.14;</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>El tipo puede ser modificado en cualquier momento, por ejemplo:</p>
+<div id="cf6833c3" class="cell" data-execution_count="4">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>a <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="bu">print</span>(a)</span>
-<span id="cb7-3"><a href="#cb7-3"></a>a <span class="op">=</span> <span class="st">"Hola"</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="bu">print</span>(a)</span>
-<span id="cb7-5"><a href="#cb7-5"></a>a <span class="op">=</span> <span class="fl">3.14</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="bu">print</span>(a)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-2"><a href="#cb7-2"></a>b <span class="op">=</span> <span class="st">"Hola"</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>c <span class="op">=</span> <span class="fl">3.14</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<p>5 Hola 3.14</p>
+</div>
+<p>En este caso, Python determina que <code>a</code> es un entero, <code>b</code> es una cadena de texto y <code>c</code> es un número de punto flotante en tiempo de ejecución.</p>
+<p>En otro lenguaes de programación como C++ o Java se tendría que declarar el tipo de las variables antes de utilizarlas. Por ejemplo, en C++ se tendría que escribir:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource {c++} number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>int a = 5;</span>
+<span id="cb8-2"><a href="#cb8-2"></a>std::string b = "Hola";</span>
+<span id="cb8-3"><a href="#cb8-3"></a>float c = 3.14;</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El tipo puede ser modificado en cualquier momento, por ejemplo:</p>
+<div id="ae218ff8" class="cell" data-execution_count="5">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>a <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="bu">print</span>(a)</span>
+<span id="cb9-3"><a href="#cb9-3"></a>a <span class="op">=</span> <span class="st">"Hola"</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="bu">print</span>(a)</span>
+<span id="cb9-5"><a href="#cb9-5"></a>a <span class="op">=</span> <span class="fl">3.14</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="bu">print</span>(a)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>5
+Hola
+3.14</code></pre>
+</div>
+</div>
 </section>
 </section>
 <section id="cómo-instalar-python-localmente" class="level1">

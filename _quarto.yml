@@ -94,7 +94,8 @@ format:
 execute: 
   cache: true
   echo: true
-  output: asis  
+  output: true
   freeze: auto
   keep-ipynb: true
+  kernel: python3
 
