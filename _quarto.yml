@@ -5,7 +5,7 @@ project:
 lang: es
 website:
   title: "Ciencia de Datos con Python"
-  site-url: https://christian-f-badillo.github.io/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/
+  site-url: /Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/
   page-navigation: true
   back-to-top-navigation: true
   twitter-card: true
