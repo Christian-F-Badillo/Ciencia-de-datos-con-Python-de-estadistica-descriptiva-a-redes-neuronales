@@ -1,0 +1,20 @@
+---
+title: ""
+sidebar: false
+toc: false
+code-tools: false
+---
+
+<center>
+<h1 style="font-size: 80px;">ERROR 404</h1>
+</center>
+
+<center>
+<img src = "img/404_cat.gif" alt="404 image" height=350px width=500px>
+
+<h3>
+Lo sentimos, la página que buscas no existe. <br> 
+Por favor, verifica la URL o regresa a la [página principal](/https://christian-f-badillo.github.io/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/)
+</h3>
+</center>
+

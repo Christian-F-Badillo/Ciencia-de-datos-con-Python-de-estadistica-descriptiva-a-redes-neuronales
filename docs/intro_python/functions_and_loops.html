@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../intro_python/data_structures.html" rel="next">
 <link href="../intro_python/Variables.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -268,7 +269,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"options":{"label":"","results":"markup","autorun":"","warning":"true","message":"true","classes":"","context":"interactive","fig-width":7,"output":"true","read-only":"false","fig-height":5,"dpi":72,"fig-cap":"","comment":"","out-height":"","out-width":"700px"},"id":1,"code":"import numpy as np\nimport matplotlib.pyplot as plt\n\ndef sine_wave(amplitude: float = None, frequency: float = None, phase: float = None, duration: float = None, sample_rate: float = None):\n    \"\"\"\n    Generate a sine wave signal.\n\n    Parameters:\n    - amplitude: The amplitude of the sine wave.\n    - frequency: The frequency of the sine wave in Hz.\n    - phase: The phase of the sine wave in radians.\n    - duration: The duration of the signal in seconds.\n    - sample_rate: The sample rate of the signal in Hz.\n\n    Returns:\n    - t: An array of time values.\n    - x: An array of signal values.\n    \"\"\"\n    t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False) # Generate time values\n    x = amplitude * np.sin(2 * np.pi * frequency * t + phase) # Generate signal values\n    return t, x\n\n# Generate a sine wave signal with amplitude 1, frequency 1 Hz, phase 0, duration 1 second, and sample rate 1000 Hz\nt, x = sine_wave(amplitude=1, frequency=1, phase=0, duration=1, sample_rate=1000) \n\n# Plot the sine wave signal\ndef plot_signal(t, x):\n    plt.figure() # Create a new figure\n    plt.plot(t, x) # Plot the signal\n    plt.xlabel('Time (s)') # Set the x-axis label\n    plt.ylabel('Amplitude') # Set the y-axis label\n    plt.grid(True) # Show grid\n    plt.show() # Show the plot\n\nplot_signal(t, x)"},{"options":{"label":"","results":"markup","autorun":"","warning":"true","message":"true","classes":"","context":"interactive","fig-width":7,"output":"true","read-only":"false","fig-height":5,"dpi":72,"fig-cap":"","comment":"","out-height":"","out-width":"700px"},"id":2,"code":"# Ejemplo de declaración if con elif\nx = 0 # Cambia el valor de x para probar diferentes casos\nif x > 0:\n    print('El número es positivo')\nelif x < 0:\n    print('El número es negativo')\nelse:\n    print('El número es cero')"},{"options":{"label":"","results":"markup","autorun":"","warning":"true","message":"true","classes":"","context":"interactive","fig-width":7,"output":"true","read-only":"false","fig-height":5,"dpi":72,"fig-cap":"","comment":"","out-height":"","out-width":"700px"},"id":3,"code":"# Escribe tu código aquí"}];
+globalThis.qpyodideCellDetails = [{"code":"import numpy as np\nimport matplotlib.pyplot as plt\nfrom typing import Tuple\n\ndef sine_wave(amplitude: float = None, frequency: float = None, phase: float = None, duration: float = None, sample_rate: float = None) -> Tuple[np.ndarray, np.ndarray]:\n    \"\"\"\n    Generate a sine wave signal.\n\n    Parameters:\n    - `amplitude`: The amplitude of the sine wave.\n    - `frequency`: The frequency of the sine wave in Hz.\n    - `phase`: The phase of the sine wave in radians.\n    - `duration`: The duration of the signal in seconds.\n    - `sample_rate`: The sample rate of the signal in Hz.\n\n    Returns:\n    - `t`: An array of time values.\n    - `x`: An array of signal values.\n    \"\"\"\n    t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False) # Generate time values\n    x = amplitude * np.sin(2 * np.pi * frequency * t + phase) # Generate signal values\n    return t, x\n\n# Generate a sine wave signal with amplitude 1, frequency 1 Hz, phase 0, duration 1 second, and sample rate 1000 Hz\nt, x = sine_wave(amplitude=1, frequency=1, phase=0, duration=1, sample_rate=1000) \n\n# Plot the sine wave signal\ndef plot_signal(t: np.ndarray, x: np.ndarray) -> None:\n    \"\"\"\n    Plot a signal.\n\n    Parameters:\n    - `t`: An array of time values.\n    - `x`: An array of signal values.\n    \"\"\"\n\n    plt.figure() # Create a new figure\n    plt.plot(t, x) # Plot the signal\n    plt.xlabel('Time (s)') # Set the x-axis label\n    plt.ylabel('Amplitude') # Set the y-axis label\n    plt.grid(True) # Show grid\n    plt.show() # Show the plot\n\nplot_signal(t, x)","id":1,"options":{"message":"true","classes":"","read-only":"false","dpi":72,"context":"interactive","comment":"","out-width":"700px","warning":"true","autorun":"","results":"markup","output":"true","fig-cap":"","out-height":"","label":"","fig-height":5,"fig-width":7}},{"code":"# Ejemplo de declaración if con elif\nx = 0 # Cambia el valor de x para probar diferentes casos\nif x > 0:\n    print('El número es positivo')\nelif x < 0:\n    print('El número es negativo')\nelse:\n    print('El número es cero')","id":2,"options":{"message":"true","classes":"","read-only":"false","dpi":72,"context":"interactive","comment":"","out-width":"700px","warning":"true","autorun":"","results":"markup","output":"true","fig-cap":"","out-height":"","label":"","fig-height":5,"fig-width":7}},{"code":"# Escribe tu código aquí","id":3,"options":{"message":"true","classes":"","read-only":"false","dpi":72,"context":"interactive","comment":"","out-width":"700px","warning":"true","autorun":"","results":"markup","output":"true","fig-cap":"","out-height":"","label":"","fig-height":5,"fig-width":7}}];
 
 
 </script>
@@ -589,6 +590,12 @@ window.Quarto = {
  <span class="menu-text">Funciones y Bucles de Control</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro_python/data_structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Estructuras de Datos</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -614,10 +621,12 @@ window.Quarto = {
    
   <ul>
   <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
+  <li><a href="#tabulación-en-python" id="toc-tabulación-en-python" class="nav-link" data-scroll-target="#tabulación-en-python">Tabulación en Python</a></li>
   <li><a href="#funciones" id="toc-funciones" class="nav-link" data-scroll-target="#funciones">Funciones</a>
   <ul class="collapse">
   <li><a href="#funciones-lambda" id="toc-funciones-lambda" class="nav-link" data-scroll-target="#funciones-lambda">Funciones Lambda</a></li>
-  <li><a href="#creando-funciones-legibles" id="toc-creando-funciones-legibles" class="nav-link" data-scroll-target="#creando-funciones-legibles">Creando funciones legibles</a></li>
+  <li><a href="#paquetes-y-módulos" id="toc-paquetes-y-módulos" class="nav-link" data-scroll-target="#paquetes-y-módulos">Paquetes y Módulos</a></li>
+  <li><a href="#legibilidad-y-documentación-de-funciones" id="toc-legibilidad-y-documentación-de-funciones" class="nav-link" data-scroll-target="#legibilidad-y-documentación-de-funciones">Legibilidad y Documentación de Funciones</a></li>
   </ul></li>
   <li><a href="#estrucutras-de-control" id="toc-estrucutras-de-control" class="nav-link" data-scroll-target="#estrucutras-de-control">Estrucutras de Control</a>
   <ul class="collapse">
@@ -634,8 +643,13 @@ window.Quarto = {
   <li><a href="#ejemplo-2" id="toc-ejemplo-2" class="nav-link" data-scroll-target="#ejemplo-2">Ejemplo</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión">Conclusión</a></li>
   <li><a href="#ejercicios" id="toc-ejercicios" class="nav-link" data-scroll-target="#ejercicios">Ejercicios</a></li>
+  <li><a href="#manejando-bucles-de-control" id="toc-manejando-bucles-de-control" class="nav-link" data-scroll-target="#manejando-bucles-de-control">Manejando Bucles de Control</a>
+  <ul class="collapse">
+  <li><a href="#declaración-break" id="toc-declaración-break" class="nav-link" data-scroll-target="#declaración-break">Declaración <code>break</code></a></li>
+  <li><a href="#declaración-continue" id="toc-declaración-continue" class="nav-link" data-scroll-target="#declaración-continue">Declaración <code>continue</code></a></li>
+  </ul></li>
+  <li><a href="#conclusiones" id="toc-conclusiones" class="nav-link" data-scroll-target="#conclusiones">Conclusiones</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/edit/main/intro_python/functions_and_loops.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></nav>
     </div>
@@ -671,7 +685,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">12 de mayo de 2024</p>
+      <p class="date">20 de mayo de 2024</p>
     </div>
   </div>
   
@@ -686,33 +700,40 @@ window.Quarto = {
 <section id="introducción" class="level1">
 <h1>Introducción</h1>
 <p>En esta lección, aprenderemos sobre funciones y estructuras de control en Python. Las funciones son bloques de código que se pueden reutilizar en diferentes partes de un programa, permitiendo que el código sea más modular y fácil de mantener. Las estructuras de control son bloques de código que permiten controlar el flujo de ejecución de un programa, como bucles y declaraciones condicionales. Son dos conceptos fundamentales en programación que nos permiten escribir código más eficiente y legible.</p>
-<p>Antes de proceder, hay que explicar la tabulación en Python. A diferencia de otros lenguajes de programación que utilizan llaves <code>{}</code> para delimitar bloques de código, Python utiliza la tabulación para indicar la estructura del código. Esto significa que los bloques de código se definen por la cantidad de espacios o tabulaciones al principio de una línea. Es importante mantener la consistencia en la tabulación para que el código funcione correctamente.</p>
+</section>
+<section id="tabulación-en-python" class="level1">
+<h1>Tabulación en Python</h1>
+<p>Antes de proceder, hay que explicar la tabulación en Python. A diferencia de otros lenguajes de programación que utilizan llaves <code>{}</code> para delimitar bloques de código, Python utiliza la tabulación para indicar la estructura del código. Esto significa que los bloques de código se definen por la cantidad de espacios o tabulaciones al principio de una línea. Es importante mantener la consistencia en la tabulación para que el código funcione correctamente. Por ejemplo, en una función, el cuerpo de la función debe estar tabulado con 4 espacios o una tabulación.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">def</span> funcion():</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="co"># Cuerpo de la función</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>    <span class="bu">print</span>(<span class="st">'Hola, mundo!'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si no se mantiene la consistencia en la tabulación, Python generará un error de indentación. Por ejemplo, si el cuerpo de la función no está tabulado correctamente, se generará un error de sintaxis.</p>
 </section>
 <section id="funciones" class="level1">
 <h1>Funciones</h1>
 <p>Las <strong><em>funciones</em></strong> son bloques de código que se pueden reutilizar en diferentes partes de un programa, permitiendo que el código sea más modular y fácil de mantener. En Python, las funciones se definen con la palabra clave <code>def</code>, seguida del nombre de la función y una lista de parámetros entre paréntesis. El cuerpo de la función se define con una tabulación (4 espacios) y puede contener cualquier número de instrucciones.</p>
 <p>Primero elaboremos una función sencilla, la cual se llamará <code>saludo</code> y recibirá un parámetro <code>nombre</code>:</p>
-<div id="df42da7b" class="cell" data-execution_count="2">
+<div id="18594104" class="cell" data-execution_count="2">
 <details open="" class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">def</span> saludo(nombre):</span>
-<span id="cb1-2"><a href="#cb1-2"></a>    <span class="bu">print</span>(<span class="ss">f'Hola, </span><span class="sc">{</span>nombre<span class="sc">}</span><span class="ss">!'</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a>saludo(<span class="st">'Christian'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">def</span> saludo(nombre):</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="bu">print</span>(<span class="ss">f'Hola, </span><span class="sc">{</span>nombre<span class="sc">}</span><span class="ss">!'</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a>saludo(<span class="st">'Christian'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Hola, Christian!</code></pre>
 </div>
 </div>
-<p>Algo a destacar en esta función es que usamos una característica de las <code>strings</code> denominada <strong>f-string</strong> para imprimir el saludo. Las f-strings son una forma de formatear cadenas de texto en Python, permitiendo la interpolación de variables dentro de una cadena. Para definir una f-string, se coloca una <code>f</code> antes de las comillas de apertura y se encierra la variable entre llaves <code>{}</code>. Es decir, le estamos diciendo a Python que reemplace <code>{nombre}</code> con el valor de la variable <code>nombre</code> que en este caso es <code>'Christian'</code>.</p>
+<p>En nuestra función usamos una f-string para imprimir un saludo personalizado, las <strong><em>f-strings</em></strong> son una forma de formatear cadenas de texto en Python, permitiendo la interpolación de variables dentro de una cadena. Para definir una f-string, se coloca una <code>f</code> antes de las comillas de apertura y se encierra la variable entre llaves <code>{}</code>. Es decir, le estamos diciendo a Python que reemplace <code>{nombre}</code> con el valor de la variable <code>nombre</code> que en este caso es <code>'Christian'</code>.</p>
 <p>Las funciones pueden devolver un valor usando la palabra clave <code>return</code>. Por ejemplo, la siguiente función <code>cuadrado</code> recibe un número <code>x</code> y devuelve su cuadrado:</p>
-<div id="016206dc" class="cell" data-execution_count="3">
+<div id="1b24761d" class="cell" data-execution_count="3">
 <details open="" class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">def</span> cuadrado(x):</span>
-<span id="cb3-2"><a href="#cb3-2"></a>    <span class="cf">return</span> x <span class="op">**</span> <span class="dv">2</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="bu">print</span>(cuadrado(<span class="dv">5</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">def</span> cuadrado(x):</span>
+<span id="cb4-2"><a href="#cb4-2"></a>    <span class="cf">return</span> x <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="bu">print</span>(cuadrado(<span class="dv">5</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>25</code></pre>
@@ -727,13 +748,13 @@ window.Quarto = {
 <li><strong>Argumentos variables</strong>: Los argumentos se pasan como una lista o un diccionario.</li>
 </ul>
 <p>En los ejemplos hemos utilizado argumentos posicionales. A continuación, veremos cómo usar argumentos con nombre:</p>
-<div id="f45b53e3" class="cell" data-execution_count="4">
+<div id="01c50df5" class="cell" data-execution_count="4">
 <details open="" class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">def</span> resta(num1, num2):</span>
-<span id="cb5-2"><a href="#cb5-2"></a>    <span class="cf">return</span> num1 <span class="op">-</span> num2</span>
-<span id="cb5-3"><a href="#cb5-3"></a></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="bu">print</span>(resta(num1<span class="op">=</span><span class="dv">10</span>, num2<span class="op">=</span><span class="dv">5</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">def</span> resta(num1, num2):</span>
+<span id="cb6-2"><a href="#cb6-2"></a>    <span class="cf">return</span> num1 <span class="op">-</span> num2</span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="bu">print</span>(resta(num1<span class="op">=</span><span class="dv">10</span>, num2<span class="op">=</span><span class="dv">5</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>5</code></pre>
@@ -741,14 +762,14 @@ window.Quarto = {
 </div>
 <p>En este caso, hemos pasado los argumentos <code>num1</code> y <code>num2</code> con sus nombres correspondientes y les hemos asignado valores. Esto nos permite pasar los argumentos en cualquier orden, siempre y cuando especifiquemos el nombre del parámetro al que corresponden.</p>
 <p>Ahora veamos cómo usar argumentos por defecto:</p>
-<div id="33e57f8e" class="cell" data-execution_count="5">
+<div id="9aade0ac" class="cell" data-execution_count="5">
 <details open="" class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">def</span> potencia(base, exponente<span class="op">=</span><span class="dv">2</span>):</span>
-<span id="cb7-2"><a href="#cb7-2"></a>    <span class="cf">return</span> base <span class="op">**</span> exponente</span>
-<span id="cb7-3"><a href="#cb7-3"></a></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="bu">print</span>(potencia(<span class="dv">2</span>))</span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="bu">print</span>(potencia(<span class="dv">2</span>, <span class="dv">3</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">def</span> potencia(base, exponente<span class="op">=</span><span class="dv">2</span>):</span>
+<span id="cb8-2"><a href="#cb8-2"></a>    <span class="cf">return</span> base <span class="op">**</span> exponente</span>
+<span id="cb8-3"><a href="#cb8-3"></a></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="bu">print</span>(potencia(<span class="dv">2</span>))</span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="bu">print</span>(potencia(<span class="dv">2</span>, <span class="dv">3</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>4
@@ -759,12 +780,12 @@ window.Quarto = {
 <section id="funciones-lambda" class="level2">
 <h2 class="anchored" data-anchor-id="funciones-lambda">Funciones Lambda</h2>
 <p>Las funciones lambda son funciones anónimas que se pueden definir en una sola línea. Se definen con la palabra clave <code>lambda</code>, seguida de una lista de parámetros y una expresión que se evalúa y devuelve el resultado. Por ejemplo, la siguiente función lambda calcula el cuadrado de un número:</p>
-<div id="654a0e69" class="cell" data-execution_count="6">
+<div id="8641ab8a" class="cell" data-execution_count="6">
 <details open="" class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>cuadrado_lamda <span class="op">=</span> <span class="kw">lambda</span> x: x <span class="op">**</span> <span class="dv">2</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="bu">print</span>(cuadrado_lamda(<span class="dv">5</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>cuadrado_lamda <span class="op">=</span> <span class="kw">lambda</span> x: x <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="bu">print</span>(cuadrado_lamda(<span class="dv">5</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>25</code></pre>
@@ -772,20 +793,57 @@ window.Quarto = {
 </div>
 <p>Las funciones lambda son útiles cuando se necesita una función simple y no es necesario definirla con una declaración <code>def</code>.</p>
 <p>Ahora definamos una función lambda un poco más compleja para sumar dos números:</p>
-<div id="a9f64f7a" class="cell" data-execution_count="7">
+<div id="12d81d50" class="cell" data-execution_count="7">
 <details open="" class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>suma_lambda <span class="op">=</span> <span class="kw">lambda</span> x, y: x <span class="op">+</span> y</span>
-<span id="cb11-2"><a href="#cb11-2"></a></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="bu">print</span>(suma_lambda(<span class="dv">3</span>, <span class="dv">4</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>suma_lambda <span class="op">=</span> <span class="kw">lambda</span> x, y: x <span class="op">+</span> y</span>
+<span id="cb12-2"><a href="#cb12-2"></a></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="bu">print</span>(suma_lambda(<span class="dv">3</span>, <span class="dv">4</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>7</code></pre>
 </div>
 </div>
 </section>
-<section id="creando-funciones-legibles" class="level2">
-<h2 class="anchored" data-anchor-id="creando-funciones-legibles">Creando funciones legibles</h2>
+<section id="paquetes-y-módulos" class="level2">
+<h2 class="anchored" data-anchor-id="paquetes-y-módulos">Paquetes y Módulos</h2>
+<p>En Python, las funciones se pueden organizar en módulos y paquetes para facilitar la reutilización y la organización del código. Un <strong><em>módulo</em></strong> es un archivo que contiene definiciones y declaraciones de Python, como funciones, clases y variables. Un <strong><em>paquete</em></strong> es una colección de módulos organizados en un directorio. Es decir, que un paquete es una carpeta que contiene archivos de python (módulos) que contienen funciones, clases y variables que puedes utilizar en tu programa.</p>
+<p>Hay paqueterias y modulos muy útiles que se pueden importar en Python, por ejemplo, la paquetería <code>math</code> que contiene funciones matemáticas comunes, como <code>sqrt</code> para calcular la raíz cuadrada de un número. Para importar un módulo o una función de un módulo, se utiliza la palabra clave <code>import</code> seguida del nombre del módulo.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="im">import</span> math</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Una vez que se ha importado un módulo, se puede acceder a sus funciones y variables utilizando la notación de punto. Por ejemplo, para calcular la raíz cuadrada de un número, se puede utilizar la función <code>sqrt</code> del módulo <code>math</code>.</p>
+<div id="2c117a50" class="cell" data-execution_count="8">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="im">import</span> math</span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="bu">print</span>(math.sqrt(<span class="dv">16</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>4.0</code></pre>
+</div>
+</div>
+<p>También es posible importar funciones específicas de un módulo utilizando la palabra clave <code>from</code>. Por ejemplo, para importar solo la función <code>sqrt</code> del módulo <code>math</code>, se puede hacer lo siguiente:</p>
+<div id="1835e280" class="cell" data-execution_count="9">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="im">from</span> math <span class="im">import</span> sqrt</span>
+<span id="cb17-2"><a href="#cb17-2"></a></span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="bu">print</span>(sqrt(<span class="dv">16</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>4.0</code></pre>
+</div>
+</div>
+<p>Muchas veces las paqueterias tienen nombres muy largos, por lo que se pueden importar con un alias utilizando la palabra clave <code>as</code>, las paqueterias más comunes en python tienen alias ya acordados en la comunidad, por ejemplo, <code>pandas</code> una paquetería muy utilizada para el análisis de datos se importa con el alias <code>pd</code>.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>De esta forma, se puede acceder a las funciones y variables de la paquetería <code>pandas</code> utilizando el alias <code>pd</code>.</p>
+<p>Existe un gran número de paqueterías y módulos disponibles en Python que proporcionan funcionalidades adicionales para tareas específicas, como el análisis de datos, la visualización, el aprendizaje automático, etc. Estas paqueterías pueden ser muy útiles para acelerar el desarrollo de aplicaciones y realizar tareas complejas de manera eficiente.</p>
+<p>No todas las paqueterias vienen preinstaladas con Python, por lo que es necesario instalarlas con un administrador de paquetes, el más común es <code>pip</code>. Para instalar una paquetería con <code>pip</code>, se utiliza el siguiente comando en la terminal:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1"></a><span class="ex">pip</span> install nombre_paqueteria</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O si se usa jupyter notebook o jupyter lab, se puede instalar una paquetería con el comando <code>!pip install nombre_paqueteria</code>.</p>
+<p>Cada paqueteria tiene su propia documentación, por lo que es recomendable revisarla para conocer todas las funciones y características que ofrece.</p>
+</section>
+<section id="legibilidad-y-documentación-de-funciones" class="level2">
+<h2 class="anchored" data-anchor-id="legibilidad-y-documentación-de-funciones">Legibilidad y Documentación de Funciones</h2>
 <p>Es importante que las funciones sean fáciles de leer y entender. Para ello, es recomendable seguir las siguientes buenas prácticas:</p>
 <ul>
 <li><strong>Nombres descriptivos</strong>: Usa nombres descriptivos para las funciones y los parámetros.</li>
@@ -797,6 +855,7 @@ window.Quarto = {
 <div id="qpyodide-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>En este ejemplo, hemos definido una función <code>sine_wave</code> que genera una señal de onda sinusoidal con los parámetros de amplitud, frecuencia, fase, duración y tasa de muestreo especificados. Hemos documentado la función con un docstring que explica los parámetros que espera y el valor que devuelve. También hemos definido una función <code>plot_signal</code> que traza la señal generada. Esta función es más legible y fácil de entender gracias a los comentarios y la documentación.</p>
+<p>Un ejemplo profesional de documentación de funciones es la documentación de la paquetería <code>numpy</code>, que proporciona una descripción detallada de cada función, los parámetros que espera y el valor que devuelve. Puedes consultar la documentación de <code>numpy</code> en el siguiente enlace: <a href="https://numpy.org/doc/stable/">https://numpy.org/doc/stable/</a>.</p>
 </section>
 </section>
 <section id="estrucutras-de-control" class="level1">
@@ -812,12 +871,12 @@ window.Quarto = {
 </figure>
 </div>
 <p>La sintaxis de la declaración <code>if</code> en python es la siguiente:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="cf">if</span> condicion:</span>
-<span id="cb13-2"><a href="#cb13-2"></a>    <span class="co"># Código a ejecutar si la condición es verdadera</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a><span class="cf">elif</span> otra_condicion:</span>
-<span id="cb13-4"><a href="#cb13-4"></a>    <span class="co"># Código a ejecutar si la condición anterior es falsa y esta condición es verdadera</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a><span class="cf">else</span>:</span>
-<span id="cb13-6"><a href="#cb13-6"></a>    <span class="co"># Código a ejecutar si ninguna de las condiciones anteriores es verdadera</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="cf">if</span> condicion:</span>
+<span id="cb21-2"><a href="#cb21-2"></a>    <span class="co"># Código a ejecutar si la condición es verdadera</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a><span class="cf">elif</span> otra_condicion:</span>
+<span id="cb21-4"><a href="#cb21-4"></a>    <span class="co"># Código a ejecutar si la condición anterior es falsa y esta condición es verdadera</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a><span class="cf">else</span>:</span>
+<span id="cb21-6"><a href="#cb21-6"></a>    <span class="co"># Código a ejecutar si ninguna de las condiciones anteriores es verdadera</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="ejemplo" class="level3">
 <h3 class="anchored" data-anchor-id="ejemplo">Ejemplo</h3>
 <p>Si tenemos varias condiciones que queremos comprobar, podemos usar la declaración <code>elif</code> para comprobarlas en orden. A continuación, se muestra un ejemplo de una declaración <code>if</code> con <code>elif</code> que comprueba si un número es positivo, negativo o cero:</p>
@@ -828,8 +887,8 @@ window.Quarto = {
 <section id="estrucutras-de-control-bucles-for" class="level2">
 <h2 class="anchored" data-anchor-id="estrucutras-de-control-bucles-for">Estrucutras de Control: Bucles <code>for</code></h2>
 <p>El bucle <code>for</code> se utiliza para iterar sobre una secuencia de elementos, como una lista, una tupla o un rango de números. La sintaxis de un bucle <code>for</code> en Python es la siguiente:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="cf">for</span> elemento <span class="kw">in</span> secuencia:</span>
-<span id="cb14-2"><a href="#cb14-2"></a>    <span class="co"># Código a ejecutar en cada iteración</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="cf">for</span> elemento <span class="kw">in</span> secuencia:</span>
+<span id="cb22-2"><a href="#cb22-2"></a>    <span class="co"># Código a ejecutar en cada iteración</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../img/fund_python/estructura_for.png" class="img-fluid figure-img" style="width:30.0%"></p>
@@ -840,12 +899,12 @@ window.Quarto = {
 <section id="ejemplo-1" class="level3">
 <h3 class="anchored" data-anchor-id="ejemplo-1">Ejemplo</h3>
 <p>Veamos un ejemplo donde imprimimos una cuenta regresiva desde 10 hasta 1:</p>
-<div id="469ad222" class="cell" data-execution_count="8">
+<div id="c4ab2e79" class="cell" data-execution_count="10">
 <details open="" class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Ejemplo de bucle for</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>):</span>
-<span id="cb15-3"><a href="#cb15-3"></a>    <span class="bu">print</span>(i)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># Ejemplo de bucle for</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb23-3"><a href="#cb23-3"></a>    <span class="bu">print</span>(i)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>10
@@ -861,12 +920,12 @@ window.Quarto = {
 </div>
 </div>
 <p>La función <code>range</code> genera una secuencia de números desde el primer argumento hasta el segundo argumento, con un paso especificado por el tercer argumento. En este caso, estamos generando una secuencia de números desde 10 hasta 1 con un paso de -1. Es muy común usar <code>range</code> en bucles <code>for</code>. Otra forma de usar <code>range</code> es con un solo argumento, que genera una secuencia de números desde 0 hasta el argumento especificado.</p>
-<div id="8f458b59" class="cell" data-execution_count="9">
+<div id="3dcc46e6" class="cell" data-execution_count="11">
 <details open="" class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># Ejemplo de bucle for con un solo argumento</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
-<span id="cb17-3"><a href="#cb17-3"></a>    <span class="bu">print</span>(i)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># Ejemplo de bucle for con un solo argumento</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
+<span id="cb25-3"><a href="#cb25-3"></a>    <span class="bu">print</span>(i)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>0
@@ -883,8 +942,8 @@ window.Quarto = {
 <section id="estrucutras-de-control-bucles-while" class="level2">
 <h2 class="anchored" data-anchor-id="estrucutras-de-control-bucles-while">Estrucutras de Control: Bucles <code>while</code></h2>
 <p>El bucle <code>while</code> se utiliza para ejecutar un bloque de código mientras una condición sea verdadera. La sintaxis de un bucle <code>while</code> en Python es la siguiente:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="cf">while</span> condicion:</span>
-<span id="cb19-2"><a href="#cb19-2"></a>    <span class="co"># Código a ejecutar mientras la condición sea verdadera</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="cf">while</span> condicion:</span>
+<span id="cb27-2"><a href="#cb27-2"></a>    <span class="co"># Código a ejecutar mientras la condición sea verdadera</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../img/fund_python/while.jpg" class="img-fluid figure-img" style="width:40.0%"></p>
@@ -898,33 +957,33 @@ window.Quarto = {
 <section id="ejemplo-2" class="level3">
 <h3 class="anchored" data-anchor-id="ejemplo-2">Ejemplo</h3>
 <p>Ahora intentemos algo más complicado, crearemos una función que nos diga cuantas vecces se repite una letra dada en una cadena de texto:</p>
-<div id="c82baa71" class="cell" data-execution_count="10">
+<div id="9355dbb2" class="cell" data-execution_count="12">
 <details open="" class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">def</span> contar_letra(cadena, letra):</span>
-<span id="cb20-2"><a href="#cb20-2"></a>    contador <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb20-3"><a href="#cb20-3"></a>    i <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb20-4"><a href="#cb20-4"></a>    <span class="cf">while</span> i <span class="op">&lt;</span> <span class="bu">len</span>(cadena):</span>
-<span id="cb20-5"><a href="#cb20-5"></a>        <span class="cf">if</span> cadena[i] <span class="op">==</span> letra:</span>
-<span id="cb20-6"><a href="#cb20-6"></a>            contador <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb20-7"><a href="#cb20-7"></a>        i <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb20-8"><a href="#cb20-8"></a>    <span class="cf">return</span> contador</span>
-<span id="cb20-9"><a href="#cb20-9"></a></span>
-<span id="cb20-10"><a href="#cb20-10"></a><span class="co"># Primer verso y coro de "Army of One" de Coldplay </span></span>
-<span id="cb20-11"><a href="#cb20-11"></a>cadena <span class="op">=</span> <span class="st">"""</span></span>
-<span id="cb20-12"><a href="#cb20-12"></a><span class="st">Been around the world, wonders to view</span></span>
-<span id="cb20-13"><a href="#cb20-13"></a><span class="st">Been around the world looking for someone like you</span></span>
-<span id="cb20-14"><a href="#cb20-14"></a><span class="st">Pyramids try, Babylon too</span></span>
-<span id="cb20-15"><a href="#cb20-15"></a><span class="st">But the beautifulest treasures lie in the deepest blue</span></span>
-<span id="cb20-16"><a href="#cb20-16"></a></span>
-<span id="cb20-17"><a href="#cb20-17"></a><span class="st">So I never say die, aim never untrue</span></span>
-<span id="cb20-18"><a href="#cb20-18"></a><span class="st">I'm never so high as when I'm with you</span></span>
-<span id="cb20-19"><a href="#cb20-19"></a><span class="st">And there isn't a fire that I wouldn't walk through</span></span>
-<span id="cb20-20"><a href="#cb20-20"></a><span class="st">My army of one is gonna fight for you</span></span>
-<span id="cb20-21"><a href="#cb20-21"></a><span class="st">"""</span></span>
-<span id="cb20-22"><a href="#cb20-22"></a></span>
-<span id="cb20-23"><a href="#cb20-23"></a>letra <span class="op">=</span> <span class="st">'a'</span></span>
-<span id="cb20-24"><a href="#cb20-24"></a><span class="bu">print</span>(<span class="ss">f'La letra "</span><span class="sc">{</span>letra<span class="sc">}</span><span class="ss">" se repite </span><span class="sc">{</span>contar_letra(cadena, letra)<span class="sc">}</span><span class="ss"> veces en la cadena de texto.'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a><span class="kw">def</span> contar_letra(cadena, letra):</span>
+<span id="cb28-2"><a href="#cb28-2"></a>    contador <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a>    i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb28-4"><a href="#cb28-4"></a>    <span class="cf">while</span> i <span class="op">&lt;</span> <span class="bu">len</span>(cadena):</span>
+<span id="cb28-5"><a href="#cb28-5"></a>        <span class="cf">if</span> cadena[i] <span class="op">==</span> letra:</span>
+<span id="cb28-6"><a href="#cb28-6"></a>            contador <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb28-7"><a href="#cb28-7"></a>        i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb28-8"><a href="#cb28-8"></a>    <span class="cf">return</span> contador</span>
+<span id="cb28-9"><a href="#cb28-9"></a></span>
+<span id="cb28-10"><a href="#cb28-10"></a><span class="co"># Primer verso y coro de "Army of One" de Coldplay </span></span>
+<span id="cb28-11"><a href="#cb28-11"></a>cadena <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb28-12"><a href="#cb28-12"></a><span class="st">Been around the world, wonders to view</span></span>
+<span id="cb28-13"><a href="#cb28-13"></a><span class="st">Been around the world looking for someone like you</span></span>
+<span id="cb28-14"><a href="#cb28-14"></a><span class="st">Pyramids try, Babylon too</span></span>
+<span id="cb28-15"><a href="#cb28-15"></a><span class="st">But the beautifulest treasures lie in the deepest blue</span></span>
+<span id="cb28-16"><a href="#cb28-16"></a></span>
+<span id="cb28-17"><a href="#cb28-17"></a><span class="st">So I never say die, aim never untrue</span></span>
+<span id="cb28-18"><a href="#cb28-18"></a><span class="st">I'm never so high as when I'm with you</span></span>
+<span id="cb28-19"><a href="#cb28-19"></a><span class="st">And there isn't a fire that I wouldn't walk through</span></span>
+<span id="cb28-20"><a href="#cb28-20"></a><span class="st">My army of one is gonna fight for you</span></span>
+<span id="cb28-21"><a href="#cb28-21"></a><span class="st">"""</span></span>
+<span id="cb28-22"><a href="#cb28-22"></a></span>
+<span id="cb28-23"><a href="#cb28-23"></a>letra <span class="op">=</span> <span class="st">'a'</span></span>
+<span id="cb28-24"><a href="#cb28-24"></a><span class="bu">print</span>(<span class="ss">f'La letra "</span><span class="sc">{</span>letra<span class="sc">}</span><span class="ss">" se repite </span><span class="sc">{</span>contar_letra(cadena, letra)<span class="sc">}</span><span class="ss"> veces en la cadena de texto.'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>La letra "a" se repite 14 veces en la cadena de texto.</code></pre>
@@ -934,10 +993,6 @@ window.Quarto = {
 <p>Combinar funciones, bucles y estructuras de control es una de las formas más poderosas de programar en cualquier lenguaje, y Python no es la excepción.</p>
 </section>
 </section>
-</section>
-<section id="conclusión" class="level1">
-<h1>Conclusión</h1>
-<p>El uso de funciones y estructuras de control es fundamental en Python y en la programación en general. Las funciones nos permiten reutilizar código y hacerlo más modular y fácil de mantener. Las estructuras de control nos permiten controlar el flujo de ejecución de un programa y realizar tareas repetitivas de manera eficiente. Es importante comprender cómo usar funciones y estructuras de control para escribir código más eficiente y legible. En la siguiente lección, veremos cómo trabajar con listas, tuplas y diccionarios en Python.</p>
 </section>
 <section id="ejercicios" class="level1">
 <h1>Ejercicios</h1>
@@ -950,6 +1005,117 @@ window.Quarto = {
 </ol>
 <div id="qpyodide-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="manejando-bucles-de-control" class="level1">
+<h1>Manejando Bucles de Control</h1>
+<p>Hay ocasiones en las que necesitamos salir de un bucle antes de que se complete o saltar a la siguiente iteración sin ejecutar el resto del código. En Python, podemos hacer esto con las declaraciones <code>break</code> y <code>continue</code>.</p>
+<section id="declaración-break" class="level2">
+<h2 class="anchored" data-anchor-id="declaración-break">Declaración <code>break</code></h2>
+<p>La declaración <code>break</code> se utiliza para salir de un bucle antes de que se complete. Cuando se encuentra una declaración <code>break</code>, el bucle se detiene y la ejecución continúa con la siguiente instrucción después del bucle. La declaración <code>break</code> se puede utilizar en bucles <code>for</code> y <code>while</code>. Se suele utilizar para salir de un bucle cuando se cumple una condición específica utilizando una declaración <code>if</code>.</p>
+<p>Supongamos que queremos encontrar el primer número divisible entre <span class="math inline">\(7\)</span> y <span class="math inline">\(5\)</span> en un rango de números del <span class="math inline">\(1\)</span> al <span class="math inline">\(100\)</span>. Podemos usar un bucle <code>for</code> y la declaración <code>break</code> para salir del bucle cuando se encuentre el número deseado.</p>
+<div id="510e5b40" class="cell" data-execution_count="13">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">101</span>):</span>
+<span id="cb30-2"><a href="#cb30-2"></a>    <span class="cf">if</span> i <span class="op">%</span> <span class="dv">7</span> <span class="op">==</span> <span class="dv">0</span> <span class="kw">and</span> i <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb30-3"><a href="#cb30-3"></a>        <span class="bu">print</span>(<span class="ss">f'El primer número divisible entre 7 y 5 es </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb30-4"><a href="#cb30-4"></a>        <span class="cf">break</span></span>
+<span id="cb30-5"><a href="#cb30-5"></a>    <span class="cf">else</span>:</span>
+<span id="cb30-6"><a href="#cb30-6"></a>        <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss"> no es divisible entre 7 y 5'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>1 no es divisible entre 7 y 5
+2 no es divisible entre 7 y 5
+3 no es divisible entre 7 y 5
+4 no es divisible entre 7 y 5
+5 no es divisible entre 7 y 5
+6 no es divisible entre 7 y 5
+7 no es divisible entre 7 y 5
+8 no es divisible entre 7 y 5
+9 no es divisible entre 7 y 5
+10 no es divisible entre 7 y 5
+11 no es divisible entre 7 y 5
+12 no es divisible entre 7 y 5
+13 no es divisible entre 7 y 5
+14 no es divisible entre 7 y 5
+15 no es divisible entre 7 y 5
+16 no es divisible entre 7 y 5
+17 no es divisible entre 7 y 5
+18 no es divisible entre 7 y 5
+19 no es divisible entre 7 y 5
+20 no es divisible entre 7 y 5
+21 no es divisible entre 7 y 5
+22 no es divisible entre 7 y 5
+23 no es divisible entre 7 y 5
+24 no es divisible entre 7 y 5
+25 no es divisible entre 7 y 5
+26 no es divisible entre 7 y 5
+27 no es divisible entre 7 y 5
+28 no es divisible entre 7 y 5
+29 no es divisible entre 7 y 5
+30 no es divisible entre 7 y 5
+31 no es divisible entre 7 y 5
+32 no es divisible entre 7 y 5
+33 no es divisible entre 7 y 5
+34 no es divisible entre 7 y 5
+El primer número divisible entre 7 y 5 es 35</code></pre>
+</div>
+</div>
+<p>Podemos ver que el bucle se detiene en el número <span class="math inline">\(35\)</span>, que es el primer número divisible entre <span class="math inline">\(7\)</span> y <span class="math inline">\(5\)</span> en el rango de números del <span class="math inline">\(1\)</span> al <span class="math inline">\(100\)</span>.</p>
+</section>
+<section id="declaración-continue" class="level2">
+<h2 class="anchored" data-anchor-id="declaración-continue">Declaración <code>continue</code></h2>
+<p>La declaración <code>continue</code> se utiliza para saltar a la siguiente iteración de un bucle sin ejecutar el resto del código en el bloque de bucle. Se suele utilizar para omitir ciertas iteraciones de un bucle basándose en una condición.</p>
+<p>Por ejemplo, supongamos que queremos imprimir todos los números del <span class="math inline">\(1\)</span> al <span class="math inline">\(10\)</span> excepto el número <span class="math inline">\(5\)</span>. Podemos usar un bucle <code>for</code> y la declaración <code>continue</code> para saltar la iteración cuando el número es <span class="math inline">\(5\)</span>.</p>
+<div id="42c12644" class="cell" data-execution_count="14">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>):</span>
+<span id="cb32-2"><a href="#cb32-2"></a>    <span class="cf">if</span> i <span class="op">==</span> <span class="dv">5</span>:</span>
+<span id="cb32-3"><a href="#cb32-3"></a>        <span class="cf">continue</span></span>
+<span id="cb32-4"><a href="#cb32-4"></a>    <span class="bu">print</span>(i)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>1
+2
+3
+4
+6
+7
+8
+9
+10</code></pre>
+</div>
+</div>
+<p>Otra declaración que se puede usar en bucles es <code>pass</code>, que no hace nada y se utiliza como marcador de posición cuando no se necesita ejecutar ninguna instrucción en un bloque de código. Pero el resultado no es el mismo que <code>continue</code>, ya que <code>pass</code> no salta a la siguiente iteración, simplemente no hace nada.</p>
+<div id="25cfce7a" class="cell" data-execution_count="15">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>):</span>
+<span id="cb34-2"><a href="#cb34-2"></a>    <span class="cf">if</span> i <span class="op">==</span> <span class="dv">5</span>:</span>
+<span id="cb34-3"><a href="#cb34-3"></a>        <span class="cf">pass</span></span>
+<span id="cb34-4"><a href="#cb34-4"></a>    <span class="bu">print</span>(i)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>1
+2
+3
+4
+5
+6
+7
+8
+9
+10</code></pre>
+</div>
+</div>
+<p>En este caso, el número <span class="math inline">\(5\)</span> se imprimirá, pero no se ejecutará ninguna instrucción cuando <code>i == 5</code>. Es una forma de evitar errores de sintaxis cuando se necesita un bloque de código vacío (por ejemplo, en una declaración <code>if</code> o una función que aún no se ha implementado).</p>
+</section>
+</section>
+<section id="conclusiones" class="level1">
+<h1>Conclusiones</h1>
+<p>En el contexto del análisis y el modelado de datos, ¿cómo crees que las funciones y las estructuras de control pueden ser útiles? ¿Qué tipos de tareas o problemas crees que se pueden abordar de manera más eficiente con funciones y estructuras de control?</p>
+<p>En la próxima lección, exploraremos cómo trabajar con listas, tuplas, conjuntos y diccionarios en Python, que son estructuras de datos fundamentales para el análisis de datos y la programación en general. ¡Nos vemos en la próxima lección!</p>
 
 
 </section>
@@ -1568,6 +1734,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../intro_python/data_structures.html" class="pagination-link" aria-label="Estructuras de Datos">
+        <span class="nav-page-text">Estructuras de Datos</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

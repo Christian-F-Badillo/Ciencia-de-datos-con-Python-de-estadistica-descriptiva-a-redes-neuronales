@@ -1,0 +1,387 @@
+---
+title: "Estructuras de Datos"
+author: "Christian Badillo"
+format: html
+date: today
+order: 4
+jupyter: python3
+ipynb-shell-interactivity: all
+filters:
+  - pyodide
+  - fontawesome
+  - iconify
+---
+
+Los datos son la base de la ciencia, son la materia prima con la que trabajamos. Dada su importancia es necesario contar con herramientas que nos permitan manipularlos de manera eficiente. En este sentido, las ***estructuras de datos*** son una herramienta fundamental en la programación. Se definen como formas de organizar y almacenar datos en la memoria de un computador, de tal manera que se puedan acceder y modificar de manera eficiente.
+
+En esta lección veremos algunas de las estructuras de datos más comunes en Python, como las listas, tuplas, conjuntos, diccionarios, arreglos de NumPy y `DataFrames` de Pandas, así como las propiedades y métodos que las caracterizan.
+
+# Listas
+
+Las listas son una de las estructuras de datos más comunes en Python. Se definen como una colección ordenada de elementos, que pueden ser de cualquier tipo. Para definir una lista se utilizan corchetes `[]` y los elementos se separan por comas `,`. 
+
+```python
+lista = [1, 2, 3, 4, 5]
+```
+Las listas se suelen utilizar para almacenar colecciones de elementos relacionados, como los números de una serie, los nombres de los estudiantes de una clase, las coordenadas de un punto, etc. En general usamos listas cuando necesitamos almacenar una colección de elementos que pueden ser modificados durante la ejecución del programa.
+
+Las listas son ***mutables***, lo que significa que se pueden modificar después de haber sido creadas. Por ejemplo, se pueden agregar elementos a una lista con el método `append()`. Los **métodos** son funciones que se pueden aplicar a un objeto, en este caso a una lista y se sigue la sintaxis `objeto.metodo()`. Nuestro objeto es la lista y el método es `append()`.
+
+Iniciemos una lista vacía y agreguemos elementos a ella.
+
+```{python}
+lista = []
+lista.append(1)
+lista.append(2)
+lista.append(3)
+
+print(lista)
+```
+
+Otro método útil es `extend()`, que permite agregar varios elementos a la vez.
+
+```{python}
+lista.extend([4, 5, 6])
+print(lista)
+```
+Las listas pueden contener elementos de diferentes tipos, incluso otras listas.
+
+```{python}
+lista.append([7, 8, 9])
+print(lista)
+lista.append('hola')
+print(lista)
+```
+
+## Indexación
+
+Para acceder a elementos de una lista se utiliza la indexación. Los índices en Python comienzan en 0, por lo que el primer elemento de una lista tiene índice 0, el segundo índice 1 y así sucesivamente. Para acceder a un elemento de una lista se utiliza la sintaxis `nombredelista[indice]`.
+
+```{python}
+print(lista[0])
+print(lista[1])
+print(lista[2])
+
+# Acceder al último elemento
+print(lista[-1])
+```
+
+## Slicing
+
+El *slicing* es una técnica que permite acceder a subconjuntos de elementos de una lista. Se utiliza la sintaxis `nombredelista[inicio:fin]`, donde `inicio` es el índice del primer elemento que se quiere incluir y `fin` es el índice del primer elemento que no se quiere incluir.
+
+```{python}
+print(lista[0:3])
+print(lista[3:])
+``` 
+
+Si no se especifica el índice de inicio, se asume que es 0. Si no se especifica el índice de fin, se asume que es el último elemento de la lista.
+
+## Modificación
+
+Para modificar un elemento de una lista se utiliza la indexación y la asignación.
+
+```{python}
+lista[0] = 10
+print(lista)
+```
+
+## Eliminación
+
+Para eliminar un elemento de una lista se utiliza el método `remove()` y se especifica el elemento del elemento que se quiere eliminar.
+
+```{python}
+lista.remove(10)
+print(lista)
+```
+
+Si queremos eliminar el último elemento de una lista se puede utilizar el método `pop()`.
+
+```{python}
+lista.pop()
+print(lista)
+```
+
+## Resumen
+
+Las listas tienen un gran número de métodos que permiten realizar operaciones sobre ellas. Un resumen de los métodos más comunes es el siguiente:
+
+- `append()`: Agrega un elemento al final de la lista.
+- `extend()`: Agrega varios elementos al final de la lista.
+- `insert()`: Agrega un elemento en una posición específica.
+- `remove()`: Elimina un elemento de la lista.
+- `pop()`: Elimina un elemento de la lista y lo devuelve.
+- `index()`: Devuelve el índice de un elemento en la lista.
+- `count()`: Cuenta el número de veces que un elemento aparece en la lista.
+- `sort()`: Ordena los elementos de la lista en orden ascendente.
+- `reverse()`: Invierte el orden de los elementos de la lista.
+- `copy()`: Crea una copia de la lista.
+
+Vale la pena hacer enfásis en que no es necesario aprenderse todos los métodos de memoria, sino que es más importante entender para qué y cómo se pueden utilizar las listas, los métodos se pueden consultar en la documentación de Python, buscando en Google o preguntandole a ChatGPT.
+
+# Tuplas
+
+Las tuplas son una estructura de datos similar a las listas, pero con la diferencia de que son ***inmutables***, es decir, una vez creadas no se pueden modificar. Se definen utilizando paréntesis `()` y los elementos se separan por comas `,`.
+
+```python
+tupla = (1, 2, 3, 4, 5)
+```
+
+Las tuplas se utilizan cuando se necesita almacenar una colección de elementos que no van a cambiar durante la ejecución del programa como el número de ensayos de un experimento, las coordenadas de un punto, etc.
+
+Las tuplas soportan indexación, slicing y la función `len()` para obtener la longitud de la tupla.
+
+```{python}
+tupla = (1, 2, 3, 4, 5)
+
+print(tupla[0])
+print(tupla[1])
+
+print(tupla[0:3])
+
+print(len(tupla))
+```
+
+Las tuplas también pueden contener elementos de diferentes tipos y otras tuplas.
+
+```{python}
+tupla = (1, 2, 3, (4, 5), 'hola', [6, 7, 8])
+print(tupla)
+```
+
+# Conjuntos
+
+Los conjuntos son una estructura de datos que almacena elementos únicos, es decir, no se pueden repetir. Se definen utilizando llaves `{}` y los elementos se separan por comas `,`. 
+
+```python
+conjunto = {1, 2, 3, 4, 5}
+```
+
+Funcionan igual que los conjuntos matemáticos, por lo que se pueden realizar operaciones como unión, intersección, diferencia, etc. Los conjuntos no soportan indexación ni slicing, ya que no tienen un **orden** definido.
+
+```{python}
+conjunto1 = {1, 2, 3, 4, 5}
+conjunto2 = {4, 5, 6, 7, 8}
+
+# Unión de conjuntos
+print(conjunto1.union(conjunto2))
+
+# Intersección de conjuntos
+print(conjunto1.intersection(conjunto2))
+
+# Diferencia de conjuntos
+print(conjunto1.difference(conjunto2))
+
+# Diferencia simétrica de conjuntos
+print(conjunto1.symmetric_difference(conjunto2))
+```
+
+Se pueden agregar elementos a un conjunto con el método `add()` y eliminar elementos con el método `remove()`.
+
+```{python}
+conjunto = {1, 2, 3, 4, 5}
+conjunto.add(6)
+print(conjunto)
+
+conjunto.remove(6)
+print(conjunto)
+```
+
+# Diccionarios
+
+Los diccionarios son una estructura de datos que almacena pares de clave-valor, es decir, cada elemento del diccionario tiene una clave que lo identifica y un valor asociado. Se definen utilizando llaves `{}`, los pares clave-valor se separan por comas `,` y la clave y el valor se separan por dos puntos `:`.
+
+```python
+diccionario = {'nombre': 'Juan', 'edad': 25, 'ciudad': 'Bogotá'}
+```
+
+Para acceder a un valor de un diccionario se utiliza la clave correspondiente.
+
+```{python}
+diccionario = {'nombre': 'Juan', 'edad': 25, 'ciudad': 'Bogotá'}
+
+print(diccionario['nombre'])
+print(diccionario['edad'])
+print(diccionario['ciudad'])
+```
+
+Este tipo de estructura es muy útil para almacenar información estructurada, como los datos de una persona, los resultados de un experimento, etc. Los diccionarios son mutables, por lo que se pueden modificar, agregar y eliminar elementos.
+
+```{python}
+# Modificar un valor
+diccionario['edad'] = 30
+print(diccionario)
+
+# Agregar un nuevo par clave-valor
+diccionario['telefono'] = '123456789'
+print(diccionario)
+
+# Eliminar un par clave-valor
+del diccionario['telefono']
+print(diccionario)
+```
+
+Los diccionarios tienen varios métodos útiles, como `keys()`, `values()` y `items()` que permiten obtener las claves, los valores y los pares clave-valor del diccionario, respectivamente.
+
+```{python}
+print(diccionario.keys())
+
+print(diccionario.values())
+
+print(diccionario.items())
+```
+
+Es importante tener en cuenta que las claves de un diccionario deben ser únicas, es decir, no puede haber dos claves iguales en un diccionario. Si se intenta agregar una clave que ya existe, se reemplazará el valor asociado a esa clave. 
+
+Otra característica importante de los diccionarios es que no tienen un orden definido, es decir, los elementos no se almacenan en el orden en que se agregaron, pero son altamente eficientes para buscar y acceder a elementos por su clave, formalmente se dice que tienen una complejidad de tiempo de acceso de $O(1)$ una caractertica común en las estructuras de datos de tipo *hash*.
+
+# Arreglos de NumPy
+
+[NumPy](https://numpy.org/) es una librería de Python que permite trabajar con arreglos multidimensionales de manera eficiente. Los arreglos de NumPy son similares a las listas de Python, pero con la diferencia de que todos los elementos de un arreglo de NumPy deben ser del mismo tipo. Se definen utilizando la función `array()` de NumPy.
+
+```python
+import numpy as np
+
+arreglo = np.array([1, 2, 3, 4, 5])
+```
+
+Este tipo de estructuras son ampliamente utilizadas en la ciencia de datos, ya que permiten realizar operaciones matemáticas sobre los datos de manera eficiente. Los arreglos de NumPy soportan indexación, slicing y operaciones matemáticas como suma, resta, multiplicación, operacioens de matrices, etc.
+
+```{python}
+import numpy as np
+
+arreglo = np.array([1, 2, 3, 4, 5]) # Crear un arreglo de NumPy
+
+print(arreglo) # Imprimir el arreglo
+
+print(arreglo[0]) # Acceder al primer elemento
+
+print(arreglo[0:3]) # Acceder a los primeros tres elementos
+
+print(arreglo + 10) # Sumar 10 a cada elemento
+
+print(arreglo * 2) # Multiplicar cada elemento por 2
+```
+
+Las operaicones matemáticas en NumPy se realizan elemento a elemento, es decir, se aplican a cada elemento del arreglo por separado. Esto es muy útil para realizar operaciones matemáticas sobre grandes cantidades de datos de manera eficiente.
+
+Podemos crear arreglos de NumPy multidimensionales, es decir, arreglos que contienen otros arreglos. Por ejemplo, un arreglo de dos dimensiones es similar a una matriz.
+
+```{python}
+import numpy as np
+
+matriz = np.array([[1, 2, 3], 
+                    [4, 5, 6], 
+                    [7, 8, 9]])
+
+print(matriz)
+```
+
+Para acceder a elementos de una matriz se utiliza la indexación con dos índices, uno para la fila y otro para la columna.
+
+```{python}
+print(matriz[0, 0]) # Primer elemento, fila 0, columna 0
+print(matriz[1, 0]) # Elemento en la fila 1, columna 0
+print(matriz[2, 2]) # Último elemento, fila 2, columna 2
+```
+
+# DataFrames de Pandas
+
+[Pandas](https://pandas.pydata.org/) es una librería de Python que permite trabajar con datos estructurados de manera eficiente. Una de las estructuras de datos más importantes de Pandas es el `DataFrame`, que es una tabla de datos bidimensional con filas y columnas. Se puede pensar en un `DataFrame` como una hoja de cálculo de Excel o una tabla de una base de datos.
+
+Para crear un `DataFrame` se utiliza la función `DataFrame()` de Pandas y se le pasa un diccionario con los datos.
+
+```{python}
+import pandas as pd
+
+datos = {'nombre': ['Juan', 'María', 'Pedro', 'Ana'],
+         'edad': [25, 30, 35, 40],
+         'ciudad': ['Bogotá', 'Medellín', 'Cali', 'Barranquilla']}
+
+df = pd.DataFrame(datos)
+
+print(df)
+```
+
+Pandas incluye una serie de funciones y métodos para trabajar con `DataFrames`, como `head()`, `tail()`, `info()`, `describe()`, etc. Exploraremos en profundidad estas funciones en una lección posterior.
+
+## Slicing en DataFrames
+
+Por ahora veamos cómo acceder a elementos de un `DataFrame`. Podemos acceder a las primeras y últimas filas de un `DataFrame` utilizando los métodos `head()` y `tail()`, respectivamente
+
+```{python}
+# Cargo un conjunto de datos de ejemplo
+df = pd.read_csv('https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv') 
+
+df.head() # Imprimir las primeras filas del DataFrame
+
+df.tail() # Imprimir las últimas filas del DataFrame
+```
+
+Podemos acceder a las columnas de un `DataFrame` utilizando la indexación con corchetes `[]` y el nombre de la columna entre comillas simples o dobles.
+
+```{python}
+df['sepal_length'] # Acceder a la columna 'sepal_length'
+```
+
+Otra manera de acceder a una columna es utilizando la notación de punto `.` y el nombre de la columna, pero esta forma no es muy usada dado que complica el acceso a columnas con nombres que contienen espacios o caracteres especiales.
+
+```{python}
+df.sepal_length # Acceder a la columna 'sepal_length'
+```
+
+También podemos acceder a filas y columnas utilizando la función `loc[]` y los nombres de las filas y columnas.
+
+```{python}
+df.loc[:, 'sepal_length'] # Acceder al elemento en la fila 0 y columna 'sepal_length'
+# Recuerden que si usamos : estamos seleccionando todas las filas, primero se seleccionan las filas y luego las columnas
+```
+
+Si queremos seleccionar varias columnas podemos pasar una lista con los nombres de las columnas.
+
+```{python}
+col_names = ['sepal_length', 'sepal_width']
+df.loc[:, col_names] # Acceder a las columnas 'sepal_length' y 'sepal_width'
+```
+
+Si queremos seleccionar las filas 5, 14, 23 y las columnas 'sepal_length' y 'sepal_width' podemos hacerlo de la siguiente manera.
+
+```{python}
+filas = [5, 14, 23]
+col_names = ['sepal_length', 'sepal_width']
+
+df.loc[filas, col_names] # Acceder a las filas 5, 14, 23 y las columnas 'sepal_length' y 'sepal_width'
+```
+
+## Modificación de DataFrames
+
+Podemos agregar una nueva columna a un `DataFrame` utilizando la notación de corchetes `[]` y el nombre de la nueva columna y asignándole una lista con los valores de la columna.
+
+Creemos una nueva columna que contenga la suma de las columnas 'sepal_length' y 'sepal_width'.
+
+```{python}
+df['sepal_sum'] = df['sepal_length'] + df['sepal_width']
+df.head()
+```
+
+Para eliminar una columna de un `DataFrame` se utiliza el método `drop()` y se pasa el nombre de la columna y el eje en el que se quiere eliminar, los ejes son 0 para filas y 1 para columnas.
+
+```{python}
+df.drop('sepal_sum', axis=1, inplace=True)
+df.head()
+```
+
+El parámetro `inplace=True` indica que la operación se realice sobre el `DataFrame` original, si se omite se crea una copia del `DataFrame` con la columna eliminada, pero si esta copia no se asigna a una variable se perderá.
+
+Si queremos modificar un valor de un `DataFrame` se localiza el elemento con `loc[]` y se asigna el nuevo valor.
+
+```{python}
+df.head()
+df.loc[0, 'sepal_length'] = 10
+df.head()
+```
+
+# Conclusiones
+
+En esta lección hemos visto algunas de las estructuras de datos más comunes en Python, como las listas, tuplas, conjuntos, diccionarios, arreglos de NumPy y `DataFrames` de Pandas. Cada una de estas estructuras tiene sus propias características y métodos que permiten realizar operaciones sobre los datos de manera eficiente. Cada estructura de datos es adecuada para diferentes tipos de problemas, por lo que es importante conocerlas y saber cuándo utilizar cada una. En las siguientes lecciones veremos cómo trabajar con estas estructuras de datos en la práctica y cómo realizar operaciones más avanzadas sobre los datos.
+

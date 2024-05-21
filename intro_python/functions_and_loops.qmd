@@ -15,7 +15,17 @@ filters:
 
 En esta lección, aprenderemos sobre funciones y estructuras de control en Python. Las funciones son bloques de código que se pueden reutilizar en diferentes partes de un programa, permitiendo que el código sea más modular y fácil de mantener. Las estructuras de control son bloques de código que permiten controlar el flujo de ejecución de un programa, como bucles y declaraciones condicionales. Son dos conceptos fundamentales en programación que nos permiten escribir código más eficiente y legible.
 
-Antes de proceder, hay que explicar la tabulación en Python. A diferencia de otros lenguajes de programación que utilizan llaves `{}` para delimitar bloques de código, Python utiliza la tabulación para indicar la estructura del código. Esto significa que los bloques de código se definen por la cantidad de espacios o tabulaciones al principio de una línea. Es importante mantener la consistencia en la tabulación para que el código funcione correctamente.
+# Tabulación en Python
+
+Antes de proceder, hay que explicar la tabulación en Python. A diferencia de otros lenguajes de programación que utilizan llaves `{}` para delimitar bloques de código, Python utiliza la tabulación para indicar la estructura del código. Esto significa que los bloques de código se definen por la cantidad de espacios o tabulaciones al principio de una línea. Es importante mantener la consistencia en la tabulación para que el código funcione correctamente. Por ejemplo, en una función, el cuerpo de la función debe estar tabulado con 4 espacios o una tabulación.
+
+```python
+def funcion():
+    # Cuerpo de la función
+    print('Hola, mundo!')
+```
+
+Si no se mantiene la consistencia en la tabulación, Python generará un error de indentación. Por ejemplo, si el cuerpo de la función no está tabulado correctamente, se generará un error de sintaxis.
 
 # Funciones
 
@@ -30,7 +40,7 @@ def saludo(nombre):
 saludo('Christian')
 ```
 
-Algo a destacar en esta función es que usamos una característica de las `strings` denominada **f-string** para imprimir el saludo. Las f-strings son una forma de formatear cadenas de texto en Python, permitiendo la interpolación de variables dentro de una cadena. Para definir una f-string, se coloca una `f` antes de las comillas de apertura y se encierra la variable entre llaves `{}`. Es decir, le estamos diciendo a Python que reemplace `{nombre}` con el valor de la variable `nombre` que en este caso es `'Christian'`.
+En nuestra función usamos una f-string para imprimir un saludo personalizado, las ***f-strings*** son una forma de formatear cadenas de texto en Python, permitiendo la interpolación de variables dentro de una cadena. Para definir una f-string, se coloca una `f` antes de las comillas de apertura y se encierra la variable entre llaves `{}`. Es decir, le estamos diciendo a Python que reemplace `{nombre}` con el valor de la variable `nombre` que en este caso es `'Christian'`.
 
 Las funciones pueden devolver un valor usando la palabra clave `return`. Por ejemplo, la siguiente función `cuadrado` recibe un número `x` y devuelve su cuadrado:
 
@@ -93,7 +103,52 @@ suma_lambda = lambda x, y: x + y
 print(suma_lambda(3, 4))
 ```
 
-## Creando funciones legibles
+## Paquetes y Módulos
+
+En Python, las funciones se pueden organizar en módulos y paquetes para facilitar la reutilización y la organización del código. Un ***módulo*** es un archivo que contiene definiciones y declaraciones de Python, como funciones, clases y variables. Un ***paquete*** es una colección de módulos organizados en un directorio. Es decir, que un paquete es una carpeta que contiene archivos de python (módulos) que contienen funciones, clases y variables que puedes utilizar en tu programa.
+
+Hay paqueterias y modulos muy útiles que se pueden importar en Python, por ejemplo, la paquetería `math` que contiene funciones matemáticas comunes, como `sqrt` para calcular la raíz cuadrada de un número. Para importar un módulo o una función de un módulo, se utiliza la palabra clave `import` seguida del nombre del módulo.
+
+```python
+import math
+```
+
+Una vez que se ha importado un módulo, se puede acceder a sus funciones y variables utilizando la notación de punto. Por ejemplo, para calcular la raíz cuadrada de un número, se puede utilizar la función `sqrt` del módulo `math`.
+
+```{python}
+import math
+print(math.sqrt(16))
+```
+
+También es posible importar funciones específicas de un módulo utilizando la palabra clave `from`. Por ejemplo, para importar solo la función `sqrt` del módulo `math`, se puede hacer lo siguiente:
+
+```{python}
+from math import sqrt
+
+print(sqrt(16))
+```
+
+Muchas veces las paqueterias tienen nombres muy largos, por lo que se pueden importar con un alias utilizando la palabra clave `as`, las paqueterias más comunes en python tienen alias ya acordados en la comunidad, por ejemplo, `pandas` una paquetería muy utilizada para el análisis de datos se importa con el alias `pd`.
+
+```python
+import pandas as pd
+```
+
+De esta forma, se puede acceder a las funciones y variables de la paquetería `pandas` utilizando el alias `pd`.
+
+Existe un gran número de paqueterías y módulos disponibles en Python que proporcionan funcionalidades adicionales para tareas específicas, como el análisis de datos, la visualización, el aprendizaje automático, etc. Estas paqueterías pueden ser muy útiles para acelerar el desarrollo de aplicaciones y realizar tareas complejas de manera eficiente.
+
+No todas las paqueterias vienen preinstaladas con Python, por lo que es necesario instalarlas con un administrador de paquetes, el más común es `pip`. Para instalar una paquetería con `pip`, se utiliza el siguiente comando en la terminal:
+
+```bash
+pip install nombre_paqueteria
+```
+
+O si se usa jupyter notebook o jupyter lab, se puede instalar una paquetería con el comando `!pip install nombre_paqueteria`.
+
+Cada paqueteria tiene su propia documentación, por lo que es recomendable revisarla para conocer todas las funciones y características que ofrece. 
+
+## Legibilidad y Documentación de Funciones
 
 Es importante que las funciones sean fáciles de leer y entender. Para ello, es recomendable seguir las siguientes buenas prácticas:
 
@@ -107,21 +162,22 @@ Veamos un ejemplo de una función bien documentada y legible:
 ```{pyodide-python}
 import numpy as np
 import matplotlib.pyplot as plt
+from typing import Tuple
 
-def sine_wave(amplitude: float = None, frequency: float = None, phase: float = None, duration: float = None, sample_rate: float = None):
+def sine_wave(amplitude: float = None, frequency: float = None, phase: float = None, duration: float = None, sample_rate: float = None) -> Tuple[np.ndarray, np.ndarray]:
     """
     Generate a sine wave signal.
 
     Parameters:
-    - amplitude: The amplitude of the sine wave.
-    - frequency: The frequency of the sine wave in Hz.
-    - phase: The phase of the sine wave in radians.
-    - duration: The duration of the signal in seconds.
-    - sample_rate: The sample rate of the signal in Hz.
+    - `amplitude`: The amplitude of the sine wave.
+    - `frequency`: The frequency of the sine wave in Hz.
+    - `phase`: The phase of the sine wave in radians.
+    - `duration`: The duration of the signal in seconds.
+    - `sample_rate`: The sample rate of the signal in Hz.
 
     Returns:
-    - t: An array of time values.
-    - x: An array of signal values.
+    - `t`: An array of time values.
+    - `x`: An array of signal values.
     """
     t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False) # Generate time values
     x = amplitude * np.sin(2 * np.pi * frequency * t + phase) # Generate signal values
@@ -131,7 +187,15 @@ def sine_wave(amplitude: float = None, frequency: float = None, phase: float = N
 t, x = sine_wave(amplitude=1, frequency=1, phase=0, duration=1, sample_rate=1000) 
 
 # Plot the sine wave signal
-def plot_signal(t, x):
+def plot_signal(t: np.ndarray, x: np.ndarray) -> None:
+    """
+    Plot a signal.
+
+    Parameters:
+    - `t`: An array of time values.
+    - `x`: An array of signal values.
+    """
+
     plt.figure() # Create a new figure
     plt.plot(t, x) # Plot the signal
     plt.xlabel('Time (s)') # Set the x-axis label
@@ -143,6 +207,8 @@ plot_signal(t, x)
 ```
 
 En este ejemplo, hemos definido una función `sine_wave` que genera una señal de onda sinusoidal con los parámetros de amplitud, frecuencia, fase, duración y tasa de muestreo especificados. Hemos documentado la función con un docstring que explica los parámetros que espera y el valor que devuelve. También hemos definido una función `plot_signal` que traza la señal generada. Esta función es más legible y fácil de entender gracias a los comentarios y la documentación.
+
+Un ejemplo profesional de documentación de funciones es la documentación de la paquetería `numpy`, que proporciona una descripción detallada de cada función, los parámetros que espera y el valor que devuelve. Puedes consultar la documentación de `numpy` en el siguiente enlace: [https://numpy.org/doc/stable/](https://numpy.org/doc/stable/).
 
 # Estrucutras de Control
 
@@ -265,10 +331,6 @@ Hemos combinado el uso de un bucle `while` con una declaración `if` para contar
 
 Combinar funciones, bucles y estructuras de control es una de las formas más poderosas de programar en cualquier lenguaje, y Python no es la excepción.
 
-# Conclusión
-
-El uso de funciones y estructuras de control es fundamental en Python y en la programación en general. Las funciones nos permiten reutilizar código y hacerlo más modular y fácil de mantener. Las estructuras de control nos permiten controlar el flujo de ejecución de un programa y realizar tareas repetitivas de manera eficiente. Es importante comprender cómo usar funciones y estructuras de control para escribir código más eficiente y legible. En la siguiente lección, veremos cómo trabajar con listas, tuplas y diccionarios en Python.
-
 # Ejercicios
 
 1. Escribe una función que tome dos números como argumentos y devuelva el mayor de los dos.
@@ -284,3 +346,54 @@ El uso de funciones y estructuras de control es fundamental en Python y en la pr
 ```{pyodide-python}
 # Escribe tu código aquí
 ```
+
+# Manejando Bucles de Control
+
+Hay ocasiones en las que necesitamos salir de un bucle antes de que se complete o saltar a la siguiente iteración sin ejecutar el resto del código. En Python, podemos hacer esto con las declaraciones `break` y `continue`.
+
+## Declaración `break`
+
+La declaración `break` se utiliza para salir de un bucle antes de que se complete. Cuando se encuentra una declaración `break`, el bucle se detiene y la ejecución continúa con la siguiente instrucción después del bucle. La declaración `break` se puede utilizar en bucles `for` y `while`. Se suele utilizar para salir de un bucle cuando se cumple una condición específica utilizando una declaración `if`.
+
+Supongamos que queremos encontrar el primer número divisible entre $7$ y $5$ en un rango de números del $1$ al $100$. Podemos usar un bucle `for` y la declaración `break` para salir del bucle cuando se encuentre el número deseado.
+
+```{python}
+for i in range(1, 101):
+    if i % 7 == 0 and i % 5 == 0:
+        print(f'El primer número divisible entre 7 y 5 es {i}')
+        break
+    else:
+        print(f'{i} no es divisible entre 7 y 5')
+```
+
+Podemos ver que el bucle se detiene en el número $35$, que es el primer número divisible entre $7$ y $5$ en el rango de números del $1$ al $100$.
+
+## Declaración `continue`
+
+La declaración `continue` se utiliza para saltar a la siguiente iteración de un bucle sin ejecutar el resto del código en el bloque de bucle. Se suele utilizar para omitir ciertas iteraciones de un bucle basándose en una condición.
+
+Por ejemplo, supongamos que queremos imprimir todos los números del $1$ al $10$ excepto el número $5$. Podemos usar un bucle `for` y la declaración `continue` para saltar la iteración cuando el número es $5$.
+
+```{python}
+for i in range(1, 11):
+    if i == 5:
+        continue
+    print(i)
+```
+
+Otra declaración que se puede usar en bucles es `pass`, que no hace nada y se utiliza como marcador de posición cuando no se necesita ejecutar ninguna instrucción en un bloque de código. Pero el resultado no es el mismo que `continue`, ya que `pass` no salta a la siguiente iteración, simplemente no hace nada.
+
+```{python}
+for i in range(1, 11):
+    if i == 5:
+        pass
+    print(i)
+```
+
+En este caso, el número $5$ se imprimirá, pero no se ejecutará ninguna instrucción cuando `i == 5`. Es una forma de evitar errores de sintaxis cuando se necesita un bloque de código vacío (por ejemplo, en una declaración `if` o una función que aún no se ha implementado).
+
+# Conclusiones
+
+En el contexto del análisis y el modelado de datos, ¿cómo crees que las funciones y las estructuras de control pueden ser útiles? ¿Qué tipos de tareas o problemas crees que se pueden abordar de manera más eficiente con funciones y estructuras de control? 
+
+En la próxima lección, exploraremos cómo trabajar con listas, tuplas, conjuntos y diccionarios en Python, que son estructuras de datos fundamentales para el análisis de datos y la programación en general. ¡Nos vemos en la próxima lección!
