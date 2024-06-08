@@ -268,7 +268,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"id":1,"options":{"results":"markup","fig-height":5,"warning":"true","fig-width":7,"dpi":72,"output":"true","out-width":"700px","read-only":"false","comment":"","context":"interactive","autorun":"","label":"","out-height":"","fig-cap":"","classes":"","message":"true"},"code":"msg = \"Hola Mundo\"\nprint(msg)"},{"id":2,"options":{"results":"markup","fig-height":5,"warning":"true","fig-width":7,"dpi":72,"output":"true","out-width":"700px","read-only":"false","comment":"","context":"interactive","autorun":"","label":"","out-height":"","fig-cap":"","classes":"","message":"true"},"code":"import random\nrandom.seed(42)\n\n## Función para calcular el valor de pi utilizando Monte Carlo\ndef monte_carlo_pi(n):\n    inside = 0\n    for _ in range(n):\n        x = random.random()\n        y = random.random()\n        if x**2 + y**2 <= 1:\n            inside += 1\n    return 4 * inside / n\n\n## Calcular el valor de pi\nn = 1000000\npi = monte_carlo_pi(n)\npi"},{"id":3,"options":{"results":"markup","fig-height":5,"warning":"true","fig-width":7,"dpi":72,"output":"true","out-width":"700px","read-only":"false","comment":"","context":"interactive","autorun":"","label":"","out-height":"","fig-cap":"","classes":"","message":"true"},"code":"## Importar las librerías necesarias\nimport matplotlib.pyplot as plt\nimport random\n\n## Generar datos aleatorios\nx = [random.random() for _ in range(1000)]\ny = [random.random() for _ in range(1000)]\n\n## Crear una gráfica de dispersión\nplt.scatter(x, y)\nplt.xlabel(\"x\")\nplt.ylabel(\"y\")\nplt.title(\"Gráfica de dispersión\")\nplt.show()"},{"id":4,"options":{"results":"markup","fig-height":5,"warning":"true","fig-width":7,"dpi":72,"output":"true","out-width":"700px","read-only":"false","comment":"","context":"interactive","autorun":"","label":"","out-height":"","fig-cap":"","classes":"","message":"true"},"code":"## Importar las librerías necesarias\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.neural_network import MLPClassifier\nfrom sklearn.metrics import accuracy_score\nimport pandas as pd\n\n## Cargar el conjunto de datos de iris\niris = load_iris()\nX = iris.data\ny = iris.target\n\n## Crear un DataFrame de pandas\ndf = pd.DataFrame(X, columns=iris.feature_names)\ndf.head()"},{"id":5,"options":{"results":"markup","fig-height":5,"warning":"true","fig-width":7,"dpi":72,"output":"true","out-width":"700px","read-only":"false","comment":"","context":"interactive","autorun":"","label":"","out-height":"","fig-cap":"","classes":"","message":"true"},"code":"## Dividir los datos en un conjunto de entrenamiento y un conjunto de prueba\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n\n## Crear un clasificador de redes neuronales Multilayer Perceptron\nclf = MLPClassifier(hidden_layer_sizes=(10, 10), max_iter=1000)\nclf.fit(X_train, y_train)\n\n## Predecir las etiquetas de las flores\ny_pred = clf.predict(X_test)\n\n## Calcular la precisión del clasificador\naccuracy = accuracy_score(y_test, y_pred)\naccuracy"}];
+globalThis.qpyodideCellDetails = [{"options":{"autorun":"","message":"true","comment":"","fig-height":5,"classes":"","warning":"true","context":"interactive","out-height":"","results":"markup","output":"true","out-width":"700px","fig-cap":"","fig-width":7,"read-only":"false","label":"","dpi":72},"code":"msg = \"Hola Mundo\"\nprint(msg)","id":1},{"options":{"autorun":"","message":"true","comment":"","fig-height":5,"classes":"","warning":"true","context":"interactive","out-height":"","results":"markup","output":"true","out-width":"700px","fig-cap":"","fig-width":7,"read-only":"false","label":"","dpi":72},"code":"import random\nrandom.seed(42)\n\n## Función para calcular el valor de pi utilizando Monte Carlo\ndef monte_carlo_pi(n):\n    inside = 0\n    for _ in range(n):\n        x = random.random()\n        y = random.random()\n        if x**2 + y**2 <= 1:\n            inside += 1\n    return 4 * inside / n\n\n## Calcular el valor de pi\nn = 1000000\npi = monte_carlo_pi(n)\npi","id":2},{"options":{"autorun":"","message":"true","comment":"","fig-height":5,"classes":"","warning":"true","context":"interactive","out-height":"","results":"markup","output":"true","out-width":"700px","fig-cap":"","fig-width":7,"read-only":"false","label":"","dpi":72},"code":"## Importar las librerías necesarias\nimport matplotlib.pyplot as plt\nimport random\n\n## Generar datos aleatorios\nx = [random.random() for _ in range(1000)]\ny = [random.random() for _ in range(1000)]\n\n## Crear una gráfica de dispersión\nplt.scatter(x, y)\nplt.xlabel(\"x\")\nplt.ylabel(\"y\")\nplt.title(\"Gráfica de dispersión\")\nplt.show()","id":3},{"options":{"autorun":"","message":"true","comment":"","fig-height":5,"classes":"","warning":"true","context":"interactive","out-height":"","results":"markup","output":"true","out-width":"700px","fig-cap":"","fig-width":7,"read-only":"false","label":"","dpi":72},"code":"## Importar las librerías necesarias\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.neural_network import MLPClassifier\nfrom sklearn.metrics import accuracy_score\nimport pandas as pd\n\n## Cargar el conjunto de datos de iris\niris = load_iris()\nX = iris.data\ny = iris.target\n\n## Crear un DataFrame de pandas\ndf = pd.DataFrame(X, columns=iris.feature_names)\ndf.head()","id":4},{"options":{"autorun":"","message":"true","comment":"","fig-height":5,"classes":"","warning":"true","context":"interactive","out-height":"","results":"markup","output":"true","out-width":"700px","fig-cap":"","fig-width":7,"read-only":"false","label":"","dpi":72},"code":"## Dividir los datos en un conjunto de entrenamiento y un conjunto de prueba\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n\n## Crear un clasificador de redes neuronales Multilayer Perceptron\nclf = MLPClassifier(hidden_layer_sizes=(10, 10), max_iter=1000)\nclf.fit(X_train, y_train)\n\n## Predecir las etiquetas de las flores\ny_pred = clf.predict(X_test)\n\n## Calcular la precisión del clasificador\naccuracy = accuracy_score(y_test, y_pred)\naccuracy","id":5}];
 
 
 </script>
@@ -598,12 +598,21 @@ window.Quarto = {
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Manejo de Datos</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Estadística con Python</span></span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Manejo de Datos y Estadística con Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/data_manipulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Manipulation</span></a>
+  </div>
+</li>
+      </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">
@@ -673,7 +682,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">20 de mayo de 2024</p>
+      <p class="date">7 de junio de 2024</p>
     </div>
   </div>
   
@@ -1157,7 +1166,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/christian-f-badillo\.github\.io\/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

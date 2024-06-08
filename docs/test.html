@@ -232,7 +232,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"options":{"results":"markup","message":"true","dpi":72,"output":"true","autorun":"","fig-cap":"","label":"","fig-height":5,"fig-width":7,"out-width":"700px","read-only":"false","warning":"true","comment":"","classes":"","context":"interactive","out-height":""},"id":1,"code":"n = 5\nwhile n > 0:\n  print(n)\n  n = n - 1\n\nprint('Blastoff!')"}];
+globalThis.qpyodideCellDetails = [{"id":1,"code":"n = 5\nwhile n > 0:\n  print(n)\n  n = n - 1\n\nprint('Blastoff!')","options":{"context":"interactive","autorun":"","out-width":"700px","fig-width":7,"label":"","dpi":72,"warning":"true","results":"markup","out-height":"","fig-cap":"","output":"true","fig-height":5,"comment":"","read-only":"false","message":"true","classes":""}}];
 
 
 </script>
@@ -759,7 +759,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/christian-f-badillo\.github\.io\/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

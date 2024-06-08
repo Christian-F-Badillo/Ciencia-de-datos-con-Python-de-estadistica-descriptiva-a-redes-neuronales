@@ -1,0 +1,1 @@
+Sitemap: https://christian-f-badillo.github.io/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/sitemap.xml

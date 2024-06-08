@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Christian Badillo">
 
-<title>Ciencia de Datos con Python -</title>
+<title>Ciencia de Datos con Python - Manipulación de datos con Pandas</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,26 +24,27 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/site_libs/quarto-nav/headroom.min.js"></script>
-<script src="/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/site_libs/clipboard/clipboard.min.js"></script>
-<script src="/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/site_libs/quarto-search/fuse.min.js"></script>
-<script src="/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/">
-<script src="/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/site_libs/quarto-html/quarto.js"></script>
-<script src="/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/site_libs/quarto-html/popper.min.js"></script>
-<script src="/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/site_libs/quarto-html/anchor.min.js"></script>
-<link href="/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../intro_python/data_structures.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -72,41 +74,186 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/styles.css">
-<meta property="og:title" content="Ciencia de Datos con Python -">
+<link rel="stylesheet" href="../styles.css">
+<meta property="og:title" content="Ciencia de Datos con Python - Manipulación de datos con Pandas">
 <meta property="og:site_name" content="Ciencia de Datos con Python">
 <meta property="og:locale" content="es_MX">
-<meta name="twitter:title" content="Ciencia de Datos con Python -">
+<meta name="twitter:title" content="Ciencia de Datos con Python - Manipulación de datos con Pandas">
 <meta name="twitter:card" content="summary">
 </head>
 
-<body class="fullcontent">
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/data_manipulation.html">Manejo de Datos y Estadística con Python</a></li><li class="breadcrumb-item"><a href="../statistics/data_manipulation.html">Manipulación de datos con Pandas</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../img/logo-members/Lab25_logo_2015.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Ciencia de Datos con Python</a> 
+        <div class="sidebar-tools-main">
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales">
+            Source Code
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inicio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acerca</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Fundamentos de Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro_python/Cloud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instalación de Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro_python/Variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Declaración de Variables y Operaciones</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro_python/functions_and_loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Funciones y Bucles de Control</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro_python/data_structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Estructuras de Datos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Manejo de Datos y Estadística con Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/data_manipulation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Manipulación de datos con Pandas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Redes Neuronales</span></span>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de Contenido</h2>
+   
+  <ul>
+  <li><a href="#leyeando-datos-con-pandas" id="toc-leyeando-datos-con-pandas" class="nav-link active" data-scroll-target="#leyeando-datos-con-pandas">Leyeando datos con Pandas</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/edit/main/statistics/data_manipulation.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/data_manipulation.html">Manejo de Datos y Estadística con Python</a></li><li class="breadcrumb-item"><a href="../statistics/data_manipulation.html">Manipulación de datos con Pandas</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Manipulación de datos con Pandas</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source" data-quarto-source-url="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/blob/main/statistics/data_manipulation.qmd"><i class="bi"></i> Ver código</button></div></div>
+</div>
 
 
 
-<center>
-<h1 style="font-size: 80px;">
-ERROR 404
-</h1>
-</center>
-<center>
-<p><img src="/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/img/404_cat.gif" alt="404 image" height="350px" width="500px"></p>
-<h3 class="anchored">
-Lo sentimos, la página que buscas no existe. <br> Por favor, verifica la URL o regresa a la <a href="https://christian-f-badillo.github.io/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/">página principal</a>
-</h3>
-</center>
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Autor/a</div>
+    <div class="quarto-title-meta-contents">
+             <p>Christian Badillo </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">7 de junio de 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<section id="leyeando-datos-con-pandas" class="level1">
+<h1>Leyeando datos con Pandas</h1>
+
+
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Volver arriba</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -332,6 +479,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/christian-f-badillo\.github\.io\/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales\/");
@@ -664,6 +862,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../intro_python/data_structures.html" class="pagination-link" aria-label="Estructuras de Datos">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Estructuras de Datos</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -672,7 +879,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/edit/main/404.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/edit/main/statistics/data_manipulation.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Hecho con <a href="https://www.python.org/"><i class="fa-brands fa-python" aria-label="python"></i></a> y <a href="https://quarto.org">Quarto</a> <br> Código fuente disponible en <a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales">GitHub</a></p>
 </div>

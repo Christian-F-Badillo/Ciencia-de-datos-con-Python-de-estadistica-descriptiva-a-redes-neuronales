@@ -1,0 +1,13 @@
+---
+title: "Manipulación de datos con Pandas"
+author: "Christian Badillo"
+format: html
+date: today
+order: 1
+filters:
+  - pyodide
+  - fontawesome
+  - iconify
+---
+
+# Leyeando datos con Pandas

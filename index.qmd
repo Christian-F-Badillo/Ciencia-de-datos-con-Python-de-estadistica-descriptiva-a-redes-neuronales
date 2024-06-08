@@ -44,7 +44,7 @@ Una parte importante del curso es crear un ambiente de aprendizaje colaborativo,
 - {{< fa calendar >}} &nbsp; Lunes - Viernes
 - {{< fa calendar-alt >}} &nbsp; 10 de junio - 28 de junio de 2024
 - {{< fa clock >}} &nbsp; 13:30 - 15:30 hrs
-- {{< fa location-dot >}} &nbsp; Salón Pendiente
+- {{< fa location-dot >}} &nbsp; A209
 - {{< fa chalkboard-user >}} &nbsp; [Classroom](https://classroom.google.com/c/NjgzMzUzMjU1NDQ0?cjc=2q4o7ve)
 :::
 

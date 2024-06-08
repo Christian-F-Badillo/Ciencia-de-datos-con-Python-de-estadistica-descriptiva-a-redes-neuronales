@@ -58,9 +58,9 @@ website:
       - section: "Fundamentos de Python"
         contents: intro_python/*.qmd
 
-      - section: "Manejo de Datos"
+      - section: "Manejo de Datos y Estadística con Python"
+        contents: statistics/*.qmd
 
-      - section: "Estadística con Python"
       
       - section: "Redes Neuronales"
 

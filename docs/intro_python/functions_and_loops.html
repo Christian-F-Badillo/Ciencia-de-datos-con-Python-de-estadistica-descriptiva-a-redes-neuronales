@@ -269,7 +269,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"import numpy as np\nimport matplotlib.pyplot as plt\nfrom typing import Tuple\n\ndef sine_wave(amplitude: float = None, frequency: float = None, phase: float = None, duration: float = None, sample_rate: float = None) -> Tuple[np.ndarray, np.ndarray]:\n    \"\"\"\n    Generate a sine wave signal.\n\n    Parameters:\n    - `amplitude`: The amplitude of the sine wave.\n    - `frequency`: The frequency of the sine wave in Hz.\n    - `phase`: The phase of the sine wave in radians.\n    - `duration`: The duration of the signal in seconds.\n    - `sample_rate`: The sample rate of the signal in Hz.\n\n    Returns:\n    - `t`: An array of time values.\n    - `x`: An array of signal values.\n    \"\"\"\n    t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False) # Generate time values\n    x = amplitude * np.sin(2 * np.pi * frequency * t + phase) # Generate signal values\n    return t, x\n\n# Generate a sine wave signal with amplitude 1, frequency 1 Hz, phase 0, duration 1 second, and sample rate 1000 Hz\nt, x = sine_wave(amplitude=1, frequency=1, phase=0, duration=1, sample_rate=1000) \n\n# Plot the sine wave signal\ndef plot_signal(t: np.ndarray, x: np.ndarray) -> None:\n    \"\"\"\n    Plot a signal.\n\n    Parameters:\n    - `t`: An array of time values.\n    - `x`: An array of signal values.\n    \"\"\"\n\n    plt.figure() # Create a new figure\n    plt.plot(t, x) # Plot the signal\n    plt.xlabel('Time (s)') # Set the x-axis label\n    plt.ylabel('Amplitude') # Set the y-axis label\n    plt.grid(True) # Show grid\n    plt.show() # Show the plot\n\nplot_signal(t, x)","id":1,"options":{"message":"true","classes":"","read-only":"false","dpi":72,"context":"interactive","comment":"","out-width":"700px","warning":"true","autorun":"","results":"markup","output":"true","fig-cap":"","out-height":"","label":"","fig-height":5,"fig-width":7}},{"code":"# Ejemplo de declaración if con elif\nx = 0 # Cambia el valor de x para probar diferentes casos\nif x > 0:\n    print('El número es positivo')\nelif x < 0:\n    print('El número es negativo')\nelse:\n    print('El número es cero')","id":2,"options":{"message":"true","classes":"","read-only":"false","dpi":72,"context":"interactive","comment":"","out-width":"700px","warning":"true","autorun":"","results":"markup","output":"true","fig-cap":"","out-height":"","label":"","fig-height":5,"fig-width":7}},{"code":"# Escribe tu código aquí","id":3,"options":{"message":"true","classes":"","read-only":"false","dpi":72,"context":"interactive","comment":"","out-width":"700px","warning":"true","autorun":"","results":"markup","output":"true","fig-cap":"","out-height":"","label":"","fig-height":5,"fig-width":7}}];
+globalThis.qpyodideCellDetails = [{"id":1,"options":{"comment":"","out-width":"700px","message":"true","fig-cap":"","fig-width":7,"out-height":"","label":"","context":"interactive","output":"true","results":"markup","read-only":"false","warning":"true","classes":"","dpi":72,"autorun":"","fig-height":5},"code":"import numpy as np\nimport matplotlib.pyplot as plt\nfrom typing import Tuple\n\ndef sine_wave(amplitude: float = None, frequency: float = None, phase: float = None, duration: float = None, sample_rate: float = None) -> Tuple[np.ndarray, np.ndarray]:\n    \"\"\"\n    Generate a sine wave signal.\n\n    Parameters:\n    - `amplitude`: The amplitude of the sine wave.\n    - `frequency`: The frequency of the sine wave in Hz.\n    - `phase`: The phase of the sine wave in radians.\n    - `duration`: The duration of the signal in seconds.\n    - `sample_rate`: The sample rate of the signal in Hz.\n\n    Returns:\n    - `t`: An array of time values.\n    - `x`: An array of signal values.\n    \"\"\"\n    t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False) # Generate time values\n    x = amplitude * np.sin(2 * np.pi * frequency * t + phase) # Generate signal values\n    return t, x\n\n# Generate a sine wave signal with amplitude 1, frequency 1 Hz, phase 0, duration 1 second, and sample rate 1000 Hz\nt, x = sine_wave(amplitude=1, frequency=1, phase=0, duration=1, sample_rate=1000) \n\n# Plot the sine wave signal\ndef plot_signal(t: np.ndarray, x: np.ndarray) -> None:\n    \"\"\"\n    Plot a signal.\n\n    Parameters:\n    - `t`: An array of time values.\n    - `x`: An array of signal values.\n    \"\"\"\n\n    plt.figure() # Create a new figure\n    plt.plot(t, x) # Plot the signal\n    plt.xlabel('Time (s)') # Set the x-axis label\n    plt.ylabel('Amplitude') # Set the y-axis label\n    plt.grid(True) # Show grid\n    plt.show() # Show the plot\n\nplot_signal(t, x)"},{"id":2,"options":{"comment":"","out-width":"700px","message":"true","fig-cap":"","fig-width":7,"out-height":"","label":"","context":"interactive","output":"true","results":"markup","read-only":"false","warning":"true","classes":"","dpi":72,"autorun":"","fig-height":5},"code":"# Ejemplo de declaración if con elif\nx = 0 # Cambia el valor de x para probar diferentes casos\nif x > 0:\n    print('El número es positivo')\nelif x < 0:\n    print('El número es negativo')\nelse:\n    print('El número es cero')"},{"id":3,"options":{"comment":"","out-width":"700px","message":"true","fig-cap":"","fig-width":7,"out-height":"","label":"","context":"interactive","output":"true","results":"markup","read-only":"false","warning":"true","classes":"","dpi":72,"autorun":"","fig-height":5},"code":"# Escribe tu código aquí"}];
 
 
 </script>
@@ -599,12 +599,21 @@ window.Quarto = {
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Manejo de Datos</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Estadística con Python</span></span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Manejo de Datos y Estadística con Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/data_manipulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Manipulation</span></a>
+  </div>
+</li>
+      </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">
@@ -685,7 +694,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">20 de mayo de 2024</p>
+      <p class="date">7 de junio de 2024</p>
     </div>
   </div>
   
@@ -1397,7 +1406,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/christian-f-badillo\.github\.io\/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

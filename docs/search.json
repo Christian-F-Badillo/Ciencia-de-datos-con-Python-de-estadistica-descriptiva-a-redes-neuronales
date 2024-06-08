@@ -30,43 +30,230 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Ciencia de Datos con Python",
+    "objectID": "LICENSE.html",
+    "href": "LICENSE.html",
+    "title": "",
     "section": "",
-    "text": "Este curso tiene como meta introducir a los estudiantes de la Facultad de Psicología al mundo de la ciencia de datos utilizando Python. A lo largo del curso se abordarán temas como la programación en Python, la estadística descriptiva e inferencial, el análisis y visualización de datos, y la creación de redes neuronales.\nEl curso no supone ningún conocimiento previo de programación, pero se espera que los estudiantes tengan una actitud proactiva y estén dispuestos a aprender y a poner en práctica los conceptos que se presenten en clase.\nAunque se repasarán de manera breve conceptos de estadística y probabilidad, es recomendable tener un conocimiento básico de estos temas para poder aprovechar al máximo el curso. Otro requisito importante es tener una computadora personal con acceso a internet y disponibilidad de llevar al salón, ya que la mayor parte de las actividades requerirán de una computadora personal.\nUna parte importante del curso es crear un ambiente de aprendizaje colaborativo, por lo que se espera que los estudiantes participen activamente en las clases, realicen las tareas y actividades que se les asignen, y que estén dispuestos a ayudar a sus compañeros en caso de que lo necesiten. Además se crearán equipos permanentes de trabajo, por lo que es importante que los estudiantes se comprometan a trabajar en equipo dado que todas las actividades se realizarán en equipo fomentando un método de trabajo llamado “pair programming”.",
-    "crumbs": [
-      "Inicio"
-    ]
+    "text": "Ver código\n\n\n\n\nMIT License\nCopyright (c) 2024 Christian Francisco Badillo Hernández\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\n\n Volver arriba"
   },
   {
-    "objectID": "index.html#acerca-de-este-curso",
-    "href": "index.html#acerca-de-este-curso",
-    "title": "Ciencia de Datos con Python",
+    "objectID": "intro_python/Variables.html",
+    "href": "intro_python/Variables.html",
+    "title": "Declaración de Variables y Operaciones",
     "section": "",
-    "text": "Este curso tiene como meta introducir a los estudiantes de la Facultad de Psicología al mundo de la ciencia de datos utilizando Python. A lo largo del curso se abordarán temas como la programación en Python, la estadística descriptiva e inferencial, el análisis y visualización de datos, y la creación de redes neuronales.\nEl curso no supone ningún conocimiento previo de programación, pero se espera que los estudiantes tengan una actitud proactiva y estén dispuestos a aprender y a poner en práctica los conceptos que se presenten en clase.\nAunque se repasarán de manera breve conceptos de estadística y probabilidad, es recomendable tener un conocimiento básico de estos temas para poder aprovechar al máximo el curso. Otro requisito importante es tener una computadora personal con acceso a internet y disponibilidad de llevar al salón, ya que la mayor parte de las actividades requerirán de una computadora personal.\nUna parte importante del curso es crear un ambiente de aprendizaje colaborativo, por lo que se espera que los estudiantes participen activamente en las clases, realicen las tareas y actividades que se les asignen, y que estén dispuestos a ayudar a sus compañeros en caso de que lo necesiten. Además se crearán equipos permanentes de trabajo, por lo que es importante que los estudiantes se comprometan a trabajar en equipo dado que todas las actividades se realizarán en equipo fomentando un método de trabajo llamado “pair programming”.",
+    "text": "En Python utilizamos variables para almacenar información en la memoria de la computadora. Las variables son como cajas en las que podemos guardar información, cada caja tiene un nombre y un contenido. Existen varias reglas para dar nombre a las variables en Python:\n\nEl nombre debe comenzar con una letra o un guión bajo.\nNo puede comenzar con un número.\nPuede contener letras, números y guiones bajos.\n\nEl proceso de crear (dar valor) a una variable se conoce como declaración de variables y es sensible a mayúsculas y minúsculas. Esto significa que si declaramos las variables nombre, Nombre y NOMBRE serán diferentes.\n\n\nCódigo\nnombre = \"Christian\"\nNombre = \"Jimena\"\nNOMBRE = \"Luis\"\n\nprint(nombre == Nombre)\nprint(Nombre == NOMBRE)\nprint(NOMBRE == nombre)\n\n\nFalse\nFalse\nFalse\n\n\nPor lo cual podemos ver que las variables nombre, Nombre y NOMBRE son diferentes, pues al realizar la comparación entre ellas, el resultado es False, también podemos observar la forma de declarar variables en Python, la cual es nombre_variable = valor_variable.\nPodemos sobrescribir el contenido de una variable en cualquier momento.\n\n\nCódigo\nprint(nombre)\nnombre = \"Cesar\"\nprint(nombre)\n\n\nChristian\nCesar\n\n\nEn el ejemplo anterior, hemos cambiado el contenido de la variable nombre de “Christian” a “Cesar”. En Python, podemos asignar cualquier tipo de dato a una variable. Los tipos de datos más comunes en Python son:\n\nint: Números enteros.\nfloat: Números decimales.\nstr: Cadenas de texto.\nbool: Valores booleanos (verdadero o falso).\nlist: Listas de elementos.\ntuple: Tuplas de elementos.\ndict: Diccionarios de elementos.\n\n\n\n\n\nLos números enteros son números que no tienen parte decimal. En Python, podemos declarar un número entero de la siguiente manera:\n\n\nCódigo\nnumero_entero = 10\nprint(numero_entero)\n\n\n10\n\n\nOtra forma de declarar un número entero es utilizando la función int() para convertir un número decimal o un booleano a un número entero. Veamos un ejemplo:\n\n\nCódigo\nnumero_entero = int(10.5)\nprint(numero_entero)\nnumero_entero = int(10.6)\nprint(numero_entero)\n\nnumero_entero = int(True)\nprint(numero_entero)\n\n\n10\n10\n1\n\n\nLos números decimales son números que tienen parte decimal. En Python, podemos declarar un número decimal de la siguiente manera:\n\n\nCódigo\nnumero_decimal = 10.5\nprint(numero_decimal)\n\n\n10.5\n\n\nOtra forma de declarar un número decimal es utilizando la función float() para convertir un número entero o un booleano a un número decimal.\n\n\nCódigo\nnumero_decimal = float(10)\nprint(numero_decimal)\n\nnumero_decimal = float(True)\nprint(numero_decimal)\n\n\n10.0\n1.0\n\n\nIgualmente podemos utilizar la nota científica para declarar un número decimal en Python con la letra e seguida de un número entero por ejemplo, 22e10 es equivalente a \\(22 * 10^10\\). En código:\n\n\nCódigo\nnumero_decimal = 1.5e2\nprint(numero_decimal)\n\nnumero_decimal = 1.5e-2\nprint(numero_decimal)\n\n\n150.0\n0.015\n\n\n\n\n\nLas cadenas de texto son una secuencia de carácteres (letras, números y símbolos). En Python, se pueden declarar cadenas de texto utilizando comillas simples ' o comillas dobles \". Veamos un ejemplo:\n\n\nCódigo\ncadena_texto = \"Hola Mundo\"\nprint(cadena_texto)\n\n\nHola Mundo\n\n\nOtra forma de declarar una cadena de texto es utilizando la función str() para convertir un número entero, decimal o booleano a una cadena de texto. También podemos combinar las comillas simples y dobles para poder usar una o la otra dentro de la cadena de texto. Por ejemplo:\n\n\nCódigo\ntexto= 'No te procupes, solo es un \"amigo\" / \"amiga\"'\nprint(texto)\n\n\nNo te procupes, solo es un \"amigo\" / \"amiga\"\n\n\nTambén podemos imprimir saltos de línea (\\n), tabulaciones (\\t) y caracteres especiales en una cadena de texto. Por ejemplo:\n\n\nCódigo\ntexto = \"Las rosas son rojas,\\nLas violetas son azules,\\nViva el team frio,\\nQuiero un pan \\U0001F35E\\n\"\n\nprint(texto)\n\ntexto = \"\\n\\t Aqui no se habla\\n\\tdel formato APA\\n\\tNo, no, no 🫠\"\n\nprint(texto)\n\n\nLas rosas son rojas,\nLas violetas son azules,\nViva el team frio,\nQuiero un pan 🍞\n\n\n     Aqui no se habla\n    del formato APA\n    No, no, no 🫠\n\n\n\n\n\nLos valores booleanos son valores lógicos que pueden ser True (verdadero) o False (falso). En Python, podemos declarar un valor booleano de la siguiente manera:\n\n\nCódigo\nvalor_booleano = True\nprint(valor_booleano)\n\n\nTrue\n\n\nIgualmente existe la función bool() pero su uso es poco utilizado, ya que los valores booleanos se utilizan principalmente en condicionales y bucles, además es necesario conocer que cosas se consideran True y False en Python.\n\n\nCódigo\nvalor_booleano = bool(0)\nprint(valor_booleano)\nvalor_booleano = bool(1)\nprint(valor_booleano)\n\nvalor_booleano = bool([])\nprint(valor_booleano)\nvalor_booleano = bool([1, 2, 3])\nprint(valor_booleano)\n\n\nFalse\nTrue\nFalse\nTrue\n\n\nSi recuerdan sus clases de Lógica, podrán crear una tabla de verdad para evaluar proposiciones lógicas en Python.\n\n\n\nLa documentación de código es una práctica común en programación y una buena costumbre para escribir código limpio y legible. En Python, podemos documentar nuestro código utilizando comentarios.\nLos comentarios son líneas de código que no se ejecutan y se utilizan para explicar el código. En Python, los comentarios se crean utilizando el símbolo # y cualquier texto que se escriba después de este símbolo se considera un comentario y no se ejecuta.\n\n\nCódigo\n# Esto es un comentario\nprint(\"Hola Mundo\") # Aquí podemos comentar que hace esta línea de código\n\n\nHola Mundo\n\n\nTambién podemos crear comentarios multilínea utilizando tres comillas simples ''' o tres comillas dobles \"\"\", se utiliza mucho esta forma de comentar para documentar funciones o clases, como lo veremos más adelante.\n\n\n\nEn el siguiente bloque podrán ejecutar código de Python usando su navegador web. Igualmente pueden hacerlo en su computadora o en la nube utilizando Google Colab o Kaggle. Para cada ejercicio deber de escribir su propio código, crear un comentario con sus datos, crear su solución y tomar una captura de pantalla del resultado. Finalmente, subir la captura a la asignación correspondiente en Google Classroom.\n\nDeclarar una variable de cada tipo de dato en Python (entero, decimal, cadena de texto y booleano) e imprimir su valor.\nDeclarar una variable con el nombre poema y asignarle un poema de su elección. Imprimir el poema en la consola con el formato adecuado. (Pueden utilizar emojis si lo desean).\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
-      "Inicio"
+      "Fundamentos de Python",
+      "Declaración de Variables y Operaciones"
     ]
   },
   {
-    "objectID": "index.html#objetivos-del-curso",
-    "href": "index.html#objetivos-del-curso",
-    "title": "Ciencia de Datos con Python",
-    "section": "Objetivos del curso",
-    "text": "Objetivos del curso\n\nAprender y poner en práctica los conceptos básicos de la programación en Python.\nComprender los conceptos básicos de la estadística descriptiva e inferencial a través de ejemplos prácticos en Python.\nAprender a utilizar las librerías más populares de Python para el análisis y la visualización de datos.\nComprender los conceptos básicos de las redes neuronales y aprender a crear redes neuronales utilizando Python.\nAprender a presentar y comunicar los resultados de un análisis de datos de manera efectiva y con código reproducible.\n\n\n\nInstructor\n\n   Christian Francisco Badillo Hernández\n   Lab 25, Facultad de Psicología, UNAM\n   cris.badillo1408@gmail.com\n\n\n\nDetalles del curso\n\n   Lunes - Viernes\n   10 de junio - 28 de junio de 2024\n   13:30 - 15:30 hrs\n   Salón Pendiente\n   Classroom",
+    "objectID": "intro_python/Variables.html#tipos-de-variables",
+    "href": "intro_python/Variables.html#tipos-de-variables",
+    "title": "Declaración de Variables y Operaciones",
+    "section": "",
+    "text": "Los números enteros son números que no tienen parte decimal. En Python, podemos declarar un número entero de la siguiente manera:\n\n\nCódigo\nnumero_entero = 10\nprint(numero_entero)\n\n\n10\n\n\nOtra forma de declarar un número entero es utilizando la función int() para convertir un número decimal o un booleano a un número entero. Veamos un ejemplo:\n\n\nCódigo\nnumero_entero = int(10.5)\nprint(numero_entero)\nnumero_entero = int(10.6)\nprint(numero_entero)\n\nnumero_entero = int(True)\nprint(numero_entero)\n\n\n10\n10\n1\n\n\nLos números decimales son números que tienen parte decimal. En Python, podemos declarar un número decimal de la siguiente manera:\n\n\nCódigo\nnumero_decimal = 10.5\nprint(numero_decimal)\n\n\n10.5\n\n\nOtra forma de declarar un número decimal es utilizando la función float() para convertir un número entero o un booleano a un número decimal.\n\n\nCódigo\nnumero_decimal = float(10)\nprint(numero_decimal)\n\nnumero_decimal = float(True)\nprint(numero_decimal)\n\n\n10.0\n1.0\n\n\nIgualmente podemos utilizar la nota científica para declarar un número decimal en Python con la letra e seguida de un número entero por ejemplo, 22e10 es equivalente a \\(22 * 10^10\\). En código:\n\n\nCódigo\nnumero_decimal = 1.5e2\nprint(numero_decimal)\n\nnumero_decimal = 1.5e-2\nprint(numero_decimal)\n\n\n150.0\n0.015\n\n\n\n\n\nLas cadenas de texto son una secuencia de carácteres (letras, números y símbolos). En Python, se pueden declarar cadenas de texto utilizando comillas simples ' o comillas dobles \". Veamos un ejemplo:\n\n\nCódigo\ncadena_texto = \"Hola Mundo\"\nprint(cadena_texto)\n\n\nHola Mundo\n\n\nOtra forma de declarar una cadena de texto es utilizando la función str() para convertir un número entero, decimal o booleano a una cadena de texto. También podemos combinar las comillas simples y dobles para poder usar una o la otra dentro de la cadena de texto. Por ejemplo:\n\n\nCódigo\ntexto= 'No te procupes, solo es un \"amigo\" / \"amiga\"'\nprint(texto)\n\n\nNo te procupes, solo es un \"amigo\" / \"amiga\"\n\n\nTambén podemos imprimir saltos de línea (\\n), tabulaciones (\\t) y caracteres especiales en una cadena de texto. Por ejemplo:\n\n\nCódigo\ntexto = \"Las rosas son rojas,\\nLas violetas son azules,\\nViva el team frio,\\nQuiero un pan \\U0001F35E\\n\"\n\nprint(texto)\n\ntexto = \"\\n\\t Aqui no se habla\\n\\tdel formato APA\\n\\tNo, no, no 🫠\"\n\nprint(texto)\n\n\nLas rosas son rojas,\nLas violetas son azules,\nViva el team frio,\nQuiero un pan 🍞\n\n\n     Aqui no se habla\n    del formato APA\n    No, no, no 🫠\n\n\n\n\n\nLos valores booleanos son valores lógicos que pueden ser True (verdadero) o False (falso). En Python, podemos declarar un valor booleano de la siguiente manera:\n\n\nCódigo\nvalor_booleano = True\nprint(valor_booleano)\n\n\nTrue\n\n\nIgualmente existe la función bool() pero su uso es poco utilizado, ya que los valores booleanos se utilizan principalmente en condicionales y bucles, además es necesario conocer que cosas se consideran True y False en Python.\n\n\nCódigo\nvalor_booleano = bool(0)\nprint(valor_booleano)\nvalor_booleano = bool(1)\nprint(valor_booleano)\n\nvalor_booleano = bool([])\nprint(valor_booleano)\nvalor_booleano = bool([1, 2, 3])\nprint(valor_booleano)\n\n\nFalse\nTrue\nFalse\nTrue\n\n\nSi recuerdan sus clases de Lógica, podrán crear una tabla de verdad para evaluar proposiciones lógicas en Python.\n\n\n\nLa documentación de código es una práctica común en programación y una buena costumbre para escribir código limpio y legible. En Python, podemos documentar nuestro código utilizando comentarios.\nLos comentarios son líneas de código que no se ejecutan y se utilizan para explicar el código. En Python, los comentarios se crean utilizando el símbolo # y cualquier texto que se escriba después de este símbolo se considera un comentario y no se ejecuta.\n\n\nCódigo\n# Esto es un comentario\nprint(\"Hola Mundo\") # Aquí podemos comentar que hace esta línea de código\n\n\nHola Mundo\n\n\nTambién podemos crear comentarios multilínea utilizando tres comillas simples ''' o tres comillas dobles \"\"\", se utiliza mucho esta forma de comentar para documentar funciones o clases, como lo veremos más adelante.\n\n\n\nEn el siguiente bloque podrán ejecutar código de Python usando su navegador web. Igualmente pueden hacerlo en su computadora o en la nube utilizando Google Colab o Kaggle. Para cada ejercicio deber de escribir su propio código, crear un comentario con sus datos, crear su solución y tomar una captura de pantalla del resultado. Finalmente, subir la captura a la asignación correspondiente en Google Classroom.\n\nDeclarar una variable de cada tipo de dato en Python (entero, decimal, cadena de texto y booleano) e imprimir su valor.\nDeclarar una variable con el nombre poema y asignarle un poema de su elección. Imprimir el poema en la consola con el formato adecuado. (Pueden utilizar emojis si lo desean).\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
-      "Inicio"
+      "Fundamentos de Python",
+      "Declaración de Variables y Operaciones"
     ]
   },
   {
-    "objectID": "index.html#temario",
-    "href": "index.html#temario",
-    "title": "Ciencia de Datos con Python",
-    "section": "Temario",
-    "text": "Temario\n\nIntroducción a Python y la Ciencia de Datos.\n\nTipos, variables y operaciones matemáticas básicas.\n\nStrings (cadenas de texto).\nInteger (Números enteros).\nFloats (Décimales)\nBooleanos\nExpresiones y declaraciones.\nOperaciones.\n\nDefinición de funciones.\n\nDefinición de funciones en python\nUso de funciones.\nFunciones lambda\n\nFlujos de control.\n\nFlujo de control If, else, elif\nFlujo de control while\nFlujo de control for\nKeywords de flujos de control: pass, continue, break\n\nEstructuras de datos.\n\nSet.\nTuplas.\nDiccionarios.\nListas.\nMatrices.\nNdarrays.\nData Frames.\n\nMódulos y paquetes.\n\nDefinición de módulos y paquetes.\n\n\nLimpieza, manejo y creación de bases de datos con pandas.\n\nTipos de bases de datos.\n\nBases de datos relacionales.\nBase de datos no relacionales.\n\nIntroducción al manejo de bases de datos con pandas.\n\nCarga de bases de datos locales o de la nube.\nBúsqueda de datos faltantes.\nDescripción de bases de datos.\nModificación de bases de datos.\nCreación de bases de datos.\n\n\nAnálisis descriptivo y visualización de datos.\n\nVisualización de datos con Matplotlib y Seaborn.\n\nIntroducción a la visualización de datos.\nMatriz de correlación.\nVisualizaciones básicas (histogramas, cajas de bigotes, etc.).\nVisualizaciones en 3D y combinaciones de gráficos.\n\n\nEstadística Inferencial con Python.\n\nPaqueterías de Análisis estadístico.\n\nStatsmodels.\nScikit-learn.\nPaqueterías bayesianas (PyMC3, PyJAGS, PySTAN).\n\nRegresión lineal.\nRegresión múltiple.\nModelos lineales generalizados (regresión logística, ANOVA, T-Student, etc).\nEstimación Bayesiana (Uso de algoritmos MCMC).\n\nIntroducción a Machine learning: Redes Neuronales.\n\nConceptos básicos de Inteligencia artificial y redes neuronales.\nPaqueterías para redes neuronales.\n\nTensorflow.\nScikit-learn.\nKeras.\n\nProgramación del perceptrón multicapa.\nAnalizando datos con un red neuronal multicapa.\n\n\n\nPuedes descargar el temario completo en el siguiente enlace:\n Descarga el temario",
+    "objectID": "intro_python/Variables.html#operaciones-aritméticas",
+    "href": "intro_python/Variables.html#operaciones-aritméticas",
+    "title": "Declaración de Variables y Operaciones",
+    "section": "Operaciones aritméticas",
+    "text": "Operaciones aritméticas\nLas operaciones aritméticas son operaciones matemáticas que se realizan con números. En Python, podemos realizar operaciones aritméticas con variables de tipo entero y decimal, como si fuese una calculadora.\n\n\nCódigo\nfrom math import sqrt\n# Sumemos dos numeros\nnumero1 = 10\nnumero2 = 5\n\nsuma = numero1 + numero2 # 10 + 5 = 15\nprint(suma)\n\n# Restemos dos numeros\nresta = numero1 - numero2 # 10 - 5 = 5\nprint(resta)\n\n# Multipliquemos dos numeros\nmultiplicacion = numero1 * numero2 # 10 * 5 = 50\nprint(multiplicacion)\n\n# Dividamos dos numeros\ndivision = numero1 / numero2 # 10 / 5 = 2.0\nprint(division)\n\n# Dividamos y solo tomemos la parte entera\ndivision_entera = numero1 // numero2 # 10 // 5 = 2\nprint(division_entera)\n\n# Calculemos el residuo de la división\nmodulo = numero1 % numero2 # 10 % 5 = 0\nprint(modulo)\n\n# Elevemos un numero a una potencia\npotencia = numero1 ** numero2 # 10 ^ 5 = 100000\nprint(potencia)\n\n# Calculemos la raiz cuadrada de un numero\nraiz_cuadrada = numero1 ** 0.5 # sqrt(10) = 3.1622776601683795\nraiz_cuadrada2 = sqrt(numero2) # sqrt(5) = 2.23606797749979\nprint(raiz_cuadrada)\nprint(raiz_cuadrada2)\n\n\n15\n5\n50\n2.0\n2\n0\n100000\n3.1622776601683795\n2.23606797749979",
     "crumbs": [
-      "Inicio"
+      "Fundamentos de Python",
+      "Declaración de Variables y Operaciones"
+    ]
+  },
+  {
+    "objectID": "intro_python/Variables.html#operaciones-de-comparación",
+    "href": "intro_python/Variables.html#operaciones-de-comparación",
+    "title": "Declaración de Variables y Operaciones",
+    "section": "Operaciones de comparación",
+    "text": "Operaciones de comparación\nLas operaciones de comparación son operaciones que se utilizan para comparar dos valores y devuelven un valor booleano (True o False).\n\n\nCódigo\n# Comparar si dos numeros son iguales\nnumero1 = 148\nnumero2 = 47\n\ncomparacion = numero1 == numero2\nprint(comparacion)\n\n# Comparar si dos numeros son diferentes\ncomparacion = numero1 != numero2\nprint(comparacion)\n\n# Comparar si un numero es mayor que otro\ncomparacion = numero1 &gt; numero2\nprint(comparacion)\n\n# Comparar si un numero es menor que otro\ncomparacion = numero1 &lt; numero2\nprint(comparacion)\n\n# Comparar si un numero es mayor o igual que otro\ncomparacion = numero1 &gt;= numero2\nprint(comparacion)\n\n# Comparar si un numero es menor o igual que otro\ncomparacion = numero1 &lt;= numero2\nprint(comparacion)\n\n\nFalse\nTrue\nTrue\nFalse\nTrue\nFalse",
+    "crumbs": [
+      "Fundamentos de Python",
+      "Declaración de Variables y Operaciones"
+    ]
+  },
+  {
+    "objectID": "intro_python/Variables.html#operaciones-con-cadenas-de-texto",
+    "href": "intro_python/Variables.html#operaciones-con-cadenas-de-texto",
+    "title": "Declaración de Variables y Operaciones",
+    "section": "Operaciones con cadenas de texto",
+    "text": "Operaciones con cadenas de texto\nLas operaciones con cadenas de texto son operaciones que se utilizan para concatenar, multiplicar y comparar cadenas de texto. Se utilizan principalmente para manipular texto en Python.\nPara concatenar dos cadenas de texto, simplemente se utilizan el operador +.\n\n\nCódigo\n# Concatenar dos cadenas de texto\ncadena1 = \"Hola\"\ncadena2 = \"Mundo\"\n\nconcatenacion = cadena1 + \" \" + cadena2\nprint(concatenacion)\n\n\nHola Mundo\n\n\nPara multiplicar una cadena de texto por un número entero, simplemente se utiliza el operador *.\n\n\nCódigo\n# Multiplicar una cadena de texto\ncadena = \"Me gusta programar en Python\\n\"\n\nmultiplicacion = cadena * 5\nprint(multiplicacion)\n\n\nMe gusta programar en Python\nMe gusta programar en Python\nMe gusta programar en Python\nMe gusta programar en Python\nMe gusta programar en Python\n\n\n\nPara comparar dos cadenas de texto, simplemente se utilizan los operadores de comparación.\n\n\nCódigo\n# Comparar dos cadenas de texto\ncadena1 = \"Muchas gracias\"\ncadena2 = \"De nada\"\n\ncomparacion = cadena1 == cadena2 # Comparar si dos cadenas son iguales\nprint(comparacion)\n\ncomparacion = cadena1 != cadena2 # Comparar si dos cadenas son diferentes\nprint(comparacion)\n\ncomparacion = cadena1 &gt; cadena2 # Comparar si una cadena tiene más caracteres que otra\nprint(comparacion)\n\ncomparacion = cadena1 &lt; cadena2 # Comparar si una cadena tiene menos caracteres que otra\nprint(comparacion)\n\ncomparacion = cadena1 &gt;= cadena2 # Comparar si una cadena tiene más o igual cantidad de caracteres que otra\nprint(comparacion)\n\ncomparacion = cadena1 &lt;= cadena2 # Comparar si una cadena tiene menos o igual cantidad de caracteres que otra\nprint(comparacion)\n\n\nFalse\nTrue\nTrue\nFalse\nTrue\nFalse\n\n\n\nEjercicios 1.2\n\n Instrucciones \n\nEn el siguiente bloque podrán ejecutar código de Python usando su navegador web. Igualmente pueden hacerlo en su computadora o en la nube utilizando Google Colab o Kaggle. Para cada ejercicio deber de escribir su propio código, crear un comentario con sus datos, crear su solución y tomar una captura de pantalla del resultado. Finalmente, subir la captura a la asignación correspondiente en Google Classroom.\n\nSabiendo que el Teorema de Pitágoras es \\(a^2 + b^2 = c^2\\), calcular la hipotenusa de un triángulo rectángulo con catetos de 3 y 4 unidades.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nSi la velocidad de la luz es de \\(299,792,458\\) m/s, y el tiempo que tarda en llegar la luz del Sol a la Tierra es de \\(8.3\\) minutos, calcular la distancia en kilómetros que hay entre el Sol y la Tierra.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nCrea dos variables con tu nombre y apellido, y concaténalas en una sola variable. Imprime el resultado.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nCrea una variable con tu canción favorita y multiplica por 4 la parte de la letra que más te gusta. Imprime el resultado.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nCrea una variable con tu película favorita y compara si la longitud de la cadena de texto es mayor a 10 caracteres. Imprime el resultado.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Fundamentos de Python",
+      "Declaración de Variables y Operaciones"
+    ]
+  },
+  {
+    "objectID": "intro_python/data_structures.html",
+    "href": "intro_python/data_structures.html",
+    "title": "Estructuras de Datos",
+    "section": "",
+    "text": "Los datos son la base de la ciencia, son la materia prima con la que trabajamos. Dada su importancia es necesario contar con herramientas que nos permitan manipularlos de manera eficiente. En este sentido, las estructuras de datos son una herramienta fundamental en la programación. Se definen como formas de organizar y almacenar datos en la memoria de un computador, de tal manera que se puedan acceder y modificar de manera eficiente.\nEn esta lección veremos algunas de las estructuras de datos más comunes en Python, como las listas, tuplas, conjuntos, diccionarios, arreglos de NumPy y DataFrames de Pandas, así como las propiedades y métodos que las caracterizan.",
+    "crumbs": [
+      "Fundamentos de Python",
+      "Estructuras de Datos"
+    ]
+  },
+  {
+    "objectID": "intro_python/data_structures.html#indexación",
+    "href": "intro_python/data_structures.html#indexación",
+    "title": "Estructuras de Datos",
+    "section": "Indexación",
+    "text": "Indexación\nPara acceder a elementos de una lista se utiliza la indexación. Los índices en Python comienzan en 0, por lo que el primer elemento de una lista tiene índice 0, el segundo índice 1 y así sucesivamente. Para acceder a un elemento de una lista se utiliza la sintaxis nombredelista[indice].\n\n\nCódigo\nprint(lista[0])\nprint(lista[1])\nprint(lista[2])\n\n# Acceder al último elemento\nprint(lista[-1])\n\n\n1\n2\n3\nhola",
+    "crumbs": [
+      "Fundamentos de Python",
+      "Estructuras de Datos"
+    ]
+  },
+  {
+    "objectID": "intro_python/data_structures.html#slicing",
+    "href": "intro_python/data_structures.html#slicing",
+    "title": "Estructuras de Datos",
+    "section": "Slicing",
+    "text": "Slicing\nEl slicing es una técnica que permite acceder a subconjuntos de elementos de una lista. Se utiliza la sintaxis nombredelista[inicio:fin], donde inicio es el índice del primer elemento que se quiere incluir y fin es el índice del primer elemento que no se quiere incluir.\n\n\nCódigo\nprint(lista[0:3])\nprint(lista[3:])\n\n\n[1, 2, 3]\n[4, 5, 6, [7, 8, 9], 'hola']\n\n\nSi no se especifica el índice de inicio, se asume que es 0. Si no se especifica el índice de fin, se asume que es el último elemento de la lista.",
+    "crumbs": [
+      "Fundamentos de Python",
+      "Estructuras de Datos"
+    ]
+  },
+  {
+    "objectID": "intro_python/data_structures.html#modificación",
+    "href": "intro_python/data_structures.html#modificación",
+    "title": "Estructuras de Datos",
+    "section": "Modificación",
+    "text": "Modificación\nPara modificar un elemento de una lista se utiliza la indexación y la asignación.\n\n\nCódigo\nlista[0] = 10\nprint(lista)\n\n\n[10, 2, 3, 4, 5, 6, [7, 8, 9], 'hola']",
+    "crumbs": [
+      "Fundamentos de Python",
+      "Estructuras de Datos"
+    ]
+  },
+  {
+    "objectID": "intro_python/data_structures.html#eliminación",
+    "href": "intro_python/data_structures.html#eliminación",
+    "title": "Estructuras de Datos",
+    "section": "Eliminación",
+    "text": "Eliminación\nPara eliminar un elemento de una lista se utiliza el método remove() y se especifica el elemento del elemento que se quiere eliminar.\n\n\nCódigo\nlista.remove(10)\nprint(lista)\n\n\n[2, 3, 4, 5, 6, [7, 8, 9], 'hola']\n\n\nSi queremos eliminar el último elemento de una lista se puede utilizar el método pop().\n\n\nCódigo\nlista.pop()\nprint(lista)\n\n\n'hola'\n\n\n[2, 3, 4, 5, 6, [7, 8, 9]]",
+    "crumbs": [
+      "Fundamentos de Python",
+      "Estructuras de Datos"
+    ]
+  },
+  {
+    "objectID": "intro_python/data_structures.html#resumen",
+    "href": "intro_python/data_structures.html#resumen",
+    "title": "Estructuras de Datos",
+    "section": "Resumen",
+    "text": "Resumen\nLas listas tienen un gran número de métodos que permiten realizar operaciones sobre ellas. Un resumen de los métodos más comunes es el siguiente:\n\nappend(): Agrega un elemento al final de la lista.\nextend(): Agrega varios elementos al final de la lista.\ninsert(): Agrega un elemento en una posición específica.\nremove(): Elimina un elemento de la lista.\npop(): Elimina un elemento de la lista y lo devuelve.\nindex(): Devuelve el índice de un elemento en la lista.\ncount(): Cuenta el número de veces que un elemento aparece en la lista.\nsort(): Ordena los elementos de la lista en orden ascendente.\nreverse(): Invierte el orden de los elementos de la lista.\ncopy(): Crea una copia de la lista.\n\nVale la pena hacer enfásis en que no es necesario aprenderse todos los métodos de memoria, sino que es más importante entender para qué y cómo se pueden utilizar las listas, los métodos se pueden consultar en la documentación de Python, buscando en Google o preguntandole a ChatGPT.",
+    "crumbs": [
+      "Fundamentos de Python",
+      "Estructuras de Datos"
+    ]
+  },
+  {
+    "objectID": "intro_python/data_structures.html#slicing-en-dataframes",
+    "href": "intro_python/data_structures.html#slicing-en-dataframes",
+    "title": "Estructuras de Datos",
+    "section": "Slicing en DataFrames",
+    "text": "Slicing en DataFrames\nPor ahora veamos cómo acceder a elementos de un DataFrame. Podemos acceder a las primeras y últimas filas de un DataFrame utilizando los métodos head() y tail(), respectivamente\n\n\nCódigo\n# Cargo un conjunto de datos de ejemplo\ndf = pd.read_csv('https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv') \n\ndf.head() # Imprimir las primeras filas del DataFrame\n\ndf.tail() # Imprimir las últimas filas del DataFrame\n\n\n\n\n\n\n\n\n\n\nsepal_length\nsepal_width\npetal_length\npetal_width\nspecies\n\n\n\n\n0\n5.1\n3.5\n1.4\n0.2\nsetosa\n\n\n1\n4.9\n3.0\n1.4\n0.2\nsetosa\n\n\n2\n4.7\n3.2\n1.3\n0.2\nsetosa\n\n\n3\n4.6\n3.1\n1.5\n0.2\nsetosa\n\n\n4\n5.0\n3.6\n1.4\n0.2\nsetosa\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nsepal_length\nsepal_width\npetal_length\npetal_width\nspecies\n\n\n\n\n145\n6.7\n3.0\n5.2\n2.3\nvirginica\n\n\n146\n6.3\n2.5\n5.0\n1.9\nvirginica\n\n\n147\n6.5\n3.0\n5.2\n2.0\nvirginica\n\n\n148\n6.2\n3.4\n5.4\n2.3\nvirginica\n\n\n149\n5.9\n3.0\n5.1\n1.8\nvirginica\n\n\n\n\n\n\n\n\nPodemos acceder a las columnas de un DataFrame utilizando la indexación con corchetes [] y el nombre de la columna entre comillas simples o dobles.\n\n\nCódigo\ndf['sepal_length'] # Acceder a la columna 'sepal_length'\n\n\n0      5.1\n1      4.9\n2      4.7\n3      4.6\n4      5.0\n      ... \n145    6.7\n146    6.3\n147    6.5\n148    6.2\n149    5.9\nName: sepal_length, Length: 150, dtype: float64\n\n\nOtra manera de acceder a una columna es utilizando la notación de punto . y el nombre de la columna, pero esta forma no es muy usada dado que complica el acceso a columnas con nombres que contienen espacios o caracteres especiales.\n\n\nCódigo\ndf.sepal_length # Acceder a la columna 'sepal_length'\n\n\n0      5.1\n1      4.9\n2      4.7\n3      4.6\n4      5.0\n      ... \n145    6.7\n146    6.3\n147    6.5\n148    6.2\n149    5.9\nName: sepal_length, Length: 150, dtype: float64\n\n\nTambién podemos acceder a filas y columnas utilizando la función loc[] y los nombres de las filas y columnas.\n\n\nCódigo\ndf.loc[:, 'sepal_length'] # Acceder al elemento en la fila 0 y columna 'sepal_length'\n# Recuerden que si usamos : estamos seleccionando todas las filas, primero se seleccionan las filas y luego las columnas\n\n\n0      5.1\n1      4.9\n2      4.7\n3      4.6\n4      5.0\n      ... \n145    6.7\n146    6.3\n147    6.5\n148    6.2\n149    5.9\nName: sepal_length, Length: 150, dtype: float64\n\n\nSi queremos seleccionar varias columnas podemos pasar una lista con los nombres de las columnas.\n\n\nCódigo\ncol_names = ['sepal_length', 'sepal_width']\ndf.loc[:, col_names] # Acceder a las columnas 'sepal_length' y 'sepal_width'\n\n\n\n\n\n\n\n\n\n\nsepal_length\nsepal_width\n\n\n\n\n0\n5.1\n3.5\n\n\n1\n4.9\n3.0\n\n\n2\n4.7\n3.2\n\n\n3\n4.6\n3.1\n\n\n4\n5.0\n3.6\n\n\n...\n...\n...\n\n\n145\n6.7\n3.0\n\n\n146\n6.3\n2.5\n\n\n147\n6.5\n3.0\n\n\n148\n6.2\n3.4\n\n\n149\n5.9\n3.0\n\n\n\n\n150 rows × 2 columns\n\n\n\n\nSi queremos seleccionar las filas 5, 14, 23 y las columnas ‘sepal_length’ y ‘sepal_width’ podemos hacerlo de la siguiente manera.\n\n\nCódigo\nfilas = [5, 14, 23]\ncol_names = ['sepal_length', 'sepal_width']\n\ndf.loc[filas, col_names] # Acceder a las filas 5, 14, 23 y las columnas 'sepal_length' y 'sepal_width'\n\n\n\n\n\n\n\n\n\n\nsepal_length\nsepal_width\n\n\n\n\n5\n5.4\n3.9\n\n\n14\n5.8\n4.0\n\n\n23\n5.1\n3.3",
+    "crumbs": [
+      "Fundamentos de Python",
+      "Estructuras de Datos"
+    ]
+  },
+  {
+    "objectID": "intro_python/data_structures.html#modificación-de-dataframes",
+    "href": "intro_python/data_structures.html#modificación-de-dataframes",
+    "title": "Estructuras de Datos",
+    "section": "Modificación de DataFrames",
+    "text": "Modificación de DataFrames\nPodemos agregar una nueva columna a un DataFrame utilizando la notación de corchetes [] y el nombre de la nueva columna y asignándole una lista con los valores de la columna.\nCreemos una nueva columna que contenga la suma de las columnas ‘sepal_length’ y ‘sepal_width’.\n\n\nCódigo\ndf['sepal_sum'] = df['sepal_length'] + df['sepal_width']\ndf.head()\n\n\n\n\n\n\n\n\n\n\nsepal_length\nsepal_width\npetal_length\npetal_width\nspecies\nsepal_sum\n\n\n\n\n0\n5.1\n3.5\n1.4\n0.2\nsetosa\n8.6\n\n\n1\n4.9\n3.0\n1.4\n0.2\nsetosa\n7.9\n\n\n2\n4.7\n3.2\n1.3\n0.2\nsetosa\n7.9\n\n\n3\n4.6\n3.1\n1.5\n0.2\nsetosa\n7.7\n\n\n4\n5.0\n3.6\n1.4\n0.2\nsetosa\n8.6\n\n\n\n\n\n\n\n\nPara eliminar una columna de un DataFrame se utiliza el método drop() y se pasa el nombre de la columna y el eje en el que se quiere eliminar, los ejes son 0 para filas y 1 para columnas.\n\n\nCódigo\ndf.drop('sepal_sum', axis=1, inplace=True)\ndf.head()\n\n\n\n\n\n\n\n\n\n\nsepal_length\nsepal_width\npetal_length\npetal_width\nspecies\n\n\n\n\n0\n5.1\n3.5\n1.4\n0.2\nsetosa\n\n\n1\n4.9\n3.0\n1.4\n0.2\nsetosa\n\n\n2\n4.7\n3.2\n1.3\n0.2\nsetosa\n\n\n3\n4.6\n3.1\n1.5\n0.2\nsetosa\n\n\n4\n5.0\n3.6\n1.4\n0.2\nsetosa\n\n\n\n\n\n\n\n\nEl parámetro inplace=True indica que la operación se realice sobre el DataFrame original, si se omite se crea una copia del DataFrame con la columna eliminada, pero si esta copia no se asigna a una variable se perderá.\nSi queremos modificar un valor de un DataFrame se localiza el elemento con loc[] y se asigna el nuevo valor.\n\n\nCódigo\ndf.head()\ndf.loc[0, 'sepal_length'] = 10\ndf.head()\n\n\n\n\n\n\n\n\n\n\nsepal_length\nsepal_width\npetal_length\npetal_width\nspecies\n\n\n\n\n0\n5.1\n3.5\n1.4\n0.2\nsetosa\n\n\n1\n4.9\n3.0\n1.4\n0.2\nsetosa\n\n\n2\n4.7\n3.2\n1.3\n0.2\nsetosa\n\n\n3\n4.6\n3.1\n1.5\n0.2\nsetosa\n\n\n4\n5.0\n3.6\n1.4\n0.2\nsetosa\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nsepal_length\nsepal_width\npetal_length\npetal_width\nspecies\n\n\n\n\n0\n10.0\n3.5\n1.4\n0.2\nsetosa\n\n\n1\n4.9\n3.0\n1.4\n0.2\nsetosa\n\n\n2\n4.7\n3.2\n1.3\n0.2\nsetosa\n\n\n3\n4.6\n3.1\n1.5\n0.2\nsetosa\n\n\n4\n5.0\n3.6\n1.4\n0.2\nsetosa",
+    "crumbs": [
+      "Fundamentos de Python",
+      "Estructuras de Datos"
+    ]
+  },
+  {
+    "objectID": "intro_python/Cloud.html",
+    "href": "intro_python/Cloud.html",
+    "title": "Instalación de Python",
+    "section": "",
+    "text": "Python  es un lenguaje de programación de alto nivel, interpretado y orientado a objetos con semántica dinámica. Es un lenguaje de programación muy popular en la actualidad debido a su simplicidad y versatilidad. Y ampliamente utilizado en la ciencia de datos, inteligencia artificial, desarrollo web, desarrollo de videojuegos, entre otros.\nVamos a deshilar un poco la definición anterior para entender mejor lo que significa.\n\n\nUn lenguaje de programación de alto nivel es un lenguaje de programación que se encuentra más cerca del lenguaje humano que del lenguaje de máquina. Por ejemplo para imprimir el resultado de la suma de dos números en Python se escribe:\n\n\nCódigo\na = 5\nb = 3\n\nprint(a + b)\n\n\n8\n\n\nCualquier persona que entienda aritmética básica y sepa un poco de inglés puede entender lo que hace este código. Esto hace que los programas escritos en Python sean más fáciles de leer y de escribir que los programas escritos en lenguajes de programación de bajo nivel como el lenguaje ensamblador  o el lenguaje C++  . Por ejemplo en C++ el mismo programa se escribiría de la siguiente forma:\n#include &lt;iostream&gt;\n\nint main() {\n    int a = 5;\n    int b = 3;\n    std::cout &lt;&lt; a + b &lt;&lt; std::endl;\n    return 0;\n} \nY en lenguaje ensamblador se escribiría de la siguiente forma:\nsection .data\n    a db 5\n    b db 3\nsection .text\n    global _start\n_start:\n    mov al, [a]\n    mov bl, [b]\n    add al, bl\n    mov dl, al\n    mov eax, 4\n    mov ebx, 1\n    mov ecx, dl\n    mov edx, 1\n    int 0x80\n    mov eax, 1\n    xor ebx, ebx\n    int 0x80\n\n\n\nUn lenguaje de programación interpretado es un lenguaje de programación que utiliza un programa llamado intérprete para ejecutar el código fuente. El intérprete de Python se encarga de leer el código fuente escrito en Python y ejecutarlo línea por línea.\nPor otro lado, los lenguajes de programación compilados utilizan un programa llamado compilador para traducir el código fuente a un lenguaje de máquina que la computadora pueda entender. El código fuente compilado se convierte en un archivo ejecutable que puede ser ejecutado por la computadora lo que da como resultado un programa más rápido que un programa interpretado y con mayor control sobre el hardware.\n\n\n\nPython es un lenguaje de programación orientado a objetos lo que significa que todo en Python es un objeto. Un objeto es una entidad que tiene un estado y un comportamiento. Por ejemplo, un objeto de la clase Persona tiene un estado que incluye el nombre, la edad y la dirección de la persona y un comportamiento que incluye caminar, hablar y comer.\nEl ejemplo más claro de la orientación a objetos en Python es la creación de clases y objetos. Una clase es una plantilla que define las propiedades y los métodos de un objeto y un objeto es una instancia de una clase. Por ejemplo, la clase Persona define las propiedades y los métodos de una persona y un objeto de la clase Persona es una persona en particular.\nEsto en Python se ve de la siguiente forma:\n\n\nCódigo\nclass Persona:\n    def __init__(self, nombre, edad, direccion):\n        self.nombre = nombre\n        self.edad = edad\n        self.direccion = direccion\n\n    def caminar(self):\n        print(f\"{self.nombre} está caminando\")\n\n    def hablar(self):\n        print(f\"{self.nombre} está hablando\")\n\n    def comer(self):\n        print(f\"{self.nombre} está comiendo\")\n\npersona = Persona(\"Juan\", 25, \"Calle 123\")\npersona.caminar()\npersona.hablar()\npersona.comer()\n\n\nJuan está caminando\nJuan está hablando\nJuan está comiendo\n\n\n\n\n\nPython es un lenguaje de programación con semántica dinámica lo que significa que el tipo de una variable se determina en tiempo de ejecución y no en tiempo de compilación. Por ejemplo, en Python no es necesario declarar el tipo de una variable antes de utilizarla como en otros lenguajes de programación como C++ o Java. Por ejemplo, en Python se puede escribir:\n\n\nCódigo\na = 5\nb = \"Hola\"\nc = 3.14\n\n\nEn este caso, Python determina que a es un entero, b es una cadena de texto y c es un número de punto flotante en tiempo de ejecución.\nEn otro lenguaes de programación como C++ o Java se tendría que declarar el tipo de las variables antes de utilizarlas. Por ejemplo, en C++ se tendría que escribir:\nint a = 5;\nstd::string b = \"Hola\";\nfloat c = 3.14;\nEl tipo puede ser modificado en cualquier momento, por ejemplo:\n\n\nCódigo\na = 5\nprint(a)\na = \"Hola\"\nprint(a)\na = 3.14\nprint(a)\n\n\n5\nHola\n3.14",
+    "crumbs": [
+      "Fundamentos de Python",
+      "Instalación de Python"
+    ]
+  },
+  {
+    "objectID": "intro_python/Cloud.html#interpretado",
+    "href": "intro_python/Cloud.html#interpretado",
+    "title": "Instalación de Python",
+    "section": "",
+    "text": "Un lenguaje de programación interpretado es un lenguaje de programación que utiliza un programa llamado intérprete para ejecutar el código fuente. El intérprete de Python se encarga de leer el código fuente escrito en Python y ejecutarlo línea por línea.\nPor otro lado, los lenguajes de programación compilados utilizan un programa llamado compilador para traducir el código fuente a un lenguaje de máquina que la computadora pueda entender. El código fuente compilado se convierte en un archivo ejecutable que puede ser ejecutado por la computadora lo que da como resultado un programa más rápido que un programa interpretado y con mayor control sobre el hardware.",
+    "crumbs": [
+      "Fundamentos de Python",
+      "Instalación de Python"
+    ]
+  },
+  {
+    "objectID": "intro_python/Cloud.html#orientado-a-objetos",
+    "href": "intro_python/Cloud.html#orientado-a-objetos",
+    "title": "Instalación de Python",
+    "section": "",
+    "text": "Python es un lenguaje de programación orientado a objetos lo que significa que todo en Python es un objeto. Un objeto es una entidad que tiene un estado y un comportamiento. Por ejemplo, un objeto de la clase Persona tiene un estado que incluye el nombre, la edad y la dirección de la persona y un comportamiento que incluye caminar, hablar y comer.\nEl ejemplo más claro de la orientación a objetos en Python es la creación de clases y objetos. Una clase es una plantilla que define las propiedades y los métodos de un objeto y un objeto es una instancia de una clase. Por ejemplo, la clase Persona define las propiedades y los métodos de una persona y un objeto de la clase Persona es una persona en particular.\nEsto en Python se ve de la siguiente forma:\n\n\nCódigo\nclass Persona:\n    def __init__(self, nombre, edad, direccion):\n        self.nombre = nombre\n        self.edad = edad\n        self.direccion = direccion\n\n    def caminar(self):\n        print(f\"{self.nombre} está caminando\")\n\n    def hablar(self):\n        print(f\"{self.nombre} está hablando\")\n\n    def comer(self):\n        print(f\"{self.nombre} está comiendo\")\n\npersona = Persona(\"Juan\", 25, \"Calle 123\")\npersona.caminar()\npersona.hablar()\npersona.comer()\n\n\nJuan está caminando\nJuan está hablando\nJuan está comiendo",
+    "crumbs": [
+      "Fundamentos de Python",
+      "Instalación de Python"
+    ]
+  },
+  {
+    "objectID": "intro_python/Cloud.html#semántica-dinámica",
+    "href": "intro_python/Cloud.html#semántica-dinámica",
+    "title": "Instalación de Python",
+    "section": "",
+    "text": "Python es un lenguaje de programación con semántica dinámica lo que significa que el tipo de una variable se determina en tiempo de ejecución y no en tiempo de compilación. Por ejemplo, en Python no es necesario declarar el tipo de una variable antes de utilizarla como en otros lenguajes de programación como C++ o Java. Por ejemplo, en Python se puede escribir:\n\n\nCódigo\na = 5\nb = \"Hola\"\nc = 3.14\n\n\nEn este caso, Python determina que a es un entero, b es una cadena de texto y c es un número de punto flotante en tiempo de ejecución.\nEn otro lenguaes de programación como C++ o Java se tendría que declarar el tipo de las variables antes de utilizarlas. Por ejemplo, en C++ se tendría que escribir:\nint a = 5;\nstd::string b = \"Hola\";\nfloat c = 3.14;\nEl tipo puede ser modificado en cualquier momento, por ejemplo:\n\n\nCódigo\na = 5\nprint(a)\na = \"Hola\"\nprint(a)\na = 3.14\nprint(a)\n\n\n5\nHola\n3.14",
+    "crumbs": [
+      "Fundamentos de Python",
+      "Instalación de Python"
+    ]
+  },
+  {
+    "objectID": "intro_python/Cloud.html#macos",
+    "href": "intro_python/Cloud.html#macos",
+    "title": "Instalación de Python",
+    "section": "MacOs ",
+    "text": "MacOs",
+    "crumbs": [
+      "Fundamentos de Python",
+      "Instalación de Python"
+    ]
+  },
+  {
+    "objectID": "intro_python/Cloud.html#windows",
+    "href": "intro_python/Cloud.html#windows",
+    "title": "Instalación de Python",
+    "section": "Windows ",
+    "text": "Windows",
+    "crumbs": [
+      "Fundamentos de Python",
+      "Instalación de Python"
+    ]
+  },
+  {
+    "objectID": "intro_python/Cloud.html#instalar-visual-studio-code",
+    "href": "intro_python/Cloud.html#instalar-visual-studio-code",
+    "title": "Instalación de Python",
+    "section": "Instalar Visual Studio Code ",
+    "text": "Instalar Visual Studio Code \nLa instalación de Visual Studio Code es muy sencilla, solo debes de ir a la página oficial de Visual Studio Code y descargar el instalador correspondiente a tu sistema operativo, pero si prefieres ver un video que te guíe en la instalación aquí te dejo uno para MacOS y otro para Windows.\n\nMacOS \n\n\n\nWindows",
+    "crumbs": [
+      "Fundamentos de Python",
+      "Instalación de Python"
     ]
   },
   {
@@ -169,231 +356,55 @@
     ]
   },
   {
-    "objectID": "intro_python/Cloud.html",
-    "href": "intro_python/Cloud.html",
-    "title": "Instalación de Python",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Ciencia de Datos con Python",
     "section": "",
-    "text": "Python  es un lenguaje de programación de alto nivel, interpretado y orientado a objetos con semántica dinámica. Es un lenguaje de programación muy popular en la actualidad debido a su simplicidad y versatilidad. Y ampliamente utilizado en la ciencia de datos, inteligencia artificial, desarrollo web, desarrollo de videojuegos, entre otros.\nVamos a deshilar un poco la definición anterior para entender mejor lo que significa.\n\n\nUn lenguaje de programación de alto nivel es un lenguaje de programación que se encuentra más cerca del lenguaje humano que del lenguaje de máquina. Por ejemplo para imprimir el resultado de la suma de dos números en Python se escribe:\n\n\nCódigo\na = 5\nb = 3\n\nprint(a + b)\n\n\n8\n\n\nCualquier persona que entienda aritmética básica y sepa un poco de inglés puede entender lo que hace este código. Esto hace que los programas escritos en Python sean más fáciles de leer y de escribir que los programas escritos en lenguajes de programación de bajo nivel como el lenguaje ensamblador  o el lenguaje C++  . Por ejemplo en C++ el mismo programa se escribiría de la siguiente forma:\n#include &lt;iostream&gt;\n\nint main() {\n    int a = 5;\n    int b = 3;\n    std::cout &lt;&lt; a + b &lt;&lt; std::endl;\n    return 0;\n} \nY en lenguaje ensamblador se escribiría de la siguiente forma:\nsection .data\n    a db 5\n    b db 3\nsection .text\n    global _start\n_start:\n    mov al, [a]\n    mov bl, [b]\n    add al, bl\n    mov dl, al\n    mov eax, 4\n    mov ebx, 1\n    mov ecx, dl\n    mov edx, 1\n    int 0x80\n    mov eax, 1\n    xor ebx, ebx\n    int 0x80\n\n\n\nUn lenguaje de programación interpretado es un lenguaje de programación que utiliza un programa llamado intérprete para ejecutar el código fuente. El intérprete de Python se encarga de leer el código fuente escrito en Python y ejecutarlo línea por línea.\nPor otro lado, los lenguajes de programación compilados utilizan un programa llamado compilador para traducir el código fuente a un lenguaje de máquina que la computadora pueda entender. El código fuente compilado se convierte en un archivo ejecutable que puede ser ejecutado por la computadora lo que da como resultado un programa más rápido que un programa interpretado y con mayor control sobre el hardware.\n\n\n\nPython es un lenguaje de programación orientado a objetos lo que significa que todo en Python es un objeto. Un objeto es una entidad que tiene un estado y un comportamiento. Por ejemplo, un objeto de la clase Persona tiene un estado que incluye el nombre, la edad y la dirección de la persona y un comportamiento que incluye caminar, hablar y comer.\nEl ejemplo más claro de la orientación a objetos en Python es la creación de clases y objetos. Una clase es una plantilla que define las propiedades y los métodos de un objeto y un objeto es una instancia de una clase. Por ejemplo, la clase Persona define las propiedades y los métodos de una persona y un objeto de la clase Persona es una persona en particular.\nEsto en Python se ve de la siguiente forma:\n\n\nCódigo\nclass Persona:\n    def __init__(self, nombre, edad, direccion):\n        self.nombre = nombre\n        self.edad = edad\n        self.direccion = direccion\n\n    def caminar(self):\n        print(f\"{self.nombre} está caminando\")\n\n    def hablar(self):\n        print(f\"{self.nombre} está hablando\")\n\n    def comer(self):\n        print(f\"{self.nombre} está comiendo\")\n\npersona = Persona(\"Juan\", 25, \"Calle 123\")\npersona.caminar()\npersona.hablar()\npersona.comer()\n\n\nJuan está caminando\nJuan está hablando\nJuan está comiendo\n\n\n\n\n\nPython es un lenguaje de programación con semántica dinámica lo que significa que el tipo de una variable se determina en tiempo de ejecución y no en tiempo de compilación. Por ejemplo, en Python no es necesario declarar el tipo de una variable antes de utilizarla como en otros lenguajes de programación como C++ o Java. Por ejemplo, en Python se puede escribir:\n\n\nCódigo\na = 5\nb = \"Hola\"\nc = 3.14\n\n\nEn este caso, Python determina que a es un entero, b es una cadena de texto y c es un número de punto flotante en tiempo de ejecución.\nEn otro lenguaes de programación como C++ o Java se tendría que declarar el tipo de las variables antes de utilizarlas. Por ejemplo, en C++ se tendría que escribir:\nint a = 5;\nstd::string b = \"Hola\";\nfloat c = 3.14;\nEl tipo puede ser modificado en cualquier momento, por ejemplo:\n\n\nCódigo\na = 5\nprint(a)\na = \"Hola\"\nprint(a)\na = 3.14\nprint(a)\n\n\n5\nHola\n3.14",
+    "text": "Este curso tiene como meta introducir a los estudiantes de la Facultad de Psicología al mundo de la ciencia de datos utilizando Python. A lo largo del curso se abordarán temas como la programación en Python, la estadística descriptiva e inferencial, el análisis y visualización de datos, y la creación de redes neuronales.\nEl curso no supone ningún conocimiento previo de programación, pero se espera que los estudiantes tengan una actitud proactiva y estén dispuestos a aprender y a poner en práctica los conceptos que se presenten en clase.\nAunque se repasarán de manera breve conceptos de estadística y probabilidad, es recomendable tener un conocimiento básico de estos temas para poder aprovechar al máximo el curso. Otro requisito importante es tener una computadora personal con acceso a internet y disponibilidad de llevar al salón, ya que la mayor parte de las actividades requerirán de una computadora personal.\nUna parte importante del curso es crear un ambiente de aprendizaje colaborativo, por lo que se espera que los estudiantes participen activamente en las clases, realicen las tareas y actividades que se les asignen, y que estén dispuestos a ayudar a sus compañeros en caso de que lo necesiten. Además se crearán equipos permanentes de trabajo, por lo que es importante que los estudiantes se comprometan a trabajar en equipo dado que todas las actividades se realizarán en equipo fomentando un método de trabajo llamado “pair programming”.",
     "crumbs": [
-      "Fundamentos de Python",
-      "Instalación de Python"
+      "Inicio"
     ]
   },
   {
-    "objectID": "intro_python/Cloud.html#interpretado",
-    "href": "intro_python/Cloud.html#interpretado",
-    "title": "Instalación de Python",
+    "objectID": "index.html#acerca-de-este-curso",
+    "href": "index.html#acerca-de-este-curso",
+    "title": "Ciencia de Datos con Python",
     "section": "",
-    "text": "Un lenguaje de programación interpretado es un lenguaje de programación que utiliza un programa llamado intérprete para ejecutar el código fuente. El intérprete de Python se encarga de leer el código fuente escrito en Python y ejecutarlo línea por línea.\nPor otro lado, los lenguajes de programación compilados utilizan un programa llamado compilador para traducir el código fuente a un lenguaje de máquina que la computadora pueda entender. El código fuente compilado se convierte en un archivo ejecutable que puede ser ejecutado por la computadora lo que da como resultado un programa más rápido que un programa interpretado y con mayor control sobre el hardware.",
+    "text": "Este curso tiene como meta introducir a los estudiantes de la Facultad de Psicología al mundo de la ciencia de datos utilizando Python. A lo largo del curso se abordarán temas como la programación en Python, la estadística descriptiva e inferencial, el análisis y visualización de datos, y la creación de redes neuronales.\nEl curso no supone ningún conocimiento previo de programación, pero se espera que los estudiantes tengan una actitud proactiva y estén dispuestos a aprender y a poner en práctica los conceptos que se presenten en clase.\nAunque se repasarán de manera breve conceptos de estadística y probabilidad, es recomendable tener un conocimiento básico de estos temas para poder aprovechar al máximo el curso. Otro requisito importante es tener una computadora personal con acceso a internet y disponibilidad de llevar al salón, ya que la mayor parte de las actividades requerirán de una computadora personal.\nUna parte importante del curso es crear un ambiente de aprendizaje colaborativo, por lo que se espera que los estudiantes participen activamente en las clases, realicen las tareas y actividades que se les asignen, y que estén dispuestos a ayudar a sus compañeros en caso de que lo necesiten. Además se crearán equipos permanentes de trabajo, por lo que es importante que los estudiantes se comprometan a trabajar en equipo dado que todas las actividades se realizarán en equipo fomentando un método de trabajo llamado “pair programming”.",
     "crumbs": [
-      "Fundamentos de Python",
-      "Instalación de Python"
+      "Inicio"
     ]
   },
   {
-    "objectID": "intro_python/Cloud.html#orientado-a-objetos",
-    "href": "intro_python/Cloud.html#orientado-a-objetos",
-    "title": "Instalación de Python",
+    "objectID": "index.html#objetivos-del-curso",
+    "href": "index.html#objetivos-del-curso",
+    "title": "Ciencia de Datos con Python",
+    "section": "Objetivos del curso",
+    "text": "Objetivos del curso\n\nAprender y poner en práctica los conceptos básicos de la programación en Python.\nComprender los conceptos básicos de la estadística descriptiva e inferencial a través de ejemplos prácticos en Python.\nAprender a utilizar las librerías más populares de Python para el análisis y la visualización de datos.\nComprender los conceptos básicos de las redes neuronales y aprender a crear redes neuronales utilizando Python.\nAprender a presentar y comunicar los resultados de un análisis de datos de manera efectiva y con código reproducible.\n\n\n\nInstructor\n\n   Christian Francisco Badillo Hernández\n   Lab 25, Facultad de Psicología, UNAM\n   cris.badillo1408@gmail.com\n\n\n\nDetalles del curso\n\n   Lunes - Viernes\n   10 de junio - 28 de junio de 2024\n   13:30 - 15:30 hrs\n   A209\n   Classroom",
+    "crumbs": [
+      "Inicio"
+    ]
+  },
+  {
+    "objectID": "index.html#temario",
+    "href": "index.html#temario",
+    "title": "Ciencia de Datos con Python",
+    "section": "Temario",
+    "text": "Temario\n\nIntroducción a Python y la Ciencia de Datos.\n\nTipos, variables y operaciones matemáticas básicas.\n\nStrings (cadenas de texto).\nInteger (Números enteros).\nFloats (Décimales)\nBooleanos\nExpresiones y declaraciones.\nOperaciones.\n\nDefinición de funciones.\n\nDefinición de funciones en python\nUso de funciones.\nFunciones lambda\n\nFlujos de control.\n\nFlujo de control If, else, elif\nFlujo de control while\nFlujo de control for\nKeywords de flujos de control: pass, continue, break\n\nEstructuras de datos.\n\nSet.\nTuplas.\nDiccionarios.\nListas.\nMatrices.\nNdarrays.\nData Frames.\n\nMódulos y paquetes.\n\nDefinición de módulos y paquetes.\n\n\nLimpieza, manejo y creación de bases de datos con pandas.\n\nTipos de bases de datos.\n\nBases de datos relacionales.\nBase de datos no relacionales.\n\nIntroducción al manejo de bases de datos con pandas.\n\nCarga de bases de datos locales o de la nube.\nBúsqueda de datos faltantes.\nDescripción de bases de datos.\nModificación de bases de datos.\nCreación de bases de datos.\n\n\nAnálisis descriptivo y visualización de datos.\n\nVisualización de datos con Matplotlib y Seaborn.\n\nIntroducción a la visualización de datos.\nMatriz de correlación.\nVisualizaciones básicas (histogramas, cajas de bigotes, etc.).\nVisualizaciones en 3D y combinaciones de gráficos.\n\n\nEstadística Inferencial con Python.\n\nPaqueterías de Análisis estadístico.\n\nStatsmodels.\nScikit-learn.\nPaqueterías bayesianas (PyMC3, PyJAGS, PySTAN).\n\nRegresión lineal.\nRegresión múltiple.\nModelos lineales generalizados (regresión logística, ANOVA, T-Student, etc).\nEstimación Bayesiana (Uso de algoritmos MCMC).\n\nIntroducción a Machine learning: Redes Neuronales.\n\nConceptos básicos de Inteligencia artificial y redes neuronales.\nPaqueterías para redes neuronales.\n\nTensorflow.\nScikit-learn.\nKeras.\n\nProgramación del perceptrón multicapa.\nAnalizando datos con un red neuronal multicapa.\n\n\n\nPuedes descargar el temario completo en el siguiente enlace:\n Descarga el temario",
+    "crumbs": [
+      "Inicio"
+    ]
+  },
+  {
+    "objectID": "statistics/data_manipulation.html",
+    "href": "statistics/data_manipulation.html",
+    "title": "Manipulación de datos con Pandas",
     "section": "",
-    "text": "Python es un lenguaje de programación orientado a objetos lo que significa que todo en Python es un objeto. Un objeto es una entidad que tiene un estado y un comportamiento. Por ejemplo, un objeto de la clase Persona tiene un estado que incluye el nombre, la edad y la dirección de la persona y un comportamiento que incluye caminar, hablar y comer.\nEl ejemplo más claro de la orientación a objetos en Python es la creación de clases y objetos. Una clase es una plantilla que define las propiedades y los métodos de un objeto y un objeto es una instancia de una clase. Por ejemplo, la clase Persona define las propiedades y los métodos de una persona y un objeto de la clase Persona es una persona en particular.\nEsto en Python se ve de la siguiente forma:\n\n\nCódigo\nclass Persona:\n    def __init__(self, nombre, edad, direccion):\n        self.nombre = nombre\n        self.edad = edad\n        self.direccion = direccion\n\n    def caminar(self):\n        print(f\"{self.nombre} está caminando\")\n\n    def hablar(self):\n        print(f\"{self.nombre} está hablando\")\n\n    def comer(self):\n        print(f\"{self.nombre} está comiendo\")\n\npersona = Persona(\"Juan\", 25, \"Calle 123\")\npersona.caminar()\npersona.hablar()\npersona.comer()\n\n\nJuan está caminando\nJuan está hablando\nJuan está comiendo",
+    "text": "Leyeando datos con Pandas\n\n\n\n\n Volver arriba",
     "crumbs": [
-      "Fundamentos de Python",
-      "Instalación de Python"
+      "Manejo de Datos y Estadística con Python",
+      "Manipulación de datos con Pandas"
     ]
-  },
-  {
-    "objectID": "intro_python/Cloud.html#semántica-dinámica",
-    "href": "intro_python/Cloud.html#semántica-dinámica",
-    "title": "Instalación de Python",
-    "section": "",
-    "text": "Python es un lenguaje de programación con semántica dinámica lo que significa que el tipo de una variable se determina en tiempo de ejecución y no en tiempo de compilación. Por ejemplo, en Python no es necesario declarar el tipo de una variable antes de utilizarla como en otros lenguajes de programación como C++ o Java. Por ejemplo, en Python se puede escribir:\n\n\nCódigo\na = 5\nb = \"Hola\"\nc = 3.14\n\n\nEn este caso, Python determina que a es un entero, b es una cadena de texto y c es un número de punto flotante en tiempo de ejecución.\nEn otro lenguaes de programación como C++ o Java se tendría que declarar el tipo de las variables antes de utilizarlas. Por ejemplo, en C++ se tendría que escribir:\nint a = 5;\nstd::string b = \"Hola\";\nfloat c = 3.14;\nEl tipo puede ser modificado en cualquier momento, por ejemplo:\n\n\nCódigo\na = 5\nprint(a)\na = \"Hola\"\nprint(a)\na = 3.14\nprint(a)\n\n\n5\nHola\n3.14",
-    "crumbs": [
-      "Fundamentos de Python",
-      "Instalación de Python"
-    ]
-  },
-  {
-    "objectID": "intro_python/Cloud.html#macos",
-    "href": "intro_python/Cloud.html#macos",
-    "title": "Instalación de Python",
-    "section": "MacOs ",
-    "text": "MacOs",
-    "crumbs": [
-      "Fundamentos de Python",
-      "Instalación de Python"
-    ]
-  },
-  {
-    "objectID": "intro_python/Cloud.html#windows",
-    "href": "intro_python/Cloud.html#windows",
-    "title": "Instalación de Python",
-    "section": "Windows ",
-    "text": "Windows",
-    "crumbs": [
-      "Fundamentos de Python",
-      "Instalación de Python"
-    ]
-  },
-  {
-    "objectID": "intro_python/Cloud.html#instalar-visual-studio-code",
-    "href": "intro_python/Cloud.html#instalar-visual-studio-code",
-    "title": "Instalación de Python",
-    "section": "Instalar Visual Studio Code ",
-    "text": "Instalar Visual Studio Code \nLa instalación de Visual Studio Code es muy sencilla, solo debes de ir a la página oficial de Visual Studio Code y descargar el instalador correspondiente a tu sistema operativo, pero si prefieres ver un video que te guíe en la instalación aquí te dejo uno para MacOS y otro para Windows.\n\nMacOS \n\n\n\nWindows",
-    "crumbs": [
-      "Fundamentos de Python",
-      "Instalación de Python"
-    ]
-  },
-  {
-    "objectID": "intro_python/data_structures.html",
-    "href": "intro_python/data_structures.html",
-    "title": "Estructuras de Datos",
-    "section": "",
-    "text": "Los datos son la base de la ciencia, son la materia prima con la que trabajamos. Dada su importancia es necesario contar con herramientas que nos permitan manipularlos de manera eficiente. En este sentido, las estructuras de datos son una herramienta fundamental en la programación. Se definen como formas de organizar y almacenar datos en la memoria de un computador, de tal manera que se puedan acceder y modificar de manera eficiente.\nEn esta lección veremos algunas de las estructuras de datos más comunes en Python, como las listas, tuplas, conjuntos, diccionarios, arreglos de NumPy y DataFrames de Pandas, así como las propiedades y métodos que las caracterizan.",
-    "crumbs": [
-      "Fundamentos de Python",
-      "Estructuras de Datos"
-    ]
-  },
-  {
-    "objectID": "intro_python/data_structures.html#indexación",
-    "href": "intro_python/data_structures.html#indexación",
-    "title": "Estructuras de Datos",
-    "section": "Indexación",
-    "text": "Indexación\nPara acceder a elementos de una lista se utiliza la indexación. Los índices en Python comienzan en 0, por lo que el primer elemento de una lista tiene índice 0, el segundo índice 1 y así sucesivamente. Para acceder a un elemento de una lista se utiliza la sintaxis nombredelista[indice].\n\n\nCódigo\nprint(lista[0])\nprint(lista[1])\nprint(lista[2])\n\n# Acceder al último elemento\nprint(lista[-1])\n\n\n1\n2\n3\nhola",
-    "crumbs": [
-      "Fundamentos de Python",
-      "Estructuras de Datos"
-    ]
-  },
-  {
-    "objectID": "intro_python/data_structures.html#slicing",
-    "href": "intro_python/data_structures.html#slicing",
-    "title": "Estructuras de Datos",
-    "section": "Slicing",
-    "text": "Slicing\nEl slicing es una técnica que permite acceder a subconjuntos de elementos de una lista. Se utiliza la sintaxis nombredelista[inicio:fin], donde inicio es el índice del primer elemento que se quiere incluir y fin es el índice del primer elemento que no se quiere incluir.\n\n\nCódigo\nprint(lista[0:3])\nprint(lista[3:])\n\n\n[1, 2, 3]\n[4, 5, 6, [7, 8, 9], 'hola']\n\n\nSi no se especifica el índice de inicio, se asume que es 0. Si no se especifica el índice de fin, se asume que es el último elemento de la lista.",
-    "crumbs": [
-      "Fundamentos de Python",
-      "Estructuras de Datos"
-    ]
-  },
-  {
-    "objectID": "intro_python/data_structures.html#modificación",
-    "href": "intro_python/data_structures.html#modificación",
-    "title": "Estructuras de Datos",
-    "section": "Modificación",
-    "text": "Modificación\nPara modificar un elemento de una lista se utiliza la indexación y la asignación.\n\n\nCódigo\nlista[0] = 10\nprint(lista)\n\n\n[10, 2, 3, 4, 5, 6, [7, 8, 9], 'hola']",
-    "crumbs": [
-      "Fundamentos de Python",
-      "Estructuras de Datos"
-    ]
-  },
-  {
-    "objectID": "intro_python/data_structures.html#eliminación",
-    "href": "intro_python/data_structures.html#eliminación",
-    "title": "Estructuras de Datos",
-    "section": "Eliminación",
-    "text": "Eliminación\nPara eliminar un elemento de una lista se utiliza el método remove() y se especifica el elemento del elemento que se quiere eliminar.\n\n\nCódigo\nlista.remove(10)\nprint(lista)\n\n\n[2, 3, 4, 5, 6, [7, 8, 9], 'hola']\n\n\nSi queremos eliminar el último elemento de una lista se puede utilizar el método pop().\n\n\nCódigo\nlista.pop()\nprint(lista)\n\n\n'hola'\n\n\n[2, 3, 4, 5, 6, [7, 8, 9]]",
-    "crumbs": [
-      "Fundamentos de Python",
-      "Estructuras de Datos"
-    ]
-  },
-  {
-    "objectID": "intro_python/data_structures.html#resumen",
-    "href": "intro_python/data_structures.html#resumen",
-    "title": "Estructuras de Datos",
-    "section": "Resumen",
-    "text": "Resumen\nLas listas tienen un gran número de métodos que permiten realizar operaciones sobre ellas. Un resumen de los métodos más comunes es el siguiente:\n\nappend(): Agrega un elemento al final de la lista.\nextend(): Agrega varios elementos al final de la lista.\ninsert(): Agrega un elemento en una posición específica.\nremove(): Elimina un elemento de la lista.\npop(): Elimina un elemento de la lista y lo devuelve.\nindex(): Devuelve el índice de un elemento en la lista.\ncount(): Cuenta el número de veces que un elemento aparece en la lista.\nsort(): Ordena los elementos de la lista en orden ascendente.\nreverse(): Invierte el orden de los elementos de la lista.\ncopy(): Crea una copia de la lista.\n\nVale la pena hacer enfásis en que no es necesario aprenderse todos los métodos de memoria, sino que es más importante entender para qué y cómo se pueden utilizar las listas, los métodos se pueden consultar en la documentación de Python, buscando en Google o preguntandole a ChatGPT.",
-    "crumbs": [
-      "Fundamentos de Python",
-      "Estructuras de Datos"
-    ]
-  },
-  {
-    "objectID": "intro_python/data_structures.html#slicing-en-dataframes",
-    "href": "intro_python/data_structures.html#slicing-en-dataframes",
-    "title": "Estructuras de Datos",
-    "section": "Slicing en DataFrames",
-    "text": "Slicing en DataFrames\nPor ahora veamos cómo acceder a elementos de un DataFrame. Podemos acceder a las primeras y últimas filas de un DataFrame utilizando los métodos head() y tail(), respectivamente\n\n\nCódigo\n# Cargo un conjunto de datos de ejemplo\ndf = pd.read_csv('https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv') \n\ndf.head() # Imprimir las primeras filas del DataFrame\n\ndf.tail() # Imprimir las últimas filas del DataFrame\n\n\n\n\n\n\n\n\n\n\nsepal_length\nsepal_width\npetal_length\npetal_width\nspecies\n\n\n\n\n0\n5.1\n3.5\n1.4\n0.2\nsetosa\n\n\n1\n4.9\n3.0\n1.4\n0.2\nsetosa\n\n\n2\n4.7\n3.2\n1.3\n0.2\nsetosa\n\n\n3\n4.6\n3.1\n1.5\n0.2\nsetosa\n\n\n4\n5.0\n3.6\n1.4\n0.2\nsetosa\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nsepal_length\nsepal_width\npetal_length\npetal_width\nspecies\n\n\n\n\n145\n6.7\n3.0\n5.2\n2.3\nvirginica\n\n\n146\n6.3\n2.5\n5.0\n1.9\nvirginica\n\n\n147\n6.5\n3.0\n5.2\n2.0\nvirginica\n\n\n148\n6.2\n3.4\n5.4\n2.3\nvirginica\n\n\n149\n5.9\n3.0\n5.1\n1.8\nvirginica\n\n\n\n\n\n\n\n\nPodemos acceder a las columnas de un DataFrame utilizando la indexación con corchetes [] y el nombre de la columna entre comillas simples o dobles.\n\n\nCódigo\ndf['sepal_length'] # Acceder a la columna 'sepal_length'\n\n\n0      5.1\n1      4.9\n2      4.7\n3      4.6\n4      5.0\n      ... \n145    6.7\n146    6.3\n147    6.5\n148    6.2\n149    5.9\nName: sepal_length, Length: 150, dtype: float64\n\n\nOtra manera de acceder a una columna es utilizando la notación de punto . y el nombre de la columna, pero esta forma no es muy usada dado que complica el acceso a columnas con nombres que contienen espacios o caracteres especiales.\n\n\nCódigo\ndf.sepal_length # Acceder a la columna 'sepal_length'\n\n\n0      5.1\n1      4.9\n2      4.7\n3      4.6\n4      5.0\n      ... \n145    6.7\n146    6.3\n147    6.5\n148    6.2\n149    5.9\nName: sepal_length, Length: 150, dtype: float64\n\n\nTambién podemos acceder a filas y columnas utilizando la función loc[] y los nombres de las filas y columnas.\n\n\nCódigo\ndf.loc[:, 'sepal_length'] # Acceder al elemento en la fila 0 y columna 'sepal_length'\n# Recuerden que si usamos : estamos seleccionando todas las filas, primero se seleccionan las filas y luego las columnas\n\n\n0      5.1\n1      4.9\n2      4.7\n3      4.6\n4      5.0\n      ... \n145    6.7\n146    6.3\n147    6.5\n148    6.2\n149    5.9\nName: sepal_length, Length: 150, dtype: float64\n\n\nSi queremos seleccionar varias columnas podemos pasar una lista con los nombres de las columnas.\n\n\nCódigo\ncol_names = ['sepal_length', 'sepal_width']\ndf.loc[:, col_names] # Acceder a las columnas 'sepal_length' y 'sepal_width'\n\n\n\n\n\n\n\n\n\n\nsepal_length\nsepal_width\n\n\n\n\n0\n5.1\n3.5\n\n\n1\n4.9\n3.0\n\n\n2\n4.7\n3.2\n\n\n3\n4.6\n3.1\n\n\n4\n5.0\n3.6\n\n\n...\n...\n...\n\n\n145\n6.7\n3.0\n\n\n146\n6.3\n2.5\n\n\n147\n6.5\n3.0\n\n\n148\n6.2\n3.4\n\n\n149\n5.9\n3.0\n\n\n\n\n150 rows × 2 columns\n\n\n\n\nSi queremos seleccionar las filas 5, 14, 23 y las columnas ‘sepal_length’ y ‘sepal_width’ podemos hacerlo de la siguiente manera.\n\n\nCódigo\nfilas = [5, 14, 23]\ncol_names = ['sepal_length', 'sepal_width']\n\ndf.loc[filas, col_names] # Acceder a las filas 5, 14, 23 y las columnas 'sepal_length' y 'sepal_width'\n\n\n\n\n\n\n\n\n\n\nsepal_length\nsepal_width\n\n\n\n\n5\n5.4\n3.9\n\n\n14\n5.8\n4.0\n\n\n23\n5.1\n3.3",
-    "crumbs": [
-      "Fundamentos de Python",
-      "Estructuras de Datos"
-    ]
-  },
-  {
-    "objectID": "intro_python/data_structures.html#modificación-de-dataframes",
-    "href": "intro_python/data_structures.html#modificación-de-dataframes",
-    "title": "Estructuras de Datos",
-    "section": "Modificación de DataFrames",
-    "text": "Modificación de DataFrames\nPodemos agregar una nueva columna a un DataFrame utilizando la notación de corchetes [] y el nombre de la nueva columna y asignándole una lista con los valores de la columna.\nCreemos una nueva columna que contenga la suma de las columnas ‘sepal_length’ y ‘sepal_width’.\n\n\nCódigo\ndf['sepal_sum'] = df['sepal_length'] + df['sepal_width']\ndf.head()\n\n\n\n\n\n\n\n\n\n\nsepal_length\nsepal_width\npetal_length\npetal_width\nspecies\nsepal_sum\n\n\n\n\n0\n5.1\n3.5\n1.4\n0.2\nsetosa\n8.6\n\n\n1\n4.9\n3.0\n1.4\n0.2\nsetosa\n7.9\n\n\n2\n4.7\n3.2\n1.3\n0.2\nsetosa\n7.9\n\n\n3\n4.6\n3.1\n1.5\n0.2\nsetosa\n7.7\n\n\n4\n5.0\n3.6\n1.4\n0.2\nsetosa\n8.6\n\n\n\n\n\n\n\n\nPara eliminar una columna de un DataFrame se utiliza el método drop() y se pasa el nombre de la columna y el eje en el que se quiere eliminar, los ejes son 0 para filas y 1 para columnas.\n\n\nCódigo\ndf.drop('sepal_sum', axis=1, inplace=True)\ndf.head()\n\n\n\n\n\n\n\n\n\n\nsepal_length\nsepal_width\npetal_length\npetal_width\nspecies\n\n\n\n\n0\n5.1\n3.5\n1.4\n0.2\nsetosa\n\n\n1\n4.9\n3.0\n1.4\n0.2\nsetosa\n\n\n2\n4.7\n3.2\n1.3\n0.2\nsetosa\n\n\n3\n4.6\n3.1\n1.5\n0.2\nsetosa\n\n\n4\n5.0\n3.6\n1.4\n0.2\nsetosa\n\n\n\n\n\n\n\n\nEl parámetro inplace=True indica que la operación se realice sobre el DataFrame original, si se omite se crea una copia del DataFrame con la columna eliminada, pero si esta copia no se asigna a una variable se perderá.\nSi queremos modificar un valor de un DataFrame se localiza el elemento con loc[] y se asigna el nuevo valor.\n\n\nCódigo\ndf.head()\ndf.loc[0, 'sepal_length'] = 10\ndf.head()\n\n\n\n\n\n\n\n\n\n\nsepal_length\nsepal_width\npetal_length\npetal_width\nspecies\n\n\n\n\n0\n5.1\n3.5\n1.4\n0.2\nsetosa\n\n\n1\n4.9\n3.0\n1.4\n0.2\nsetosa\n\n\n2\n4.7\n3.2\n1.3\n0.2\nsetosa\n\n\n3\n4.6\n3.1\n1.5\n0.2\nsetosa\n\n\n4\n5.0\n3.6\n1.4\n0.2\nsetosa\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nsepal_length\nsepal_width\npetal_length\npetal_width\nspecies\n\n\n\n\n0\n10.0\n3.5\n1.4\n0.2\nsetosa\n\n\n1\n4.9\n3.0\n1.4\n0.2\nsetosa\n\n\n2\n4.7\n3.2\n1.3\n0.2\nsetosa\n\n\n3\n4.6\n3.1\n1.5\n0.2\nsetosa\n\n\n4\n5.0\n3.6\n1.4\n0.2\nsetosa",
-    "crumbs": [
-      "Fundamentos de Python",
-      "Estructuras de Datos"
-    ]
-  },
-  {
-    "objectID": "intro_python/Variables.html",
-    "href": "intro_python/Variables.html",
-    "title": "Declaración de Variables y Operaciones",
-    "section": "",
-    "text": "En Python utilizamos variables para almacenar información en la memoria de la computadora. Las variables son como cajas en las que podemos guardar información, cada caja tiene un nombre y un contenido. Existen varias reglas para dar nombre a las variables en Python:\n\nEl nombre debe comenzar con una letra o un guión bajo.\nNo puede comenzar con un número.\nPuede contener letras, números y guiones bajos.\n\nEl proceso de crear (dar valor) a una variable se conoce como declaración de variables y es sensible a mayúsculas y minúsculas. Esto significa que si declaramos las variables nombre, Nombre y NOMBRE serán diferentes.\n\n\nCódigo\nnombre = \"Christian\"\nNombre = \"Jimena\"\nNOMBRE = \"Luis\"\n\nprint(nombre == Nombre)\nprint(Nombre == NOMBRE)\nprint(NOMBRE == nombre)\n\n\nFalse\nFalse\nFalse\n\n\nPor lo cual podemos ver que las variables nombre, Nombre y NOMBRE son diferentes, pues al realizar la comparación entre ellas, el resultado es False, también podemos observar la forma de declarar variables en Python, la cual es nombre_variable = valor_variable.\nPodemos sobrescribir el contenido de una variable en cualquier momento.\n\n\nCódigo\nprint(nombre)\nnombre = \"Cesar\"\nprint(nombre)\n\n\nChristian\nCesar\n\n\nEn el ejemplo anterior, hemos cambiado el contenido de la variable nombre de “Christian” a “Cesar”. En Python, podemos asignar cualquier tipo de dato a una variable. Los tipos de datos más comunes en Python son:\n\nint: Números enteros.\nfloat: Números decimales.\nstr: Cadenas de texto.\nbool: Valores booleanos (verdadero o falso).\nlist: Listas de elementos.\ntuple: Tuplas de elementos.\ndict: Diccionarios de elementos.\n\n\n\n\n\nLos números enteros son números que no tienen parte decimal. En Python, podemos declarar un número entero de la siguiente manera:\n\n\nCódigo\nnumero_entero = 10\nprint(numero_entero)\n\n\n10\n\n\nOtra forma de declarar un número entero es utilizando la función int() para convertir un número decimal o un booleano a un número entero. Veamos un ejemplo:\n\n\nCódigo\nnumero_entero = int(10.5)\nprint(numero_entero)\nnumero_entero = int(10.6)\nprint(numero_entero)\n\nnumero_entero = int(True)\nprint(numero_entero)\n\n\n10\n10\n1\n\n\nLos números decimales son números que tienen parte decimal. En Python, podemos declarar un número decimal de la siguiente manera:\n\n\nCódigo\nnumero_decimal = 10.5\nprint(numero_decimal)\n\n\n10.5\n\n\nOtra forma de declarar un número decimal es utilizando la función float() para convertir un número entero o un booleano a un número decimal.\n\n\nCódigo\nnumero_decimal = float(10)\nprint(numero_decimal)\n\nnumero_decimal = float(True)\nprint(numero_decimal)\n\n\n10.0\n1.0\n\n\nIgualmente podemos utilizar la nota científica para declarar un número decimal en Python con la letra e seguida de un número entero por ejemplo, 22e10 es equivalente a \\(22 * 10^10\\). En código:\n\n\nCódigo\nnumero_decimal = 1.5e2\nprint(numero_decimal)\n\nnumero_decimal = 1.5e-2\nprint(numero_decimal)\n\n\n150.0\n0.015\n\n\n\n\n\nLas cadenas de texto son una secuencia de carácteres (letras, números y símbolos). En Python, se pueden declarar cadenas de texto utilizando comillas simples ' o comillas dobles \". Veamos un ejemplo:\n\n\nCódigo\ncadena_texto = \"Hola Mundo\"\nprint(cadena_texto)\n\n\nHola Mundo\n\n\nOtra forma de declarar una cadena de texto es utilizando la función str() para convertir un número entero, decimal o booleano a una cadena de texto. También podemos combinar las comillas simples y dobles para poder usar una o la otra dentro de la cadena de texto. Por ejemplo:\n\n\nCódigo\ntexto= 'No te procupes, solo es un \"amigo\" / \"amiga\"'\nprint(texto)\n\n\nNo te procupes, solo es un \"amigo\" / \"amiga\"\n\n\nTambén podemos imprimir saltos de línea (\\n), tabulaciones (\\t) y caracteres especiales en una cadena de texto. Por ejemplo:\n\n\nCódigo\ntexto = \"Las rosas son rojas,\\nLas violetas son azules,\\nViva el team frio,\\nQuiero un pan \\U0001F35E\\n\"\n\nprint(texto)\n\ntexto = \"\\n\\t Aqui no se habla\\n\\tdel formato APA\\n\\tNo, no, no 🫠\"\n\nprint(texto)\n\n\nLas rosas son rojas,\nLas violetas son azules,\nViva el team frio,\nQuiero un pan 🍞\n\n\n     Aqui no se habla\n    del formato APA\n    No, no, no 🫠\n\n\n\n\n\nLos valores booleanos son valores lógicos que pueden ser True (verdadero) o False (falso). En Python, podemos declarar un valor booleano de la siguiente manera:\n\n\nCódigo\nvalor_booleano = True\nprint(valor_booleano)\n\n\nTrue\n\n\nIgualmente existe la función bool() pero su uso es poco utilizado, ya que los valores booleanos se utilizan principalmente en condicionales y bucles, además es necesario conocer que cosas se consideran True y False en Python.\n\n\nCódigo\nvalor_booleano = bool(0)\nprint(valor_booleano)\nvalor_booleano = bool(1)\nprint(valor_booleano)\n\nvalor_booleano = bool([])\nprint(valor_booleano)\nvalor_booleano = bool([1, 2, 3])\nprint(valor_booleano)\n\n\nFalse\nTrue\nFalse\nTrue\n\n\nSi recuerdan sus clases de Lógica, podrán crear una tabla de verdad para evaluar proposiciones lógicas en Python.\n\n\n\nLa documentación de código es una práctica común en programación y una buena costumbre para escribir código limpio y legible. En Python, podemos documentar nuestro código utilizando comentarios.\nLos comentarios son líneas de código que no se ejecutan y se utilizan para explicar el código. En Python, los comentarios se crean utilizando el símbolo # y cualquier texto que se escriba después de este símbolo se considera un comentario y no se ejecuta.\n\n\nCódigo\n# Esto es un comentario\nprint(\"Hola Mundo\") # Aquí podemos comentar que hace esta línea de código\n\n\nHola Mundo\n\n\nTambién podemos crear comentarios multilínea utilizando tres comillas simples ''' o tres comillas dobles \"\"\", se utiliza mucho esta forma de comentar para documentar funciones o clases, como lo veremos más adelante.\n\n\n\nEn el siguiente bloque podrán ejecutar código de Python usando su navegador web. Igualmente pueden hacerlo en su computadora o en la nube utilizando Google Colab o Kaggle. Para cada ejercicio deber de escribir su propio código, crear un comentario con sus datos, crear su solución y tomar una captura de pantalla del resultado. Finalmente, subir la captura a la asignación correspondiente en Google Classroom.\n\nDeclarar una variable de cada tipo de dato en Python (entero, decimal, cadena de texto y booleano) e imprimir su valor.\nDeclarar una variable con el nombre poema y asignarle un poema de su elección. Imprimir el poema en la consola con el formato adecuado. (Pueden utilizar emojis si lo desean).\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
-    "crumbs": [
-      "Fundamentos de Python",
-      "Declaración de Variables y Operaciones"
-    ]
-  },
-  {
-    "objectID": "intro_python/Variables.html#tipos-de-variables",
-    "href": "intro_python/Variables.html#tipos-de-variables",
-    "title": "Declaración de Variables y Operaciones",
-    "section": "",
-    "text": "Los números enteros son números que no tienen parte decimal. En Python, podemos declarar un número entero de la siguiente manera:\n\n\nCódigo\nnumero_entero = 10\nprint(numero_entero)\n\n\n10\n\n\nOtra forma de declarar un número entero es utilizando la función int() para convertir un número decimal o un booleano a un número entero. Veamos un ejemplo:\n\n\nCódigo\nnumero_entero = int(10.5)\nprint(numero_entero)\nnumero_entero = int(10.6)\nprint(numero_entero)\n\nnumero_entero = int(True)\nprint(numero_entero)\n\n\n10\n10\n1\n\n\nLos números decimales son números que tienen parte decimal. En Python, podemos declarar un número decimal de la siguiente manera:\n\n\nCódigo\nnumero_decimal = 10.5\nprint(numero_decimal)\n\n\n10.5\n\n\nOtra forma de declarar un número decimal es utilizando la función float() para convertir un número entero o un booleano a un número decimal.\n\n\nCódigo\nnumero_decimal = float(10)\nprint(numero_decimal)\n\nnumero_decimal = float(True)\nprint(numero_decimal)\n\n\n10.0\n1.0\n\n\nIgualmente podemos utilizar la nota científica para declarar un número decimal en Python con la letra e seguida de un número entero por ejemplo, 22e10 es equivalente a \\(22 * 10^10\\). En código:\n\n\nCódigo\nnumero_decimal = 1.5e2\nprint(numero_decimal)\n\nnumero_decimal = 1.5e-2\nprint(numero_decimal)\n\n\n150.0\n0.015\n\n\n\n\n\nLas cadenas de texto son una secuencia de carácteres (letras, números y símbolos). En Python, se pueden declarar cadenas de texto utilizando comillas simples ' o comillas dobles \". Veamos un ejemplo:\n\n\nCódigo\ncadena_texto = \"Hola Mundo\"\nprint(cadena_texto)\n\n\nHola Mundo\n\n\nOtra forma de declarar una cadena de texto es utilizando la función str() para convertir un número entero, decimal o booleano a una cadena de texto. También podemos combinar las comillas simples y dobles para poder usar una o la otra dentro de la cadena de texto. Por ejemplo:\n\n\nCódigo\ntexto= 'No te procupes, solo es un \"amigo\" / \"amiga\"'\nprint(texto)\n\n\nNo te procupes, solo es un \"amigo\" / \"amiga\"\n\n\nTambén podemos imprimir saltos de línea (\\n), tabulaciones (\\t) y caracteres especiales en una cadena de texto. Por ejemplo:\n\n\nCódigo\ntexto = \"Las rosas son rojas,\\nLas violetas son azules,\\nViva el team frio,\\nQuiero un pan \\U0001F35E\\n\"\n\nprint(texto)\n\ntexto = \"\\n\\t Aqui no se habla\\n\\tdel formato APA\\n\\tNo, no, no 🫠\"\n\nprint(texto)\n\n\nLas rosas son rojas,\nLas violetas son azules,\nViva el team frio,\nQuiero un pan 🍞\n\n\n     Aqui no se habla\n    del formato APA\n    No, no, no 🫠\n\n\n\n\n\nLos valores booleanos son valores lógicos que pueden ser True (verdadero) o False (falso). En Python, podemos declarar un valor booleano de la siguiente manera:\n\n\nCódigo\nvalor_booleano = True\nprint(valor_booleano)\n\n\nTrue\n\n\nIgualmente existe la función bool() pero su uso es poco utilizado, ya que los valores booleanos se utilizan principalmente en condicionales y bucles, además es necesario conocer que cosas se consideran True y False en Python.\n\n\nCódigo\nvalor_booleano = bool(0)\nprint(valor_booleano)\nvalor_booleano = bool(1)\nprint(valor_booleano)\n\nvalor_booleano = bool([])\nprint(valor_booleano)\nvalor_booleano = bool([1, 2, 3])\nprint(valor_booleano)\n\n\nFalse\nTrue\nFalse\nTrue\n\n\nSi recuerdan sus clases de Lógica, podrán crear una tabla de verdad para evaluar proposiciones lógicas en Python.\n\n\n\nLa documentación de código es una práctica común en programación y una buena costumbre para escribir código limpio y legible. En Python, podemos documentar nuestro código utilizando comentarios.\nLos comentarios son líneas de código que no se ejecutan y se utilizan para explicar el código. En Python, los comentarios se crean utilizando el símbolo # y cualquier texto que se escriba después de este símbolo se considera un comentario y no se ejecuta.\n\n\nCódigo\n# Esto es un comentario\nprint(\"Hola Mundo\") # Aquí podemos comentar que hace esta línea de código\n\n\nHola Mundo\n\n\nTambién podemos crear comentarios multilínea utilizando tres comillas simples ''' o tres comillas dobles \"\"\", se utiliza mucho esta forma de comentar para documentar funciones o clases, como lo veremos más adelante.\n\n\n\nEn el siguiente bloque podrán ejecutar código de Python usando su navegador web. Igualmente pueden hacerlo en su computadora o en la nube utilizando Google Colab o Kaggle. Para cada ejercicio deber de escribir su propio código, crear un comentario con sus datos, crear su solución y tomar una captura de pantalla del resultado. Finalmente, subir la captura a la asignación correspondiente en Google Classroom.\n\nDeclarar una variable de cada tipo de dato en Python (entero, decimal, cadena de texto y booleano) e imprimir su valor.\nDeclarar una variable con el nombre poema y asignarle un poema de su elección. Imprimir el poema en la consola con el formato adecuado. (Pueden utilizar emojis si lo desean).\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
-    "crumbs": [
-      "Fundamentos de Python",
-      "Declaración de Variables y Operaciones"
-    ]
-  },
-  {
-    "objectID": "intro_python/Variables.html#operaciones-aritméticas",
-    "href": "intro_python/Variables.html#operaciones-aritméticas",
-    "title": "Declaración de Variables y Operaciones",
-    "section": "Operaciones aritméticas",
-    "text": "Operaciones aritméticas\nLas operaciones aritméticas son operaciones matemáticas que se realizan con números. En Python, podemos realizar operaciones aritméticas con variables de tipo entero y decimal, como si fuese una calculadora.\n\n\nCódigo\nfrom math import sqrt\n# Sumemos dos numeros\nnumero1 = 10\nnumero2 = 5\n\nsuma = numero1 + numero2 # 10 + 5 = 15\nprint(suma)\n\n# Restemos dos numeros\nresta = numero1 - numero2 # 10 - 5 = 5\nprint(resta)\n\n# Multipliquemos dos numeros\nmultiplicacion = numero1 * numero2 # 10 * 5 = 50\nprint(multiplicacion)\n\n# Dividamos dos numeros\ndivision = numero1 / numero2 # 10 / 5 = 2.0\nprint(division)\n\n# Dividamos y solo tomemos la parte entera\ndivision_entera = numero1 // numero2 # 10 // 5 = 2\nprint(division_entera)\n\n# Calculemos el residuo de la división\nmodulo = numero1 % numero2 # 10 % 5 = 0\nprint(modulo)\n\n# Elevemos un numero a una potencia\npotencia = numero1 ** numero2 # 10 ^ 5 = 100000\nprint(potencia)\n\n# Calculemos la raiz cuadrada de un numero\nraiz_cuadrada = numero1 ** 0.5 # sqrt(10) = 3.1622776601683795\nraiz_cuadrada2 = sqrt(numero2) # sqrt(5) = 2.23606797749979\nprint(raiz_cuadrada)\nprint(raiz_cuadrada2)\n\n\n15\n5\n50\n2.0\n2\n0\n100000\n3.1622776601683795\n2.23606797749979",
-    "crumbs": [
-      "Fundamentos de Python",
-      "Declaración de Variables y Operaciones"
-    ]
-  },
-  {
-    "objectID": "intro_python/Variables.html#operaciones-de-comparación",
-    "href": "intro_python/Variables.html#operaciones-de-comparación",
-    "title": "Declaración de Variables y Operaciones",
-    "section": "Operaciones de comparación",
-    "text": "Operaciones de comparación\nLas operaciones de comparación son operaciones que se utilizan para comparar dos valores y devuelven un valor booleano (True o False).\n\n\nCódigo\n# Comparar si dos numeros son iguales\nnumero1 = 148\nnumero2 = 47\n\ncomparacion = numero1 == numero2\nprint(comparacion)\n\n# Comparar si dos numeros son diferentes\ncomparacion = numero1 != numero2\nprint(comparacion)\n\n# Comparar si un numero es mayor que otro\ncomparacion = numero1 &gt; numero2\nprint(comparacion)\n\n# Comparar si un numero es menor que otro\ncomparacion = numero1 &lt; numero2\nprint(comparacion)\n\n# Comparar si un numero es mayor o igual que otro\ncomparacion = numero1 &gt;= numero2\nprint(comparacion)\n\n# Comparar si un numero es menor o igual que otro\ncomparacion = numero1 &lt;= numero2\nprint(comparacion)\n\n\nFalse\nTrue\nTrue\nFalse\nTrue\nFalse",
-    "crumbs": [
-      "Fundamentos de Python",
-      "Declaración de Variables y Operaciones"
-    ]
-  },
-  {
-    "objectID": "intro_python/Variables.html#operaciones-con-cadenas-de-texto",
-    "href": "intro_python/Variables.html#operaciones-con-cadenas-de-texto",
-    "title": "Declaración de Variables y Operaciones",
-    "section": "Operaciones con cadenas de texto",
-    "text": "Operaciones con cadenas de texto\nLas operaciones con cadenas de texto son operaciones que se utilizan para concatenar, multiplicar y comparar cadenas de texto. Se utilizan principalmente para manipular texto en Python.\nPara concatenar dos cadenas de texto, simplemente se utilizan el operador +.\n\n\nCódigo\n# Concatenar dos cadenas de texto\ncadena1 = \"Hola\"\ncadena2 = \"Mundo\"\n\nconcatenacion = cadena1 + \" \" + cadena2\nprint(concatenacion)\n\n\nHola Mundo\n\n\nPara multiplicar una cadena de texto por un número entero, simplemente se utiliza el operador *.\n\n\nCódigo\n# Multiplicar una cadena de texto\ncadena = \"Me gusta programar en Python\\n\"\n\nmultiplicacion = cadena * 5\nprint(multiplicacion)\n\n\nMe gusta programar en Python\nMe gusta programar en Python\nMe gusta programar en Python\nMe gusta programar en Python\nMe gusta programar en Python\n\n\n\nPara comparar dos cadenas de texto, simplemente se utilizan los operadores de comparación.\n\n\nCódigo\n# Comparar dos cadenas de texto\ncadena1 = \"Muchas gracias\"\ncadena2 = \"De nada\"\n\ncomparacion = cadena1 == cadena2 # Comparar si dos cadenas son iguales\nprint(comparacion)\n\ncomparacion = cadena1 != cadena2 # Comparar si dos cadenas son diferentes\nprint(comparacion)\n\ncomparacion = cadena1 &gt; cadena2 # Comparar si una cadena tiene más caracteres que otra\nprint(comparacion)\n\ncomparacion = cadena1 &lt; cadena2 # Comparar si una cadena tiene menos caracteres que otra\nprint(comparacion)\n\ncomparacion = cadena1 &gt;= cadena2 # Comparar si una cadena tiene más o igual cantidad de caracteres que otra\nprint(comparacion)\n\ncomparacion = cadena1 &lt;= cadena2 # Comparar si una cadena tiene menos o igual cantidad de caracteres que otra\nprint(comparacion)\n\n\nFalse\nTrue\nTrue\nFalse\nTrue\nFalse\n\n\n\nEjercicios 1.2\n\n Instrucciones \n\nEn el siguiente bloque podrán ejecutar código de Python usando su navegador web. Igualmente pueden hacerlo en su computadora o en la nube utilizando Google Colab o Kaggle. Para cada ejercicio deber de escribir su propio código, crear un comentario con sus datos, crear su solución y tomar una captura de pantalla del resultado. Finalmente, subir la captura a la asignación correspondiente en Google Classroom.\n\nSabiendo que el Teorema de Pitágoras es \\(a^2 + b^2 = c^2\\), calcular la hipotenusa de un triángulo rectángulo con catetos de 3 y 4 unidades.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nSi la velocidad de la luz es de \\(299,792,458\\) m/s, y el tiempo que tarda en llegar la luz del Sol a la Tierra es de \\(8.3\\) minutos, calcular la distancia en kilómetros que hay entre el Sol y la Tierra.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nCrea dos variables con tu nombre y apellido, y concaténalas en una sola variable. Imprime el resultado.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nCrea una variable con tu canción favorita y multiplica por 4 la parte de la letra que más te gusta. Imprime el resultado.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nCrea una variable con tu película favorita y compara si la longitud de la cadena de texto es mayor a 10 caracteres. Imprime el resultado.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
-    "crumbs": [
-      "Fundamentos de Python",
-      "Declaración de Variables y Operaciones"
-    ]
-  },
-  {
-    "objectID": "LICENSE.html",
-    "href": "LICENSE.html",
-    "title": "",
-    "section": "",
-    "text": "Ver código\n\n\n\n\nMIT License\nCopyright (c) 2024 Christian Francisco Badillo Hernández\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\n\n Volver arriba"
   },
   {
     "objectID": "test.html",
