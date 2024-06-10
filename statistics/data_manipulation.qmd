@@ -10,4 +10,125 @@ filters:
   - iconify
 ---
 
-# Leyeando datos con Pandas
+# Leyendo datos con Pandas
+
+Pandas es una librería de Python que nos permite manipular datos de manera sencilla y eficiente. En este tutorial aprenderemos a leer, escribir y manipular datos con Pandas. Para leer datos, Pandas soporta una gran variedad de formatos, entre los que se encuentran CSV, Excel, JSON, entre otros.
+
+Podemos leer los datos de manera local o por medio de una url que contenga los datos en bruto, en otro caso tendremos que ya sea descargar el archivo o usar librerias como requests para obtener los datos. En este caso leeremos los datos de una url desde el github de este curso. Para leer los datos en formato CSV, usamos la función `pd.read_csv()` de Pandas.
+
+```{python}
+import pandas as pd # Primero importamos la librería
+
+url = 'https://raw.githubusercontent.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/main/data/archive/mushroom_cleaned.csv' # Definimos la URL del archivo CSV
+
+data = pd.read_csv(url) # Leemos el archivo CSV
+```
+
+Si tuvieramos un archivo CSV en nuestra computadora, podríamos leerlo de la siguiente manera:
+
+```python
+archivo = 'directorio/subdirectorio/archivo.csv' # Definimos la ruta del archivo CSV
+
+data = pd.read_csv(archivo) # Leemos el archivo CSV
+```
+
+## Explorando los datos
+
+Primero como ya vimos en la lección anterior, podemos ver las primeras filas de los datos con el método `head()`. En este caso tenemos datos de hongos, donde cada fila representa un hongo y cada columna una característica del hongo.
+
+Las columnas son las siguientes:
+
+- **Cap Diameter**: Diámetro del sombrero.
+- **Cap Shape**: Forma del sombrero.
+- **Gill Attachment**: Tipo de unión de las branquias.
+- **Gill Color**: Color de las branquias.
+- **Stem Height**: Altura del tallo.
+- **Stem Width**: Ancho del tallo.
+- **Stem Color**: Color del tallo.
+- **Season**: Temporada en la que se encontró el hongo.
+- **Class**: Si es comestible (0) o venerenoso (1).
+
+```{python}
+data.head()
+```
+
+Lo primero que podemos hacer es ver la forma de los datos, es decir, cuántas filas y columnas tenemos. Para esto usamos el atributo `shape`.
+
+```{python}
+data.shape
+```
+
+Tenemos 54039 y 9 columnas en nuestros datos. Podemos ver los nombres de las columnas con el atributo `columns`.
+
+```{python}
+data.columns
+```
+
+También podemos ver los tipos de datos de las columnas con el atributo `dtypes`.
+
+```{python}
+data.dtypes
+```
+
+El tipo de dato es muy importante, ya que restringe las cosas que podemos hacer con los datos. En este dataset, tenemos datos tipo `int64` y `float64` que son enteros y décimales respectivamente. El tipo de dato más común en Pandas es `object`, que es un tipo de dato genérico que puede contener cualquier tipo de dato, no es recomendable tener columnas con este tipo de dato, ya que puede ser un indicio de que los datos no están limpios.
+
+Con el metodo `info()` podemos ver un resumen de los datos, incluyendo el número de valores no nulos y el uso de memoria.
+
+```{python}
+data.info()
+```
+
+Gracias a este método podemos ver que no tenemos valores nulos en nuestro dataset. Si tuvieramos valores nulos, tendríamos que decidir si eliminarlos, reemplazarlos o imputarlos (usar un valor promedio, mediana, moda, etc. para reemplazar los valores nulos).
+
+## Estadísticas descriptivas
+
+Podemos obtener estadísticas descriptivas de los datos numéricos con el método `describe()`.
+
+```{python}
+data.describe()
+```
+
+Por comodidad se suele usar el método `transpose()` para ver las estadísticas descriptivas de manera vertical, una abreviatura de esto es `.T`.
+
+```{python}
+data.describe().T
+```
+
+Algunas estadísticas descriptivas que obtenemos son:
+
+- **count**: Número de valores no nulos.
+- **mean**: Media de los valores.
+- **std**: Desviación estándar de los valores.
+- **min**: Valor mínimo.
+- **25%**: Primer cuartil.
+- **50%**: Mediana.
+- **75%**: Tercer cuartil.
+- **max**: Valor máximo.
+
+Podemos guardar estas estadísticas en un nuevo DataFrame para manipularlas más adelante.
+
+```{python}
+estadisticas = data.describe().T
+```
+
+Si recuerdan sus cursos de estadística una medida de dispersión es el rango, que es la diferencia entre el valor máximo y el valor mínimo. Podemos calcular el rango de los datos restándo el valor máximo y el valor mínimo de cada columna y guardarlo en una nueva columna llamada `rango`.
+
+```{python}
+estadisticas['rango'] = estadisticas['max'] - estadisticas['min']
+estadisticas.head(9)
+```
+
+Otro estadístico importante es la varianza, que es una medida de dispersión que nos indica qué tan dispersos están los datos. Podemos calcular la varianza de los datos con el método `var()` y guardarla en una nueva columna llamada `varianza`.
+
+```{python}
+estadisticas['varianza'] = data.var()
+estadisticas.head(9)
+```
+
+Un último estadístico es el rango intercuartil (IQR), que es la diferencia entre el tercer cuartil y el primer cuartil. Podemos calcular el IQR de los datos al restar las columnas `75%` y `25%` y guardar el resultado en una nueva columna llamada `IQR`.
+
+```{python}
+estadisticas['IQR'] = estadisticas['75%'] - estadisticas['25%']
+
+estadisticas.head(9)
+```

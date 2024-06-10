@@ -21,10 +21,44 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -72,13 +106,18 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Buscar"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="Ciencia de Datos con Python - Manipulación de datos con Pandas">
+<meta property="og:description" content="">
 <meta property="og:site_name" content="Ciencia de Datos con Python">
 <meta property="og:locale" content="es_MX">
 <meta name="twitter:title" content="Ciencia de Datos con Python - Manipulación de datos con Pandas">
+<meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -211,7 +250,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Tabla de Contenido</h2>
    
   <ul>
-  <li><a href="#leyeando-datos-con-pandas" id="toc-leyeando-datos-con-pandas" class="nav-link active" data-scroll-target="#leyeando-datos-con-pandas">Leyeando datos con Pandas</a></li>
+  <li><a href="#leyendo-datos-con-pandas" id="toc-leyendo-datos-con-pandas" class="nav-link active" data-scroll-target="#leyendo-datos-con-pandas">Leyendo datos con Pandas</a>
+  <ul class="collapse">
+  <li><a href="#explorando-los-datos" id="toc-explorando-los-datos" class="nav-link" data-scroll-target="#explorando-los-datos">Explorando los datos</a></li>
+  <li><a href="#estadísticas-descriptivas" id="toc-estadísticas-descriptivas" class="nav-link" data-scroll-target="#estadísticas-descriptivas">Estadísticas descriptivas</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/edit/main/statistics/data_manipulation.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></nav>
     </div>
@@ -220,7 +263,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/data_manipulation.html">Manejo de Datos y Estadística con Python</a></li><li class="breadcrumb-item"><a href="../statistics/data_manipulation.html">Manipulación de datos con Pandas</a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Manipulación de datos con Pandas</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source" data-quarto-source-url="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/blob/main/statistics/data_manipulation.qmd"><i class="bi"></i> Ver código</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Manipulación de datos con Pandas</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Ver código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar todo el código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Ocultar todo el código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button" data-quarto-source-url="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/blob/main/statistics/data_manipulation.qmd">Ver el código fuente</a></li></ul></div></div>
 </div>
 
 
@@ -237,7 +280,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">7 de junio de 2024</p>
+      <p class="date">9 de junio de 2024</p>
     </div>
   </div>
   
@@ -249,10 +292,946 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="leyeando-datos-con-pandas" class="level1">
-<h1>Leyeando datos con Pandas</h1>
+<section id="leyendo-datos-con-pandas" class="level1">
+<h1>Leyendo datos con Pandas</h1>
+<p>Pandas es una librería de Python que nos permite manipular datos de manera sencilla y eficiente. En este tutorial aprenderemos a leer, escribir y manipular datos con Pandas. Para leer datos, Pandas soporta una gran variedad de formatos, entre los que se encuentran CSV, Excel, JSON, entre otros.</p>
+<p>Podemos leer los datos de manera local o por medio de una url que contenga los datos en bruto, en otro caso tendremos que ya sea descargar el archivo o usar librerias como requests para obtener los datos. En este caso leeremos los datos de una url desde el github de este curso. Para leer los datos en formato CSV, usamos la función <code>pd.read_csv()</code> de Pandas.</p>
+<div id="a713358d" class="cell" data-execution_count="2">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd <span class="co"># Primero importamos la librería</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a>url <span class="op">=</span> <span class="st">'https://raw.githubusercontent.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/main/data/archive/mushroom_cleaned.csv'</span> <span class="co"># Definimos la URL del archivo CSV</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a>data <span class="op">=</span> pd.read_csv(url) <span class="co"># Leemos el archivo CSV</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Si tuvieramos un archivo CSV en nuestra computadora, podríamos leerlo de la siguiente manera:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>archivo <span class="op">=</span> <span class="st">'directorio/subdirectorio/archivo.csv'</span> <span class="co"># Definimos la ruta del archivo CSV</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a>data <span class="op">=</span> pd.read_csv(archivo) <span class="co"># Leemos el archivo CSV</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="explorando-los-datos" class="level2">
+<h2 class="anchored" data-anchor-id="explorando-los-datos">Explorando los datos</h2>
+<p>Primero como ya vimos en la lección anterior, podemos ver las primeras filas de los datos con el método <code>head()</code>. En este caso tenemos datos de hongos, donde cada fila representa un hongo y cada columna una característica del hongo.</p>
+<p>Las columnas son las siguientes:</p>
+<ul>
+<li><strong>Cap Diameter</strong>: Diámetro del sombrero.</li>
+<li><strong>Cap Shape</strong>: Forma del sombrero.</li>
+<li><strong>Gill Attachment</strong>: Tipo de unión de las branquias.</li>
+<li><strong>Gill Color</strong>: Color de las branquias.</li>
+<li><strong>Stem Height</strong>: Altura del tallo.</li>
+<li><strong>Stem Width</strong>: Ancho del tallo.</li>
+<li><strong>Stem Color</strong>: Color del tallo.</li>
+<li><strong>Season</strong>: Temporada en la que se encontró el hongo.</li>
+<li><strong>Class</strong>: Si es comestible (0) o venerenoso (1).</li>
+</ul>
+<div id="1079951e" class="cell" data-execution_count="3">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>data.head()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="110">
+<div>
+<div>
 
 
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">cap-diameter</th>
+<th data-quarto-table-cell-role="th">cap-shape</th>
+<th data-quarto-table-cell-role="th">gill-attachment</th>
+<th data-quarto-table-cell-role="th">gill-color</th>
+<th data-quarto-table-cell-role="th">stem-height</th>
+<th data-quarto-table-cell-role="th">stem-width</th>
+<th data-quarto-table-cell-role="th">stem-color</th>
+<th data-quarto-table-cell-role="th">season</th>
+<th data-quarto-table-cell-role="th">class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1372</td>
+<td>2</td>
+<td>2</td>
+<td>10</td>
+<td>3.807467</td>
+<td>1545</td>
+<td>11</td>
+<td>1.804273</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1461</td>
+<td>2</td>
+<td>2</td>
+<td>10</td>
+<td>3.807467</td>
+<td>1557</td>
+<td>11</td>
+<td>1.804273</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1371</td>
+<td>2</td>
+<td>2</td>
+<td>10</td>
+<td>3.612496</td>
+<td>1566</td>
+<td>11</td>
+<td>1.804273</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1261</td>
+<td>6</td>
+<td>2</td>
+<td>10</td>
+<td>3.787572</td>
+<td>1566</td>
+<td>11</td>
+<td>1.804273</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>1305</td>
+<td>6</td>
+<td>2</td>
+<td>10</td>
+<td>3.711971</td>
+<td>1464</td>
+<td>11</td>
+<td>0.943195</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>Lo primero que podemos hacer es ver la forma de los datos, es decir, cuántas filas y columnas tenemos. Para esto usamos el atributo <code>shape</code>.</p>
+<div id="ee77608a" class="cell" data-execution_count="4">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>data.shape</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="111">
+<pre><code>(54035, 9)</code></pre>
+</div>
+</div>
+<p>Tenemos 54039 y 9 columnas en nuestros datos. Podemos ver los nombres de las columnas con el atributo <code>columns</code>.</p>
+<div id="a09291c2" class="cell" data-execution_count="5">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>data.columns</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="112">
+<pre><code>Index(['cap-diameter', 'cap-shape', 'gill-attachment', 'gill-color',
+       'stem-height', 'stem-width', 'stem-color', 'season', 'class'],
+      dtype='object')</code></pre>
+</div>
+</div>
+<p>También podemos ver los tipos de datos de las columnas con el atributo <code>dtypes</code>.</p>
+<div id="c7bb1aea" class="cell" data-execution_count="6">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>data.dtypes</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="113">
+<pre><code>cap-diameter         int64
+cap-shape            int64
+gill-attachment      int64
+gill-color           int64
+stem-height        float64
+stem-width           int64
+stem-color           int64
+season             float64
+class                int64
+dtype: object</code></pre>
+</div>
+</div>
+<p>El tipo de dato es muy importante, ya que restringe las cosas que podemos hacer con los datos. En este dataset, tenemos datos tipo <code>int64</code> y <code>float64</code> que son enteros y décimales respectivamente. El tipo de dato más común en Pandas es <code>object</code>, que es un tipo de dato genérico que puede contener cualquier tipo de dato, no es recomendable tener columnas con este tipo de dato, ya que puede ser un indicio de que los datos no están limpios.</p>
+<p>Con el metodo <code>info()</code> podemos ver un resumen de los datos, incluyendo el número de valores no nulos y el uso de memoria.</p>
+<div id="e1fa443a" class="cell" data-execution_count="7">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>data.info()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 54035 entries, 0 to 54034
+Data columns (total 9 columns):
+ #   Column           Non-Null Count  Dtype  
+---  ------           --------------  -----  
+ 0   cap-diameter     54035 non-null  int64  
+ 1   cap-shape        54035 non-null  int64  
+ 2   gill-attachment  54035 non-null  int64  
+ 3   gill-color       54035 non-null  int64  
+ 4   stem-height      54035 non-null  float64
+ 5   stem-width       54035 non-null  int64  
+ 6   stem-color       54035 non-null  int64  
+ 7   season           54035 non-null  float64
+ 8   class            54035 non-null  int64  
+dtypes: float64(2), int64(7)
+memory usage: 3.7 MB</code></pre>
+</div>
+</div>
+<p>Gracias a este método podemos ver que no tenemos valores nulos en nuestro dataset. Si tuvieramos valores nulos, tendríamos que decidir si eliminarlos, reemplazarlos o imputarlos (usar un valor promedio, mediana, moda, etc. para reemplazar los valores nulos).</p>
+</section>
+<section id="estadísticas-descriptivas" class="level2">
+<h2 class="anchored" data-anchor-id="estadísticas-descriptivas">Estadísticas descriptivas</h2>
+<p>Podemos obtener estadísticas descriptivas de los datos numéricos con el método <code>describe()</code>.</p>
+<div id="704b7596" class="cell" data-execution_count="8">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>data.describe()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="115">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">cap-diameter</th>
+<th data-quarto-table-cell-role="th">cap-shape</th>
+<th data-quarto-table-cell-role="th">gill-attachment</th>
+<th data-quarto-table-cell-role="th">gill-color</th>
+<th data-quarto-table-cell-role="th">stem-height</th>
+<th data-quarto-table-cell-role="th">stem-width</th>
+<th data-quarto-table-cell-role="th">stem-color</th>
+<th data-quarto-table-cell-role="th">season</th>
+<th data-quarto-table-cell-role="th">class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">count</td>
+<td>54035.000000</td>
+<td>54035.000000</td>
+<td>54035.000000</td>
+<td>54035.000000</td>
+<td>54035.000000</td>
+<td>54035.000000</td>
+<td>54035.000000</td>
+<td>54035.000000</td>
+<td>54035.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>567.257204</td>
+<td>4.000315</td>
+<td>2.142056</td>
+<td>7.329509</td>
+<td>0.759110</td>
+<td>1051.081299</td>
+<td>8.418062</td>
+<td>0.952163</td>
+<td>0.549181</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">std</td>
+<td>359.883763</td>
+<td>2.160505</td>
+<td>2.228821</td>
+<td>3.200266</td>
+<td>0.650969</td>
+<td>782.056076</td>
+<td>3.262078</td>
+<td>0.305594</td>
+<td>0.497580</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">min</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000426</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.027372</td>
+<td>0.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">25%</td>
+<td>289.000000</td>
+<td>2.000000</td>
+<td>0.000000</td>
+<td>5.000000</td>
+<td>0.270997</td>
+<td>421.000000</td>
+<td>6.000000</td>
+<td>0.888450</td>
+<td>0.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">50%</td>
+<td>525.000000</td>
+<td>5.000000</td>
+<td>1.000000</td>
+<td>8.000000</td>
+<td>0.593295</td>
+<td>923.000000</td>
+<td>11.000000</td>
+<td>0.943195</td>
+<td>1.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">75%</td>
+<td>781.000000</td>
+<td>6.000000</td>
+<td>4.000000</td>
+<td>10.000000</td>
+<td>1.054858</td>
+<td>1523.000000</td>
+<td>11.000000</td>
+<td>0.943195</td>
+<td>1.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">max</td>
+<td>1891.000000</td>
+<td>6.000000</td>
+<td>6.000000</td>
+<td>11.000000</td>
+<td>3.835320</td>
+<td>3569.000000</td>
+<td>12.000000</td>
+<td>1.804273</td>
+<td>1.000000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>Por comodidad se suele usar el método <code>transpose()</code> para ver las estadísticas descriptivas de manera vertical, una abreviatura de esto es <code>.T</code>.</p>
+<div id="ee7b14c1" class="cell" data-execution_count="9">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>data.describe().T</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="116">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">25%</th>
+<th data-quarto-table-cell-role="th">50%</th>
+<th data-quarto-table-cell-role="th">75%</th>
+<th data-quarto-table-cell-role="th">max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">cap-diameter</td>
+<td>54035.0</td>
+<td>567.257204</td>
+<td>359.883763</td>
+<td>0.000000</td>
+<td>289.000000</td>
+<td>525.000000</td>
+<td>781.000000</td>
+<td>1891.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">cap-shape</td>
+<td>54035.0</td>
+<td>4.000315</td>
+<td>2.160505</td>
+<td>0.000000</td>
+<td>2.000000</td>
+<td>5.000000</td>
+<td>6.000000</td>
+<td>6.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">gill-attachment</td>
+<td>54035.0</td>
+<td>2.142056</td>
+<td>2.228821</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>1.000000</td>
+<td>4.000000</td>
+<td>6.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">gill-color</td>
+<td>54035.0</td>
+<td>7.329509</td>
+<td>3.200266</td>
+<td>0.000000</td>
+<td>5.000000</td>
+<td>8.000000</td>
+<td>10.000000</td>
+<td>11.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">stem-height</td>
+<td>54035.0</td>
+<td>0.759110</td>
+<td>0.650969</td>
+<td>0.000426</td>
+<td>0.270997</td>
+<td>0.593295</td>
+<td>1.054858</td>
+<td>3.835320</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">stem-width</td>
+<td>54035.0</td>
+<td>1051.081299</td>
+<td>782.056076</td>
+<td>0.000000</td>
+<td>421.000000</td>
+<td>923.000000</td>
+<td>1523.000000</td>
+<td>3569.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">stem-color</td>
+<td>54035.0</td>
+<td>8.418062</td>
+<td>3.262078</td>
+<td>0.000000</td>
+<td>6.000000</td>
+<td>11.000000</td>
+<td>11.000000</td>
+<td>12.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">season</td>
+<td>54035.0</td>
+<td>0.952163</td>
+<td>0.305594</td>
+<td>0.027372</td>
+<td>0.888450</td>
+<td>0.943195</td>
+<td>0.943195</td>
+<td>1.804273</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">class</td>
+<td>54035.0</td>
+<td>0.549181</td>
+<td>0.497580</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>Algunas estadísticas descriptivas que obtenemos son:</p>
+<ul>
+<li><strong>count</strong>: Número de valores no nulos.</li>
+<li><strong>mean</strong>: Media de los valores.</li>
+<li><strong>std</strong>: Desviación estándar de los valores.</li>
+<li><strong>min</strong>: Valor mínimo.</li>
+<li><strong>25%</strong>: Primer cuartil.</li>
+<li><strong>50%</strong>: Mediana.</li>
+<li><strong>75%</strong>: Tercer cuartil.</li>
+<li><strong>max</strong>: Valor máximo.</li>
+</ul>
+<p>Podemos guardar estas estadísticas en un nuevo DataFrame para manipularlas más adelante.</p>
+<div id="b7700253" class="cell" data-execution_count="10">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>estadisticas <span class="op">=</span> data.describe().T</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Si recuerdan sus cursos de estadística una medida de dispersión es el rango, que es la diferencia entre el valor máximo y el valor mínimo. Podemos calcular el rango de los datos restándo el valor máximo y el valor mínimo de cada columna y guardarlo en una nueva columna llamada <code>rango</code>.</p>
+<div id="cf3fd214" class="cell" data-execution_count="11">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>estadisticas[<span class="st">'rango'</span>] <span class="op">=</span> estadisticas[<span class="st">'max'</span>] <span class="op">-</span> estadisticas[<span class="st">'min'</span>]</span>
+<span id="cb15-2"><a href="#cb15-2"></a>estadisticas.head(<span class="dv">9</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="118">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">25%</th>
+<th data-quarto-table-cell-role="th">50%</th>
+<th data-quarto-table-cell-role="th">75%</th>
+<th data-quarto-table-cell-role="th">max</th>
+<th data-quarto-table-cell-role="th">rango</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">cap-diameter</td>
+<td>54035.0</td>
+<td>567.257204</td>
+<td>359.883763</td>
+<td>0.000000</td>
+<td>289.000000</td>
+<td>525.000000</td>
+<td>781.000000</td>
+<td>1891.000000</td>
+<td>1891.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">cap-shape</td>
+<td>54035.0</td>
+<td>4.000315</td>
+<td>2.160505</td>
+<td>0.000000</td>
+<td>2.000000</td>
+<td>5.000000</td>
+<td>6.000000</td>
+<td>6.000000</td>
+<td>6.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">gill-attachment</td>
+<td>54035.0</td>
+<td>2.142056</td>
+<td>2.228821</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>1.000000</td>
+<td>4.000000</td>
+<td>6.000000</td>
+<td>6.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">gill-color</td>
+<td>54035.0</td>
+<td>7.329509</td>
+<td>3.200266</td>
+<td>0.000000</td>
+<td>5.000000</td>
+<td>8.000000</td>
+<td>10.000000</td>
+<td>11.000000</td>
+<td>11.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">stem-height</td>
+<td>54035.0</td>
+<td>0.759110</td>
+<td>0.650969</td>
+<td>0.000426</td>
+<td>0.270997</td>
+<td>0.593295</td>
+<td>1.054858</td>
+<td>3.835320</td>
+<td>3.834894</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">stem-width</td>
+<td>54035.0</td>
+<td>1051.081299</td>
+<td>782.056076</td>
+<td>0.000000</td>
+<td>421.000000</td>
+<td>923.000000</td>
+<td>1523.000000</td>
+<td>3569.000000</td>
+<td>3569.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">stem-color</td>
+<td>54035.0</td>
+<td>8.418062</td>
+<td>3.262078</td>
+<td>0.000000</td>
+<td>6.000000</td>
+<td>11.000000</td>
+<td>11.000000</td>
+<td>12.000000</td>
+<td>12.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">season</td>
+<td>54035.0</td>
+<td>0.952163</td>
+<td>0.305594</td>
+<td>0.027372</td>
+<td>0.888450</td>
+<td>0.943195</td>
+<td>0.943195</td>
+<td>1.804273</td>
+<td>1.776901</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">class</td>
+<td>54035.0</td>
+<td>0.549181</td>
+<td>0.497580</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>Otro estadístico importante es la varianza, que es una medida de dispersión que nos indica qué tan dispersos están los datos. Podemos calcular la varianza de los datos con el método <code>var()</code> y guardarla en una nueva columna llamada <code>varianza</code>.</p>
+<div id="19c45f57" class="cell" data-execution_count="12">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>estadisticas[<span class="st">'varianza'</span>] <span class="op">=</span> data.var()</span>
+<span id="cb16-2"><a href="#cb16-2"></a>estadisticas.head(<span class="dv">9</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="119">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">25%</th>
+<th data-quarto-table-cell-role="th">50%</th>
+<th data-quarto-table-cell-role="th">75%</th>
+<th data-quarto-table-cell-role="th">max</th>
+<th data-quarto-table-cell-role="th">rango</th>
+<th data-quarto-table-cell-role="th">varianza</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">cap-diameter</td>
+<td>54035.0</td>
+<td>567.257204</td>
+<td>359.883763</td>
+<td>0.000000</td>
+<td>289.000000</td>
+<td>525.000000</td>
+<td>781.000000</td>
+<td>1891.000000</td>
+<td>1891.000000</td>
+<td>129516.323081</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">cap-shape</td>
+<td>54035.0</td>
+<td>4.000315</td>
+<td>2.160505</td>
+<td>0.000000</td>
+<td>2.000000</td>
+<td>5.000000</td>
+<td>6.000000</td>
+<td>6.000000</td>
+<td>6.000000</td>
+<td>4.667783</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">gill-attachment</td>
+<td>54035.0</td>
+<td>2.142056</td>
+<td>2.228821</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>1.000000</td>
+<td>4.000000</td>
+<td>6.000000</td>
+<td>6.000000</td>
+<td>4.967642</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">gill-color</td>
+<td>54035.0</td>
+<td>7.329509</td>
+<td>3.200266</td>
+<td>0.000000</td>
+<td>5.000000</td>
+<td>8.000000</td>
+<td>10.000000</td>
+<td>11.000000</td>
+<td>11.000000</td>
+<td>10.241701</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">stem-height</td>
+<td>54035.0</td>
+<td>0.759110</td>
+<td>0.650969</td>
+<td>0.000426</td>
+<td>0.270997</td>
+<td>0.593295</td>
+<td>1.054858</td>
+<td>3.835320</td>
+<td>3.834894</td>
+<td>0.423760</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">stem-width</td>
+<td>54035.0</td>
+<td>1051.081299</td>
+<td>782.056076</td>
+<td>0.000000</td>
+<td>421.000000</td>
+<td>923.000000</td>
+<td>1523.000000</td>
+<td>3569.000000</td>
+<td>3569.000000</td>
+<td>611611.705997</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">stem-color</td>
+<td>54035.0</td>
+<td>8.418062</td>
+<td>3.262078</td>
+<td>0.000000</td>
+<td>6.000000</td>
+<td>11.000000</td>
+<td>11.000000</td>
+<td>12.000000</td>
+<td>12.000000</td>
+<td>10.641151</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">season</td>
+<td>54035.0</td>
+<td>0.952163</td>
+<td>0.305594</td>
+<td>0.027372</td>
+<td>0.888450</td>
+<td>0.943195</td>
+<td>0.943195</td>
+<td>1.804273</td>
+<td>1.776901</td>
+<td>0.093387</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">class</td>
+<td>54035.0</td>
+<td>0.549181</td>
+<td>0.497580</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>0.247586</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>Un último estadístico es el rango intercuartil (IQR), que es la diferencia entre el tercer cuartil y el primer cuartil. Podemos calcular el IQR de los datos al restar las columnas <code>75%</code> y <code>25%</code> y guardar el resultado en una nueva columna llamada <code>IQR</code>.</p>
+<div id="4dff8763" class="cell" data-execution_count="13">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>estadisticas[<span class="st">'IQR'</span>] <span class="op">=</span> estadisticas[<span class="st">'75%'</span>] <span class="op">-</span> estadisticas[<span class="st">'25%'</span>]</span>
+<span id="cb17-2"><a href="#cb17-2"></a></span>
+<span id="cb17-3"><a href="#cb17-3"></a>estadisticas.head(<span class="dv">9</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="120">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">25%</th>
+<th data-quarto-table-cell-role="th">50%</th>
+<th data-quarto-table-cell-role="th">75%</th>
+<th data-quarto-table-cell-role="th">max</th>
+<th data-quarto-table-cell-role="th">rango</th>
+<th data-quarto-table-cell-role="th">varianza</th>
+<th data-quarto-table-cell-role="th">IQR</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">cap-diameter</td>
+<td>54035.0</td>
+<td>567.257204</td>
+<td>359.883763</td>
+<td>0.000000</td>
+<td>289.000000</td>
+<td>525.000000</td>
+<td>781.000000</td>
+<td>1891.000000</td>
+<td>1891.000000</td>
+<td>129516.323081</td>
+<td>492.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">cap-shape</td>
+<td>54035.0</td>
+<td>4.000315</td>
+<td>2.160505</td>
+<td>0.000000</td>
+<td>2.000000</td>
+<td>5.000000</td>
+<td>6.000000</td>
+<td>6.000000</td>
+<td>6.000000</td>
+<td>4.667783</td>
+<td>4.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">gill-attachment</td>
+<td>54035.0</td>
+<td>2.142056</td>
+<td>2.228821</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>1.000000</td>
+<td>4.000000</td>
+<td>6.000000</td>
+<td>6.000000</td>
+<td>4.967642</td>
+<td>4.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">gill-color</td>
+<td>54035.0</td>
+<td>7.329509</td>
+<td>3.200266</td>
+<td>0.000000</td>
+<td>5.000000</td>
+<td>8.000000</td>
+<td>10.000000</td>
+<td>11.000000</td>
+<td>11.000000</td>
+<td>10.241701</td>
+<td>5.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">stem-height</td>
+<td>54035.0</td>
+<td>0.759110</td>
+<td>0.650969</td>
+<td>0.000426</td>
+<td>0.270997</td>
+<td>0.593295</td>
+<td>1.054858</td>
+<td>3.835320</td>
+<td>3.834894</td>
+<td>0.423760</td>
+<td>0.783861</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">stem-width</td>
+<td>54035.0</td>
+<td>1051.081299</td>
+<td>782.056076</td>
+<td>0.000000</td>
+<td>421.000000</td>
+<td>923.000000</td>
+<td>1523.000000</td>
+<td>3569.000000</td>
+<td>3569.000000</td>
+<td>611611.705997</td>
+<td>1102.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">stem-color</td>
+<td>54035.0</td>
+<td>8.418062</td>
+<td>3.262078</td>
+<td>0.000000</td>
+<td>6.000000</td>
+<td>11.000000</td>
+<td>11.000000</td>
+<td>12.000000</td>
+<td>12.000000</td>
+<td>10.641151</td>
+<td>5.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">season</td>
+<td>54035.0</td>
+<td>0.952163</td>
+<td>0.305594</td>
+<td>0.027372</td>
+<td>0.888450</td>
+<td>0.943195</td>
+<td>0.943195</td>
+<td>1.804273</td>
+<td>1.776901</td>
+<td>0.093387</td>
+<td>0.054744</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">class</td>
+<td>54035.0</td>
+<td>0.549181</td>
+<td>0.497580</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>0.247586</td>
+<td>1.000000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+
+
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Volver arriba</a></main> <!-- /main -->
