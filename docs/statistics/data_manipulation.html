@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../statistics/data-visualization.html" rel="next">
 <link href="../intro_python/data_structures.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -234,6 +235,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Manipulación de datos con Pandas</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/data-visualization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualización de datos</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -250,11 +257,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Tabla de Contenido</h2>
    
   <ul>
-  <li><a href="#leyendo-datos-con-pandas" id="toc-leyendo-datos-con-pandas" class="nav-link active" data-scroll-target="#leyendo-datos-con-pandas">Leyendo datos con Pandas</a>
+  <li><a href="#bases-de-datos" id="toc-bases-de-datos" class="nav-link active" data-scroll-target="#bases-de-datos">Bases de datos</a></li>
+  <li><a href="#manipulación-de-datos-con-pandas" id="toc-manipulación-de-datos-con-pandas" class="nav-link" data-scroll-target="#manipulación-de-datos-con-pandas">Manipulación de datos con Pandas</a>
   <ul class="collapse">
   <li><a href="#explorando-los-datos" id="toc-explorando-los-datos" class="nav-link" data-scroll-target="#explorando-los-datos">Explorando los datos</a></li>
   <li><a href="#estadísticas-descriptivas" id="toc-estadísticas-descriptivas" class="nav-link" data-scroll-target="#estadísticas-descriptivas">Estadísticas descriptivas</a></li>
+  <li><a href="#filtrando-datos" id="toc-filtrando-datos" class="nav-link" data-scroll-target="#filtrando-datos">Filtrando datos</a></li>
+  <li><a href="#ordenando-datos" id="toc-ordenando-datos" class="nav-link" data-scroll-target="#ordenando-datos">Ordenando datos</a></li>
+  <li><a href="#agrupando-datos" id="toc-agrupando-datos" class="nav-link" data-scroll-target="#agrupando-datos">Agrupando datos</a></li>
+  <li><a href="#guardando-datos" id="toc-guardando-datos" class="nav-link" data-scroll-target="#guardando-datos">Guardando datos</a></li>
+  <li><a href="#ejericios" id="toc-ejericios" class="nav-link" data-scroll-target="#ejericios">Ejericios</a></li>
   </ul></li>
+  <li><a href="#conclusiones" id="toc-conclusiones" class="nav-link" data-scroll-target="#conclusiones">Conclusiones</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/edit/main/statistics/data_manipulation.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></nav>
     </div>
@@ -280,7 +294,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">9 de junio de 2024</p>
+      <p class="date">16 de junio de 2024</p>
     </div>
   </div>
   
@@ -292,11 +306,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="leyendo-datos-con-pandas" class="level1">
-<h1>Leyendo datos con Pandas</h1>
+<section id="bases-de-datos" class="level1">
+<h1>Bases de datos</h1>
+<p>Una base de datos es un conjunto de datos organizados y relacionados entre sí. Existen diferentes tipos de bases de datos, como las bases de datos relacionales y las bases de datos no relacionales.</p>
+<p>Las <strong>bases de datos relacionales</strong> son las más comunes y se basan en el modelo relacional, que organiza los datos en tablas. Cada tabla tiene filas y columnas, donde cada fila representa un registro y cada columna representa un campo.</p>
+<p>Las <strong>bases de datos no relacionales</strong> son aquellas que no se basan en el modelo relacional y pueden tener diferentes estructuras, como documentos, gráficos, clave-valor, entre otros.</p>
+<p>Existen lenguajes de consulta para interactuar con las bases de datos, como SQL (Structured Query Language) para las bases de datos relacionales y NoSQL (<em>Not only SQL</em>) para las bases de datos no relacionales.</p>
+<p>Aunque existen paqueterias en Python para interactuar con bases de datos, en este curso nos enfocaremos en la manipulación de datos con Pandas, una librería de Python que nos permite manipular datos de manera sencilla y eficiente. Los datos que cargarémos en este curso son datos en formato CSV, que es un formato de archivo que se utiliza para almacenar datos en forma de tabla.</p>
+<p>A diferencia de las bases de datos, los datos en formato CSV no tienen un motor de base de datos que nos permita interactuar con ellos. Por lo tanto, no podemos hacer consultas con SQL, pero podemos manipular los datos con Pandas.</p>
+</section>
+<section id="manipulación-de-datos-con-pandas" class="level1">
+<h1>Manipulación de datos con Pandas</h1>
 <p>Pandas es una librería de Python que nos permite manipular datos de manera sencilla y eficiente. En este tutorial aprenderemos a leer, escribir y manipular datos con Pandas. Para leer datos, Pandas soporta una gran variedad de formatos, entre los que se encuentran CSV, Excel, JSON, entre otros.</p>
 <p>Podemos leer los datos de manera local o por medio de una url que contenga los datos en bruto, en otro caso tendremos que ya sea descargar el archivo o usar librerias como requests para obtener los datos. En este caso leeremos los datos de una url desde el github de este curso. Para leer los datos en formato CSV, usamos la función <code>pd.read_csv()</code> de Pandas.</p>
-<div id="a713358d" class="cell" data-execution_count="2">
+<div id="59bf812e" class="cell" data-execution_count="2">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd <span class="co"># Primero importamos la librería</span></span>
@@ -325,12 +348,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Season</strong>: Temporada en la que se encontró el hongo.</li>
 <li><strong>Class</strong>: Si es comestible (0) o venerenoso (1).</li>
 </ul>
-<div id="1079951e" class="cell" data-execution_count="3">
+<div id="fe4a0139" class="cell" data-execution_count="3">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>data.head()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="110">
+<div class="cell-output cell-output-display" data-execution_count="42">
 <div>
 <div>
 
@@ -419,34 +442,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Lo primero que podemos hacer es ver la forma de los datos, es decir, cuántas filas y columnas tenemos. Para esto usamos el atributo <code>shape</code>.</p>
-<div id="ee77608a" class="cell" data-execution_count="4">
+<div id="435cd1bc" class="cell" data-execution_count="4">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>data.shape</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="111">
+<div class="cell-output cell-output-display" data-execution_count="43">
 <pre><code>(54035, 9)</code></pre>
 </div>
 </div>
 <p>Tenemos 54039 y 9 columnas en nuestros datos. Podemos ver los nombres de las columnas con el atributo <code>columns</code>.</p>
-<div id="a09291c2" class="cell" data-execution_count="5">
+<div id="64671be2" class="cell" data-execution_count="5">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>data.columns</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="112">
+<div class="cell-output cell-output-display" data-execution_count="44">
 <pre><code>Index(['cap-diameter', 'cap-shape', 'gill-attachment', 'gill-color',
        'stem-height', 'stem-width', 'stem-color', 'season', 'class'],
       dtype='object')</code></pre>
 </div>
 </div>
 <p>También podemos ver los tipos de datos de las columnas con el atributo <code>dtypes</code>.</p>
-<div id="c7bb1aea" class="cell" data-execution_count="6">
+<div id="aee08260" class="cell" data-execution_count="6">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>data.dtypes</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="113">
+<div class="cell-output cell-output-display" data-execution_count="45">
 <pre><code>cap-diameter         int64
 cap-shape            int64
 gill-attachment      int64
@@ -461,7 +484,7 @@ dtype: object</code></pre>
 </div>
 <p>El tipo de dato es muy importante, ya que restringe las cosas que podemos hacer con los datos. En este dataset, tenemos datos tipo <code>int64</code> y <code>float64</code> que son enteros y décimales respectivamente. El tipo de dato más común en Pandas es <code>object</code>, que es un tipo de dato genérico que puede contener cualquier tipo de dato, no es recomendable tener columnas con este tipo de dato, ya que puede ser un indicio de que los datos no están limpios.</p>
 <p>Con el metodo <code>info()</code> podemos ver un resumen de los datos, incluyendo el número de valores no nulos y el uso de memoria.</p>
-<div id="e1fa443a" class="cell" data-execution_count="7">
+<div id="5d002a84" class="cell" data-execution_count="7">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>data.info()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -486,16 +509,46 @@ memory usage: 3.7 MB</code></pre>
 </div>
 </div>
 <p>Gracias a este método podemos ver que no tenemos valores nulos en nuestro dataset. Si tuvieramos valores nulos, tendríamos que decidir si eliminarlos, reemplazarlos o imputarlos (usar un valor promedio, mediana, moda, etc. para reemplazar los valores nulos).</p>
+<p>Para identificar los valores <code>NA</code> en los datos, podemos usar el método <code>isna()</code>, combinado con el método <code>sum()</code> para ver el número de valores <code>NA</code> en cada columna.</p>
+<div id="10368112" class="cell" data-execution_count="8">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>data.isna().<span class="bu">sum</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="47">
+<pre><code>cap-diameter       0
+cap-shape          0
+gill-attachment    0
+gill-color         0
+stem-height        0
+stem-width         0
+stem-color         0
+season             0
+class              0
+dtype: int64</code></pre>
+</div>
+</div>
+<p>Podemos identificar los valores únicos de una columna con el método <code>unique()</code>. Por ejemplo, si queremos ver los valores únicos de la columna <code>class</code>, podemos hacer lo siguiente:</p>
+<div id="7ad1eb64" class="cell" data-execution_count="9">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>data[<span class="st">'class'</span>].unique()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="48">
+<pre><code>array([1, 0])</code></pre>
+</div>
+</div>
+<p>En este caso, los valores únicos son 0 y 1, que representan si el hongo es comestible o venenoso. Podemos ver los valores únicos de todas las columnas con el método <code>unique()</code>.</p>
 </section>
 <section id="estadísticas-descriptivas" class="level2">
 <h2 class="anchored" data-anchor-id="estadísticas-descriptivas">Estadísticas descriptivas</h2>
 <p>Podemos obtener estadísticas descriptivas de los datos numéricos con el método <code>describe()</code>.</p>
-<div id="704b7596" class="cell" data-execution_count="8">
+<div id="bf211a7e" class="cell" data-execution_count="10">
 <details open="" class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>data.describe()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>data.describe()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="115">
+<div class="cell-output cell-output-display" data-execution_count="49">
 <div>
 <div>
 
@@ -620,12 +673,12 @@ memory usage: 3.7 MB</code></pre>
 </div>
 </div>
 <p>Por comodidad se suele usar el método <code>transpose()</code> para ver las estadísticas descriptivas de manera vertical, una abreviatura de esto es <code>.T</code>.</p>
-<div id="ee7b14c1" class="cell" data-execution_count="9">
+<div id="0957bf18" class="cell" data-execution_count="11">
 <details open="" class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>data.describe().T</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>data.describe().T</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="116">
+<div class="cell-output cell-output-display" data-execution_count="50">
 <div>
 <div>
 
@@ -763,20 +816,20 @@ memory usage: 3.7 MB</code></pre>
 <li><strong>max</strong>: Valor máximo.</li>
 </ul>
 <p>Podemos guardar estas estadísticas en un nuevo DataFrame para manipularlas más adelante.</p>
-<div id="b7700253" class="cell" data-execution_count="10">
+<div id="597787b0" class="cell" data-execution_count="12">
 <details open="" class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>estadisticas <span class="op">=</span> data.describe().T</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>estadisticas <span class="op">=</span> data.describe().T</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Si recuerdan sus cursos de estadística una medida de dispersión es el rango, que es la diferencia entre el valor máximo y el valor mínimo. Podemos calcular el rango de los datos restándo el valor máximo y el valor mínimo de cada columna y guardarlo en una nueva columna llamada <code>rango</code>.</p>
-<div id="cf3fd214" class="cell" data-execution_count="11">
+<div id="dcf6352d" class="cell" data-execution_count="13">
 <details open="" class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>estadisticas[<span class="st">'rango'</span>] <span class="op">=</span> estadisticas[<span class="st">'max'</span>] <span class="op">-</span> estadisticas[<span class="st">'min'</span>]</span>
-<span id="cb15-2"><a href="#cb15-2"></a>estadisticas.head(<span class="dv">9</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>estadisticas[<span class="st">'rango'</span>] <span class="op">=</span> estadisticas[<span class="st">'max'</span>] <span class="op">-</span> estadisticas[<span class="st">'min'</span>]</span>
+<span id="cb19-2"><a href="#cb19-2"></a>estadisticas.head(<span class="dv">9</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="118">
+<div class="cell-output cell-output-display" data-execution_count="52">
 <div>
 <div>
 
@@ -913,13 +966,13 @@ memory usage: 3.7 MB</code></pre>
 </div>
 </div>
 <p>Otro estadístico importante es la varianza, que es una medida de dispersión que nos indica qué tan dispersos están los datos. Podemos calcular la varianza de los datos con el método <code>var()</code> y guardarla en una nueva columna llamada <code>varianza</code>.</p>
-<div id="19c45f57" class="cell" data-execution_count="12">
+<div id="7aa9faed" class="cell" data-execution_count="14">
 <details open="" class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>estadisticas[<span class="st">'varianza'</span>] <span class="op">=</span> data.var()</span>
-<span id="cb16-2"><a href="#cb16-2"></a>estadisticas.head(<span class="dv">9</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>estadisticas[<span class="st">'varianza'</span>] <span class="op">=</span> data.var()</span>
+<span id="cb20-2"><a href="#cb20-2"></a>estadisticas.head(<span class="dv">9</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="119">
+<div class="cell-output cell-output-display" data-execution_count="53">
 <div>
 <div>
 
@@ -1066,14 +1119,14 @@ memory usage: 3.7 MB</code></pre>
 </div>
 </div>
 <p>Un último estadístico es el rango intercuartil (IQR), que es la diferencia entre el tercer cuartil y el primer cuartil. Podemos calcular el IQR de los datos al restar las columnas <code>75%</code> y <code>25%</code> y guardar el resultado en una nueva columna llamada <code>IQR</code>.</p>
-<div id="4dff8763" class="cell" data-execution_count="13">
+<div id="ec6b8786" class="cell" data-execution_count="15">
 <details open="" class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>estadisticas[<span class="st">'IQR'</span>] <span class="op">=</span> estadisticas[<span class="st">'75%'</span>] <span class="op">-</span> estadisticas[<span class="st">'25%'</span>]</span>
-<span id="cb17-2"><a href="#cb17-2"></a></span>
-<span id="cb17-3"><a href="#cb17-3"></a>estadisticas.head(<span class="dv">9</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>estadisticas[<span class="st">'IQR'</span>] <span class="op">=</span> estadisticas[<span class="st">'75%'</span>] <span class="op">-</span> estadisticas[<span class="st">'25%'</span>]</span>
+<span id="cb21-2"><a href="#cb21-2"></a></span>
+<span id="cb21-3"><a href="#cb21-3"></a>estadisticas.head(<span class="dv">9</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="120">
+<div class="cell-output cell-output-display" data-execution_count="54">
 <div>
 <div>
 
@@ -1229,9 +1282,1150 @@ memory usage: 3.7 MB</code></pre>
 </div>
 </div>
 </div>
+<p>Podemos ver que hemos calculado el rango, la varianza y el IQR de los datos. Estos estadísticos nos dan una idea de la dispersión de los datos y nos ayudan a entender mejor los datos.</p>
+<p>Otro estadtico importante es la correlación, que nos indica la relación entre dos variables. Podemos calcular la correlación de los datos con el método <code>corr()</code>.</p>
+<div id="603908aa" class="cell" data-execution_count="16">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>correlacion <span class="op">=</span> data.corr()</span>
+<span id="cb22-2"><a href="#cb22-2"></a>correlacion</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="55">
+<div>
+<div>
 
 
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">cap-diameter</th>
+<th data-quarto-table-cell-role="th">cap-shape</th>
+<th data-quarto-table-cell-role="th">gill-attachment</th>
+<th data-quarto-table-cell-role="th">gill-color</th>
+<th data-quarto-table-cell-role="th">stem-height</th>
+<th data-quarto-table-cell-role="th">stem-width</th>
+<th data-quarto-table-cell-role="th">stem-color</th>
+<th data-quarto-table-cell-role="th">season</th>
+<th data-quarto-table-cell-role="th">class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">cap-diameter</td>
+<td>1.000000</td>
+<td>0.204011</td>
+<td>0.200481</td>
+<td>0.186377</td>
+<td>0.135652</td>
+<td>0.828469</td>
+<td>0.121856</td>
+<td>0.113334</td>
+<td>-0.165676</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">cap-shape</td>
+<td>0.204011</td>
+<td>1.000000</td>
+<td>0.043066</td>
+<td>0.131387</td>
+<td>-0.010393</td>
+<td>0.222494</td>
+<td>0.029035</td>
+<td>0.055442</td>
+<td>-0.133338</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">gill-attachment</td>
+<td>0.200481</td>
+<td>0.043066</td>
+<td>1.000000</td>
+<td>0.100276</td>
+<td>-0.075284</td>
+<td>0.245300</td>
+<td>0.020073</td>
+<td>-0.040315</td>
+<td>-0.052541</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">gill-color</td>
+<td>0.186377</td>
+<td>0.131387</td>
+<td>0.100276</td>
+<td>1.000000</td>
+<td>0.015057</td>
+<td>0.110283</td>
+<td>0.186090</td>
+<td>0.059965</td>
+<td>-0.063947</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">stem-height</td>
+<td>0.135652</td>
+<td>-0.010393</td>
+<td>-0.075284</td>
+<td>0.015057</td>
+<td>1.000000</td>
+<td>0.098095</td>
+<td>0.002624</td>
+<td>-0.000292</td>
+<td>0.183354</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">stem-width</td>
+<td>0.828469</td>
+<td>0.222494</td>
+<td>0.245300</td>
+<td>0.110283</td>
+<td>0.098095</td>
+<td>1.000000</td>
+<td>0.157394</td>
+<td>0.040679</td>
+<td>-0.182856</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">stem-color</td>
+<td>0.121856</td>
+<td>0.029035</td>
+<td>0.020073</td>
+<td>0.186090</td>
+<td>0.002624</td>
+<td>0.157394</td>
+<td>1.000000</td>
+<td>0.010750</td>
+<td>-0.128339</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">season</td>
+<td>0.113334</td>
+<td>0.055442</td>
+<td>-0.040315</td>
+<td>0.059965</td>
+<td>-0.000292</td>
+<td>0.040679</td>
+<td>0.010750</td>
+<td>1.000000</td>
+<td>-0.082919</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">class</td>
+<td>-0.165676</td>
+<td>-0.133338</td>
+<td>-0.052541</td>
+<td>-0.063947</td>
+<td>0.183354</td>
+<td>-0.182856</td>
+<td>-0.128339</td>
+<td>-0.082919</td>
+<td>1.000000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
 </section>
+<section id="filtrando-datos" class="level2">
+<h2 class="anchored" data-anchor-id="filtrando-datos">Filtrando datos</h2>
+<p>Podemos filtrar los datos de acuerdo a una condición. Por ejemplo, si queremos ver los hongos que son venenosos, podemos filtrar los datos de la siguiente manera:</p>
+<div id="f4638076" class="cell" data-execution_count="17">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>venenosos <span class="op">=</span> data[data[<span class="st">'class'</span>] <span class="op">==</span> <span class="dv">1</span>]</span>
+<span id="cb23-2"><a href="#cb23-2"></a>venenosos.head()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="56">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">cap-diameter</th>
+<th data-quarto-table-cell-role="th">cap-shape</th>
+<th data-quarto-table-cell-role="th">gill-attachment</th>
+<th data-quarto-table-cell-role="th">gill-color</th>
+<th data-quarto-table-cell-role="th">stem-height</th>
+<th data-quarto-table-cell-role="th">stem-width</th>
+<th data-quarto-table-cell-role="th">stem-color</th>
+<th data-quarto-table-cell-role="th">season</th>
+<th data-quarto-table-cell-role="th">class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1372</td>
+<td>2</td>
+<td>2</td>
+<td>10</td>
+<td>3.807467</td>
+<td>1545</td>
+<td>11</td>
+<td>1.804273</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1461</td>
+<td>2</td>
+<td>2</td>
+<td>10</td>
+<td>3.807467</td>
+<td>1557</td>
+<td>11</td>
+<td>1.804273</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1371</td>
+<td>2</td>
+<td>2</td>
+<td>10</td>
+<td>3.612496</td>
+<td>1566</td>
+<td>11</td>
+<td>1.804273</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1261</td>
+<td>6</td>
+<td>2</td>
+<td>10</td>
+<td>3.787572</td>
+<td>1566</td>
+<td>11</td>
+<td>1.804273</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>1305</td>
+<td>6</td>
+<td>2</td>
+<td>10</td>
+<td>3.711971</td>
+<td>1464</td>
+<td>11</td>
+<td>0.943195</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>La notación para realizar filtrado en pandas es <code>df[df['columna'] == valor]</code>, donde <code>df</code> es el DataFrame, <code>columna</code> es la columna que queremos filtrar y <code>valor</code> es el valor que queremos filtrar.</p>
+<p>Podemos hacer filtrados más complejos, por ejemplo, si queremos ver los hongos venenosos que tienen un diámetro de sombrero mayor a su media, podemos hacer lo siguiente:</p>
+<div id="7569eb18" class="cell" data-execution_count="18">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>venenosos_grandes <span class="op">=</span> data[(data[<span class="st">'class'</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">&amp;</span> (data[<span class="st">'cap-diameter'</span>] <span class="op">&gt;</span> data[<span class="st">'cap-diameter'</span>].mean())]</span>
+<span id="cb24-2"><a href="#cb24-2"></a></span>
+<span id="cb24-3"><a href="#cb24-3"></a>venenosos_grandes.head()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="57">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">cap-diameter</th>
+<th data-quarto-table-cell-role="th">cap-shape</th>
+<th data-quarto-table-cell-role="th">gill-attachment</th>
+<th data-quarto-table-cell-role="th">gill-color</th>
+<th data-quarto-table-cell-role="th">stem-height</th>
+<th data-quarto-table-cell-role="th">stem-width</th>
+<th data-quarto-table-cell-role="th">stem-color</th>
+<th data-quarto-table-cell-role="th">season</th>
+<th data-quarto-table-cell-role="th">class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1372</td>
+<td>2</td>
+<td>2</td>
+<td>10</td>
+<td>3.807467</td>
+<td>1545</td>
+<td>11</td>
+<td>1.804273</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1461</td>
+<td>2</td>
+<td>2</td>
+<td>10</td>
+<td>3.807467</td>
+<td>1557</td>
+<td>11</td>
+<td>1.804273</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1371</td>
+<td>2</td>
+<td>2</td>
+<td>10</td>
+<td>3.612496</td>
+<td>1566</td>
+<td>11</td>
+<td>1.804273</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1261</td>
+<td>6</td>
+<td>2</td>
+<td>10</td>
+<td>3.787572</td>
+<td>1566</td>
+<td>11</td>
+<td>1.804273</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>1305</td>
+<td>6</td>
+<td>2</td>
+<td>10</td>
+<td>3.711971</td>
+<td>1464</td>
+<td>11</td>
+<td>0.943195</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>La sintaxis en este caso es <code>df[(df['columna1'] == valor1) &amp; (df['columna2'] &gt; valor2)]</code>, donde <code>&amp;</code> es el operador lógico <code>AND</code> y cada condición va entre paréntesis. Es recomendable no usar más de dos condiciones en un filtro, ya que puede ser difícil de leer.</p>
+<p>Otras operaciones lógicas que podemos usar son <code>|</code> para el operador <code>OR</code> y <code>~</code> para el operador <code>NOT</code>. Por ejemplo, si queremos ver los hongos que son venenosos o que tienen un diámetro de sombrero mayor a su media, podemos hacer lo siguiente:</p>
+<div id="dd836101" class="cell" data-execution_count="19">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>venenosos_o_grandes <span class="op">=</span> data[(data[<span class="st">'class'</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">|</span> (data[<span class="st">'cap-diameter'</span>] <span class="op">&gt;</span> data[<span class="st">'cap-diameter'</span>].mean())]</span>
+<span id="cb25-2"><a href="#cb25-2"></a></span>
+<span id="cb25-3"><a href="#cb25-3"></a>venenosos_o_grandes.head()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="58">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">cap-diameter</th>
+<th data-quarto-table-cell-role="th">cap-shape</th>
+<th data-quarto-table-cell-role="th">gill-attachment</th>
+<th data-quarto-table-cell-role="th">gill-color</th>
+<th data-quarto-table-cell-role="th">stem-height</th>
+<th data-quarto-table-cell-role="th">stem-width</th>
+<th data-quarto-table-cell-role="th">stem-color</th>
+<th data-quarto-table-cell-role="th">season</th>
+<th data-quarto-table-cell-role="th">class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1372</td>
+<td>2</td>
+<td>2</td>
+<td>10</td>
+<td>3.807467</td>
+<td>1545</td>
+<td>11</td>
+<td>1.804273</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1461</td>
+<td>2</td>
+<td>2</td>
+<td>10</td>
+<td>3.807467</td>
+<td>1557</td>
+<td>11</td>
+<td>1.804273</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1371</td>
+<td>2</td>
+<td>2</td>
+<td>10</td>
+<td>3.612496</td>
+<td>1566</td>
+<td>11</td>
+<td>1.804273</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1261</td>
+<td>6</td>
+<td>2</td>
+<td>10</td>
+<td>3.787572</td>
+<td>1566</td>
+<td>11</td>
+<td>1.804273</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>1305</td>
+<td>6</td>
+<td>2</td>
+<td>10</td>
+<td>3.711971</td>
+<td>1464</td>
+<td>11</td>
+<td>0.943195</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ordenando-datos" class="level2">
+<h2 class="anchored" data-anchor-id="ordenando-datos">Ordenando datos</h2>
+<p>Podemos ordenar los datos de acuerdo a una columna. Por ejemplo, si queremos ordenar los hongos por su diámetro de sombrero de manera ascendente, podemos hacer lo siguiente:</p>
+<div id="f6250d29" class="cell" data-execution_count="20">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>data.sort_values(by<span class="op">=</span><span class="st">'cap-diameter'</span>).head()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="59">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">cap-diameter</th>
+<th data-quarto-table-cell-role="th">cap-shape</th>
+<th data-quarto-table-cell-role="th">gill-attachment</th>
+<th data-quarto-table-cell-role="th">gill-color</th>
+<th data-quarto-table-cell-role="th">stem-height</th>
+<th data-quarto-table-cell-role="th">stem-width</th>
+<th data-quarto-table-cell-role="th">stem-color</th>
+<th data-quarto-table-cell-role="th">season</th>
+<th data-quarto-table-cell-role="th">class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">11696</td>
+<td>0</td>
+<td>6</td>
+<td>0</td>
+<td>11</td>
+<td>1.019047</td>
+<td>21</td>
+<td>12</td>
+<td>0.943195</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">12214</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>6</td>
+<td>0.895698</td>
+<td>42</td>
+<td>7</td>
+<td>0.943195</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">11814</td>
+<td>1</td>
+<td>6</td>
+<td>0</td>
+<td>11</td>
+<td>1.198101</td>
+<td>1</td>
+<td>11</td>
+<td>0.888450</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">12206</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>6</td>
+<td>1.058837</td>
+<td>31</td>
+<td>7</td>
+<td>0.943195</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">35395</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>1.452757</td>
+<td>174</td>
+<td>6</td>
+<td>0.943195</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>Hemos utilizado el método <code>sort_values()</code> para ordenar los datos de acuerdo a la columna <code>cap-diameter</code>. Por defecto, el método ordena de manera ascendente, pero podemos cambiarlo a descendente con el argumento <code>ascending=False</code>. El argumento <code>by</code> es la columna por la que queremos ordenar los datos. Si queremos ordenar los datos de manera descendente, podemos hacer lo siguiente:</p>
+<div id="7e313e2e" class="cell" data-execution_count="21">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>data.sort_values(by<span class="op">=</span><span class="st">'cap-diameter'</span>, ascending<span class="op">=</span><span class="va">False</span>).head()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="60">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">cap-diameter</th>
+<th data-quarto-table-cell-role="th">cap-shape</th>
+<th data-quarto-table-cell-role="th">gill-attachment</th>
+<th data-quarto-table-cell-role="th">gill-color</th>
+<th data-quarto-table-cell-role="th">stem-height</th>
+<th data-quarto-table-cell-role="th">stem-width</th>
+<th data-quarto-table-cell-role="th">stem-color</th>
+<th data-quarto-table-cell-role="th">season</th>
+<th data-quarto-table-cell-role="th">class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">45984</td>
+<td>1891</td>
+<td>4</td>
+<td>4</td>
+<td>10</td>
+<td>3.413547</td>
+<td>3164</td>
+<td>11</td>
+<td>0.943195</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">26230</td>
+<td>1890</td>
+<td>2</td>
+<td>1</td>
+<td>5</td>
+<td>0.357683</td>
+<td>3149</td>
+<td>11</td>
+<td>1.804273</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">23968</td>
+<td>1890</td>
+<td>2</td>
+<td>0</td>
+<td>4</td>
+<td>0.839141</td>
+<td>2268</td>
+<td>11</td>
+<td>1.804273</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">26229</td>
+<td>1890</td>
+<td>6</td>
+<td>1</td>
+<td>10</td>
+<td>0.878931</td>
+<td>2774</td>
+<td>11</td>
+<td>0.943195</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">46039</td>
+<td>1890</td>
+<td>6</td>
+<td>4</td>
+<td>10</td>
+<td>3.628412</td>
+<td>3338</td>
+<td>11</td>
+<td>0.943195</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>Para ordenar con múltiples columnas, podemos pasar una lista de columnas al argumento <code>by</code>. Por ejemplo, si queremos ordenar los hongos por su diámetro de sombrero de manera ascendente y por su altura de tallo de manera descendente, podemos hacer lo siguiente:</p>
+<div id="0b038fc0" class="cell" data-execution_count="22">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>data.sort_values(by<span class="op">=</span>[<span class="st">'cap-diameter'</span>, <span class="st">'stem-height'</span>], ascending<span class="op">=</span>[<span class="va">True</span>, <span class="va">False</span>], kind<span class="op">=</span><span class="st">"mergesort"</span>).head(<span class="dv">10</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="61">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">cap-diameter</th>
+<th data-quarto-table-cell-role="th">cap-shape</th>
+<th data-quarto-table-cell-role="th">gill-attachment</th>
+<th data-quarto-table-cell-role="th">gill-color</th>
+<th data-quarto-table-cell-role="th">stem-height</th>
+<th data-quarto-table-cell-role="th">stem-width</th>
+<th data-quarto-table-cell-role="th">stem-color</th>
+<th data-quarto-table-cell-role="th">season</th>
+<th data-quarto-table-cell-role="th">class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">11696</td>
+<td>0</td>
+<td>6</td>
+<td>0</td>
+<td>11</td>
+<td>1.019047</td>
+<td>21</td>
+<td>12</td>
+<td>0.943195</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11814</td>
+<td>1</td>
+<td>6</td>
+<td>0</td>
+<td>11</td>
+<td>1.198101</td>
+<td>1</td>
+<td>11</td>
+<td>0.888450</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12214</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>6</td>
+<td>0.895698</td>
+<td>42</td>
+<td>7</td>
+<td>0.943195</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">35395</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>1.452757</td>
+<td>174</td>
+<td>6</td>
+<td>0.943195</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12206</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>6</td>
+<td>1.058837</td>
+<td>31</td>
+<td>7</td>
+<td>0.943195</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">12207</td>
+<td>2</td>
+<td>6</td>
+<td>1</td>
+<td>6</td>
+<td>0.752455</td>
+<td>40</td>
+<td>12</td>
+<td>0.943195</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">11819</td>
+<td>3</td>
+<td>6</td>
+<td>0</td>
+<td>11</td>
+<td>1.142396</td>
+<td>10</td>
+<td>12</td>
+<td>0.888450</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11701</td>
+<td>3</td>
+<td>6</td>
+<td>0</td>
+<td>11</td>
+<td>1.098627</td>
+<td>22</td>
+<td>11</td>
+<td>0.888450</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">11738</td>
+<td>4</td>
+<td>6</td>
+<td>0</td>
+<td>11</td>
+<td>1.023026</td>
+<td>23</td>
+<td>12</td>
+<td>0.943195</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">12274</td>
+<td>4</td>
+<td>6</td>
+<td>1</td>
+<td>6</td>
+<td>0.983236</td>
+<td>34</td>
+<td>7</td>
+<td>0.888450</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>Con el argumento <code>kind</code> podemos especificar el algoritmo de ordenamiento. En este caso hemos usado <code>mergesort</code>, que es un algoritmo de ordenamiento estable y eficiente. Otros algoritmos que podemos usar son <code>quicksort</code> y <code>heapsort</code>.</p>
+<p>El ordenamiento con más de una columna es útil cuando queremos ordenar los datos de acuerdo a una columna y en caso de empate, ordenarlos de acuerdo a otra columna. En este caso, primero ordenamos los datos de acuerdo a la columna <code>cap-diameter</code> y en caso de empate, ordenamos los datos de acuerdo a la columna <code>stem-height</code>. Podemos comprobarlo viendo los primeros 10 datos.</p>
+</section>
+<section id="agrupando-datos" class="level2">
+<h2 class="anchored" data-anchor-id="agrupando-datos">Agrupando datos</h2>
+<p>Podemos agrupar los datos de acuerdo a una columna. Por ejemplo, si queremos agrupar los hongos por su color de tallo y ver cuántos hongos hay de cada color, podemos hacer lo siguiente:</p>
+<div id="5d571344" class="cell" data-execution_count="23">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>data.groupby(<span class="st">'stem-color'</span>).size()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="62">
+<pre><code>stem-color
+0       173
+1      1918
+2      1059
+3      2626
+4       576
+5       226
+6     15316
+7      1848
+8      1025
+9       541
+10     1393
+11    20317
+12     7017
+dtype: int64</code></pre>
+</div>
+</div>
+<p>El método <code>groupby()</code> agrupa los datos de acuerdo a una columna y el método <code>size()</code> nos da el tamaño de cada grupo. En este caso, hemos agrupado los hongos por su color de tallo y hemos obtenido el tamaño de cada grupo.</p>
+<p>Otro método que podemos usar es <code>count()</code>, que nos da el número de valores no nulos de cada columna.</p>
+<div id="8297c0c2" class="cell" data-execution_count="24">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>data.groupby(<span class="st">'stem-color'</span>).count()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="63">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">cap-diameter</th>
+<th data-quarto-table-cell-role="th">cap-shape</th>
+<th data-quarto-table-cell-role="th">gill-attachment</th>
+<th data-quarto-table-cell-role="th">gill-color</th>
+<th data-quarto-table-cell-role="th">stem-height</th>
+<th data-quarto-table-cell-role="th">stem-width</th>
+<th data-quarto-table-cell-role="th">season</th>
+<th data-quarto-table-cell-role="th">class</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">stem-color</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>173</td>
+<td>173</td>
+<td>173</td>
+<td>173</td>
+<td>173</td>
+<td>173</td>
+<td>173</td>
+<td>173</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1918</td>
+<td>1918</td>
+<td>1918</td>
+<td>1918</td>
+<td>1918</td>
+<td>1918</td>
+<td>1918</td>
+<td>1918</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1059</td>
+<td>1059</td>
+<td>1059</td>
+<td>1059</td>
+<td>1059</td>
+<td>1059</td>
+<td>1059</td>
+<td>1059</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>2626</td>
+<td>2626</td>
+<td>2626</td>
+<td>2626</td>
+<td>2626</td>
+<td>2626</td>
+<td>2626</td>
+<td>2626</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>576</td>
+<td>576</td>
+<td>576</td>
+<td>576</td>
+<td>576</td>
+<td>576</td>
+<td>576</td>
+<td>576</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>226</td>
+<td>226</td>
+<td>226</td>
+<td>226</td>
+<td>226</td>
+<td>226</td>
+<td>226</td>
+<td>226</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>15316</td>
+<td>15316</td>
+<td>15316</td>
+<td>15316</td>
+<td>15316</td>
+<td>15316</td>
+<td>15316</td>
+<td>15316</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>1848</td>
+<td>1848</td>
+<td>1848</td>
+<td>1848</td>
+<td>1848</td>
+<td>1848</td>
+<td>1848</td>
+<td>1848</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>1025</td>
+<td>1025</td>
+<td>1025</td>
+<td>1025</td>
+<td>1025</td>
+<td>1025</td>
+<td>1025</td>
+<td>1025</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>541</td>
+<td>541</td>
+<td>541</td>
+<td>541</td>
+<td>541</td>
+<td>541</td>
+<td>541</td>
+<td>541</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>1393</td>
+<td>1393</td>
+<td>1393</td>
+<td>1393</td>
+<td>1393</td>
+<td>1393</td>
+<td>1393</td>
+<td>1393</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>20317</td>
+<td>20317</td>
+<td>20317</td>
+<td>20317</td>
+<td>20317</td>
+<td>20317</td>
+<td>20317</td>
+<td>20317</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>7017</td>
+<td>7017</td>
+<td>7017</td>
+<td>7017</td>
+<td>7017</td>
+<td>7017</td>
+<td>7017</td>
+<td>7017</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>La diferencia es que <code>size()</code> nos da el tamaño de cada grupo, mientras que <code>count()</code> nos da el número de valores no nulos de cada columna.</p>
+<p>Para hacer operaciones más complejas, podemos usar el método <code>agg()</code>, que nos permite aplicar una o más funciones a cada grupo. Por ejemplo, si queremos obtener la media y la mediana del diámetro de sombrero de cada grupo, podemos hacer lo siguiente:</p>
+<div id="d1661768" class="cell" data-execution_count="25">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>data.groupby(<span class="st">'stem-color'</span>)[<span class="st">'cap-diameter'</span>].agg([<span class="st">'mean'</span>, <span class="st">'median'</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="64">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">median</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">stem-color</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>957.127168</td>
+<td>962.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>498.565172</td>
+<td>458.5</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>338.590179</td>
+<td>331.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>454.637091</td>
+<td>395.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>385.489583</td>
+<td>38.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>377.615044</td>
+<td>384.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>544.769130</td>
+<td>518.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>375.433442</td>
+<td>377.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>726.983415</td>
+<td>756.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>632.057301</td>
+<td>431.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>685.408471</td>
+<td>765.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>659.824531</td>
+<td>637.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>453.907653</td>
+<td>438.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>En este caso, hemos agrupado los hongos por su color de tallo y hemos obtenido la media y la mediana del diámetro de sombrero de cada grupo.</p>
+</section>
+<section id="guardando-datos" class="level2">
+<h2 class="anchored" data-anchor-id="guardando-datos">Guardando datos</h2>
+<p>Podemos guardar los datos en un archivo CSV con el método <code>to_csv()</code>. Por ejemplo, si queremos guardar los datos en un archivo llamado <code>mushroom.csv</code>, podemos hacer lo siguiente:</p>
+<div id="69beda47" class="cell" data-execution_count="26">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a><span class="co">#data.to_csv('mushroom.csv', index=False)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>El argumento <code>index=False</code> evita que se guarde el índice en el archivo CSV. Existen otros formatos en los que podemos guardar los datos, como Excel, JSON, entre otros. Para guardar los datos en un archivo Excel, podemos usar el método <code>to_excel()</code>.</p>
+<div id="709868e5" class="cell" data-execution_count="27">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a><span class="co">#data.to_excel('mushroom.xlsx', index=False)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Para guardar los datos en un archivo JSON, podemos usar el método <code>to_json()</code>.</p>
+<div id="de271dbc" class="cell" data-execution_count="28">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a><span class="co">#data.to_json('mushroom.json', orient='records')</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="ejericios" class="level2">
+<h2 class="anchored" data-anchor-id="ejericios">Ejericios</h2>
+<p>Creen un documento de Jupyter Notebook por equipo y resuelvan los siguientes ejercicios, utilicen Markdown para explicar sus respuestas y comentarios en el código. Se sugiere la creación de funciones para resolver los ejercicios.</p>
+<ol type="1">
+<li><p>Carga los datos de Iris desde la siguiente liga “https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv” y muestra las primeras 10 filas, muestra la forma de los datos, los nombres de las columnas, los tipos de datos, el tamaño de los datos y si hay valores nulos (<code>NA</code>).</p></li>
+<li><p>Calcula las estadísticas descriptivas de los datos.</p></li>
+<li><p>Filtra los datos para obtener las flores que tienen un ancho de pétalo mayor a su media, mediana, media y mediana. Impreme las primeras 10 filas.</p></li>
+<li><p>Ordena los datos de acuerdo a la longitud de sépalo de manera ascendente y de acuerdo a la longitud de pétalo de manera descendente. Muestra las primeras 10 filas.</p></li>
+<li><p>Filtra los datos para obtener las flores que tienen un ancho de pétalo mayor a su media y que son de la especie <code>setosa</code>. Muestra las primeras 10 filas.</p></li>
+<li><p>Agrupa los datos por especie y calcula los estadísticos descriptivos de cada grupo (media, mediana, moda, varianza, rango, IQR). Muestra los resultados.</p></li>
+<li><p>Guarda los datos de los estadísticos descriptivos del ejercicio 2 en un archivo CSV, Excel y JSON.</p></li>
+<li><p>Calcula la correlación de los datos y muestra los resultados.</p></li>
+<li><p>Sugiere que gráficos podrías hacer con los datos y que información podrías obtener de ellos.</p></li>
+<li><p>Explica ¿qué análisis podrías hacer con los datos?, ¿qué preguntas podrías responder con los datos?</p></li>
+</ol>
+</section>
+</section>
+<section id="conclusiones" class="level1">
+<h1>Conclusiones</h1>
+<p>La manipulación de datos es una parte fundamental de la ciencia de datos, ya que nos permite limpiar, transformar y analizar los datos para obtener información útil. En este tutorial hemos aprendido a leer, escribir y manipular datos con Pandas. Hemos visto cómo explorar los datos, obtener estadísticas descriptivas, filtrar los datos, ordenar los datos, agrupar los datos y guardar los datos en diferentes formatos. Estas son habilidades básicas que nos permiten trabajar con los datos de manera eficiente y efectiva.</p>
+
+
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Volver arriba</a></main> <!-- /main -->
@@ -1848,6 +3042,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../statistics/data-visualization.html" class="pagination-link" aria-label="Visualización de datos">
+        <span class="nav-page-text">Visualización de datos</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

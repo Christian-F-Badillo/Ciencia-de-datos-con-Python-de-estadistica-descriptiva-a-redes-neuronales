@@ -264,6 +264,12 @@ window.Quarto = {
  <span class="menu-text">Manipulación de datos con Pandas</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/data-visualization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualización de datos</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -290,7 +296,10 @@ window.Quarto = {
   </ul></li>
   <li><a href="#tuplas" id="toc-tuplas" class="nav-link" data-scroll-target="#tuplas">Tuplas</a></li>
   <li><a href="#conjuntos" id="toc-conjuntos" class="nav-link" data-scroll-target="#conjuntos">Conjuntos</a></li>
-  <li><a href="#diccionarios" id="toc-diccionarios" class="nav-link" data-scroll-target="#diccionarios">Diccionarios</a></li>
+  <li><a href="#diccionarios" id="toc-diccionarios" class="nav-link" data-scroll-target="#diccionarios">Diccionarios</a>
+  <ul class="collapse">
+  <li><a href="#ejericios" id="toc-ejericios" class="nav-link" data-scroll-target="#ejericios">Ejericios</a></li>
+  </ul></li>
   <li><a href="#arreglos-de-numpy" id="toc-arreglos-de-numpy" class="nav-link" data-scroll-target="#arreglos-de-numpy">Arreglos de NumPy</a></li>
   <li><a href="#dataframes-de-pandas" id="toc-dataframes-de-pandas" class="nav-link" data-scroll-target="#dataframes-de-pandas">DataFrames de Pandas</a>
   <ul class="collapse">
@@ -323,7 +332,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">9 de junio de 2024</p>
+      <p class="date">16 de junio de 2024</p>
     </div>
   </div>
   
@@ -624,6 +633,16 @@ dict_items([('nombre', 'Juan'), ('edad', 30), ('ciudad', 'Bogotá')])</code></pr
 </div>
 <p>Es importante tener en cuenta que las claves de un diccionario deben ser únicas, es decir, no puede haber dos claves iguales en un diccionario. Si se intenta agregar una clave que ya existe, se reemplazará el valor asociado a esa clave.</p>
 <p>Otra característica importante de los diccionarios es que no tienen un orden definido, es decir, los elementos no se almacenan en el orden en que se agregaron, pero son altamente eficientes para buscar y acceder a elementos por su clave, formalmente se dice que tienen una complejidad de tiempo de acceso de <span class="math inline">\(O(1)\)</span> una caractertica común en las estructuras de datos de tipo <em>hash</em>.</p>
+<section id="ejericios" class="level2">
+<h2 class="anchored" data-anchor-id="ejericios">Ejericios</h2>
+<ol type="1">
+<li><p>Crea una lista con los números del 1 al 10 y calcula la suma de los elementos. Pista: utiliza la función <code>sum()</code> de Python.</p></li>
+<li><p>Crea una tupla con los nombres de los días de la semana y accede al tercer día. Intenta modificar el tercer día y observa qué sucede.</p></li>
+<li><p>Crea una variable con la letra de una canción que te guste, separa las palabras en una lista, guarda esa lista en una variable y accede a la primera y última palabra. Pista: utiliza el método <code>split()</code> de Python.</p></li>
+<li><p>Convierte la lista de palabras en un conjunto y observa qué sucede. ¿Qué diferencias encuentras entre la lista y el conjunto? Intenta agregar una palabra al conjunto y observa qué sucede. Pista: utiliza la función <code>set()</code> de Python y el método <code>add()</code> de los conjuntos.</p></li>
+<li><p>Crea una función para contar palabras en un texto, cuenta las palabras distintas en la letra de una canción que te guste y almacenalas en un diccionario con la palabra como clave y el número de veces que aparece como valor. Pista: utiliza el método <code>split()</code> para separar las palabras</p></li>
+</ol>
+</section>
 </section>
 <section id="arreglos-de-numpy" class="level1">
 <h1>Arreglos de NumPy</h1>

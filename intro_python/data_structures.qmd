@@ -235,6 +235,18 @@ Es importante tener en cuenta que las claves de un diccionario deben ser únicas
 
 Otra característica importante de los diccionarios es que no tienen un orden definido, es decir, los elementos no se almacenan en el orden en que se agregaron, pero son altamente eficientes para buscar y acceder a elementos por su clave, formalmente se dice que tienen una complejidad de tiempo de acceso de $O(1)$ una caractertica común en las estructuras de datos de tipo *hash*.
 
+## Ejericios
+
+1. Crea una lista con los números del 1 al 10 y calcula la suma de los elementos. Pista: utiliza la función `sum()` de Python.
+
+2. Crea una tupla con los nombres de los días de la semana y accede al tercer día. Intenta modificar el tercer día y observa qué sucede.
+
+3. Crea una variable con la letra de una canción que te guste, separa las palabras en una lista, guarda esa lista en una variable y accede a la primera y última palabra. Pista: utiliza el método `split()` de Python.
+
+4. Convierte la lista de palabras en un conjunto y observa qué sucede. ¿Qué diferencias encuentras entre la lista y el conjunto? Intenta agregar una palabra al conjunto y observa qué sucede. Pista: utiliza la función `set()` de Python y el método `add()` de los conjuntos.
+
+5. Crea una función para contar palabras en un texto, cuenta las palabras distintas en la letra de una canción que te guste y almacenalas en un diccionario con la palabra como clave y el número de veces que aparece como valor. Pista: utiliza el método `split()` para separar las palabras
+
 # Arreglos de NumPy
 
 [NumPy](https://numpy.org/) es una librería de Python que permite trabajar con arreglos multidimensionales de manera eficiente. Los arreglos de NumPy son similares a las listas de Python, pero con la diferencia de que todos los elementos de un arreglo de NumPy deben ser del mismo tipo. Se definen utilizando la función `array()` de NumPy.
