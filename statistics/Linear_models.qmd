@@ -1,0 +1,581 @@
+---
+title: "Modelos Lineales"
+author: "Christian Badillo"
+format: html
+date: today
+order: 3
+filters:
+  - pyodide
+  - fontawesome
+  - iconify
+---
+
+# Modelos Lineales
+
+ Los modelos lineales son una clase de modelos estadísticos que asumen que la relación entre las variables dependientes e independientes es lineal. En este tutorial, aprenderemos cómo ajustar un modelo lineal a un conjunto de datos y cómo interpretar los resultados.
+
+ Entre los modelos lineales más comunes se encuentran la regresión lineal simple y la regresión lineal múltiple. Se pueden utilizar para predecir una variable dependiente a partir de una o más variables independientes.
+
+ Otros modelos lineales incluyen algunas pruebas de hipótesis, como el análisis de varianza (ANOVA) y la comparación de medias (prueba t).
+
+ Todos estos modelos caen en la categoría de modelos lineales generalizados (GLM), que son una extensión de los modelos lineales tradicionales que permiten una mayor flexibilidad en la especificación de la distribución de los errores y la función de enlace. 
+
+# Regresión Lineal Simple
+
+El modelo de regresión lineal simple es uno de los modelos lineales más simples y fáciles de entender. En este modelo, se asume que la relación entre la variable dependiente y la variable independiente es lineal. La ecuación de regresión lineal simple se puede expresar de la siguiente manera:
+
+$$Y = \beta_0 + \beta_1X + \epsilon$$
+
+Donde: 
+
+- $Y$ es la variable dependiente
+- $X$ es la variable independiente
+- $\beta_0$ es la intersección
+- $\beta_1$ es la pendiente
+- $\epsilon$ es el error
+
+El objetivo de la regresión lineal simple es encontrar los valores de $\beta_0$ y $\beta_1$ que minimizan la suma de los cuadrados de los errores (SSE), que se define como:
+
+$$SSE = \sum_{i=1}^{n} (Y_i - \hat{Y_i})^2$$
+
+Donde:
+
+- $Y_i$ es el valor observado de la variable dependiente
+- $\hat{Y_i}$ es el valor predicho de la variable dependiente
+- $n$ es el número de observaciones
+
+Una vez que se han estimado los valores de $\beta_0$ y $\beta_1$, se pueden utilizar para predecir los valores de la variable dependiente para nuevas observaciones.
+
+## Regresión Lineal Simple por Mínimos Cuadrados
+
+El método más común para ajustar un modelo de regresión lineal simple es el método de mínimos cuadrados. Este método consiste en encontrar los valores de $\beta_0$ y $\beta_1$ que minimizan la suma de los cuadrados de los errores. La fórmula para calcular los valores de $\beta_0$ y $\beta_1$ es la siguiente:
+
+$$\beta_1 = \frac{\sum_{i=1}^{n} (X_i - \bar{X})(Y_i - \bar{Y})}{\sum_{i=1}^{n} (X_i - \bar{X})^2}$$
+
+$$\beta_0 = \bar{Y} - \beta_1\bar{X}$$
+
+Donde:
+
+- $\bar{X}$ es la media de la variable independiente
+- $\bar{Y}$ es la media de la variable dependiente
+- $n$ es el número de observaciones
+
+Usemos los datos de la altura y el peso de un grupo de personas para ajustar un modelo de regresión lineal simple y predecir el peso de una persona en función de su altura.
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Datos
+altura = np.array([150, 160, 170, 180, 190])
+peso = np.array([50, 60, 70, 80, 90])
+
+# Calcular medias
+altura_media = np.mean(altura)
+peso_media = np.mean(peso)
+
+# Calcular beta_1
+beta_1 = np.sum((altura - altura_media) * (peso - peso_media)) / np.sum((altura - altura_media) ** 2)
+
+# Calcular beta_0
+beta_0 = peso_media - beta_1 * altura_media
+
+# Imprimir coeficientes
+print(f'beta_0: {beta_0}')
+print(f'beta_1: {beta_1}')
+```
+
+Podemos graficar los datos y la línea de regresión para visualizar la relación entre la altura y el peso.
+
+```{python}
+# Graficar datos
+plt.scatter(altura, peso, color='blue')
+plt.plot(altura, beta_0 + beta_1 * altura, color='red')
+plt.xlabel('Altura')
+plt.ylabel('Peso')
+plt.title('Regresión Lineal Simple')
+plt.show()
+```
+
+Ahora podemos crear datos datos mas realistas y ajustar un modelo de regresión lineal simple.
+
+```{python}
+# Crear datos
+np.random.seed(0)
+
+altura = np.random.normal(170, 10, 100)
+peso = 50 + 0.05 * altura + np.random.normal(0, 5, 100)
+
+# Calcular medias
+altura_media = np.mean(altura)
+peso_media = np.mean(peso)
+
+# Calcular beta_1
+beta_1 = np.sum((altura - altura_media) * (peso - peso_media)) / np.sum((altura - altura_media) ** 2)
+
+# Calcular beta_0
+beta_0 = peso_media - beta_1 * altura_media
+
+# Imprimir coeficientes
+print(f'beta_0: {beta_0}')
+print(f'beta_1: {beta_1}')
+
+# Graficar datos
+plt.figure(figsize=(10, 6))
+plt.scatter(altura, peso, color='blue')
+plt.plot(altura, beta_0 + beta_1 * altura, color='red')
+plt.xlabel('Altura')
+plt.ylabel('Peso')
+plt.title('Regresión Lineal Simple')
+plt.show()
+```
+
+Usando `seaborn` podemos ajustar un modelo de regresión lineal simple y visualizar los resultados.
+
+```{python}
+import seaborn as sns
+import pandas as pd
+
+# Crear DataFrame
+df = pd.DataFrame({'altura': altura, 'peso': peso})
+
+# Ajustar modelo
+plt.figure(figsize=(10, 6))
+sns.lmplot(x='altura', y='peso', data=df)
+
+plt.show()
+```
+
+Nos muestra la gráfica de la regresión lineal simple y su intervalo de confianza.
+
+La libreria `statsmodels` nos permite ajustar un modelo de regresión lineal simple y obtener un resumen de los resultados.
+
+Puedes instalar la libreria usando el siguiente comando:
+
+```bash
+!pip install statsmodels
+```
+
+```{python}
+import statsmodels.api as sm
+
+# Ajustar modelo
+X = sm.add_constant(altura)
+model = sm.OLS(peso, X).fit()
+
+# Imprimir resumen
+print(model.summary())
+```
+
+Para ajustar el modelo primero agregamos una columna de unos a la matriz de características `X` y luego ajustamos el modelo usando la función `OLS` de `statsmodels`. Finalmente, imprimimos un resumen de los resultados del modelo.
+
+Imprimamos el valor de X
+
+```{python}
+X
+```
+
+Que corresponde a lo que se denomina como **matriz de diseño**. Que es una matriz que contiene las variables independientes y una columna de unos que representa la intersección. Podemos usar esta matriz para ajustar el modelo de regresión lineal simple por medio de la siguiente fórmula:
+
+$$Y = X\beta + \epsilon$$
+
+Y usando el método de mínimos cuadrados para encontrar los valores de $\beta$ que minimizan la suma de los cuadrados de los errores, nos da la siguiente fórmula:
+
+$$\beta = (X^TX)^{-1}X^TY$$
+
+Donde:
+
+- $Y$ es el vector de la variable dependiente
+- $X$ es la matriz de diseño
+- $\beta$ es el vector de coeficientes
+
+Hagamos esto en Python.
+
+```{python}
+# Ajustar modelo
+X = np.column_stack((np.ones(len(altura)), altura))
+
+print(X)
+
+beta = np.linalg.inv(X.T @ X) @ X.T @ peso
+
+# Imprimir coeficientes
+print(f'beta_0: {beta[0]}')
+print(f'beta_1: {beta[1]}')
+```
+
+### Demostración de la Fórmula de Mínimos Cuadrados*
+
+Tenemos el modelo de regresión lineal general:
+
+$$Y = \beta_0 + \beta_1X + ... + \beta_nX_n + \epsilon$$
+
+La función de costo que queremos minimizar es el error cuadrático residual (RSS), que se define como:
+
+$$RSS = \sum_{i=1}^{n} (Y_i - \hat{Y_i})^2$$
+
+En forma matricial, la función de costo se puede expresar como:
+
+$$RSS = (Y - X\beta)^T(Y - X\beta)$$
+
+Que se conoce como la forma cuadrática de la función de costo. Para minimizar la función de costo, tomamos la derivada de la función de costo con respecto a $\beta$:
+
+\begin{align*}
+
+\frac{\partial RSS}{\partial \beta} & = \frac{\partial}{\partial \beta} (Y - X\beta)^T(Y - X\beta) \\
+& = \frac{\partial}{\partial \beta} (Y^TY - Y^TX\beta - (X\beta)^TY + (X\beta)^TX\beta) \\
+& = \frac{\partial}{\partial \beta} (Y^TY - Y^TX\beta - \beta^TX^TY + \beta^TX^TX\beta) \\
+& = \frac{\partial}{\partial \beta} Y^TY - \frac{\partial}{\partial \beta} Y^TX\beta - \frac{\partial}{\partial \beta} \beta^TX^TY + \frac{\partial}{\partial \beta} \beta^TX^TX\beta \\
+& = 0 - X^TY - X^TY + 2X^TX\beta \\
+& = -2X^TY + 2X^TX\beta \\
+& = 2X^T(X\beta - Y) \\
+\end{align*}
+
+Igualamos la derivada de la función de costo a cero para encontrar el mínimo:
+
+$$\frac{\partial RSS}{\partial \beta} = 0$$
+
+$$2X^T(X\beta - Y) = 0$$
+
+Resolviendo para $\beta$:
+
+\begin{align*}
+2X^T(X\beta - Y) & = 0 \\
+X^T(X\beta - Y) & = 0 \\
+X^TX\beta - X^TY & = 0 \\
+X^TX\beta & = X^TY \\
+\beta & = (X^TX)^{-1}X^TY \\
+\end{align*}
+
+## Regresión Lineal Simple por Descenso del Gradiente
+
+Otra forma de ajustar un modelo de regresión lineal simple es mediante el descenso del gradiente. Este método consiste en ajustar los valores de $\beta_0$ y $\beta_1$ iterativamente para minimizar una función de costo. La función de costo que se utiliza en la regresión lineal simple es el error cuadrático medio (MSE), que se define como:
+
+$$MSE = \frac{1}{n} \sum_{i=1}^{n} (Y_i - \hat{Y_i})^2$$
+
+Donde:
+
+- $Y_i$ es el valor observado de la variable dependiente
+- $\hat{Y_i}$ es el valor predicho de la variable dependiente
+- $n$ es el número de observaciones
+
+El descenso de gradiente utiliza la derivada de la función de costo con respecto a los parámetros $\beta_0$ y $\beta_1$ para ajustar los valores de los parámetros en la dirección que minimiza la función de costo. La regla de actualización de los parámetros es la siguiente:
+
+$$\beta_0 = \beta_0 - \alpha \frac{1}{n} \sum_{i=1}^{n} (Y_i - \hat{Y_i})$$
+
+$$\beta_1 = \beta_1 - \alpha \frac{1}{n} \sum_{i=1}^{n} (Y_i -\hat{Y_i})X_i$$
+
+Donde:
+
+- $\alpha$ es la tasa de aprendizaje
+- $\hat{Y_i}$ es el valor predicho de la variable dependiente
+- $Y_i$ es el valor observado de la variable dependiente
+- $X_i$ es el valor de la variable independiente
+- $n$ es el número de observaciones
+- $\alpha$ es la tasa de aprendizaje que controla el tamaño de los pasos de actualización de los parámetros
+
+### Derivación de las Ecuaciones de Descenso del Gradiente*
+
+Aquí está la demostración de la fórmula de actualización de los parámetros en el descenso del gradiente para la regresión lineal simple.
+
+La función de costo para la regresión lineal simple es el error cuadrático medio (MSE), que se define como:
+
+$$MSE = \frac{1}{n} \sum_{i=1}^{n} (Y_i - \hat{Y_i})^2$$
+
+Reemplazando $\hat{Y_i}$ con la ecuación de regresión lineal simple, obtenemos:
+
+$$MSE = \frac{1}{n} \sum_{i=1}^{n} (Y_i - \beta_0 - \beta_1X_i)^2$$
+
+Derivamos respecto a $\beta_0$ y $\beta_1$ para obtener las derivadas parciales de la función de costo:
+
+$$\frac{\partial MSE}{\partial \beta_0} = \frac{-2}{n} \sum_{i=1}^{n} (Y_i - \beta_0 - \beta_1X_i)$$
+
+$$\frac{\partial MSE}{\partial \beta_1} = \frac{-2}{n} \sum_{i=1}^{n} X_i (Y_i - \beta_0 - \beta_1X_i)$$
+
+Usamos las derivadas parciales para actualizar los parámetros en la dirección que minimiza la función de costo:
+
+$$\beta_0 = \beta_0 - \alpha \frac{\partial MSE}{\partial \beta_0}$$
+
+$$\beta_1 = \beta_1 - \alpha \frac{\partial MSE}{\partial \beta_1}$$
+
+Reemplazando las derivadas parciales, obtenemos la fórmula de actualización de los parámetros en el descenso del gradiente para la regresión lineal simple:
+
+$$\beta_0 = \beta_0 + \alpha \frac{2}{n} \sum_{i=1}^{n} (Y_i - \hat{Y_i})$$
+
+$$\beta_1 = \beta_1 + \alpha \frac{2}{n} \sum_{i=1}^{n} X_i (Y _i - \hat{Y_i})$$
+
+El vector de coeficientes $\beta$ se puede actualizar iterativamente hasta que se alcance un criterio de convergencia, como un número máximo de iteraciones o una tolerancia en el cambio de los parámetros.
+
+### Implementación del Descenso del Gradiente
+
+Vamos a implementar el descenso del gradiente para ajustar un modelo de regresión lineal simple.
+
+```{python}
+# Normalización de los datos
+X = (altura - np.mean(altura)) / np.std(altura)
+Y = (peso - np.mean(peso)) / np.std(peso)
+n = len(X)
+
+# Valores iniciales de los parámetros
+b0 = 0
+b1 = 0
+
+# Hiperparámetros
+alpha = 1e-3
+epochs = 10000
+
+# Descenso del gradiente
+for i in range(epochs):
+    y_pred = b0 + b1 * X # Predicción
+
+    db0 = (-2/n) * sum(Y - y_pred) # Derivada parcial de b0
+    db1 = (-2/n) * sum(X * (Y - y_pred)) # Derivada parcial de b1
+
+    b0 = b0 - alpha * db0 # Actualizar b0
+    b1 = b1 - alpha * db1 # Actualizar b1
+
+    if i % 500 == 0: # Imprimir resultados cada 500 iteraciones
+        print(f"Epoch {i}: b0 = {b0 * np.std(peso) + np.mean(peso) - b1 * np.mean(altura)}, b1 = {b1 * (np.std(peso) / np.std(altura))}")
+
+# Desnormalizar los parámetros
+b1 = b1 * (np.std(peso) / np.std(altura))
+b0 = b0 * np.std(peso) + np.mean(peso) - b1 * np.mean(altura)
+
+# Imprimir coeficientes
+print(f"Los valores óptimos son: b0 = {b0}, b1 = {b1}")
+```
+
+La normalización de los datos es importante para que el descenso del gradiente converja más rápido. En este caso, normalizamos las variables independientes y dependientes restando la media y dividiendo por la desviación estándar. Después de ajustar el modelo, desnormalizamos los parámetros para obtener los valores en la escala original.
+
+Otro factor importante es la tasa de aprendizaje $\alpha$, que controla el tamaño de los pasos de actualización de los parámetros. Si la tasa de aprendizaje es demasiado pequeña, el algoritmo puede converger lentamente. Si es demasiado grande, el algoritmo puede divergir, encontrar la tasa de aprendizaje adecuada es crucial para el éxito del descenso del gradiente y muchos algoritmos adaptativos ajustan automáticamente la tasa de aprendizaje durante el entrenamiento para mejorar la convergencia.
+
+Veremos de nuevo el método de descenso del gradiente cuando hablemos de redes neuronales.
+
+# Regresión Lineal Múltiple
+
+La regresión lineal múltiple es una extensión de la regresión lineal simple que permite modelar la relación entre una variable dependiente y dos o más variables independientes. La ecuación de regresión lineal múltiple se puede expresar de la siguiente manera:
+
+$$Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_nX_n + \epsilon$$
+
+Donde:
+
+- $Y$ es la variable dependiente
+- $X_1, X_2, ..., X_n$ son las variables independientes
+- $\beta_0$ es la intersección
+- $\epsilon$ es el error
+
+Al igual que la regresión lineal simple, el objetivo de la regresión lineal múltiple es encontrar los valores de $\beta_0, \beta_1, \beta_2, ..., \beta_n$ que minimizan la suma de los cuadrados de los errores (SSE).
+
+## Regresión Lineal Múltiple por Mínimos Cuadrados
+
+Debido a que ahora tratamos con múltiples variables independientes, la fórmula para calcular los valores de $\beta_0, \beta_1, \beta_2, ..., \beta_n$ esta en forma matricial:
+
+$$\beta = (X^TX)^{-1}X^TY$$
+
+Qué es idénctico a la fórmula de la regresión lineal simple, solo que ahora $X$ es una matriz que contiene las variables independientes y una columna de unos que representa la intersección.
+
+Usemos datos de ejemplo para ajustar un modelo de regresión lineal múltiple y predecir la variable dependiente. Generaremos datos de 5 variables independientes y una variable dependiente.
+
+```{python}
+# Crear datos
+np.random.seed(1014)
+
+# Variables independientes
+X1 = np.random.normal(0, 1, 100)
+X2 = np.random.normal(10, 5, 100)
+X3 = np.random.normal(-5, 2, 100)
+X4 = np.random.normal(3, 1, 100)
+X5 = np.random.normal(2, 0.5, 100)
+
+# Efecto de cada variable independiente
+betas = np.array([5, 10, 3, -2, -1, 4])
+
+# Error
+epsilon = np.random.normal(0, 2.5, 100)
+
+# Variable dependiente
+Y = betas[0] + betas[1] * X1 + betas[2] * X2 + betas[3] * X3 + betas[4] * X4 + betas[5] * X5 + epsilon
+
+df = pd.DataFrame({'X1': X1, 'X2': X2, 'X3': X3, 'X4': X4, 'X5': X5, 'Y': Y})
+
+df.head()
+```
+
+Ahora ajustaremos un modelo de regresión lineal múltiple a los datos y obtendremos un resumen de los resultados.
+
+```{python}
+# Ajustar modelo
+X = sm.add_constant(df[['X1', 'X2', 'X3', 'X4', 'X5']])
+model = sm.OLS(df['Y'], X).fit()
+
+# Imprimir resumen
+print(model.summary())
+```
+
+Podemos imprimir los coeficientes del modelo para ver cómo se relacionan con los valores reales.
+
+```{python}
+
+# Imprimir coeficientes
+print(f'Intercepto: {model.params[0]}')
+print(f'Coeficientes: {model.params[1:]}')
+```
+
+El resumen del modelo nos proporciona información sobre la calidad del ajuste, los coeficientes de las variables independientes, los errores estándar de los coeficientes, los valores p, el coeficiente de determinación $R^2$, entre otros.
+
+Gráfiquemos los parámetros estimados y los valores reales.
+
+```{python}
+# Graficar parámetros estimados y valores reales
+plt.figure(figsize=(10, 6))
+plt.plot(betas, label='Real', marker='o', markersize=10)
+plt.plot(model.params, label='Estimado', marker='x', markersize=10)
+plt.xlabel('Variables', fontsize=14)
+plt.ylabel('Coeficientes', fontsize=14)
+plt.title('Coeficientes Estimados vs. Coeficientes Reales', fontsize=16, fontweight='bold')
+plt.legend()
+plt.show()
+```
+
+La paquetería `statsmodels` es muy completa y nos permite ajustar modelos de regresión lineal múltiple con facilidad. También podemos usar la función `ols` de `statsmodels.formula.api` para ajustar modelos de regresión lineal múltiple con fórmulas de estilo R.
+
+```{python}
+import statsmodels.formula.api as smf
+
+# Ajustar modelo
+model = smf.ols('Y ~ X1 + X2 + X3 + X4 + X5', data=df).fit()
+
+# Imprimir resumen
+print(model.summary())
+```
+
+Dos resultados importantes del resumen es la prueba Durbin-Watson y la prueba de Jarque-Bera. La prueba Durbin-Watson se utiliza para detectar la presencia de autocorrelación en los residuos del modelo. Un valor de Durbin-Watson cercano a 2 indica que no hay autocorrelación. La prueba de Jarque-Bera se utiliza para detectar la normalidad de los residuos del modelo. Un valor de Jarque-Bera cercano a 0 indica que los residuos son normales.
+
+Detectar la presencia de autocorrelación y no normalidad en los residuos es importante para evaluar la calidad del ajuste del modelo y tomar decisiones informadas sobre su uso. Si se obtienen resultados significativos en estas pruebas, es posible que sea necesario realizar ajustes adicionales al modelo para mejorar su rendimiento.
+
+# Regresión Lineal con Scikit-Learn
+
+La librería `scikit-learn` es una de las librerías más populares para el aprendizaje automático en Python. Proporciona una amplia gama de algoritmos de aprendizaje automático, incluidos los modelos de regresión lineal.
+
+Vamos a ajustar un modelo de regresión lineal simple y un modelo de regresión lineal múltiple con `scikit-learn`.
+
+```{python}
+from sklearn.linear_model import LinearRegression
+
+# Regresión Lineal Simple
+X = altura.reshape(-1, 1)
+Y = peso
+
+model = LinearRegression()
+model.fit(X, Y)
+
+print(f'Intercepto: {model.intercept_}')
+print(f'Coeficiente: {model.coef_[0]}')
+```
+
+La función `reshape(-1, 1)` se utiliza para convertir el vector de altura en una matriz de una sola columna. Esto es necesario porque `scikit-learn` espera que las variables independientes sean matrices bidimensionales. Imprimamos esta matriz.
+
+```{python}
+X
+```
+
+Podemos utilizar el método `predict` para hacer predicciones con el modelo.
+
+```{python}
+# Predicción
+altura_nueva = np.array([[160], [170], [180]])
+peso_pred = model.predict(altura_nueva)
+
+print(peso_pred)
+```
+
+Podemos usar otras funciones de `scikit-learn` para realizar una regresion Rodge o Lasso.
+
+```{python}
+from sklearn.linear_model import Ridge, Lasso
+
+# Regresión Ridge
+model = Ridge(alpha=1.0)
+model.fit(X, Y)
+
+print(f'Intercepto: {model.intercept_}')
+print(f'Coeficiente: {model.coef_[0]}')
+
+# Regresión Lasso
+model = Lasso(alpha=1.0)
+model.fit(X, Y)
+
+print(f'Intercepto: {model.intercept_}')
+print(f'Coeficiente: {model.coef_[0]}')
+```
+
+
+# Pruebas de Normalidad
+
+Las pruebas de normalidad son pruebas estadísticas que se utilizan para determinar si una muestra de datos proviene de una distribución normal. Existen varias pruebas de normalidad, como la prueba de Shapiro-Wilk, la prueba de Kolmogorov-Smirnov y la prueba de Anderson-Darling. O métodos gráficos como los histogramas y el gráfico Q-Q.
+
+## Gráfico Q-Q
+
+El gráfico Q-Q (quantile-quantile) es una forma visual de evaluar si una muestra de datos proviene de una distribución normal. En un gráfico Q-Q, los cuantiles de la muestra se comparan con los cuantiles de una distribución normal teórica. Si los puntos en el gráfico Q-Q siguen una línea recta, entonces los datos se ajustan a una distribución normal. Evidentemente, si los puntos se alejan de la línea recta, entonces los datos no se ajustan a una distribución normal.
+
+Vamos a generar datos de una distribución normal y una distribución no normal para comparar los gráficos Q-Q.
+
+```{python}
+# Datos de una distribución normal
+np.random.seed(0)
+normal_data = np.random.normal(0, 1, 1000)
+
+# Datos de una distribución no normal
+non_normal_data = np.random.exponential(1, 1000)
+
+# Gráfico Q-Q
+fig, ax = plt.subplots(1, 2, figsize=(10, 6))
+
+# Distribución normal
+ax[0].set_title('Distribución Normal')
+sm.qqplot(normal_data, line='s', ax=ax[0])
+ax[0].set_aspect('equal')
+ax[0].set_xlabel('Cuantiles Teóricos')
+ax[0].set_ylabel('Cuantiles de los Datos')
+
+# Distribución no normal
+ax[1].set_title('Distribución No Normal')
+sm.qqplot(non_normal_data, line='s', ax=ax[1])
+ax[1].set_aspect('equal')
+ax[1].set_xlabel('Cuantiles Teóricos')
+ax[1].set_ylabel('Cuantiles de los Datos')
+
+plt.show()
+```
+
+En el gráfico Q-Q de la distribución normal, los puntos siguen una línea recta, lo que indica que los datos se ajustan a una distribución normal. En el gráfico Q-Q de la distribución no normal, los puntos se alejan de la línea recta, lo que indica que los datos no se ajustan a una distribución normal.
+
+## Prueba de Shapiro-Wilk
+
+La prueba de Shapiro-Wilk es una prueba estadística que se utiliza para determinar si una muestra de datos proviene de una distribución normal. 
+
+Hipótesis:
+
+- $H_0$: Los datos **provienen** de una distribución normal
+- $H_1$: Los datos *no provienen* de una distribución normal
+
+Vamos a aplicar la prueba de Shapiro-Wilk a los datos de las distribuciones normal y no normal.
+
+```{python}
+from scipy.stats import shapiro
+
+# Prueba de Shapiro-Wilk
+stat, p = shapiro(normal_data)
+print(f'Distribución Normal: Estadístico = {stat}, p-valor = {p}')
+
+stat, p = shapiro(non_normal_data)
+print(f'Distribución No Normal: Estadístico = {stat}, p-valor = {p}')
+```
+
+El valor p de los datos normales fue de $0.5912267898687746$ y el valor p de los datos no normales fue de $5.034540538267324e-31$. Por lo que podemos rechazar la hipótesis nula en el segundo caso.
+
+# Ejercicios
+
+
+
+# Modelos Lineales Generalizados.

@@ -270,7 +270,7 @@ Para guardar los datos en un archivo JSON, podemos usar el método `to_json()`.
 #data.to_json('mushroom.json', orient='records')
 ```
 
-## Ejericios
+## Ejercicios
 
 Creen un documento de Jupyter Notebook por equipo y resuelvan los siguientes ejercicios, utilicen Markdown para explicar sus respuestas y comentarios en el código. Se sugiere la creación de funciones para resolver los ejercicios.
 
