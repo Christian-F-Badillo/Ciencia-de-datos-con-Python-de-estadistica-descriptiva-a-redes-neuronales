@@ -576,6 +576,38 @@ El valor p de los datos normales fue de $0.5912267898687746$ y el valor p de los
 
 # Ejercicios
 
+1. Carga los datos desde https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/blob/main/data/cars.csv.
 
+*Columnas:*
+
+* **Car_ID**: A unique identifier for each car listing.
+* **Brand**: The brand or manufacturer of the car (e.g., Toyota, Honda, Ford, etc.).
+* **Model**: The model of the car (e.g., Camry, Civic, Mustang, etc.).
+* **Year**: The manufacturing year of the car.
+* **Kilometers_Driven**: The total kilometers driven by the car.
+* **Fuel_Type**: The type of fuel used by the car (e.g., Petrol, Diesel, Electric, etc.).
+* **Transmission**: The transmission type of the car (e.g., Manual, Automatic).
+* **Owner_Type**: The number of previous owners of the car (e.g., First, Second, Third).
+* **Mileage**: The fuel efficiency of the car in kilometers per liter.
+* **Engine**: The engine capacity of the car in CC (Cubic Centimeters).
+* **Power**: The maximum power output of the car in bhp (Brake Horsepower).
+* **Seats**: The number of seats available in the car.
+* **Price**: The selling price of the car in INR (Indian Rupees), which is the target variable to predict.
+
+2. Revisa si existen valores nulos en el conjunto de datos y elimina las filas que los contengan.
+
+3. Usando la función de pandas [`get_dummies`](https://pandas.pydata.org/docs/reference/api/pandas.get_dummies.html) convierte las variables categóricas en variables dummy. O en su defecto, usa la función [`LabelEncoder`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html) de `sklearn`.
+
+4. Realiza un análisis exploratorio de los datos y describe las características de las variables.
+
+5. Visualiza los datos utilizando gráficos de dispersión, histogramas y diagramas de caja para identificar posibles relaciones entre las variables.
+
+6. Realiza un análisis de correlación entre las variables y visualiza los resultados.
+
+7. Comprueba la normalidad de la variable dependiente (precio de los autos) y de las variables independientes (kilómetros recorridos, eficiencia de combustible, capacidad del motor, potencia máxima, número de asientos) utilizando gráficos Q-Q y la prueba de Shapiro-Wilk. ¿Qué puedes concluir?
+
+7. Ajusta un modelo de regresión lineal múltiple para predecir el precio de los autos en función de las variables independientes (usando `statsmodels` y `scikit-learn`). ¿Cuál libreria prefieres y por qué? ¿Qué variables tienen un mayor impacto en el precio de los autos? ¿Qué otras variables podrían ser importantes para predecir el precio de los autos?
+
+8. Evalúa la calidad del ajuste del modelo y realiza predicciones para un conjunto de datos de prueba de tu elección.
 
 # Modelos Lineales Generalizados.

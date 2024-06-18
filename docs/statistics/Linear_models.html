@@ -393,7 +393,7 @@ window.Quarto = {
 <li><span class="math inline">\(n\)</span> es el número de observaciones</li>
 </ul>
 <p>Usemos los datos de la altura y el peso de un grupo de personas para ajustar un modelo de regresión lineal simple y predecir el peso de una persona en función de su altura.</p>
-<div id="b6aa4c17" class="cell" data-execution_count="1">
+<div id="b6aa4c17" class="cell" data-execution_count="2">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -423,7 +423,7 @@ beta_1: 1.0</code></pre>
 </div>
 </div>
 <p>Podemos graficar los datos y la línea de regresión para visualizar la relación entre la altura y el peso.</p>
-<div id="a4af2232" class="cell" data-execution_count="2">
+<div id="a4af2232" class="cell" data-execution_count="3">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Graficar datos</span></span>
@@ -443,7 +443,7 @@ beta_1: 1.0</code></pre>
 </div>
 </div>
 <p>Ahora podemos crear datos datos mas realistas y ajustar un modelo de regresión lineal simple.</p>
-<div id="498aee41" class="cell" data-execution_count="3">
+<div id="498aee41" class="cell" data-execution_count="4">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Crear datos</span></span>
@@ -488,7 +488,7 @@ beta_1: 0.10734921677319048</code></pre>
 </div>
 </div>
 <p>Usando <code>seaborn</code> podemos ajustar un modelo de regresión lineal simple y visualizar los resultados.</p>
-<div id="8f02c6b4" class="cell" data-execution_count="4">
+<div id="8f02c6b4" class="cell" data-execution_count="5">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
@@ -518,7 +518,7 @@ beta_1: 0.10734921677319048</code></pre>
 <p>La libreria <code>statsmodels</code> nos permite ajustar un modelo de regresión lineal simple y obtener un resumen de los resultados.</p>
 <p>Puedes instalar la libreria usando el siguiente comando:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="ex">!pip</span> install statsmodels</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="aad7eeda" class="cell" data-execution_count="5">
+<div id="aad7eeda" class="cell" data-execution_count="6">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
@@ -562,7 +562,7 @@ strong multicollinearity or other numerical problems.</code></pre>
 </div>
 <p>Para ajustar el modelo primero agregamos una columna de unos a la matriz de características <code>X</code> y luego ajustamos el modelo usando la función <code>OLS</code> de <code>statsmodels</code>. Finalmente, imprimimos un resumen de los resultados del modelo.</p>
 <p>Imprimamos el valor de X</p>
-<div id="17619f7b" class="cell" data-execution_count="6">
+<div id="17619f7b" class="cell" data-execution_count="7">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>X</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -681,7 +681,7 @@ strong multicollinearity or other numerical problems.</code></pre>
 <li><span class="math inline">\(\beta\)</span> es el vector de coeficientes</li>
 </ul>
 <p>Hagamos esto en Python.</p>
-<div id="c334845f" class="cell" data-execution_count="7">
+<div id="c334845f" class="cell" data-execution_count="8">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Ajustar modelo</span></span>
@@ -875,7 +875,7 @@ X^TX\beta &amp; = X^TY \\
 <section id="implementación-del-descenso-del-gradiente" class="level3">
 <h3 class="anchored" data-anchor-id="implementación-del-descenso-del-gradiente">Implementación del Descenso del Gradiente</h3>
 <p>Vamos a implementar el descenso del gradiente para ajustar un modelo de regresión lineal simple.</p>
-<div id="413f582f" class="cell" data-execution_count="8">
+<div id="413f582f" class="cell" data-execution_count="9">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Normalización de los datos</span></span>
@@ -959,7 +959,7 @@ Los valores óptimos son: b0 = 40.62639861081885, b1 = 0.1073492165563143</code>
 <p><span class="math display">\[\beta = (X^TX)^{-1}X^TY\]</span></p>
 <p>Qué es idénctico a la fórmula de la regresión lineal simple, solo que ahora <span class="math inline">\(X\)</span> es una matriz que contiene las variables independientes y una columna de unos que representa la intersección.</p>
 <p>Usemos datos de ejemplo para ajustar un modelo de regresión lineal múltiple y predecir la variable dependiente. Generaremos datos de 5 variables independientes y una variable dependiente.</p>
-<div id="20daf484" class="cell" data-execution_count="9">
+<div id="20daf484" class="cell" data-execution_count="10">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># Crear datos</span></span>
@@ -1056,7 +1056,7 @@ Los valores óptimos son: b0 = 40.62639861081885, b1 = 0.1073492165563143</code>
 </div>
 </div>
 <p>Ahora ajustaremos un modelo de regresión lineal múltiple a los datos y obtendremos un resumen de los resultados.</p>
-<div id="ee71a072" class="cell" data-execution_count="10">
+<div id="ee71a072" class="cell" data-execution_count="11">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># Ajustar modelo</span></span>
@@ -1099,7 +1099,7 @@ Notes:
 </div>
 </div>
 <p>Podemos imprimir los coeficientes del modelo para ver cómo se relacionan con los valores reales.</p>
-<div id="0dde54f4" class="cell" data-execution_count="11">
+<div id="0dde54f4" class="cell" data-execution_count="12">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Imprimir coeficientes</span></span>
@@ -1124,7 +1124,7 @@ Series.__getitem__ treating keys as positions is deprecated. In a future version
 </div>
 <p>El resumen del modelo nos proporciona información sobre la calidad del ajuste, los coeficientes de las variables independientes, los errores estándar de los coeficientes, los valores p, el coeficiente de determinación <span class="math inline">\(R^2\)</span>, entre otros.</p>
 <p>Gráfiquemos los parámetros estimados y los valores reales.</p>
-<div id="5bcbefb7" class="cell" data-execution_count="12">
+<div id="5bcbefb7" class="cell" data-execution_count="13">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># Graficar parámetros estimados y valores reales</span></span>
@@ -1146,7 +1146,7 @@ Series.__getitem__ treating keys as positions is deprecated. In a future version
 </div>
 </div>
 <p>La paquetería <code>statsmodels</code> es muy completa y nos permite ajustar modelos de regresión lineal múltiple con facilidad. También podemos usar la función <code>ols</code> de <code>statsmodels.formula.api</code> para ajustar modelos de regresión lineal múltiple con fórmulas de estilo R.</p>
-<div id="f5cbc6cb" class="cell" data-execution_count="13">
+<div id="f5cbc6cb" class="cell" data-execution_count="14">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
@@ -1197,7 +1197,7 @@ Notes:
 <h1>Regresión Lineal con Scikit-Learn</h1>
 <p>La librería <code>scikit-learn</code> es una de las librerías más populares para el aprendizaje automático en Python. Proporciona una amplia gama de algoritmos de aprendizaje automático, incluidos los modelos de regresión lineal.</p>
 <p>Vamos a ajustar un modelo de regresión lineal simple y un modelo de regresión lineal múltiple con <code>scikit-learn</code>.</p>
-<div id="7a7f1bbf" class="cell" data-execution_count="14">
+<div id="7a7f1bbf" class="cell" data-execution_count="15">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
@@ -1218,7 +1218,7 @@ Coeficiente: 0.1073492167731905</code></pre>
 </div>
 </div>
 <p>La función <code>reshape(-1, 1)</code> se utiliza para convertir el vector de altura en una matriz de una sola columna. Esto es necesario porque <code>scikit-learn</code> espera que las variables independientes sean matrices bidimensionales. Imprimamos esta matriz.</p>
-<div id="a4a6b94a" class="cell" data-execution_count="15">
+<div id="a4a6b94a" class="cell" data-execution_count="16">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>X</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1327,7 +1327,7 @@ Coeficiente: 0.1073492167731905</code></pre>
 </div>
 </div>
 <p>Podemos utilizar el método <code>predict</code> para hacer predicciones con el modelo.</p>
-<div id="d036d612" class="cell" data-execution_count="16">
+<div id="d036d612" class="cell" data-execution_count="17">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># Predicción</span></span>
@@ -1341,7 +1341,7 @@ Coeficiente: 0.1073492167731905</code></pre>
 </div>
 </div>
 <p>Podemos usar otras funciones de <code>scikit-learn</code> para realizar una regresion Rodge o Lasso.</p>
-<div id="a63f7d9d" class="cell" data-execution_count="17">
+<div id="a63f7d9d" class="cell" data-execution_count="18">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Ridge, Lasso</span>
@@ -1375,7 +1375,7 @@ Coeficiente: 0.09750501717175815</code></pre>
 <h2 class="anchored" data-anchor-id="gráfico-q-q">Gráfico Q-Q</h2>
 <p>El gráfico Q-Q (quantile-quantile) es una forma visual de evaluar si una muestra de datos proviene de una distribución normal. En un gráfico Q-Q, los cuantiles de la muestra se comparan con los cuantiles de una distribución normal teórica. Si los puntos en el gráfico Q-Q siguen una línea recta, entonces los datos se ajustan a una distribución normal. Evidentemente, si los puntos se alejan de la línea recta, entonces los datos no se ajustan a una distribución normal.</p>
 <p>Vamos a generar datos de una distribución normal y una distribución no normal para comparar los gráficos Q-Q.</p>
-<div id="b9cc563b" class="cell" data-execution_count="18">
+<div id="b9cc563b" class="cell" data-execution_count="19">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># Datos de una distribución normal</span></span>
@@ -1423,7 +1423,7 @@ Coeficiente: 0.09750501717175815</code></pre>
 <li><span class="math inline">\(H_1\)</span>: Los datos <em>no provienen</em> de una distribución normal</li>
 </ul>
 <p>Vamos a aplicar la prueba de Shapiro-Wilk a los datos de las distribuciones normal y no normal.</p>
-<div id="832ea22e" class="cell" data-execution_count="19">
+<div id="832ea22e" class="cell" data-execution_count="20">
 <details open="" class="code-fold">
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> shapiro</span>
@@ -1445,6 +1445,35 @@ Distribución No Normal: Estadístico = 0.8336406754912049, p-valor = 5.03454053
 </section>
 <section id="ejercicios" class="level1">
 <h1>Ejercicios</h1>
+<ol type="1">
+<li>Carga los datos desde https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/blob/main/data/cars.csv.</li>
+</ol>
+<p><em>Columnas:</em></p>
+<ul>
+<li><strong>Car_ID</strong>: A unique identifier for each car listing.</li>
+<li><strong>Brand</strong>: The brand or manufacturer of the car (e.g., Toyota, Honda, Ford, etc.).</li>
+<li><strong>Model</strong>: The model of the car (e.g., Camry, Civic, Mustang, etc.).</li>
+<li><strong>Year</strong>: The manufacturing year of the car.</li>
+<li><strong>Kilometers_Driven</strong>: The total kilometers driven by the car.</li>
+<li><strong>Fuel_Type</strong>: The type of fuel used by the car (e.g., Petrol, Diesel, Electric, etc.).</li>
+<li><strong>Transmission</strong>: The transmission type of the car (e.g., Manual, Automatic).</li>
+<li><strong>Owner_Type</strong>: The number of previous owners of the car (e.g., First, Second, Third).</li>
+<li><strong>Mileage</strong>: The fuel efficiency of the car in kilometers per liter.</li>
+<li><strong>Engine</strong>: The engine capacity of the car in CC (Cubic Centimeters).</li>
+<li><strong>Power</strong>: The maximum power output of the car in bhp (Brake Horsepower).</li>
+<li><strong>Seats</strong>: The number of seats available in the car.</li>
+<li><strong>Price</strong>: The selling price of the car in INR (Indian Rupees), which is the target variable to predict.</li>
+</ul>
+<ol start="2" type="1">
+<li><p>Revisa si existen valores nulos en el conjunto de datos y elimina las filas que los contengan.</p></li>
+<li><p>Usando la función de pandas <a href="https://pandas.pydata.org/docs/reference/api/pandas.get_dummies.html"><code>get_dummies</code></a> convierte las variables categóricas en variables dummy. O en su defecto, usa la función <a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html"><code>LabelEncoder</code></a> de <code>sklearn</code>.</p></li>
+<li><p>Realiza un análisis exploratorio de los datos y describe las características de las variables.</p></li>
+<li><p>Visualiza los datos utilizando gráficos de dispersión, histogramas y diagramas de caja para identificar posibles relaciones entre las variables.</p></li>
+<li><p>Realiza un análisis de correlación entre las variables y visualiza los resultados.</p></li>
+<li><p>Comprueba la normalidad de la variable dependiente (precio de los autos) y de las variables independientes (kilómetros recorridos, eficiencia de combustible, capacidad del motor, potencia máxima, número de asientos) utilizando gráficos Q-Q y la prueba de Shapiro-Wilk. ¿Qué puedes concluir?</p></li>
+<li><p>Ajusta un modelo de regresión lineal múltiple para predecir el precio de los autos en función de las variables independientes (usando <code>statsmodels</code> y <code>scikit-learn</code>). ¿Cuál libreria prefieres y por qué? ¿Qué variables tienen un mayor impacto en el precio de los autos? ¿Qué otras variables podrían ser importantes para predecir el precio de los autos?</p></li>
+<li><p>Evalúa la calidad del ajuste del modelo y realiza predicciones para un conjunto de datos de prueba de tu elección.</p></li>
+</ol>
 </section>
 <section id="modelos-lineales-generalizados." class="level1">
 <h1>Modelos Lineales Generalizados.</h1>
