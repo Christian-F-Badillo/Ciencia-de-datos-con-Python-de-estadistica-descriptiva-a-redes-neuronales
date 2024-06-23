@@ -611,3 +611,323 @@ El valor p de los datos normales fue de $0.5912267898687746$ y el valor p de los
 8. Evalúa la calidad del ajuste del modelo y realiza predicciones para un conjunto de datos de prueba de tu elección.
 
 # Modelos Lineales Generalizados.
+
+Recordemos que el modelo de regresión lineal se puede representar de la siguiente forma:
+
+$$ y \sim N(\mu, \sigma) $$
+
+$$ \mu = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p $$
+
+Donde $y$ es la variable dependiente, $\mu$ es la media de la distribución normal, $\beta_0$ es el intercepto, $\beta_1, \beta_2, \ldots, \beta_p$ son los coeficientes de las variables independientes $x_1, x_2, \ldots, x_p$ respectivamente y $\sigma$ es la desviación estándar de la distribución normal.
+
+En el caso de los modelos lineales generalizados, la distribución de la variable dependiente $y$ no necesariamente tiene que ser normal. En general, la distribución de $y$ puede ser cualquier distribución de la familia exponencial. La forma general de un modelo lineal generalizado es la siguiente:
+
+$$ y \sim f(g(\mu), \phi) $$
+
+$$ g(\mu) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p $$
+
+Donde $y$ es la variable dependiente, $f$ es la función de densidad de probabilidad de la distribución de $y$, $g$ es la función de enlace, $\mu$ es el valor esperado de la distribución de $y$, $\beta_0$ es el intercepto, $\beta_1, \beta_2, \ldots, \beta_p$ son los coeficientes de las variables independientes $x_1, x_2, \ldots, x_p$ respectivamente y $\phi$ es un parámetro de dispersión.
+
+Dentro de las distribuciones de la familia exponencial nos encontramos con:
+
+- Distribución Normal
+- Distribución Binomial
+- Distribución Poisson
+- Distribución Gamma
+
+En el caso de la distribución normal, la función de enlace es la identidad, es decir, $g(\mu) = \mu$. En el caso de la distribución binomial, la función de enlace es la función logit, es decir, $g(\mu) = \log\left(\frac{\mu}{1-\mu}\right)$. En el caso de la distribución Poisson, la función de enlace es la función log, es decir, $g(\mu) = \log(\mu)$. En el caso de la distribución Gamma, la función de enlace es la inversa, es decir, $g(\mu) = \frac{1}{\mu}$.
+
+Las funciones de enlace tienen como objetivo enlazar la linealidad de los coeficientes $\beta_0, \beta_1, \ldots, \beta_p$ y las variables independientes con el valor esperado de la distribución de $y$ $\mu$ de forma no lineal.
+
+## Regresión Logística
+
+Podemos derivar el modelo de regresión logística a partir del modelo lineal que ya vimos. En el caso de la regresión logística, la variable dependiente $y$ es binaria, es decir, $y \in \{0, 1\}$. Por tanto podemos pensar en modelar la probabilidad de que $y = 1$ en función de las variables independientes $x_1, x_2, \ldots, x_p$. El complemento de la probabilidad de que $y = 1$ es la probabilidad de que $y = 0$.
+
+Ahora calculemos los "odds" de que $y = 1$:
+
+$$ \text{odds} = \frac{P(y = 1)}{P(y = 0)} $$
+
+Los "odds" son la razón de la probabilidad de que $y = 1$ entre la probabilidad de que $y = 0$. Si los "odds" son mayores a 1, entonces la probabilidad de que $y = 1$ es mayor que la probabilidad de que $y = 0. Si los "odds" son menores a 1, entonces la probabilidad de que $y = 0$ es mayor que la probabilidad de que $y = 1$.
+
+Ahora vamos a suponer que los "odds" de que $y = 1$ son una función lineal de las variables independientes $x_1, x_2, \ldots, x_p$:
+
+$$\text{odds} = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p$$
+
+Un problema que tienen los "odds" es que están desbalanceados. Por ejemplo, si los "odds" son 10, entonces la probabilidad de que $y = 1$ es 10 veces mayor que la probabilidad de que $y = 0$. Pero si los "odds" son 0.1, entonces la probabilidad de que $y = 1$ es 10 veces menor que la probabilidad de que $y = 0$. Para resolver este problema, vamos a tomar el logaritmo de los "odds" y vamos a modelar el logaritmo de los "odds" en función de las variables independientes $x_1, x_2, \ldots, x_p$:
+
+$$\log\left(\frac{P(y = 1)}{P(y = 0)}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p$$
+
+$$\log\left(\frac{P(y = 1)}{1 - P(y = 1)}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p$$
+
+Ahora solo tenemos que despejar $P(y = 1)$ paso a paso:
+
+$$\log\left(\frac{P(y = 1)}{1 - P(y = 1)}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p$$
+
+$$\frac{P(y = 1)}{1 - P(y = 1)} = e^{\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p}$$
+
+$$P(y = 1) = (1 - P(y = 1))e^{\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p}$$
+
+$$P(y = 1) = e^{\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p} - P(y = 1)e^{\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p}$$
+
+$$P(y = 1) + P(y = 1)e^{\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p} = e^{\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p}$$
+
+$$P(y = 1)(1 + e^{\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p}) = e^{\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p}$$
+
+$$P(y = 1) = \frac{e^{\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p}}{1 + e^{\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p}}$$
+
+$$P(y = 1) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p)}}$$
+
+Esta última ecuación es la función logística. La función logística es una función sigmoide que toma valores entre 0 y 1. Gráficamente, la función logística se ve de la siguiente forma:
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-10, 10, 1000)
+y = 1 / (1 + np.exp(-x))
+
+plt.plot(x, y)
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Función Logística')
+plt.show()
+```
+
+Ahora veamos como se ve la función logística dandole valor a dos coeficientes $\beta_0 = 0$ y $\beta_1 = 1$:
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-10, 10, 1000)
+b0 = 5
+b1 = 10
+
+y = 1 / (1 + np.exp(-(b0 + b1 * x)))
+
+plt.plot(x, y, label=r'$y = \frac{1}{1 + e^{-(\beta_0 + \beta_1 x)}}$')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Función Logística')
+plt.legend()
+plt.show()
+```
+
+Algunas propiedades de la función logística son:
+
+- La función logística es simétrica respecto al punto $(0, 0.5)$.
+- La función logística es monótona creciente.
+- La función logística es acotada entre 0 y 1.
+
+### Estimar los coeficientes de la regresión logística
+
+Para estimar los coeficientes de la regresión logística, podemos utilizar el método de máxima verosimilitud. La función de verosimilitud es la probabilidad de observar los datos dados los coeficientes del modelo. La función de verosimilitud de la regresión logística es la siguiente:
+
+$$L(\beta_0, \beta_1, \ldots, \beta_p) = \prod_{i=1}^{n} P(y_i = 1)^{y_i} (1 - P(y_i = 1))^{1 - y_i}$$
+
+Donde $n$ es el número de observaciones, $y_i$ es la variable dependiente de la observación $i$ y $P(y_i = 1)$ es la probabilidad de que la observación $i$ tome el valor 1. La función de verosimilitud es el producto de las probabilidades de que cada observación tome el valor 1 o 0.
+
+Dado que los datos son independientes e idénticamente distribuidos, podemos tomar el logaritmo de la función de verosimilitud para simplificar los cálculos:
+
+$$\log L(\beta_0, \beta_1, \ldots, \beta_p) = \sum_{i=1}^{n} y_i \log P(y_i = 1) + (1 - y_i) \log (1 - P(y_i = 1))$$
+
+Ahora solo tenemos que maximizar la función de verosimilitud logarítmica para encontrar los coeficientes del modelo. Para maximizar la función de verosimilitud logarítmica, podemos utilizar el método de Newton-Raphson o con descenso de gradiente. En la práctica, la mayoría de los paquetes de software utilizan el método de Newton-Raphson.
+
+Dado que la explicación de la estimación de los coeficientes de la regresión logística es un poco extensa, vamos a ver un ejemplo en Python utilizando el paquete `statsmodels`.
+
+```{python}
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Generar datos
+np.random.seed(0)
+n = 1000
+x1 = np.random.normal(0, 1, n)
+x2 = np.random.normal(0, 1, n)
+
+# Definir coeficientes
+b0 = 5
+b1 = 3
+b2 = 2
+
+# Generar variable dependiente
+p = 1 / (1 + np.exp(-(b0 + b1 * x1 + b2 * x2)))
+
+y = np.random.binomial(1, p)
+
+# Crear DataFrame
+df = pd.DataFrame({'y': y, 'x1': x1, 'x2': x2})
+
+# Muestra de los datos
+df.head(10)
+```
+
+Ahora estimemos los coeficientes del modelo de regresión logística:
+
+```{python}
+# Estimar modelo
+data = sm.add_constant(df[['x1', 'x2']])
+model = sm.GLM(df['y'], data, family=sm.families.Binomial())
+result = model.fit()
+
+# Mostrar resultados
+print(result.summary())
+```
+
+Como antes tenemos que añaadir una columna de unos al DataFrame para poder estimar el intercepto del modelo. Después utilizamos la función `GLM` de `statsmodels` que estima distribuciones de la familia exponencial. En este caso, estamos utilizando la distribución binomial, con el parámetro `family=sm.families.Binomial()`. Finalmente, utilizamos el método `fit` para estimar los coeficientes del modelo.
+
+Podemos estimar la regresión logística con `scikit-learn`:
+
+```{python}
+from sklearn.linear_model import LogisticRegression
+
+# Estimar modelo
+model = LogisticRegression()
+model.fit(df[['x1', 'x2']], df['y'])
+
+# Imprimir coeficientes
+print(f'Intercepto: {model.intercept_}')
+print(f'Coeficientes: {model.coef_}')
+```
+
+Podemos probar que tan bueno es el modelo al verificar que predice con los datos que ya tenemos y compararlo con los datos reales:
+
+```{python}
+# Predicción
+y_pred = model.predict(df[['x1', 'x2']])
+
+# Comparar predicciones con datos reales
+df['y_pred'] = y_pred
+df.head(10)
+```
+
+Para comparar modelos de regresión logística, podemos utilizar métricas como la precisión, la sensibilidad, la especificidad, el valor predictivo positivo y el valor predictivo negativo. Estas métricas nos permiten evaluar la capacidad del modelo para predecir correctamente los valores positivos y negativos y se basan en la **matriz de confusión**.
+
+```{python}
+from sklearn.metrics import confusion_matrix
+
+# Matriz de confusión
+cm = confusion_matrix(df['y'], df['y_pred'])
+print(cm)
+```
+
+La matriz de confusión es una tabla que muestra el número de verdaderos positivos, falsos positivos, verdaderos negativos y falsos negativos del modelo. A partir de la matriz de confusión, podemos calcular métricas como la precisión, la sensibilidad, la especificidad, el valor predictivo positivo y el valor predictivo negativo.
+
+La diagonal de la matriz de confusión contiene los valores correctos, es decir, los verdaderos positivos y los verdaderos negativos. Los valores fuera de la diagonal contienen los valores incorrectos, es decir, los falsos positivos y los falsos negativos.
+
+ \begin{array}{|c|c|}
+\hline
+\text{Verdaderos Positivos (TP)} & \text{Falsos Positivos (FP)} \\
+\hline
+\text{Falsos Negativos (FN)} & \text{Verdaderos Negativos (TN)} \\
+\hline
+\end{array}
+
+La **precisión** es la proporción de predicciones correctas entre todas las predicciones realizadas por el modelo:
+
+$$\text{Precisión} = \frac{TP + TN}{TP + FP + FN + TN}$$
+
+La **sensibilidad** es la proporción de verdaderos positivos entre todos los valores positivos reales:
+
+$$\text{Sensibilidad} = \frac{TP}{TP + FN}$$
+
+La **especificidad** es la proporción de verdaderos negativos entre todos los valores negativos reales:
+
+$$\text{Especificidad} = \frac{TN}{TN + FP}$$
+
+El **valor predictivo positivo** es la proporción de verdaderos positivos entre todas las predicciones positivas realizadas por el modelo:
+
+$$\text{Valor Predictivo Positivo} = \frac{TP}{TP + FP}$$
+
+El **valor predictivo negativo** es la proporción de verdaderos negativos entre todas las predicciones negativas realizadas por el modelo:
+
+$$\text{Valor Predictivo Negativo} = \frac{TN}{TN + FN}$$
+
+En nuestro modelo de regresión logística tenemos los siguientes valores:
+
+```{python}
+# Precisión
+precision = (cm[0, 0] + cm[1, 1]) / np.sum(cm)
+print(f'Precisión: {precision}')
+
+# Especificidad
+specificity = cm[1, 1] / (cm[1, 1] + cm[0, 1])
+print(f'Especificidad: {specificity}')
+
+# Sensibilidad
+sensitivity = cm[0, 0] / (cm[0, 0] + cm[1, 0])
+print(f'Sensibilidad: {sensitivity}')
+
+# Valor Predictivo Positivo
+ppv = cm[0, 0] / (cm[0, 0] + cm[0, 1])
+print(f'Valor Predictivo Positivo: {ppv}')
+
+# Valor Predictivo Negativo
+npv = cm[1, 1] / (cm[1, 1] + cm[1, 0])
+print(f'Valor Predictivo Negativo: {npv}')
+```
+
+Estas métricas son usadas también en la evaluación de modelos de clasificación como lo son las redes neuronales.
+
+Otras métricas comunes para evaluar modelos de clasificación son el área bajo la curva ROC (AUC-ROC) y el área bajo la curva PR (AUC-PR). El AUC-ROC mide la capacidad del modelo para distinguir entre las clases positiva y negativa, mientras que el AUC-PR mide la precisión del modelo en la clase positiva.
+
+```{python}
+from sklearn.metrics import roc_auc_score, average_precision_score
+
+# Área bajo la curva ROC
+roc_auc = roc_auc_score(df['y'], df['y_pred'])
+
+# Área bajo la curva PR
+pr_auc = average_precision_score(df['y'], df['y_pred'])
+
+print(f'Área bajo la curva ROC: {roc_auc}')
+print(f'Área bajo la curva PR: {pr_auc}')
+```
+
+El AUC-ROC y el AUC-PR son valores entre 0 y 1, donde un valor de 1 indica un modelo perfecto y un valor de 0.5 indica un modelo aleatorio.
+
+Podemos graficar la curva ROC y la curva PR para visualizar la calidad del modelo de regresión logística.
+
+```{python}
+from sklearn.metrics import roc_curve, precision_recall_curve
+
+# Curva ROC
+fpr, tpr, _ = roc_curve(df['y'], df['y_pred'])
+
+# Curva PR
+precision, recall, _ = precision_recall_curve(df['y'], df['y_pred'])
+
+# Graficar curva ROC
+fig, ax = plt.subplots(1, 2, figsize=(10, 6))
+
+ax[0].plot(fpr, tpr)
+ax[0].plot([0, 1], [0, 1], linestyle='--', color='gray')
+ax[0].set_xlabel('Tasa de Falsos Positivos')
+ax[0].set_ylabel('Tasa de Verdaderos Positivos')
+ax[0].set_title('Curva ROC')
+
+# Graficar curva PR
+ax[1].plot(recall, precision)
+ax[1].set_xlabel('Recall')
+ax[1].set_ylabel('Precision')
+ax[1].set_title('Curva PR')
+
+plt.show()
+```
+
+La forma de la curva ROC y la curva PR nos permite evaluar la calidad del modelo de regresión logística. Una curva ROC que se acerca al punto (0, 1) y una curva PR que se acerca al punto (1, 1) indican un modelo de alta calidad. Cada punto en la curva ROC representa una combinación de la tasa de verdaderos positivos y la tasa de falsos positivos del modelo, mientras que cada punto en la curva PR representa una combinación de la precisión y el recall del modelo. El **recall** es la sensibilidad del modelo, es decir, la proporción de verdaderos positivos entre todos los valores positivos reales.
+
+### Ejercicios
+
+1. Usando los datos de los hongos comestibles y venenosos, ajusta un modelo de regresión logística con `statsmodels` para predecir si un hongo es comestible o venenoso en función de las características de los hongos. Interpreta el resumen del modelo y los coeficientes estimados.
+
+2. Usa `scikit-learn` para ajustar un modelo de regresión logística a los datos de los hongos y compara los coeficientes estimados con los obtenidos con `statsmodels`.
+
+3. Divide los datos en un conjunto de entrenamiento y un conjunto de prueba usando la función `train_test_split` de `scikit-learn`. Ajusta el modelo de regresión logística con los datos de entrenamiento.
+
+4. Evalúa la calidad del modelo utilizando métricas como la precisión, la sensibilidad, la especificidad, el valor predictivo positivo y el valor predictivo negativo usando los datos de prueba.
+
+5. Calcula el área bajo la curva ROC y el área bajo la curva PR. 
+
+6. Grafica la curva ROC y la curva PR para visualizar la calidad del modelo.

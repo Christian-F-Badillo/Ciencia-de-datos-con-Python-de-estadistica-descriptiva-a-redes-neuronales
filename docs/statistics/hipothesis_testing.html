@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.551">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Christian Badillo">
+
+<title>Ciencia de Datos con Python - Prueba de Hipótesis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../statistics/Linear_models.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+<meta property="og:title" content="Ciencia de Datos con Python - Prueba de Hipótesis">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="Ciencia de Datos con Python">
+<meta property="og:locale" content="es_MX">
+<meta name="twitter:title" content="Ciencia de Datos con Python - Prueba de Hipótesis">
+<meta name="twitter:description" content="">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/data_manipulation.html">Manejo de Datos y Estadística con Python</a></li><li class="breadcrumb-item"><a href="../statistics/hipothesis_testing.html">Prueba de Hipótesis</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../img/logo-members/Lab25_logo_2015.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Ciencia de Datos con Python</a> 
+        <div class="sidebar-tools-main">
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales">
+            Source Code
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inicio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acerca</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Fundamentos de Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro_python/Cloud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instalación de Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro_python/Variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Declaración de Variables y Operaciones</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro_python/functions_and_loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Funciones y Bucles de Control</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro_python/data_structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Estructuras de Datos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Manejo de Datos y Estadística con Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/data_manipulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Manipulación de datos con Pandas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/data-visualization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualización de datos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/Linear_models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modelos Lineales</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/hipothesis_testing.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Prueba de Hipótesis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Redes Neuronales</span></span>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de Contenido</h2>
+   
+  <ul>
+  <li><a href="#prueba-de-hipótesis-para-la-media-de-una-población." id="toc-prueba-de-hipótesis-para-la-media-de-una-población." class="nav-link active" data-scroll-target="#prueba-de-hipótesis-para-la-media-de-una-población.">Prueba de Hipótesis para la Media de una Población.</a></li>
+  <li><a href="#prueba-de-hipótesis-para-la-diferencia-de-medias-de-dos-poblaciones." id="toc-prueba-de-hipótesis-para-la-diferencia-de-medias-de-dos-poblaciones." class="nav-link" data-scroll-target="#prueba-de-hipótesis-para-la-diferencia-de-medias-de-dos-poblaciones.">Prueba de Hipótesis para la Diferencia de Medias de dos Poblaciones.</a>
+  <ul class="collapse">
+  <li><a href="#tamaño-del-efecto" id="toc-tamaño-del-efecto" class="nav-link" data-scroll-target="#tamaño-del-efecto">Tamaño del Efecto</a></li>
+  </ul></li>
+  <li><a href="#prueba-de-hipótesis-para-más-de-dos-poblaciones." id="toc-prueba-de-hipótesis-para-más-de-dos-poblaciones." class="nav-link" data-scroll-target="#prueba-de-hipótesis-para-más-de-dos-poblaciones.">Prueba de Hipótesis para más de dos Poblaciones.</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/edit/main/statistics/hipothesis_testing.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/data_manipulation.html">Manejo de Datos y Estadística con Python</a></li><li class="breadcrumb-item"><a href="../statistics/hipothesis_testing.html">Prueba de Hipótesis</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Prueba de Hipótesis</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Ver código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar todo el código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Ocultar todo el código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button" data-quarto-source-url="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/blob/main/statistics/hipothesis_testing.qmd">Ver el código fuente</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Autor/a</div>
+    <div class="quarto-title-meta-contents">
+             <p>Christian Badillo </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">22 de junio de 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Dentro del quehacer de la ciencia, una de las tareas más comunes es la de probar hipótesis. En términos generales, una hipótesis es una afirmación que se hace sobre el valor de un parámetro poblacional. Por ejemplo, una hipótesis podría ser que la media de una población es igual a un valor específico. Para probar esta hipótesis, se recolecta una muestra de la población y se calcula la media muestral. Si la media muestral es muy diferente de la media hipotética, entonces se puede concluir que la hipótesis es falsa. En este caso, se dice que la hipótesis es rechazada. Por otro lado, si la media muestral es muy similar a la media hipotética, entonces se puede concluir que la hipótesis es verdadera. En este caso, se dice que la hipótesis es aceptada.</p>
+<p>No debemos tomar tan a la ligera la decisión de rechazar o aceptar una hipótesis. Siempre existe la posibilidad de que la muestra que se recolectó no sea representativa de la población. Por lo tanto, es importante tener en cuenta el error que se comete al rechazar una hipótesis verdadera. Este error se conoce como <strong>error de tipo I</strong>. Por otro lado, también es importante tener en cuenta el error que se comete al aceptar una hipótesis falsa. Este error se conoce como <strong>error de tipo II</strong>. En general, se busca minimizar ambos errores. Sin embargo, es imposible minimizar ambos errores al mismo tiempo. Por lo tanto, se debe tomar una decisión sobre cuál de los dos errores es más grave. Esta decisión depende del contexto en el que se esté trabajando. Pero en general, se prefiere minimizar el error de tipo I.</p>
+<p>Para probar una hipótesis, se sigue un procedimiento estándar.</p>
+<ol type="1">
+<li><p>Plantear un modelo base o hipótesis nula, normalmente es que el valor de un parámetro poblacional es igual a cero o que la diferencia entre parametros poblacionales es igual a cero. Se denota como <span class="math inline">\(H_0\)</span>.</p></li>
+<li><p>Plantear un modelo alternativo o hipótesis alterna, que puede ser que el valor de un parámetro poblacional es diferente de cero o que la diferencia entre parametros poblacionales es diferente de cero. Se denota como <span class="math inline">\(H_1\)</span>.</p></li>
+<li><p>Recolectar una muestra de la población y calcular el estadístico de prueba. Esto depende de la hipótesis que se esté probando, el tipo de datos que se tengan y el tamaño de la muestra.</p></li>
+<li><p>Calcular el valor p.&nbsp;El valor p es la probabilidad de obtener un estadístico de prueba tan extremo como el que se obtuvo dado que la hipótesis nula es verdadera. Si el valor p es menor que un nivel de significancia predefinido, entonces se dice que hay evidencia para rechazar la hipótesis nula.</p></li>
+</ol>
+<p>El valor p depende directamente de los datos y del procedimiento de su recolección. Por si mismo no es suficiente para tomar una decisión. Por lo tanto, es importante tener en cuenta el contexto en el que se está trabajando. Una medida auxiliar es el <strong>poder</strong> de la prueba. El poder de una prueba es la probabilidad de rechazar la hipótesis nula dado que la hipótesis nula es falsa. En general, se busca que el poder de la prueba sea lo más alto posible. Sin embargo, el poder de la prueba depende de varios factores, como el tamaño de la muestra, el nivel de significancia y la magnitud del efecto.</p>
+<p>De mayor importancia que obtener valores p bajos es tener un buen diseño experimental. Un buen diseño experimental es aquel que permite obtener resultados confiables y válidos. Para ello, es importante tener en cuenta varios factores, como el tamaño de la muestra, la selección de la muestra, la recolección de los datos y el análisis de los datos. En general, se busca que el diseño experimental sea lo más simple posible. Sin embargo, es importante tener en cuenta que un diseño experimental simple no siempre es el mejor.</p>
+<p>Una medida que se sugiera reportar el <strong>tamaño del efecto</strong> de la prueba. El tamaño del efecto es una medida de la magnitud del efecto que se está estudiando, es de gran importancia en la interpretación de los resultados. Puede ser absoluta o relativo.</p>
+<p>Existen distintas medidas del tamaño del efecto, como la diferencia de medias, la razón de medias, la diferencia de proporciones, la razón de proporciones, la correlación, la regresión, entre otras. La elección de la medida del tamaño del efecto depende del contexto en el que se esté trabajando. En general, se busca que el tamaño del efecto sea lo más grande posible. Sin embargo, es importante tener en cuenta que un tamaño del efecto grande no siempre es mejor. Por ejemplo, un tamaño del efecto grande puede ser el resultado de un error en la recolección de los datos.</p>
+<section id="prueba-de-hipótesis-para-la-media-de-una-población." class="level2">
+<h2 class="anchored" data-anchor-id="prueba-de-hipótesis-para-la-media-de-una-población.">Prueba de Hipótesis para la Media de una Población.</h2>
+<p>Supongamos que tenemos los datos de la estatura de 1000 personas y queremos saber si la media es distinta de 1.70 m. Para ello, planteamos las siguientes hipótesis:</p>
+<p><span class="math display">\[H_0: \mu = 1.70\]</span></p>
+<p><span class="math display">\[H_1: \mu \neq 1.70\]</span></p>
+<p>Donde <span class="math inline">\(\mu\)</span> es la media de la población. Supongamos que la media muestral es de 1.75 m y la desviación estándar es de 0.10 m. Para probar estas hipótesis, calculamos el estadístico de prueba:</p>
+<p><span class="math display">\[t = \frac{\bar{x} - \mu}{s/\sqrt{n}}\]</span></p>
+<p>Donde <span class="math inline">\(\bar{x}\)</span> es la media muestral, <span class="math inline">\(s\)</span> es la desviación estándar muestral y <span class="math inline">\(n\)</span> es el tamaño de la muestra. En este caso, el valor del estadístico de prueba es:</p>
+<p><span class="math display">\[t = \frac{1.75 - 1.70}{0.10/\sqrt{1000}} = 15.81\]</span></p>
+<p>Para calcular el valor p, necesitamos la distribución del estadístico de prueba. En este caso, la distribución del estadístico de prueba es una distribución t de Student con 999 grados de libertad. El valor p es la probabilidad de obtener un estadístico de prueba tan extremo como el que se obtuvo dado que la hipótesis nula es verdadera. En este caso, el valor p es:</p>
+<div id="4e792387" class="cell" data-execution_count="2">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a>t <span class="op">=</span> <span class="fl">15.81</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>p <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> stats.t.cdf(t, <span class="dv">999</span>))</span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="bu">print</span>(<span class="ss">f'El valor p es </span><span class="sc">{</span>p<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>El valor p es 0.0</code></pre>
+</div>
+</div>
+<p>Visualizemos la distribución del estadístico de prueba:</p>
+<div id="5c7a0cef" class="cell" data-execution_count="3">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">1000</span>)</span>
+<span id="cb3-5"><a href="#cb3-5"></a>y <span class="op">=</span> stats.t.pdf(x, <span class="dv">999</span>)</span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a>plt.plot(x, y)</span>
+<span id="cb3-8"><a href="#cb3-8"></a>plt.axvline(t, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb3-9"><a href="#cb3-9"></a>plt.xlabel(<span class="st">'Estadístico de Prueba'</span>)</span>
+<span id="cb3-10"><a href="#cb3-10"></a>plt.ylabel(<span class="st">'Densidad'</span>)</span>
+<span id="cb3-11"><a href="#cb3-11"></a>plt.title(<span class="st">'Distribución del Estadístico de Prueba'</span>)</span>
+<span id="cb3-12"><a href="#cb3-12"></a></span>
+<span id="cb3-13"><a href="#cb3-13"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hipothesis_testing_files/figure-html/cell-3-output-1.png" width="597" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Si definimos un nivel de significancia de 0.05, entonces podemos concluir que hay evidencia para rechazar la hipótesis nula. Por lo tanto, podemos concluir que la media de la población es distinta de 1.70 m.</p>
+<p>La regigión crítica es aquella en la que se rechaza la hipótesis nula, debe sumar el nivel de significancia. Visualicemos la región crítica:</p>
+<div id="4c15c0d3" class="cell" data-execution_count="4">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">1000</span>)</span>
+<span id="cb4-2"><a href="#cb4-2"></a>y <span class="op">=</span> stats.t.pdf(x, <span class="dv">999</span>)</span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a>plt.plot(x, y)</span>
+<span id="cb4-5"><a href="#cb4-5"></a>plt.axvline(t, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb4-6"><a href="#cb4-6"></a></span>
+<span id="cb4-7"><a href="#cb4-7"></a>t1 <span class="op">=</span> stats.t.ppf(<span class="fl">0.025</span>, <span class="dv">999</span>) <span class="co"># 0.025 porque es una prueba de dos colas</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>t2 <span class="op">=</span> stats.t.ppf(<span class="fl">0.975</span>, <span class="dv">999</span>) <span class="co"># 0.975 porque es una prueba de dos colas</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a></span>
+<span id="cb4-10"><a href="#cb4-10"></a>plt.fill_between(x, y, where<span class="op">=</span>(x <span class="op">&lt;</span> t1), color<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb4-11"><a href="#cb4-11"></a>plt.fill_between(x, y, where<span class="op">=</span>(x <span class="op">&gt;</span> t2), color<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb4-12"><a href="#cb4-12"></a></span>
+<span id="cb4-13"><a href="#cb4-13"></a></span>
+<span id="cb4-14"><a href="#cb4-14"></a>plt.xlabel(<span class="st">'Estadístico de Prueba'</span>)</span>
+<span id="cb4-15"><a href="#cb4-15"></a>plt.ylabel(<span class="st">'Densidad'</span>)</span>
+<span id="cb4-16"><a href="#cb4-16"></a>plt.title(<span class="st">'Distribución del Estadístico de Prueba'</span>)</span>
+<span id="cb4-17"><a href="#cb4-17"></a></span>
+<span id="cb4-18"><a href="#cb4-18"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hipothesis_testing_files/figure-html/cell-4-output-1.png" width="597" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Observamos que el estadístico de prueba cae en la región crítica. Por lo tanto, podemos concluir que hay evidencia para rechazar la hipótesis nula.</p>
+<p>Podemos hacer este test con la función <code>ttest_1samp</code> de <code>scipy.stats</code>:</p>
+<div id="28f9403f" class="cell" data-execution_count="5">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>np.random.seed(<span class="dv">123</span>)</span>
+<span id="cb5-2"><a href="#cb5-2"></a>x <span class="op">=</span> np.random.normal(<span class="fl">1.75</span>, <span class="fl">0.10</span>, <span class="dv">1000</span>)</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a>result <span class="op">=</span> stats.ttest_1samp(x, <span class="fl">1.70</span>)</span>
+<span id="cb5-5"><a href="#cb5-5"></a>lower, upper <span class="op">=</span> result.confidence_interval(confidence_level<span class="op">=</span><span class="fl">0.95</span>)</span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="bu">print</span>(<span class="ss">f'El valor p es </span><span class="sc">{</span>result<span class="sc">.</span>pvalue<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="bu">print</span>(<span class="ss">f'El estadístico de prueba es </span><span class="sc">{</span>result<span class="sc">.</span>statistic<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="bu">print</span>(<span class="ss">f"Los grado de libertad son </span><span class="sc">{</span>result<span class="sc">.</span>df<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="bu">print</span>(<span class="ss">f"El intervalo de confianza para la media es [</span><span class="sc">{</span>lower<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>upper<span class="sc">}</span><span class="ss">]"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>El valor p es 1.3453036210893457e-43
+El estadístico de prueba es 14.54152651527113
+Los grado de libertad son 999
+El intervalo de confianza para la media es [1.7398301232798288, 1.7522570495040128]</code></pre>
+</div>
+</div>
+</section>
+<section id="prueba-de-hipótesis-para-la-diferencia-de-medias-de-dos-poblaciones." class="level2">
+<h2 class="anchored" data-anchor-id="prueba-de-hipótesis-para-la-diferencia-de-medias-de-dos-poblaciones.">Prueba de Hipótesis para la Diferencia de Medias de dos Poblaciones.</h2>
+<p>Supongamos que tenemos los datos de la estatura de 1000 hombres y 1000 mujeres y queremos saber si la media de los hombres es distinta de la media de las mujeres. Para ello, planteamos las siguientes hipótesis:</p>
+<p><span class="math display">\[H_0: \mu_1 - \mu_2 = 0\]</span></p>
+<p><span class="math display">\[H_1: \mu_1 - \mu_2 \neq 0\]</span></p>
+<p>Donde <span class="math inline">\(\mu_1\)</span> es la media de los hombres y <span class="math inline">\(\mu_2\)</span> es la media de las mujeres. Supongamos que la media de los hombres es de 1.75 m, la desviación estándar de los hombres es de 0.10 m, la media de las mujeres es de 1.55 m y la desviación estándar de las mujeres es de 0.10 m. Para probar estas hipótesis, calculamos el estadístico de prueba:</p>
+<p><span class="math display">\[t = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{s_1^2/n_1 + s_2^2/n_2}}\]</span></p>
+<p>Donde <span class="math inline">\(\bar{x}_1\)</span> es la media de los hombres, <span class="math inline">\(\bar{x}_2\)</span> es la media de las mujeres, <span class="math inline">\(s_1\)</span> es la desviación estándar de los hombres, <span class="math inline">\(s_2\)</span> es la desviación estándar de las mujeres, <span class="math inline">\(n_1\)</span> es el tamaño de la muestra de los hombres y <span class="math inline">\(n_2\)</span> es el tamaño de la muestra de las mujeres. En este caso, el valor del estadístico de prueba es:</p>
+<p><span class="math display">\[t = \frac{1.75 - 1.55}{\sqrt{0.10^2/1000 + 0.10^2/1000}} = 31.62\]</span></p>
+<p>Generemos datos con python y calculemos el estadístico de prueba:</p>
+<div id="8017c434" class="cell" data-execution_count="6">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>np.random.seed(<span class="dv">123</span>)</span>
+<span id="cb7-2"><a href="#cb7-2"></a>x1 <span class="op">=</span> np.random.normal(<span class="fl">1.75</span>, <span class="fl">0.10</span>, <span class="dv">1000</span>)</span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a>np.random.seed(<span class="dv">123</span>)</span>
+<span id="cb7-5"><a href="#cb7-5"></a>x2 <span class="op">=</span> np.random.normal(<span class="fl">1.55</span>, <span class="fl">0.10</span>, <span class="dv">1000</span>)</span>
+<span id="cb7-6"><a href="#cb7-6"></a></span>
+<span id="cb7-7"><a href="#cb7-7"></a>t <span class="op">=</span> (x1.mean() <span class="op">-</span> x2.mean()) <span class="op">/</span> np.sqrt((x1.var() <span class="op">/</span> <span class="dv">1000</span>) <span class="op">+</span> (x2.var() <span class="op">/</span> <span class="dv">1000</span>))</span>
+<span id="cb7-8"><a href="#cb7-8"></a></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="bu">print</span>(<span class="ss">f'El estadístico de prueba es </span><span class="sc">{</span>t<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>El estadístico de prueba es 44.68616751661976</code></pre>
+</div>
+</div>
+<p>Para calcular el valor p, necesitamos la distribución del estadístico de prueba. En este caso, la distribución del estadístico de prueba es una distribución t de Student con 1998 grados de libertad. Los grados se calculan como <span class="math inline">\(n_1 + n_2 - 2\)</span>. Visualicemos la distribución del estadístico de prueba, la región crítica y el valor p:</p>
+<div id="29f01ef4" class="cell" data-execution_count="7">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">50</span>, <span class="dv">50</span>, <span class="dv">5000</span>)</span>
+<span id="cb9-2"><a href="#cb9-2"></a>y <span class="op">=</span> stats.t.pdf(x, <span class="dv">1998</span>)</span>
+<span id="cb9-3"><a href="#cb9-3"></a></span>
+<span id="cb9-4"><a href="#cb9-4"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb9-5"><a href="#cb9-5"></a></span>
+<span id="cb9-6"><a href="#cb9-6"></a>ax.plot(x, y)</span>
+<span id="cb9-7"><a href="#cb9-7"></a>ax.axvline(t, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb9-8"><a href="#cb9-8"></a></span>
+<span id="cb9-9"><a href="#cb9-9"></a>t1 <span class="op">=</span> stats.t.ppf(<span class="fl">0.025</span>, <span class="dv">1998</span>) </span>
+<span id="cb9-10"><a href="#cb9-10"></a>t2 <span class="op">=</span> stats.t.ppf(<span class="fl">0.975</span>, <span class="dv">1998</span>)</span>
+<span id="cb9-11"><a href="#cb9-11"></a></span>
+<span id="cb9-12"><a href="#cb9-12"></a>ax.fill_between(x, y, where<span class="op">=</span>(x <span class="op">&lt;</span> t1), color<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb9-13"><a href="#cb9-13"></a>ax.fill_between(x, y, where<span class="op">=</span>(x <span class="op">&gt;</span> t2), color<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb9-14"><a href="#cb9-14"></a></span>
+<span id="cb9-15"><a href="#cb9-15"></a>plt.xlabel(<span class="st">'Estadístico de Prueba'</span>)</span>
+<span id="cb9-16"><a href="#cb9-16"></a>plt.ylabel(<span class="st">'Densidad'</span>)</span>
+<span id="cb9-17"><a href="#cb9-17"></a>plt.title(<span class="st">'Distribución del Estadístico de Prueba'</span>)</span>
+<span id="cb9-18"><a href="#cb9-18"></a></span>
+<span id="cb9-19"><a href="#cb9-19"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hipothesis_testing_files/figure-html/cell-7-output-1.png" width="821" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Como el valor p es muy pequeño, podemos concluir que hay evidencia para rechazar la hipótesis nula. Por lo tanto, podemos concluir que la media de los hombres es distinta de la media de las mujeres.</p>
+<p>Podemos hacer este test con la función <code>ttest_ind</code> de <code>scipy.stats</code>:</p>
+<div id="d85d5ddd" class="cell" data-execution_count="8">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>result <span class="op">=</span> stats.ttest_ind(x1, x2)</span>
+<span id="cb10-2"><a href="#cb10-2"></a></span>
+<span id="cb10-3"><a href="#cb10-3"></a>lower, upper <span class="op">=</span> result.confidence_interval(confidence_level<span class="op">=</span><span class="fl">0.95</span>)</span>
+<span id="cb10-4"><a href="#cb10-4"></a></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="bu">print</span>(<span class="ss">f'El valor p es </span><span class="sc">{</span>result<span class="sc">.</span>pvalue<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="bu">print</span>(<span class="ss">f'El estadístico de prueba es </span><span class="sc">{</span>result<span class="sc">.</span>statistic<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="bu">print</span>(<span class="ss">f"Los grado de libertad son </span><span class="sc">{</span>result<span class="sc">.</span>df<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="bu">print</span>(<span class="ss">f"El intervalo de confianza para la diferencia de medias es [</span><span class="sc">{</span>lower<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>upper<span class="sc">}</span><span class="ss">]"</span>)</span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="bu">print</span>(<span class="ss">f"Diff de medias </span><span class="sc">{</span>x1<span class="sc">.</span>mean() <span class="op">-</span> x2<span class="sc">.</span>mean()<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>El valor p es 1.0339591135264653e-302
+El estadístico de prueba es 44.66381884429588
+Los grado de libertad son 1998.0
+El intervalo de confianza para la diferencia de medias es [0.1912181624160999, 0.2087818375839]
+Diff de medias 0.19999999999999996</code></pre>
+</div>
+</div>
+<p>Con <code>statsmodels</code> igualmente podemos hacer este test:</p>
+<div id="e8f8ed95" class="cell" data-execution_count="9">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb12-2"><a href="#cb12-2"></a></span>
+<span id="cb12-3"><a href="#cb12-3"></a>ttest <span class="op">=</span> sm.stats.ttest_ind(x1, x2)</span>
+<span id="cb12-4"><a href="#cb12-4"></a></span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="bu">print</span>(<span class="ss">f'El estadístico de prueba es </span><span class="sc">{</span>ttest[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb12-6"><a href="#cb12-6"></a><span class="bu">print</span>(<span class="ss">f'El valor p es </span><span class="sc">{</span>ttest[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="bu">print</span>(<span class="ss">f"Los grado de libertad son </span><span class="sc">{</span>ttest[<span class="dv">2</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>El estadístico de prueba es 44.663818844295825
+El valor p es 1.033959113527759e-302
+Los grado de libertad son 1998.0</code></pre>
+</div>
+</div>
+<section id="tamaño-del-efecto" class="level3">
+<h3 class="anchored" data-anchor-id="tamaño-del-efecto">Tamaño del Efecto</h3>
+<p>El tamaño del efecto es una medida de la magnitud del efecto que se está estudiando. En este caso, el tamaño del efecto es:</p>
+<p><span class="math display">\[d = \frac{\bar{x}_1 - \bar{x}_2}{s}\]</span></p>
+<p>Donde <span class="math inline">\(\bar{x}_1\)</span> es la media de los hombres, <span class="math inline">\(\bar{x}_2\)</span> es la media de las mujeres, <span class="math inline">\(s\)</span> es la desviación estándár combinada, que Jacob Cohen sugiere que se calcule como:</p>
+<p><span class="math display">\[s = \sqrt{\frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}}\]</span></p>
+<p>La varianza para cada grupo se calcula como:</p>
+<p><span class="math display">\[s_i^2 = \frac{\sum_{j=1}^{n_1}(x_{ij} - \bar{x}_i)^2}{n_i - 1}\]</span></p>
+<p>En esta tabla podemos ver el tamaño del efecto para distintos valores de <span class="math inline">\(d\)</span>:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Tamaño del Efecto</th>
+<th>d</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Muy Pequeño</td>
+<td>0.01</td>
+</tr>
+<tr class="even">
+<td>Pequeño</td>
+<td>0.20</td>
+</tr>
+<tr class="odd">
+<td>Mediano</td>
+<td>0.50</td>
+</tr>
+<tr class="even">
+<td>Grande</td>
+<td>0.80</td>
+</tr>
+<tr class="odd">
+<td>Muy Grande</td>
+<td>1.20</td>
+</tr>
+<tr class="even">
+<td>Enorme</td>
+<td>2.00</td>
+</tr>
+</tbody>
+</table>
+<p>Vamos a crear una función que calcule el tamaño del efecto:</p>
+<div id="177b84d8" class="cell" data-execution_count="10">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">def</span> effect_size(x1, x2):</span>
+<span id="cb14-2"><a href="#cb14-2"></a>    n1 <span class="op">=</span> <span class="bu">len</span>(x1)</span>
+<span id="cb14-3"><a href="#cb14-3"></a>    n2 <span class="op">=</span> <span class="bu">len</span>(x2)</span>
+<span id="cb14-4"><a href="#cb14-4"></a>    </span>
+<span id="cb14-5"><a href="#cb14-5"></a>    s1 <span class="op">=</span> np.sqrt(np.<span class="bu">sum</span>((x1 <span class="op">-</span> x1.mean())<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (n1 <span class="op">-</span> <span class="dv">1</span>))</span>
+<span id="cb14-6"><a href="#cb14-6"></a>    s2 <span class="op">=</span> np.sqrt(np.<span class="bu">sum</span>((x2 <span class="op">-</span> x2.mean())<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (n2 <span class="op">-</span> <span class="dv">1</span>))</span>
+<span id="cb14-7"><a href="#cb14-7"></a>    </span>
+<span id="cb14-8"><a href="#cb14-8"></a>    s <span class="op">=</span> np.sqrt(((n1 <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> s1<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (n2 <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> s2<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (n1 <span class="op">+</span> n2 <span class="op">-</span> <span class="dv">2</span>))</span>
+<span id="cb14-9"><a href="#cb14-9"></a>    </span>
+<span id="cb14-10"><a href="#cb14-10"></a>    d <span class="op">=</span> (x1.mean() <span class="op">-</span> x2.mean()) <span class="op">/</span> s</span>
+<span id="cb14-11"><a href="#cb14-11"></a>    </span>
+<span id="cb14-12"><a href="#cb14-12"></a>    <span class="cf">return</span> d</span>
+<span id="cb14-13"><a href="#cb14-13"></a></span>
+<span id="cb14-14"><a href="#cb14-14"></a>d <span class="op">=</span> effect_size(x1, x2)</span>
+<span id="cb14-15"><a href="#cb14-15"></a></span>
+<span id="cb14-16"><a href="#cb14-16"></a><span class="bu">print</span>(<span class="ss">f'El tamaño del efecto es </span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>El tamaño del efecto es 1.9974267014116336</code></pre>
+</div>
+</div>
+<p>El efecto es muy grande, por lo que podemos concluir que la diferencia entre las medias de los hombres y las mujeres es muy grande.</p>
+</section>
+</section>
+<section id="prueba-de-hipótesis-para-más-de-dos-poblaciones." class="level2">
+<h2 class="anchored" data-anchor-id="prueba-de-hipótesis-para-más-de-dos-poblaciones.">Prueba de Hipótesis para más de dos Poblaciones.</h2>
+<p>Supongamos que tenemos los datos de la estatura de 1000 personas de tres países distintos y queremos saber si la media de las tres poblaciones es distinta. Para ello, planteamos las siguientes hipótesis:</p>
+<p><span class="math display">\[H_0: \mu_1 = \mu_2 = \mu_3\]</span></p>
+<p><span class="math display">\[H_1: \mu_1 \neq \mu_2 \neq \mu_3\]</span></p>
+<p>Donde <span class="math inline">\(\mu_1\)</span> es la media de las personas del país 1, <span class="math inline">\(\mu_2\)</span> es la media de las personas del país 2 y <span class="math inline">\(\mu_3\)</span> es la media de las personas del país 3. Supongamos que la media de las personas del país 1 es de 1.75 m, la desviación estándar de las personas del país 1 es de 0.10 m, la media de las personas del país 2 es de 1.55 m, la desviación estándar de las personas del país 2 es de 0.10 m, la media de las personas del país 3 es de 1.65 m y la desviación estándar de las personas del país 3 es de 0.10 m. Para probar estas hipótesis, calculamos el estadístico de prueba:</p>
+<p><span class="math display">\[F = \frac{MS_{\text{entre}}}{MS_{\text{dentro}}}\]</span></p>
+<p>Donde <span class="math inline">\(MS_{\text{entre}}\)</span> es la media de las varianzas entre las poblaciones y <span class="math inline">\(MS_{\text{dentro}}\)</span> es la media de las varianzas dentro de las poblaciones.</p>
+<p><span class="math display">\[MS_{\text{entre}} = \frac{\sum_{i=1}^{k}n_i(\bar{x}_i - \bar{x})^2}{k - 1}\]</span></p>
+<p><span class="math display">\[MS_{\text{dentro}} = \frac{\sum_{i=1}^{k}\sum_{j=1}^{n_i}(x_{ij} - \bar{x}_i)^2}{n - k}\]</span></p>
+<p>En este caso, el valor del estadístico de prueba es:</p>
+<div id="50fc9115" class="cell" data-execution_count="11">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>np.random.seed(<span class="dv">123</span>)</span>
+<span id="cb16-2"><a href="#cb16-2"></a>x1 <span class="op">=</span> np.random.normal(<span class="fl">1.75</span>, <span class="fl">0.10</span>, <span class="dv">1000</span>)</span>
+<span id="cb16-3"><a href="#cb16-3"></a>x2 <span class="op">=</span> np.random.normal(<span class="fl">1.55</span>, <span class="fl">0.10</span>, <span class="dv">1000</span>)</span>
+<span id="cb16-4"><a href="#cb16-4"></a>x3 <span class="op">=</span> np.random.normal(<span class="fl">1.65</span>, <span class="fl">0.10</span>, <span class="dv">1000</span>)</span>
+<span id="cb16-5"><a href="#cb16-5"></a></span>
+<span id="cb16-6"><a href="#cb16-6"></a>x <span class="op">=</span> np.concatenate([x1, x2, x3])</span>
+<span id="cb16-7"><a href="#cb16-7"></a></span>
+<span id="cb16-8"><a href="#cb16-8"></a>Ms_between <span class="op">=</span> (<span class="dv">1000</span> <span class="op">*</span> (x1.mean() <span class="op">-</span> x.mean())<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">1000</span> <span class="op">*</span> (x2.mean() <span class="op">-</span> x.mean())<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">1000</span> <span class="op">*</span> (x3.mean() <span class="op">-</span> x.mean())<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a></span>
+<span id="cb16-10"><a href="#cb16-10"></a>Ms_within <span class="op">=</span> (np.<span class="bu">sum</span>((x1 <span class="op">-</span> x1.mean())<span class="op">**</span><span class="dv">2</span>) <span class="op">+</span> np.<span class="bu">sum</span>((x2 <span class="op">-</span> x2.mean())<span class="op">**</span><span class="dv">2</span>) <span class="op">+</span> np.<span class="bu">sum</span>((x3 <span class="op">-</span> x3.mean())<span class="op">**</span><span class="dv">2</span>)) <span class="op">/</span> <span class="dv">2997</span></span>
+<span id="cb16-11"><a href="#cb16-11"></a></span>
+<span id="cb16-12"><a href="#cb16-12"></a>F <span class="op">=</span> Ms_between <span class="op">/</span> Ms_within</span>
+<span id="cb16-13"><a href="#cb16-13"></a></span>
+<span id="cb16-14"><a href="#cb16-14"></a><span class="bu">print</span>(<span class="ss">f'El estadístico de prueba es </span><span class="sc">{</span>F<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>El estadístico de prueba es 990.6545267572889</code></pre>
+</div>
+</div>
+<p>Para calcular el valor p, necesitamos la distribución del estadístico de prueba. En este caso, la distribución del estadístico de prueba es una distribución F de Fisher con 2 y 2998 grados de libertad. Los grados de libertad se calculan como <span class="math inline">\(k - 1\)</span> y <span class="math inline">\(n - k\)</span>, donde <span class="math inline">\(k\)</span> es el número de poblaciones y <span class="math inline">\(n\)</span> es el número total de observaciones. Visualicemos la distribución del estadístico de prueba, la región crítica y el valor p:</p>
+<div id="8af37305" class="cell" data-execution_count="12">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">1000</span>)</span>
+<span id="cb18-2"><a href="#cb18-2"></a>y <span class="op">=</span> stats.f.pdf(x, <span class="dv">2</span>, <span class="dv">2998</span>)</span>
+<span id="cb18-3"><a href="#cb18-3"></a></span>
+<span id="cb18-4"><a href="#cb18-4"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb18-5"><a href="#cb18-5"></a></span>
+<span id="cb18-6"><a href="#cb18-6"></a>ax.plot(x, y, label<span class="op">=</span><span class="ss">f'F(2, 2998), F = </span><span class="sc">{</span><span class="bu">round</span>(F, <span class="dv">2</span>)<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb18-7"><a href="#cb18-7"></a></span>
+<span id="cb18-8"><a href="#cb18-8"></a>f1 <span class="op">=</span> stats.f.ppf(<span class="fl">0.025</span>, <span class="dv">2</span>, <span class="dv">2998</span>)</span>
+<span id="cb18-9"><a href="#cb18-9"></a>f2 <span class="op">=</span> stats.f.ppf(<span class="fl">0.975</span>, <span class="dv">2</span>, <span class="dv">2998</span>)</span>
+<span id="cb18-10"><a href="#cb18-10"></a></span>
+<span id="cb18-11"><a href="#cb18-11"></a>ax.fill_between(x, y, where<span class="op">=</span>(x <span class="op">&lt;</span> f1), color<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb18-12"><a href="#cb18-12"></a>ax.fill_between(x, y, where<span class="op">=</span>(x <span class="op">&gt;</span> f2), color<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb18-13"><a href="#cb18-13"></a></span>
+<span id="cb18-14"><a href="#cb18-14"></a>plt.xlabel(<span class="st">'Estadístico de Prueba'</span>)</span>
+<span id="cb18-15"><a href="#cb18-15"></a>plt.ylabel(<span class="st">'Densidad'</span>)</span>
+<span id="cb18-16"><a href="#cb18-16"></a>plt.title(<span class="st">'Distribución del Estadístico de Prueba'</span>)</span>
+<span id="cb18-17"><a href="#cb18-17"></a></span>
+<span id="cb18-18"><a href="#cb18-18"></a>plt.legend()</span>
+<span id="cb18-19"><a href="#cb18-19"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hipothesis_testing_files/figure-html/cell-12-output-1.png" width="812" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Podemos concluir que hay evidencia para rechazar la hipótesis nula. Por lo tanto, podemos concluir que la media de las tres poblaciones es distinta.</p>
+<p>Podemos hacer este test con la función <code>f_oneway</code> de <code>scipy.stats</code>:</p>
+<div id="10fa57fa" class="cell" data-execution_count="13">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>result <span class="op">=</span> stats.f_oneway(x1, x2, x3)</span>
+<span id="cb19-2"><a href="#cb19-2"></a></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="bu">print</span>(<span class="ss">f'El valor p es </span><span class="sc">{</span>result<span class="sc">.</span>pvalue<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb19-4"><a href="#cb19-4"></a><span class="bu">print</span>(<span class="ss">f'El estadístico de prueba es </span><span class="sc">{</span>result<span class="sc">.</span>statistic<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>El valor p es 0.0
+El estadístico de prueba es 990.6545267572892</code></pre>
+</div>
+</div>
+<p>Con <code>statsmodels</code> igualmente podemos hacer este test:</p>
+<div id="c83ae04e" class="cell" data-execution_count="14">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb21-3"><a href="#cb21-3"></a>x <span class="op">=</span> np.concatenate([x1, x2, x3])</span>
+<span id="cb21-4"><a href="#cb21-4"></a></span>
+<span id="cb21-5"><a href="#cb21-5"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'x'</span>: x, <span class="st">'group'</span>: [<span class="st">'x1'</span>] <span class="op">*</span> <span class="dv">1000</span> <span class="op">+</span> [<span class="st">'x2'</span>] <span class="op">*</span> <span class="dv">1000</span> <span class="op">+</span> [<span class="st">'x3'</span>] <span class="op">*</span> <span class="dv">1000</span>})</span>
+<span id="cb21-6"><a href="#cb21-6"></a></span>
+<span id="cb21-7"><a href="#cb21-7"></a>linear_model <span class="op">=</span> sm.formula.ols(<span class="st">'x ~ group'</span>, data<span class="op">=</span>df).fit()</span>
+<span id="cb21-8"><a href="#cb21-8"></a></span>
+<span id="cb21-9"><a href="#cb21-9"></a>anova <span class="op">=</span> sm.stats.anova_lm(linear_model)</span>
+<span id="cb21-10"><a href="#cb21-10"></a></span>
+<span id="cb21-11"><a href="#cb21-11"></a><span class="bu">print</span>(anova)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>              df     sum_sq   mean_sq           F  PR(&gt;F)
+group        2.0  19.056918  9.528459  990.654527     0.0
+Residual  2997.0  28.826185  0.009618         NaN     NaN</code></pre>
+</div>
+</div>
+<p>La interpretación es que hay evidencia para rechazar la hipótesis nula de igualdad de medias.</p>
+<p>Para averiguar cuales medias son distintas podemos hacer un test post-hoc, como el test de Tukey:</p>
+<div id="eb9f6004" class="cell" data-execution_count="15">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="im">from</span> statsmodels.stats.multicomp <span class="im">import</span> pairwise_tukeyhsd</span>
+<span id="cb23-2"><a href="#cb23-2"></a></span>
+<span id="cb23-3"><a href="#cb23-3"></a>tukey <span class="op">=</span> pairwise_tukeyhsd(df[<span class="st">'x'</span>], df[<span class="st">'group'</span>])</span>
+<span id="cb23-4"><a href="#cb23-4"></a></span>
+<span id="cb23-5"><a href="#cb23-5"></a><span class="bu">print</span>(tukey)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Multiple Comparison of Means - Tukey HSD, FWER=0.05
+===================================================
+group1 group2 meandiff p-adj  lower   upper  reject
+---------------------------------------------------
+    x1     x2  -0.1952   0.0 -0.2055 -0.1849   True
+    x1     x3   -0.095   0.0 -0.1053 -0.0847   True
+    x2     x3   0.1002   0.0  0.0899  0.1105   True
+---------------------------------------------------</code></pre>
+</div>
+</div>
+<p>El resultado nos dice que las medias de las tres poblaciones son distintas entre sí de manera significativa.</p>
+<p>Si tuvieramos un grupo de control y varios grupos de tratamiento, podríamos hacer un test de Dunnett:</p>
+<div id="9518dfcc" class="cell" data-execution_count="16">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> dunnett</span>
+<span id="cb25-2"><a href="#cb25-2"></a></span>
+<span id="cb25-3"><a href="#cb25-3"></a>result <span class="op">=</span> dunnett(x2, x3, control<span class="op">=</span>x1)</span>
+<span id="cb25-4"><a href="#cb25-4"></a></span>
+<span id="cb25-5"><a href="#cb25-5"></a><span class="bu">print</span>(result)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Dunnett's test (95.0% Confidence Interval)
+Comparison               Statistic  p-value  Lower CI  Upper CI
+ (Sample 0 - Control)    -44.507     0.000    -0.205    -0.185
+ (Sample 1 - Control)    -21.662     0.000    -0.105    -0.085
+</code></pre>
+</div>
+</div>
+<p>Existen otros test post-hoc, como el test de Bonferroni, el test de Scheffé, el test de Holm, entre otros. La elección del test post-hoc depende del objetivo del estudio.</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Volver arriba</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/christian-f-badillo\.github\.io\/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../statistics/Linear_models.html" class="pagination-link" aria-label="Modelos Lineales">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Modelos Lineales</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Copyright <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 por Christian Francisco Badillo Hernández <br> Contenido con licencia <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/edit/main/statistics/hipothesis_testing.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Hecho con <a href="https://www.python.org/"><i class="fa-brands fa-python" aria-label="python"></i></a> y <a href="https://quarto.org">Quarto</a> <br> Código fuente disponible en <a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales">GitHub</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
