@@ -61,8 +61,8 @@ website:
       - section: "Manejo de Datos y Estadística con Python"
         contents: statistics/*.qmd
 
-      
       - section: "Redes Neuronales"
+        contents: neural_neworks/*.qmd
 
 format:
   html:

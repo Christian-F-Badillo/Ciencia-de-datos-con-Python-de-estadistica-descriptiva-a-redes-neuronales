@@ -285,8 +285,27 @@ window.Quarto = {
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Redes Neuronales</span></span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Redes Neuronales</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../neural_neworks/classes_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programación Orientada a Objetos en Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../neural_neworks/neural_networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introducción a Redes Neuronales en Python</span></a>
+  </div>
+</li>
+      </ul>
   </li>
     </ul>
     </div>
@@ -327,7 +346,6 @@ window.Quarto = {
   <li><a href="#regresión-logística" id="toc-regresión-logística" class="nav-link" data-scroll-target="#regresión-logística">Regresión Logística</a>
   <ul class="collapse">
   <li><a href="#estimar-los-coeficientes-de-la-regresión-logística" id="toc-estimar-los-coeficientes-de-la-regresión-logística" class="nav-link" data-scroll-target="#estimar-los-coeficientes-de-la-regresión-logística">Estimar los coeficientes de la regresión logística</a></li>
-  <li><a href="#ejercicios-1" id="toc-ejercicios-1" class="nav-link" data-scroll-target="#ejercicios-1">Ejercicios</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -355,7 +373,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">22 de junio de 2024</p>
+      <p class="date">23 de junio de 2024</p>
     </div>
   </div>
   
@@ -1989,17 +2007,6 @@ Valor Predictivo Negativo: 0.9878048780487805</code></pre>
 </div>
 </div>
 <p>La forma de la curva ROC y la curva PR nos permite evaluar la calidad del modelo de regresión logística. Una curva ROC que se acerca al punto (0, 1) y una curva PR que se acerca al punto (1, 1) indican un modelo de alta calidad. Cada punto en la curva ROC representa una combinación de la tasa de verdaderos positivos y la tasa de falsos positivos del modelo, mientras que cada punto en la curva PR representa una combinación de la precisión y el recall del modelo. El <strong>recall</strong> es la sensibilidad del modelo, es decir, la proporción de verdaderos positivos entre todos los valores positivos reales.</p>
-</section>
-<section id="ejercicios-1" class="level3">
-<h3 class="anchored" data-anchor-id="ejercicios-1">Ejercicios</h3>
-<ol type="1">
-<li><p>Usando los datos de los hongos comestibles y venenosos, ajusta un modelo de regresión logística con <code>statsmodels</code> para predecir si un hongo es comestible o venenoso en función de las características de los hongos. Interpreta el resumen del modelo y los coeficientes estimados.</p></li>
-<li><p>Usa <code>scikit-learn</code> para ajustar un modelo de regresión logística a los datos de los hongos y compara los coeficientes estimados con los obtenidos con <code>statsmodels</code>.</p></li>
-<li><p>Divide los datos en un conjunto de entrenamiento y un conjunto de prueba usando la función <code>train_test_split</code> de <code>scikit-learn</code>. Ajusta el modelo de regresión logística con los datos de entrenamiento.</p></li>
-<li><p>Evalúa la calidad del modelo utilizando métricas como la precisión, la sensibilidad, la especificidad, el valor predictivo positivo y el valor predictivo negativo usando los datos de prueba.</p></li>
-<li><p>Calcula el área bajo la curva ROC y el área bajo la curva PR.</p></li>
-<li><p>Grafica la curva ROC y la curva PR para visualizar la calidad del modelo.</p></li>
-</ol>
 
 
 </section>

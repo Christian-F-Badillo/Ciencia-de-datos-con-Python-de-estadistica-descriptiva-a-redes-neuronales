@@ -917,17 +917,3 @@ plt.show()
 ```
 
 La forma de la curva ROC y la curva PR nos permite evaluar la calidad del modelo de regresión logística. Una curva ROC que se acerca al punto (0, 1) y una curva PR que se acerca al punto (1, 1) indican un modelo de alta calidad. Cada punto en la curva ROC representa una combinación de la tasa de verdaderos positivos y la tasa de falsos positivos del modelo, mientras que cada punto en la curva PR representa una combinación de la precisión y el recall del modelo. El **recall** es la sensibilidad del modelo, es decir, la proporción de verdaderos positivos entre todos los valores positivos reales.
-
-### Ejercicios
-
-1. Usando los datos de los hongos comestibles y venenosos, ajusta un modelo de regresión logística con `statsmodels` para predecir si un hongo es comestible o venenoso en función de las características de los hongos. Interpreta el resumen del modelo y los coeficientes estimados.
-
-2. Usa `scikit-learn` para ajustar un modelo de regresión logística a los datos de los hongos y compara los coeficientes estimados con los obtenidos con `statsmodels`.
-
-3. Divide los datos en un conjunto de entrenamiento y un conjunto de prueba usando la función `train_test_split` de `scikit-learn`. Ajusta el modelo de regresión logística con los datos de entrenamiento.
-
-4. Evalúa la calidad del modelo utilizando métricas como la precisión, la sensibilidad, la especificidad, el valor predictivo positivo y el valor predictivo negativo usando los datos de prueba.
-
-5. Calcula el área bajo la curva ROC y el área bajo la curva PR. 
-
-6. Grafica la curva ROC y la curva PR para visualizar la calidad del modelo.

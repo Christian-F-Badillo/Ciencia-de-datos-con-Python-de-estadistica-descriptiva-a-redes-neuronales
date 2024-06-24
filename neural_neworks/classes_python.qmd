@@ -1,0 +1,289 @@
+---
+title: "Programación Orientada a Objetos en Python"
+author: "Christian Badillo"
+format: html
+date: today
+order: 1
+---
+# Classes y Objetos
+
+La programación orientada a objetos (POO) es un paradigma de programación que se basa en el uso de clases y objetos. En este paradigma, los objetos son entidades que tienen atributos y métodos. Las clases son plantillas que definen la estructura de los objetos.
+
+Podemos pensar en las clases como moldes para crear objetos. Por ejemplo, si tenemos una clase `Gato`, podemos crear varios objetos de tipo `Gato` a partir de esa clase. Cada objeto de tipo `Gato` tendrá sus propios atributos y métodos.
+
+Los **atributos** de una clase son variables que almacenan información sobre el objeto. Por ejemplo, un gato puede tener atributos como `nombre`, `edad` y `color`. Son caracterticas que definen al objeto y pocas veces cambian.
+
+Los **métodos** de una clase son funciones que definen el comportamiento del objeto. Por ejemplo, un gato puede tener métodos como `maullar`, `dormir` y `comer`. Son acciones que el objeto puede realizar. Pueden modificar los atributos del objeto o realizar alguna acción en el objeto.
+
+Las características de la POO son:
+
+- **Encapsulamiento**: Las clases encapsulan los datos y los métodos que operan sobre esos datos. Esto significa que los datos y los métodos están juntos en un solo lugar.
+- **Abstracción**: Las clases permiten abstraer los detalles de implementación de un objeto. Esto significa que podemos usar un objeto sin necesidad de conocer cómo está implementado.
+- **Herencia**: Las clases pueden heredar atributos y métodos de otras clases. Esto permite reutilizar código y crear jerarquías de clases.
+- **Polimorfismo**: Las clases pueden tener métodos con el mismo nombre pero con diferentes implementaciones. Esto permite que un objeto pueda comportarse de diferentes maneras dependiendo del contexto.
+- **Modularidad**: Las clases permiten dividir un programa en módulos más pequeños. Esto facilita la reutilización de código y el mantenimiento del programa.
+
+Los objetos son instancias de una clase. Por ejemplo, si tenemos una clase `Gato`, un objeto de tipo `Gato` sería un gato en particular. Podemos crear varios objetos de tipo `Gato` a partir de la misma clase. Ya hemos visto esto una gran cantidad de veces, por ejemplo, cuando creamos una lista vacía con `[]` estamos creando un objeto de la clase `list` que tiene sus propios métodos y atributos.
+
+La sintaxis en Python para definir una clase es la siguiente:
+
+```python
+class NombreDeLaClase(object):
+    def __init__(self, atributo1, atributo2):
+        self.atributo1 = atributo1
+        self.atributo2 = atributo2
+
+    def metodo1(self, parametro1, parametro2):
+        pass
+
+    def metodo2(self):
+        pass
+```
+
+Se usa la palabra reservada `class` seguida del nombre de la clase y entre parentesis la clase de la que es heredera, sino se especifica la clase no hereda nada. Cada método se define como una función dentro de la clase. El método `__init__` es el constructor de la clase y se llama cuando se crea un objeto de la clase. El primer argumento de los métodos es `self`, que es una referencia al objeto en sí mismo, esto indica que el método pertenece a la clase. Además del parámetro `self`, los métodos pueden tener otros parámetros que se pasan al llamar al método. Para acceder a los atributos de la clase se usa la notación `self.atributo`.
+
+Para documentar una clase se usa el siguiente formato:
+
+```python
+class NombreDeLaClase(objecto):
+    """
+    Documentación de la clase
+    """
+
+    def __init__(self, atributo1, atributo2):
+        """
+        Documentación del método __init__
+        """
+        self.atributo1 = atributo1
+        self.atributo2 = atributo2
+
+    def metodo1(self, parametro1, parametro2):
+        """
+        Documentación del método metodo1
+        """
+        pass
+
+    def metodo2(self):
+        """
+        Documentación del método metodo2
+        """
+        pass
+```
+
+Para instanciar un objeto de una clase se usa la siguiente sintaxis:
+
+```python
+objeto = NombreDeLaClase(init_param1, init_param2)
+```
+
+Asignamos el objeto a una variable y llamamos a la clase con los parámetros que recibe el método `__init__`.
+
+
+## Ejemplo
+
+Vamos a crear una clase llamada `Gato` que tiene los atributos `nombre`, `edad` y `color` y los métodos `maullar`, `dormir` y `comer`.
+
+```{python}
+class Gato(object):
+    """
+    Clase que representa un gato
+    """
+
+    def __init__(self, nombre, edad, color):
+        """
+        Constructor de la clase Gato
+        """
+        self.nombre = nombre
+        self.edad = edad
+        self.color = color
+
+    def maullar(self):
+        """
+        Método que hace que el gato maúlle
+        """
+        print(f"{self.nombre} está maullando")
+
+    def dormir(self):
+        """
+        Método que hace que el gato duerma
+        """
+        print(f"{self.nombre} está durmiendo")
+
+    def comer(self):
+        """
+        Método que hace que el gato coma
+        """
+        print(f"{self.nombre} está comiendo")
+```
+
+Ahora vamos a crear un objeto de tipo `Gato` y llamar a sus métodos.
+
+```{python}
+gato = Gato("Tom", 3, "gris")
+gato.maullar()
+
+gato.dormir()
+
+gato.comer()
+```
+
+Ahora creemos una nueva clase que herede de la clase `Gato`, en este caso crearemos un gato naranjoso.
+
+```{python}
+class Naranjoso(Gato):
+    """
+    Clase que representa un gato naranjoso
+    """
+
+    def __init__(self, nombre, edad):
+        """
+        Constructor de la clase Naranjoso
+        """
+        super().__init__(nombre, edad, "naranja")
+
+    def romper_cosas(self):
+        """
+        Método que hace que el gato naranjoso rompa cosas
+        """
+        print(f"{self.nombre} está rompiendo cosas")
+    
+    def travesura(self):
+        """
+        Método que hace que el gato naranjoso haga travesuras
+        """
+        print(f"{self.nombre} está haciendo travesuras")
+
+    def comer_lasaña(self):
+        """
+        Método que hace que el gato naranjoso coma lasaña
+        """
+        print(f"{self.nombre} está comiendo lasaña")
+```
+
+Ahora vamos a crear un objeto de tipo `Naranjoso` y llamar a sus métodos.
+
+```{python}
+naranjoso = Naranjoso("Garfield", 5)
+
+naranjoso.maullar()
+
+naranjoso.dormir()
+
+naranjoso.romper_cosas()
+
+naranjoso.travesura()
+
+naranjoso.comer_lasaña()
+```
+
+Como hemos visto podemos usar los métodos de la clase `Gato` en la clase `Naranjoso` ya que `Naranjoso` hereda de `Gato` y hemos creado nuevos métodos para la clase `Naranjoso` que no están en la clase `Gato` sin modificar la clase `Gato`.
+
+# Ejemplo 2.
+
+Vamos a crear una clase que nos permita realizar una regresión lineal.
+
+```{python}
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import scipy.stats as stats
+
+class LinearRegression():
+    """
+    Clase que realiza una regresión lineal
+    """
+
+    def __init__(self, X:pd.DataFrame=None, Y:pd.Series=None) -> None:
+        """
+        Constructor de la clase LinearRegression
+        """
+        self.X = X.to_numpy()
+        self.Y = Y.to_numpy()
+
+        assert  X.shape[0] == Y.shape[0], "X and Y must have the same number of rows"
+
+        self.n = len(X)
+        self.intercept = None
+        self.coefficients = None
+    
+    def fit(self) -> None:
+        """
+        Método que ajusta el modelo de regresión lineal
+        """
+
+        X = np.c_[np.ones(self.n), self.X]
+        beta = np.linalg.inv(X.T @ X) @ X.T @ self.Y
+
+        self.intercept = beta[0]
+        self.coefficients = beta[1:]
+
+    def predict(self, X:pd.DataFrame) -> pd.Series:
+        """
+        Método que realiza predicciones
+        """
+
+        X = np.c_[np.ones(len(X)), X.to_numpy()]
+
+        return pd.Series(X @ np.r_[self.intercept, self.coefficients])
+    
+    def plot(self) -> None:
+        """
+        Método que realiza un gráfico de la regresión
+        """
+        assert len(self.coefficients) == 1, "Only works for simple linear regression"
+
+        fig = plt.figure(figsize=(10, 6))
+        ax = sns.regplot(x = self.X, y = self.Y, ci=95, line_kws={"color":"red"}, scatter_kws={"color":"blue"})
+        ax.set_title("Regresión Lineal", fontsize=20, fontweight="bold")
+        ax.set_xlabel("X", fontsize=15)
+        ax.set_ylabel("Y", fontsize=15)
+        plt.show()
+```
+
+Ahora vamos a crear un objeto de tipo `LinearRegression` y ajustar un modelo de regresión lineal.
+
+```{python}
+np.random.seed(42)
+X = pd.DataFrame(np.random.rand(100, 1))
+Y = pd.Series(2 + 3 * X[0] + np.random.randn(100))
+
+data = pd.concat([X, Y], axis=1)
+data.columns = ["X", "Y"]
+data.head()
+```
+
+```{python}
+lr = LinearRegression(X, Y)
+
+lr.fit()
+
+lr.intercept, lr.coefficients
+```
+
+```{python}
+X_new = pd.DataFrame(np.linspace(0, 1, 100))
+Y_new = lr.predict(X_new)
+
+data_new = pd.concat([X_new, Y_new], axis=1)
+data_new.columns = ["X", "Y"]
+data_new.head()
+```
+
+```{python}
+lr.plot()
+```
+
+# Ejercicios
+
+1. Crea una clase llamada `Rectangulo` que tenga los atributos `base` y `altura` y los métodos `area` y `perimetro`.
+
+2. Crea una clase llamada `Calculadora` que tenga los métodos `suma`, `resta`, `multiplicacion` y `division`.
+
+3. Crea una clase para realizar gráficos distintos, por ejemplo, un histograma, un gráfico de barras, un gráfico de líneas, un gráfico de dispersión, etc. Cada método debe tener un nombre descriptivo y recibir los datos necesarios para realizar el gráfico.
+
+4. Crea una clase llamada `Estadisticas` que tenga los métodos `media`, `mediana`, `varianza` y `desviacion_estandar` para calcular estas estadísticas de un conjunto de datos.
+
+```{python}
+# Respuestas
+```

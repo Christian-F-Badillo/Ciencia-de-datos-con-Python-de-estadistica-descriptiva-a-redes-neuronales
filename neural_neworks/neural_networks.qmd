@@ -1,0 +1,513 @@
+---
+title: "Introducción a Redes Neuronales"
+author: "Christian Badillo"
+format: html
+date: today
+order: 2
+---
+
+# Redes Neuronales Artificiales
+
+Las redes neuronales artificiales son un modelo computacional inspirado en el cerebro humano. Están compuestas por nodos llamados neuronas que están conectados entre sí. Cada conexión entre neuronas tiene un peso asociado que se ajusta durante el entrenamiento del modelo. Estos pesos son los parámetros que se ajustan para que el modelo pueda realizar predicciones, es decir, son la memoria del modelo y representan la importancia de cada conexión.
+
+Las redes neuronales artificiales se dividen en capas, cada capa está compuesta por un conjunto de neuronas. La primera capa se llama **capa de entrada**, la última capa se llama **capa de salida** y las capas intermedias se llaman **capas ocultas**. La capa de entrada recibe los datos de entrada, la capa de salida produce la predicción y las capas ocultas procesan la información.
+
+![Red Neuronal](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Artificial_neural_network.svg/500px-Artificial_neural_network.svg.png)
+
+## Comportamiento de una Neurona
+
+Cada neurona recibe una serie de entradas, las multiplica por los pesos asociados a cada conexión y aplica una función de activación. La **función de activación** es una función no lineal que se encarga de introducir no linealidades en el modelo. 
+
+Matemáticamente, el comportamiento de una neurona se puede expresar de la siguiente forma:
+
+$$y = f(\sum_{i=1}^{n} x_i \cdot w_i + b)$$
+
+Donde $x_i$ son las entradas, $w_i$ son los pesos asociados a cada conexión, $b$ es el sesgo y $f$ es la función de activación. Si usaramos una función de activación lineal, la red neuronal sería equivalente a un modelo de regresión lineal. 
+
+Entonces podemos usar una red neuronal para regresión lineal:
+
+\begin{align*}
+y &= f(\sum_{i=1}^{n} x_i \cdot w_i + b) \hspace{1cm} \text{Donde } f(x) = x \\
+y &= \sum_{i=1}^{n} x_i \cdot w_i + b
+\end{align*}
+
+Existen diversas funciones de activación, algunas de las más comunes son:
+
+- **Función Sigmoide**.
+  $$f(x) = \frac{1}{1 + e^{-x}}$$
+  
+- **Función ReLU**.
+  $$f(x) = \max(0, x)$$
+
+- **Función Tangente Hiperbólica**.
+    $$f(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$$
+
+- **Función Softmax**.
+    $$f(x) = \frac{e^x}{\sum_{i=1}^{n} e^{x_i}}$$
+
+- **Función de Identidad**.
+    $$f(x) = x$$
+
+Cada función de activación tiene sus propias características y se utiliza en diferentes contextos. Por ejemplo, la función sigmoide se utiliza en la capa de salida de una red neuronal para clasificación binaria, la función ReLU se utiliza en las capas ocultas y la función softmax se utiliza en la capa de salida para clasificación multiclase.
+
+Visualicemos el comportamiento de algunas funciones de activación:
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots(2, 2, figsize=(8, 4), sharex=True)
+
+x = np.linspace(-5, 5, 100)
+
+# Funciones de activación
+sigmoid = 1 / (1 + np.exp(-x))
+relu = np.maximum(0, x)
+tanh = np.tanh(x)
+softmax = np.exp(x) / np.sum(np.exp(x))
+
+# Gráficas
+ax[0, 0].plot(x, sigmoid)
+ax[0, 0].set_title("Función Sigmoide")
+
+ax[0, 1].plot(x, relu)
+ax[0, 1].set_title("Función ReLU")
+
+ax[1, 0].plot(x, tanh)
+ax[1, 0].set_title("Función Tangente Hiperbólica")
+
+ax[1, 1].plot(x, softmax)
+ax[1, 1].set_title("Función Softmax")
+
+for i in range(2):
+    for j in range(2):
+        ax[i, j].grid( linestyle='--', linewidth=0.5, alpha=0.5, color='grey')
+
+plt.tight_layout()
+plt.show()
+```
+
+Hagamos lo que hace una neurona con una función de activación sigmoide.
+
+```{python}
+# Función de activación sigmoide
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+# Datos de entrada
+X = np.random.randn(10, 1)
+
+# Pesos y sesgo
+np.random.seed(1014)
+weights = np.random.randn(1, 10)
+bias = np.random.randn(1)
+
+# Salida de la neurona
+y = sigmoid(np.dot(X.T, weights.T) + bias)
+
+print(y)
+```
+
+Estamos realizando la siguiente operación:
+
+$$y = f(\sum_{i=1}^{n} x_i \cdot w_i + b)$$
+
+Donde $f(x) = \frac{1}{1 + e^{-x}}$ es la función sigmoide. En este caso, estamos utilizando una neurona con 10 entradas y una salida.
+
+Lo que busca simular o modelar el comportamiento de una neurona biológica. La neurona biológica recibe señales eléctricas de otras neuronas a través de las dendritas, las procesa en el cuerpo celular y envía una señal eléctrica a través del axón. La señal eléctrica se transmite a través de las sinapsis, que son las conexiones entre las neuronas.
+
+Ahora veamos cómo se comporta una red neuronal con una capa oculta y una capa de salida. Para esto, vamos a implementar una red neuronal para regresión lineal con pesos y sesgos aleatorios.
+
+```{python}
+import numpy as np
+
+class NeuralNetwork():
+    def __init__(self, input_size, hidden_size, output_size, seed=1014):
+        self.input_size = input_size
+        self.hidden_size = hidden_size
+        self.output_size = output_size
+        
+        # Pesos y sesgos
+        np.random.seed(seed)
+        self.weights_input_hidden = np.random.randn(input_size, hidden_size)
+        self.bias_input_hidden = np.random.randn(hidden_size)
+        
+        self.weights_hidden_output = np.random.randn(hidden_size, output_size)
+        self.bias_hidden_output = np.random.randn(output_size)
+        
+    def forward(self, X, activation):
+        # Capa oculta
+        hidden = np.dot(X, self.weights_input_hidden) + self.bias_input_hidden
+        hidden = activation(hidden)
+        
+        # Capa de salida
+        output = np.dot(hidden, self.weights_hidden_output) + self.bias_hidden_output
+        
+        return output
+```
+
+Usemos la red neuronal para predecir un conjunto de datos y con una función de activación identidad.
+
+```{python}
+# Datos de entrada
+X = np.random.randn(10, 1)
+
+# Parámetros de la red neuronal
+input_size = 1
+hidden_size = 10
+output_size = 1
+
+# Red Neuronal
+nn = NeuralNetwork(input_size, hidden_size, output_size)
+
+# Función de activación identidad
+def identity(x):
+    return x
+
+# Predicciones
+y_pred = nn.forward(X, identity)
+
+print(y_pred)
+```
+
+En este caso tenemos una red neuronal con una capa oculta de 10 neuronas y una capa de salida de 1 neurona. La función de activación de la capa oculta es la función identidad y la función de activación de la capa de salida también es la función identidad.
+
+Los pesos de la red son:
+
+```{python}
+print(f"Pesos capa oculta: {nn.weights_input_hidden}\n")
+print(f"Sesgos capa oculta: {nn.bias_input_hidden}\n")
+print(f"Pesos capa de salida: {nn.weights_hidden_output.T}\n")
+print(f"Sesgos capa de salida: {nn.bias_hidden_output}\n")
+```
+
+
+Podemos dibujar la red neuronal con los pesos y sesgos asociados a cada conexión.
+
+```{python}
+import itertools
+import matplotlib.pyplot as plt
+import networkx as nx
+
+# Colores para las capas
+subset_colors = ['blue', 'red', 'green']
+
+def multilayered_graph(input_size, hidden_size, output_size, weights_input_hidden, weights_hidden_output):
+    # Crear los rangos para las capas
+    subset_sizes = [input_size, hidden_size, output_size]
+    extents = nx.utils.pairwise(itertools.accumulate((0,) + tuple(subset_sizes)))
+    layers = [range(start, end) for start, end in extents]
+    
+    # Crear el gráfico
+    G = nx.Graph()
+    for i, layer in enumerate(layers):
+        G.add_nodes_from(layer, layer=i)
+        
+    # Añadir los bordes con pesos para capa de entrada a oculta
+    for i, j in itertools.product(layers[0], layers[1]):
+        G.add_edge(i, j, weight=round(weights_input_hidden[i, j - layers[1][0]], 3))
+        
+    # Añadir los bordes con pesos para capa oculta a salida
+    for i, j in itertools.product(layers[1], layers[2]):
+        G.add_edge(i, j, weight=round(weights_hidden_output[i - layers[1][0], j - layers[2][0]], 3))
+    
+    return G
+
+# Crear el gráfico con los pesos
+G = multilayered_graph(input_size, hidden_size, output_size, nn.weights_input_hidden, nn.weights_hidden_output)
+
+# Colores para los nodos según su capa
+color = [subset_colors[data["layer"]] for node, data in G.nodes(data=True)]
+
+# Posición de los nodos
+pos = nx.multipartite_layout(G, subset_key="layer")
+
+# Dibujar el gráfico
+plt.figure(figsize=(10, 6))
+nx.draw(G, pos, with_labels=False, node_color=color, node_size=1500, font_size=10, font_weight='bold')
+
+# Dibujar los bordes con los pesos
+edge_labels = nx.get_edge_attributes(G, 'weight')
+nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_size=12)
+
+plt.show()
+```
+
+Cada una de las neuronas realiza la operación que hemos visto anteriormente. Sin embargo, aquí solo hemos decidido los pesos y sesgos de la red neuronal de forma aleatoria. En la práctica, estos pesos y sesgos se ajustan durante el entrenamiento de la red neuronal, es decir, la red neuronal aprende a partir de los datos.
+
+## Entrenamiento de una Red Neuronal
+
+El entrenamiento de una red neuronal consiste en ajustar los pesos y sesgos de la red para minimizar una función de pérdida. La función de pérdida mide la diferencia entre las predicciones del modelo y los valores reales. Durante el entrenamiento, los pesos y sesgos se ajustan iterativamente utilizando un algoritmo de optimización.
+
+Existen diversos algoritmos de optimización, algunos de los más comunes son:
+
+- **Descenso del Gradiente** : Actualiza los pesos en la dirección opuesta al gradiente de la función de pérdida.
+- **Adam**: Utiliza una combinación de descenso del gradiente y adaptación de la tasa de aprendizaje.
+- **RMSprop**: Se adapta a la tasa de aprendizaje para cada parámetro.
+- **Adagrad**: Ajusta la tasa de aprendizaje para cada parámetro en función de la magnitud de los gradientes.
+
+El algoritmo tipico es el descenso del gradiente. La idea es ajustar los pesos y sesgos de la red neuronal en la dirección opuesta al gradiente de la función de pérdida. El gradiente de la función de pérdida se calcula utilizando la regla de la cadena y el algoritmo de retropropagación. Pero en la práctica, se utiliza una variante del descenso del gradiente llamada **descenso del gradiente estocástico** o el algoritmo **Adam**.
+
+Algunas funciones de pérdida comunes son:
+
+- **Error Cuadrático Medio**.
+  $$L(y, \hat{y}) = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2$$
+
+- **Entropía Cruzada**.
+    $$L(y, \hat{y}) = -\frac{1}{n} \sum_{i=1}^{n} y_i \log(\hat{y}_i)$$
+
+- **Error Absoluto Medio**.
+    $$L(y, \hat{y}) = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|$$
+
+El algoritmo de entrenamiento de una red neuronal se puede resumir en los siguientes pasos:
+
+1. Inicializar los pesos y sesgos de la red neuronal.
+2. Calcular la salida de la red neuronal.
+3. Calcular la función de pérdida.
+4. Calcular el gradiente de la función de pérdida.
+5. Actualizar los pesos y sesgos utilizando un algoritmo de optimización.
+6. Repetir los pasos 2-5 hasta que se alcance un número de iteraciones o se cumpla un criterio de parada.
+
+### Aprendizaje de pesos y sesgos en una neurona
+
+Vamos a ver cómo se actualizan los pesos y sesgos de una neurona durante el entrenamiento. Para esto, vamos a implementar una neurona con una función de activación sigmoide y vamos a entrenar la neurona para realizar una regresión lineal y usar la función de pérdida de error cuadrático medio.
+
+Para obtener el gradiente de la función de pérdida, vamos a utilizar la regla de la cadena y el algoritmo de retropropagación. La regla de la cadena se utiliza para calcular el gradiente de una función compuesta y el algoritmo de retropropagación se utiliza para calcular el gradiente de la función de pérdida con respecto a los pesos y sesgos de la red neuronal.
+
+#### Regla de la Cadena para el Gradiente
+
+La regla de la cadena se utiliza para calcular el gradiente de una función compuesta. Si tenemos una función $f(g(x))$, el gradiente de $f$ con respecto a $x$ se puede calcular como:
+
+$$\frac{\partial f(g(x))}{\partial x} = \frac{\partial f(g(x))}{\partial g(x)} \cdot \frac{\partial g(x)}{\partial x}$$
+
+En nuestro caso tenemos una función de pérdida $L(y, \hat{y})$ y una función de activación $f(x)$. Entonces, el gradiente de la función de pérdida con respecto a los pesos y sesgos de la red neuronal se puede calcular como:
+
+$$\frac{\partial L(y, \hat{y})}{\partial w_i} = \frac{\partial L(y, \hat{y})}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial z} \cdot \frac{\partial z}{\partial w_i}$$
+
+Donde $z = \sum_{i=1}^{n} x_i \cdot w_i + b$ es la entrada de la neurona y $\hat{y} = f(z)$ es la salida de la neurona.
+
+Hagamos la primera parte de la regla de la cadena, es decir, el gradiente de la función de pérdida con respecto a la salida de la neurona.
+
+\begin{align*}
+\frac{\partial L(y, \hat{y})}{\partial \hat{y}} &= \frac{\partial}{\partial \hat{y}} \left( \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 \right) \\
+&= \frac{1}{n} \sum_{i=1}^{n} \frac{\partial}{\partial \hat{y}} (y_i - \hat{y}_i)^2 \\
+&= \frac{1}{n} \sum_{i=1}^{n} -2(y_i - \hat{y}_i) \\
+&= \frac{-2}{n} \sum_{i=1}^{n}(\hat{y}_i - y_i)
+\end{align*}
+
+La segunda parte de la regla de la cadena es el gradiente de la salida de la neurona con respecto a la entrada de la neurona.
+
+\begin{align*}
+\frac{\partial \hat{y}}{\partial z} &= \frac{\partial}{\partial z} \left( \frac{1}{1 + e^{-z}} \right) \\
+&= \frac{e^{-z}}{(1 + e^{-z})^2} \\
+&= \frac{1}{1 + e^{-z}} \cdot \left(1 - \frac{1}{1 + e^{-z}} \right) \\
+&= \hat{y} \cdot (1 - \hat{y})
+\end{align*}
+
+La tercera parte de la regla de la cadena es el gradiente de la entrada de la neurona con respecto a los pesos.
+
+\begin{align*}
+\frac{\partial z}{\partial w_i} &= \frac{\partial}{\partial w_i} \left( \sum_{i=1}^{n} x_i \cdot w_i + b \right) \\
+&= x_i
+\end{align*}
+
+Ahora para el sesgo.
+
+\begin{align*}
+\frac{\partial z}{\partial b} &= \frac{\partial}{\partial b} \left( \sum_{i=1}^{n} x_i \cdot w_i + b \right) \\
+&= 1
+\end{align*}
+
+Entonces, el gradiente de la función de pérdida con respecto a los pesos y sesgos de la red neuronal se puede calcular como:
+
+\begin{align*}
+\frac{\partial L(y, \hat{y})}{\partial w_i} &= \frac{-2}{n} \sum_{i=1}^{n}(\hat{y}_i - y_i) \cdot \hat{y}_i \cdot (1 - \hat{y}_i) \cdot x_i \\
+\frac{\partial L(y, \hat{y})}{\partial b} &= \frac{-2}{n} \sum_{i=1}^{n}(\hat{y}_i - y_i) \cdot \hat{y}_i \cdot (1 - \hat{y}_i)
+\end{align*}
+
+##### Actualización de los pesos y sesgos
+
+Para actualizar los pesos y sesgos de la red neuronal, utilizamos el algoritmo de descenso del gradiente. La actualización de los pesos y sesgos se realiza de la siguiente forma:
+
+\begin{align*}
+w_i &:= w_i - \alpha \cdot \frac{\partial L(y, \hat{y})}{\partial w_i} \\
+b &:= b - \alpha \cdot \frac{\partial L(y, \hat{y})}{\partial b}
+\end{align*}
+
+Donde $\alpha$ es la tasa de aprendizaje, que es un hiperparámetro del modelo. La tasa de aprendizaje controla la magnitud de la actualización de los pesos y sesgos. Si la tasa de aprendizaje es muy pequeña, el modelo puede tardar mucho tiempo en converger. Si la tasa de aprendizaje es muy grande, el modelo puede divergir.
+
+#### Retropropagación del Gradiente.
+
+La retropropagación es un algoritmo que se utiliza para calcular el gradiente de la función de pérdida con respecto a los pesos y sesgos de la red neuronal, usamos la regla de la cadena para calcular el gradiente de la función de pérdida con respecto a los pesos y sesgos de la red neuronal y lo propagamos hacia atrás a través de la red neuronal.
+
+Para cada capa de la red neuronal, calculamos el gradiente de la función de pérdida con respecto a los pesos y sesgos de la capa utilizando la regla de la cadena y el gradiente de la capa anterior. Luego, actualizamos los pesos y sesgos de la capa. Este proceso se repite para todas las capas de la red neuronal. Un hermoso gif creado por [Michael Pyrcz](https://x.com/GeostatsGuy/status/1802719780282982832) muestra cómo funciona la retropropagación.
+
+![Retropropagación del Gradiente](/img/ann/backpropagation.gif){width=100%}
+
+### Implementación de Backpropagation
+
+Hagamos una red neuronal con 1 neurona en la capa oculta y 5 neuronas en la capa de salida, usaremos la función de activación sigmoide para la capa oculta y la función de activación identidad para la capa de salida. Vamos a entrenar la red neuronal para realizar una regresión lineal y usaremos la función de pérdida de error cuadrático medio.
+
+#### Datos de Entrada
+
+Simulemos datos de entrada y salida para entrenar la red neuronal. 
+
+```{python}
+import numpy as np
+import pandas as pd
+
+# Datos de entrada
+X = np.random.normal(0, 5, (40, 1))
+
+# Datos de salida
+y = 2 * X + 3 + np.random.normal(0, 1, (40, 1))
+
+df = pd.DataFrame(np.concatenate([X, y], axis=1), columns=["X", "y"])
+df.head()
+```
+
+#### Funciones auxiliares
+
+Vamos a implementar algunas funciones auxiliares para la red neuronal.
+
+```{python}
+#| code-fold: true
+# Función de activación sigmoide
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+# Función de pérdida de error cuadrático medio
+def mse(y, y_pred):
+    return np.mean((y - y_pred) ** 2)
+
+def weight_derivative_hidden(X, y, y_pred):
+    """
+    Derivada de los pesos de la capa oculta
+    """
+    return -2 * np.mean((y - y_pred) * y_pred * (1 - y_pred) * X)
+
+def bias_derivative_hidden(y, y_pred):
+    """
+    Derivada del sesgo de la capa oculta
+    """
+    return -2 * np.mean((y - y_pred) * y_pred * (1 - y_pred))
+
+def weight_derivative_output(hidden, y, y_pred):
+    """
+    Derivada de los pesos de la capa de salida para la función de pérdida de error cuadrático medio y función de activación identidad
+    """
+    return -2 * np.mean((y - y_pred) * X)
+
+def bias_derivative_output(y, y_pred):
+    """
+    Derivada del sesgo de la capa de salida para la función de pérdida de error cuadrático medio y función de activación identidad
+    """
+    return -2 * np.mean(y - y_pred)
+
+# Inicialización de los pesos y sesgos
+def initialize_weights(input_size, hidden_size, output_size, seed=1014):
+    np.random.seed(seed)
+    weights_input_hidden = np.random.randn(input_size, hidden_size)
+    bias_input_hidden = np.random.randn(hidden_size)
+    
+    weights_hidden_output = np.random.randn(hidden_size, output_size)
+    bias_hidden_output = np.random.randn(output_size)
+    
+    return weights_input_hidden, bias_input_hidden, weights_hidden_output, bias_hidden_output
+```
+
+#### Entrenamiento de la Red Neuronal
+
+Vamos a entrenar la red neuronal utilizando el algoritmo de retropropagación. Durante el entrenamiento, vamos a calcular la función de pérdida, el gradiente de la función de pérdida con respecto a los pesos y sesgos de la red neuronal y vamos a actualizar los pesos y sesgos utilizando el algoritmo de descenso del gradiente.
+
+```{python}
+
+def learning( X, y, weights_input_hidden, bias_input_hidden, weights_hidden_output, bias_hidden_output, learning_rate=0.01):
+    # Capa oculta
+    hidden = np.dot(X, weights_input_hidden) + bias_input_hidden
+    hidden = sigmoid(hidden)
+    
+    # Capa de salida
+    output = np.dot(hidden, weights_hidden_output) + bias_hidden_output
+    
+    # Función de pérdida
+    loss = mse(y, output)
+    
+    # Gradiente de la función de pérdida con respecto a los pesos y sesgos de la red neuronal
+    weight_der_hidden = weight_derivative_hidden(X, y, output)
+    bias_der_hidden = bias_derivative_hidden(y, output)
+    
+    weight_der_output = weight_derivative_output(hidden, y, output)
+    bias_der_output = bias_derivative_output(y, output)
+    
+    # Actualización de los pesos y sesgos
+    weights_input_hidden -= learning_rate * weight_der_hidden
+    bias_input_hidden -= learning_rate * bias_der_hidden
+    
+    weights_hidden_output -= learning_rate * weight_der_output
+    bias_hidden_output -= learning_rate * bias_der_output
+    
+    return weights_input_hidden, bias_input_hidden, weights_hidden_output, bias_hidden_output, loss
+
+# Creamos un bucle para entrenar la red neuronal
+
+input_size = 1
+hidden_size = 5
+output_size = 1
+
+weights_input_hidden, bias_input_hidden, weights_hidden_output, bias_hidden_output = initialize_weights(input_size, hidden_size, output_size)
+
+learning_rate = 0.0001
+epochs = 1500
+
+X_normalized = (X - X.mean()) / X.std()
+Y_normalized = (y - y.mean()) / y.std()
+
+for epoch in range(epochs):
+    weights_input_hidden, bias_input_hidden, weights_hidden_output, bias_hidden_output, loss = learning(
+    X_normalized, Y_normalized, 
+    weights_input_hidden, 
+    bias_input_hidden, 
+    weights_hidden_output, 
+    bias_hidden_output, 
+    learning_rate)
+    
+    if epoch % 100 == 0:
+        print(f"Epoch {epoch}: Loss {loss}")
+    elif epoch == epochs - 1:
+        print(f"Epoch {epoch}: Loss {loss}")
+```
+
+
+### Predicciones de la Red Neuronal
+
+Una ves que hemos entrenado la red neuronal, podemos hacer predicciones con la red neuronal que es el objetivo de crear un modelo de aprendizaje automático.
+```{python}
+def predict(X, weights_input_hidden, bias_input_hidden, weights_hidden_output, bias_hidden_output):
+    hidden = np.dot(X, weights_input_hidden) + bias_input_hidden
+    hidden = sigmoid(hidden)
+    
+    output = np.dot(hidden, weights_hidden_output) + bias_hidden_output
+    
+    return output
+
+y_pred = predict(X_normalized, weights_input_hidden, bias_input_hidden, weights_hidden_output, bias_hidden_output)
+
+df_normalized = pd.DataFrame(np.concatenate([X_normalized, Y_normalized, y_pred], axis=1), columns=["X", "y", "y_pred"])
+
+df_normalized.head()
+```
+
+A nivel profesional, se utilizan librerías como TensorFlow, PyTorch o Keras para implementar redes neuronales. Estas librerías proporcionan una interfaz de alto nivel para construir y entrenar redes neuronales de forma eficiente. Sin embargo, es importante entender cómo funcionan las redes neuronales a nivel de bajo nivel para poder depurar y optimizar los modelos.
+
+# Otros tipos de Redes Neuronales
+
+Hasta ahora hemos visto cómo funcionan las redes neuronales artificiales y cómo se entrenan utilizando el algoritmo de retropropagación. Sin embargo, existen otros tipos de redes neuronales que se utilizan para diferentes tareas de aprendizaje automático. Algunos de los tipos de redes neuronales más comunes son:
+
+- **Redes Neuronales Convolucionales (CNN)**: Se utilizan para tareas de visión por computadora, como clasificación de imágenes, detección de objetos y segmentación semántica.
+- **Redes Neuronales Recurrentes (RNN)**: Se utilizan para tareas de procesamiento de lenguaje natural, como traducción automática, generación de texto y análisis de sentimientos.
+- **Redes Neuronales Generativas Adversarias (GAN)**: Se utilizan para generar datos sintéticos, como imágenes, texto y audio.
+- **Transformers**: Se utilizan para tareas de procesamiento de lenguaje natural, como traducción automática, generación de texto y análisis de sentimientos.
+- **Encoders y Decoders**: Se utilizan para tareas de traducción automática, generación de texto y resumen de texto.
+
+Cada tipo de red neuronal tiene sus propias características y se utiliza en diferentes contextos. Algunas redes son más sencillos de entrenar y otras son más complejas. Por ejemplo, las redes neuronales convolucionales son más sencillas de entrenar que las redes neuronales recurrentes, ya que las redes convolucionales no tienen dependencias temporales.
