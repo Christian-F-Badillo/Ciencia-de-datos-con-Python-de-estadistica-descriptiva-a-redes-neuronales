@@ -1,0 +1,875 @@
+---
+title: "Redes Neuronales Artificiales en Python"
+author: "Christian Badillo"
+format: html
+date: today
+order: 3
+---
+
+Existen muchas librerías en Python que permiten implementar redes neuronales artificiales. En este tutorial, vamos a utilizar la librería `scikit-learn`, `keras` y `tensorflow` para implementar una red neuronal artificial para resolver problemas de clasificación y regresión.
+
+## `scikit-learn`
+
+`scikit-learn` es una librería de Python que permite implementar algoritmos de aprendizaje supervisado y no supervisado. En particular, `scikit-learn` incluye una clase llamada `MLPClassifier` que permite implementar redes neuronales artificiales para problemas de clasificación.
+
+### Ejemplo de clasificación
+
+En este ejemplo, vamos a utilizar la base de datos `iris` para entrenar una red neuronal artificial que permita clasificar las flores en tres categorías: `setosa`, `versicolor` y `virginica`.
+
+```{python}
+import numpy as np
+import pandas as pd
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.neural_network import MLPClassifier
+
+# Cargar la base de datos iris
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+print(iris.target_names)
+print(iris.feature_names)
+print(X.shape)
+print(y.shape)
+```
+
+Implementamos la red neuronal artificial y la entrenamos con la base de datos `iris`.
+
+```{python}
+# Dividir la base de datos en entrenamiento y prueba
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Crear la red neuronal artificial
+clf = MLPClassifier(hidden_layer_sizes=(10, 10), max_iter=1000, random_state=42, 
+                    activation='relu', solver='sgd', learning_rate='adaptive', 
+                    learning_rate_init=0.001)
+
+# Entrenar la red neuronal artificial
+clf.fit(X_train, y_train)
+
+# Evaluar la red neuronal artificial
+score = clf.score(X_test, y_test)
+print(score)
+```
+
+La clase `MLPClassifier` tiene varios parámetros que permiten configurar la red neuronal artificial. En este ejemplo, utilizamos los siguientes parámetros:
+
+- `hidden_layer_sizes`: Número de neuronas en cada capa oculta.
+- `max_iter`: Número máximo de iteraciones para entrenar la red neuronal artificial.
+- `random_state`: Semilla para la generación de números aleatorios.
+- `solver`: Algoritmo de optimización para entrenar la red neuronal artificial.
+- `activation`: Función de activación para las neuronas en las capas ocultas.
+- `learning_rate`: Tasa de aprendizaje para actualizar los pesos de la red neuronal artificial.
+- `learning_rate_init`: Tasa de aprendizaje inicial para actualizar los pesos de la red neuronal artificial.
+
+El método `score` permite evaluar la precisión de la red neuronal artificial en la base de datos de prueba.
+
+Podemos obtener las predicciones de la red neuronal artificial para la base de datos de prueba.
+
+```{python}
+# Obtener las predicciones de la red neuronal artificial
+y_pred = clf.predict(X_test)
+print(y_pred)
+```
+
+Para evaluar la red neuronal artificial, podemos calcular la matriz de confusión.
+
+```{python}
+from sklearn.metrics import confusion_matrix
+
+# Calcular la matriz de confusión
+cm = confusion_matrix(y_test, y_pred)
+print(cm)
+```
+
+Podemos visualizar la matriz de confusión utilizando la librería `seaborn`.
+
+```{python}
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Visualizar la matriz de confusión
+sns.heatmap(cm, annot=True, fmt='d', 
+            xticklabels=iris.target_names, 
+            yticklabels=iris.target_names,
+            cmap='Blues')
+plt.xlabel('Predicción')
+plt.ylabel('Real')
+plt.show()
+```
+
+Con este mapa de color podemos visualizar la matriz de confusión. Las filas representan las categorías reales y las columnas representan las categorías predichas. Los valores en la diagonal principal representan las predicciones correctas y esperamos que un buen modelo tenga valores altos en la diagonal principal.
+
+POdemos usar el área bajo la curva ROC para evaluar la red neuronal artificial.
+
+```{python}
+from sklearn.metrics import roc_auc_score
+
+# Calcular el área bajo la curva ROC
+y_prob = clf.predict_proba(X_test)
+roc_auc = roc_auc_score(y_test, y_prob, multi_class='ovr')
+print(roc_auc)
+```
+
+Aquí el parámetro `multi_class` se refiere a la estrategia de codificación de clases. En este caso, utilizamos `ovr` que significa "one-vs-rest", que evalúa cada clase en comparación con el resto de las clases y es sensible a datos desequilibrados.
+
+Entre más cercano a 1 sea el valor del área bajo la curva ROC, mejor será el modelo, ya que significa que el modelo es capaz de distinguir entre las diferentes clases.
+
+## `PyTorch`
+
+`PyTorch` es una librería de Python que permite implementar redes neuronales artificiales de manera eficiente. En particular, `PyTorch` incluye una clase llamada `nn.Module` que permite definir la arquitectura de la red neuronal artificial.
+
+### Uso básico de PyTorch
+
+Para utilizar `PyTorch`, primero debemos instalar la librería, el comando que recomienda la página de `PyTorch` es el siguiente para Windows y sin el uso de GPU.
+
+```{bash}
+!pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+```
+
+#### Tensores
+
+En `PyTorch`, los datos se almacenan en tensores, que son arreglos multidimensionales similares a los arreglos de `NumPy`. Podemos crear tensores en `PyTorch` de la siguiente manera.
+
+```{python}
+import torch
+
+# Crear un tensor de ceros
+x = torch.zeros(2, 3)
+
+print(x)
+```
+
+Podemos crear tensores a partir de arreglos de `NumPy`.
+
+```{python}
+import numpy as np
+
+# Crear un arreglo de NumPy
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+
+# Crear un tensor de PyTorch a partir de un arreglo de NumPy
+x = torch.tensor(arr)
+
+print(x)
+```
+
+Los tensores pueden ser de diferentes tipos de datos, como `float32`, `int64`, `bool`, etc.
+
+```{python}
+# Crear un tensor de enteros
+x = torch.tensor([[1, 2, 3], [4, 5, 6]], dtype=torch.int64)
+
+print(x)
+
+# Crear un tensor de booleanos
+x = torch.tensor([[True, False], [False, True]])
+
+print(x)
+
+# Crear un tensor de punto flotante
+x = torch.tensor([[1.0, 2.0], [3.0, 4.0]], dtype=torch.float32)
+
+print(x)
+```
+
+Podemos tener tensores de cualquier dimensión.
+
+```{python}
+# Crear un tensor de 3 dimensiones
+x = torch.tensor([[[1, 2], [3, 4]], [[5, 6], [7, 8]]])
+
+print(x)
+```
+
+#### Operaciones con tensores
+
+Podemos realizar operaciones matemáticas con tensores en `PyTorch`.
+
+```{python}
+# Crear dos tensores
+x = torch.tensor([[1, 2], [3, 4]], dtype=torch.float32)
+y = torch.tensor([[5, 6], [7, 8]], dtype=torch.float32)
+
+# Sumar los tensores
+z = x + y
+
+print(z)
+
+# Multiplicar los tensores
+z = x * y
+print(z)
+
+# Multiplicar un tensor por un escalar
+z = 2 * x
+print(z)
+
+# Calcular la transpuesta de un tensor
+z = x.t()
+print(z)
+
+# Calcular el producto punto de dos tensores
+z = torch.dot(x.view(-1), y.view(-1))
+print(z)
+
+# Calcular el producto matricial de dos tensores
+z = torch.mm(x, y)
+
+print(z)
+
+# Calcular la inversa de un tensor
+z = torch.inverse(x)
+
+print(z)
+
+# Calcular la norma de un tensor
+z = torch.norm(x)
+
+print(z)
+
+# Calcular la media de un tensor
+z = torch.mean(x)
+
+print(z)
+
+# Calcular la desviación estándar de un tensor
+z = torch.std(x)
+
+print(z)
+```
+
+#### Métodos de tensores
+
+Los tensores en `PyTorch` tienen varios métodos útiles.
+
+```{python}
+# Crear un tensor de 3 dimensiones
+x = torch.tensor([[[1, 2], [3, 4]], [[5, 6], [7, 8]]])
+
+# Obtener la forma del tensor
+print(f"Shape: {x.shape}")
+
+# Obtener el número de elementos en el tensor
+print(f"Size: {x.size()}")
+
+# Obtener el tipo de datos del tensor
+print(f"Data type: {x.dtype}")
+
+# Obtener el dispositivo en el que se almacena el tensor
+print(f"Device: {x.device}")
+
+# Obtener el número de dimensiones del tensor
+print(f"Number of dimensions: {x.dim()}")
+
+# Obtener el número de elementos en una dimensión específica
+print(f"Number of elements in the first dimension: {x.size(0)}")
+
+# Obtener el elemento en una posición específica
+print(f"Element at position (0, 1, 1): {x[0, 1, 1]}")
+
+# Obtener un subtensor
+print(f"Subtensor: {x[0, :, :]}")
+
+# Cambiar la forma del tensor
+print(f"Reshape: {x.view(2, 4)}")
+
+# Aplanar el tensor
+print(f"Flatten: {x.view(-1)}")
+
+# Concatenar tensores
+y = torch.tensor([[[9, 10], [11, 12]], [[13, 14], [15, 16]]])
+z = torch.cat((x, y), dim=0)
+
+print(z)
+
+# Dividir un tensor
+z1, z2 = torch.chunk(z, 2, dim=0)
+
+print(f"z1: {z1}")
+print(f"z2: {z2}")
+
+# Calcular la suma acumulada de un tensor
+z = torch.cumsum(x, dim=0)
+
+print(f"Cumulative sum: {z}")
+```
+
+### Estructura de una red neuronal artificial en PyTorch
+
+Veamos las distintas partes de una red neuronal artificial en `PyTorch`.
+
+#### Ejemplo de clasificación
+
+En este ejemplo, vamos a utilizar la base de datos `iris` para entrenar una red neuronal artificial que permita clasificar las flores en tres categorías: `setosa`, `versicolor` y `virginica`.
+
+```{python}
+import torch
+import torch.nn as nn
+
+# Crear la red neuronal artificial
+
+class MLP(nn.Module):
+    def __init__(self):
+        super(MLP, self).__init__()
+        self.fc1 = nn.Linear(4, 10)
+        self.fc2 = nn.Linear(10, 10)
+        self.fc3 = nn.Linear(10, 3)
+        self.relu = nn.ReLU()
+        self.softmax = nn.Softmax(dim=1)
+        
+    def forward(self, x):
+        x = self.relu(self.fc1(x))
+        x = self.relu(self.fc2(x))
+        x = self.fc3(x)
+        x = self.softmax(x)
+        return x
+
+model = MLP()
+
+print(model)
+``` 
+
+Para crear la red neuronal artificial, definimos una clase llamada `MLP` que hereda de `nn.Module`. En el método `__init__`, definimos las capas de la red neuronal artificial y las funciones de activación. En el método `forward`, definimos la arquitectura de la red neuronal artificial.
+
+Dentro del método `__init__`, usamos la función `super` para inicializar la clase base `nn.Module`. Luego, definimos las capas de la red neuronal artificial utilizando la clase `nn.Linear` que representa una capa de neuronas completamente conectada. En este caso, definimos tres capas de neuronas con 4, 10 y 3 neuronas respectivamente.
+
+También definimos las funciones de activación `nn.ReLU` y `nn.Softmax` para las capas ocultas y de salida respectivamente. La función de activación `ReLU` se utiliza para introducir no linealidades en la red neuronal artificial, mientras que la función de activación `Softmax` se utiliza para obtener probabilidades de las clases y recive como argumento la dimensión en la que se calcula el softmax.
+
+En el método `forward`, definimos la arquitectura de la red neuronal artificial. Primero aplicamos la capa `fc1` seguida de la función de activación `ReLU`. Luego aplicamos la capa `fc2` seguida de la función de activación `ReLU`. Finalmente aplicamos la capa `fc3` seguida de la función de activación `Softmax`.
+
+La función `Linear` aplicará una transformación lineal a los datos de entrada: $y = xA^T + b$, donde $x$ es la entrada, $A$ es la matriz de pesos y $b$ es el vector de sesgos.
+
+Es importante que las neuronas entre capas tengan la misma cantidad de neuronas que la capa anterior y la capa siguiente. En este caso, la capa de entrada tiene 4 neuronas, la capa oculta tiene 10 neuronas y la capa de salida tiene 3 neuronas.
+
+Vamos a usar la base de datos `iris` para ver que resultados obtenemos.
+
+```{python}
+import numpy as np
+import pandas as pd
+from sklearn.datasets import load_iris
+
+# Cargar la base de datos iris
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+model = MLP()
+
+# Convertir los datos a tensores de PyTorch
+X = torch.tensor(X, dtype=torch.float32)
+y = torch.tensor(y, dtype=torch.long)
+
+print(X.shape)
+print(y.shape)
+
+# Obtener las predicciones de la red neuronal artificial
+y_pred = model(X)
+
+print(y_pred)
+```
+
+Que nos regresa un tensor con las probabilidades de cada clase para cada observación. Para obtener la clase predicha, podemos usar la función `argmax` de PyTorch.
+
+```{python}
+# Obtener la clase predicha
+y_pred = torch.argmax(y_pred, dim=1)
+
+print(y_pred)
+```
+
+#### Funciones de activación en PyTorch
+
+En `PyTorch`, las funciones de activación se pueden utilizar como capas en una red neuronal artificial. Las funciones de activación más comunes son `ReLU`, `Sigmoid` y `Softmax`.
+
+```{python}
+import torch
+
+# Crear un tensor de entrada
+x = torch.tensor([[1.0, -1.0], [-1.0, 1.0]])
+
+# Función de activación ReLU
+relu = torch.nn.ReLU()
+y = relu(x)
+
+print(f"ReLU: {y}")
+
+# Función de activación Sigmoid
+sigmoid = torch.nn.Sigmoid()
+y = sigmoid(x)
+
+print(f"Sigmoid: {y}")
+
+# Función de activación Softmax
+softmax = torch.nn.Softmax(dim=1)
+y = softmax(x)
+
+print(f"Softmax: {y}")
+
+# Función de activación Tanh
+tanh = torch.nn.Tanh()
+y = tanh(x)
+
+print(f"Tanh: {y}")
+
+# Función de activación LeakyReLU
+leaky_relu = torch.nn.LeakyReLU(negative_slope=0.01)
+y = leaky_relu(x)
+
+print(f"LeakyReLU: {y}")
+```
+
+### Entrenamiento de la red neuronal
+
+Para entrenar la red neuronal artificial, primero debemos definir una función de pérdida y un optimizador.
+
+#### Función de pérdida
+
+La función de pérdida mide la diferencia entre las predicciones de la red neuronal artificial y las etiquetas reales. Existen diversas funciones de pérdida para problemas de clasificación y regresión.
+
+- Funciones de pérdida para problemas de clasificación:
+    - `nn.CrossEntropyLoss`: Utilizada para problemas de clasificación multiclase.
+    - `nn.BCELoss`: Utilizada para problemas de clasificación binaria.
+    - `nn.NLLLoss`: Utilizada para problemas de clasificación multiclase con salida logarítmica.
+- Funciones de pérdida para problemas de regresión:
+    - `nn.MSELoss`: Utilizada para problemas de regresión de mínimos cuadrados.
+    - `nn.L1Loss`: Utilizada para problemas de regresión de mínimos absolutos.
+    - `nn.SmoothL1Loss`: Utilizada para problemas de regresión de mínimos suavizados.
+
+```{python}
+import torch.nn as nn
+
+y_pred = torch.tensor([[0.1, 0.2, 0.7], [0.8, 0.1, 0.1], [0.2, 0.6, 0.2]])
+y = torch.tensor([2, 0, 1])
+
+# Crear la función de pérdida
+criterion = nn.CrossEntropyLoss()
+
+# Calcular la pérdida
+loss = criterion(y_pred, y)
+
+print(loss)
+```
+
+Nos regresa el error de la red neuronal. Para minimizar la función de pérdida, utilizamos un optimizador.
+
+#### Optimizador
+
+El optimizador ajusta los pesos de la red neuronal artificial para minimizar la función de pérdida. Existen diversos optimizadores que se pueden utilizar para entrenar una red neuronal artificial.
+
+- Optimizadores basados en gradiente:
+    - `torch.optim.SGD`: Descenso de gradiente estocástico.
+    - `torch.optim.Adam`: Algoritmo de optimización basado en el método de Adam.
+    - `torch.optim.RMSprop`: Algoritmo de optimización basado en el método de RMSprop.
+
+Cadad optimizador tiene sus propios hiperparámetros que se pueden ajustar para mejorar el rendimiento de la red neuronal artificial.
+
+```{python}
+import torch.optim as optim
+
+# Crear el optimizador
+optimizer = optim.SGD(model.parameters(), lr=0.01)
+
+# Realizar la retropropagación
+optimizer.zero_grad()
+
+# loss.backward()
+
+# Actualizar los pesos
+optimizer.step()
+```
+
+En este caso, utilizamos el optimizador `SGD` con una tasa de aprendizaje de 0.01. Primero, llamamos al método `zero_grad` para restablecer los gradientes de los pesos de la red neuronal artificial. Luego, llamamos al método `backward` para calcular los gradientes de la función de pérdida con respecto a los pesos. Finalmente, llamamos al método `step` para actualizar los pesos de la red neuronal artificial utilizando el algoritmo de optimización.
+
+Estos pasos se repiten varias veces para entrenar la red neuronal artificial en un conjunto de datos.
+
+### Preparación de los datos
+
+Para entrenar una red neuronal artificial, primero debemos preparar los datos en tensores de PyTorch.
+
+```{python}
+import numpy as np
+import pandas as pd
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+
+# Cargar la base de datos iris
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Dividir la base de datos en entrenamiento y prueba
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1014)
+
+# Convertir los datos a tensores de PyTorch
+X_train = torch.tensor(X_train, dtype=torch.float32)
+X_test = torch.tensor(X_test, dtype=torch.float32)
+y_train = torch.tensor(y_train, dtype=torch.long)
+y_test = torch.tensor(y_test, dtype=torch.long)
+
+print(X_train.shape)
+print(X_test.shape)
+print(y_train.shape)
+print(y_test.shape)
+```
+
+Los datos tipo `torch.long` es equivalente a `int64` en `NumPy` y se utiliza para representar las etiquetas de las clases. 
+
+
+### Red Neuronal con PyTorch
+
+Vamos a definir una red neuronal de 2 capas ocultas con 4 neuronas cada capa y una capa de salida con 3 neuronas.
+
+```{python}
+
+class NeuralNetwork(nn.Module):
+    def __init__(self):
+        super(NeuralNetwork, self).__init__()
+        self.fc1 = nn.Linear(4, 4)
+        self.fc2 = nn.Linear(4, 4)
+        self.fc3 = nn.Linear(4, 3)
+        self.relu = nn.ReLU()
+        self.softmax = nn.Softmax(dim=1)
+        
+    def forward(self, x):
+        x = self.relu(self.fc1(x))
+        x = self.relu(self.fc2(x))
+        x = self.fc3(x)
+        x = self.softmax(x)
+        return x
+    
+    def predict(self, x):
+        with torch.no_grad():
+            y = self.forward(x)
+            return torch.argmax(y, dim=1)
+    
+model = NeuralNetwork()
+
+print(model)
+```
+
+Ahora creemos una función para entrenar la red neuronal.
+
+```{python}
+def train(model, X_train, y_train, criterion, optimizer, epochs):
+    for epoch in range(epochs):
+        optimizer.zero_grad()
+        y_pred = model(X_train)
+        loss = criterion(y_pred, y_train)
+        loss.backward()
+        optimizer.step()
+        
+        if (epoch + 1) % 50 == 0:
+            print(f"Epoch {epoch + 1}/{epochs}, Loss: {loss.item()}")
+```
+
+Ahora vamos a entrenar la red neuronal.
+
+```{python}
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.SGD(model.parameters(), lr=0.01)
+
+train(model, X_train, y_train, criterion, optimizer, epochs=1000)
+```
+
+Finalmente, vamos a evaluar la red neuronal en la base de datos de prueba.
+
+```{python}
+y_pred = model.predict(X_test)
+
+print(y_pred)
+```
+
+Calculamos la precisión de la red neuronal.
+
+```{python}
+accuracy = torch.sum(y_pred == y_test).item() / len(y_test)
+
+print(f"Accuracy: {accuracy}")
+```
+
+Como vemos, la red tiene un precisión muy baja, esto se debe a que la red neuronal es muy compleja para el problema que estamos tratando de resolver. Dismunuyamos la complejidad de la red neuronal.
+
+```{python}
+class NeuralNetwork(nn.Module):
+    def __init__(self):
+        super(NeuralNetwork, self).__init__()
+        self.fc1 = nn.Linear(4, 2)
+        self.fc2 = nn.Linear(2, 3)
+        self.relu = nn.ReLU()
+        self.softmax = nn.Softmax(dim=1)
+        
+    def forward(self, x):
+        x = self.relu(self.fc1(x))
+        x = self.fc2(x)
+        x = self.softmax(x)
+        return x
+    
+    def predict(self, x):
+        with torch.no_grad():
+            y = self.forward(x)
+            return torch.argmax(y, dim=1)
+
+model = NeuralNetwork()
+
+print(model)
+```
+
+Entrenamos la red neuronal.
+
+```{python}
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.SGD(model.parameters(), lr=0.1)
+
+train(model, X_train, y_train, criterion, optimizer, epochs=1500)
+```
+
+Evaluamos la red neuronal.
+
+```{python}
+y_pred = model.predict(X_test)
+
+accuracy = torch.sum(y_pred == y_test).item() / len(y_test)
+
+print(f"Accuracy: {accuracy}")
+```
+
+Esto mejora la precisión de la red neuronal. Podemos visualizar la matriz de confusión.
+
+```{python}
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+
+cm = confusion_matrix(y_test, y_pred)
+
+sns.heatmap(cm, annot=True, fmt='d', 
+            xticklabels=iris.target_names, 
+            yticklabels=iris.target_names,
+            cmap='Blues')
+```
+
+# Aspectos importantes
+
+La inicialización de los pesos de la red neuronal puede afectar significativamente el rendimiento del modelo. En general, es importante inicializar los pesos de la red neuronal de manera que no se saturen las neuronas y se evite el problema del desvanecimiento o explosión del gradiente. Existen diversas técnicas de inicialización de pesos que se pueden utilizar para mejorar el rendimiento de la red neuronal artificial. Una de ellas es la **inicialización de Xavier**, que ajusta los pesos de la red neuronal de manera que la varianza de las salidas de las neuronas sea igual a la varianza de las entradas de las neuronas.
+
+Otro aspecto importante es la **regularización de la red neuronal**, que se utiliza para evitar el sobreajuste de la red neuronal a los datos de entrenamiento. Existen diversas técnicas de regularización que se pueden utilizar para mejorar el rendimiento de la red neuronal artificial. Una de ellas es la **regularización L2**, que penaliza los pesos de la red neuronal para evitar que se vuelvan demasiado grandes.
+
+Además, es importante ajustar los hiperparámetros de la red neuronal, como el número de capas ocultas, el número de neuronas en cada capa oculta, la tasa de aprendizaje, el número de épocas de entrenamiento, etc. para mejorar el rendimiento de la red neuronal artificial.
+
+Es importante la escala de los datos, ya que si los datos no están normalizados, la red neuronal puede tener dificultades para converger. Por lo tanto, es importante normalizar los datos antes de entrenar la red neuronal artificial.
+
+Existen diversas formas de normalizar los datos, como la normalización min-max, la normalización z-score, la normalización por rango, etc. En python, podemos utilizar la librería `scikit-learn` para normalizar los datos.
+
+```{python}
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import RobustScaler
+
+# Normalizar los datos utilizando la normalización min-max
+scaler = MinMaxScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+df = pd.DataFrame(X_train, columns=iris.feature_names)
+print(df.head())
+
+# Normalizar los datos utilizando la normalización z-score
+scaler = StandardScaler()
+
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+df = pd.DataFrame(X_train, columns=iris.feature_names)
+print(df.head())
+
+# Normalizar los datos utilizando la normalización por rango
+scaler = RobustScaler()
+
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+df = pd.DataFrame(X_train, columns=iris.feature_names)
+print(df.head())
+```
+
+Es importante realizar este proceso **después** de haber dividido los datos en entrenamiento y prueba, para evitar el sesgo en la evaluación del modelo, ya que si se realiza antes de dividir los datos, se estaría utilizando información de la base de datos de prueba para normalizar los datos de entrenamiento y dar de forma indirecta información de la base de datos de prueba a la red neuronal.
+
+# `TensorFlow`
+
+`TensorFlow` es una librería de Python que permite implementar redes neuronales artificiales de manera eficiente. En particular, `TensorFlow` incluye una clase llamada `tf.keras.Sequential` que permite definir la arquitectura de la red neuronal artificial.
+
+### Uso básico de TensorFlow
+
+Para utilizar `TensorFlow`, primero debemos instalar la librería.
+
+```{bash}
+!pip install tensorflow
+```
+
+`Tensorflow` se basa igualmente en el uso de tensores para realizar operaciones matemáticas.
+
+```{python}
+import tensorflow as tf
+
+# Crear un tensor de ceros
+x = tf.zeros((2, 3))
+
+print(x)
+```
+
+Podemos realizar operaciones matemáticas con tensores en `TensorFlow`.
+
+```{python}
+# Crear dos tensores
+x = tf.constant([[1, 2], [3, 4]], dtype=tf.float32)
+y = tf.constant([[5, 6], [7, 8]], dtype=tf.float32)
+
+# Sumar los tensores
+z = x + y
+
+print(z)
+
+# Multiplicar los tensores
+z = x * y
+
+print(z)
+
+# Multiplicar un tensor por un escalar
+z = 2 * x
+
+print(z)
+
+# Calcular la transpuesta de un tensor
+z = tf.transpose(x)
+```
+
+Todo las operaciones que se pueden realizar en `PyTorch` se pueden realizar en `TensorFlow`.
+
+### Estructura de una red neuronal artificial en TensorFlow
+
+Veamos las distintas partes de una red neuronal artificial en `TensorFlow`.
+
+#### Ejemplo de clasificación
+
+En este ejemplo, vamos a utilizar la base de datos `iris` para entrenar una red neuronal artificial que permita clasificar las flores en tres categorías: `setosa`, `versicolor` y `virginica`.
+
+```{python}
+import tensorflow as tf
+
+# Crear la red neuronal artificial
+model = tf.keras.Sequential([
+    tf.keras.Input(shape=(4,)),
+    tf.keras.layers.Dense(10, activation='relu'),
+    tf.keras.layers.Dense(10, activation='relu'),
+    tf.keras.layers.Dense(3, activation='softmax')
+])
+
+model.summary()
+```
+
+Con `TensorFlow` se puede definir la red neuronal de manera más sencilla que con `PyTorch`. En este caso, utilizamos la clase `tf.keras.Sequential` para definir la arquitectura de la red neuronal artificial. La clase `tf.keras.layers.Dense` representa una capa de neuronas completamente conectada. En este caso, definimos tres capas de neuronas con 10, 10 y 3 neuronas respectivamente. La función `tf.keras.Input` define la capa de entrada de la red neuronal.
+
+Vamos a entrenar la red neuronal.
+
+```{python}
+import numpy as np
+import pandas as pd
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+
+# Cargar la base de datos iris
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Dividir la base de datos en entrenamiento y prueba
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1014)
+
+# Convertir los datos a tensores de TensorFlow
+X_train = tf.constant(X_train, dtype=tf.float32)
+X_test = tf.constant(X_test, dtype=tf.float32)
+
+y_train = tf.constant(y_train, dtype=tf.int64)
+y_test = tf.constant(y_test, dtype=tf.int64)
+
+print(X_train.shape)
+print(X_test.shape)
+
+print(y_train.shape)
+print(y_test.shape)
+
+# Compilar la red neuronal
+model.compile(optimizer='sgd', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+
+# Entrenar la red neuronal
+model.fit(X_train, y_train, epochs=1000, verbose=0)
+
+# Evaluar la red neuronal
+loss, accuracy = model.evaluate(X_test, y_test)
+
+print(f"Loss: {loss}, Accuracy: {accuracy}")
+```
+
+Con el método `compile` se compila la red neuronal con un optimizador, una función de pérdida y métricas de evaluación. En este caso, utilizamos el optimizador `sgd` (descenso de gradiente estocástico), la función de pérdida `sparse_categorical_crossentropy` y la métrica `accuracy` para evaluar la precisión de la red neuronal.
+
+Con el método `fit` se entrena la red neuronal con los datos de entrenamiento. En este caso, utilizamos 1000 épocas de entrenamiento. El argumento `verbose=0` indica que no se mostrará información sobre el entrenamiento, para mostrar la información se puede cambiar a `verbose=1`.
+
+Con el método `evaluate` se evalúa la red neuronal con los datos de prueba. El método `evaluate` devuelve la pérdida y la precisión de la red neuronal en los datos de prueba. 
+
+Podemos obtener las predicciones de la red neuronal para la base de datos de prueba.
+
+```{python}
+y_pred = model.predict(X_test)
+
+print(y_pred)
+```
+
+Para obtener la clase predicha, podemos usar la función `argmax` de `NumPy`.
+
+```{python}
+y_pred = np.argmax(y_pred, axis=1)
+
+print(y_pred)
+```
+
+Podemos visualizar la matriz de confusión.
+
+```{python} 
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+
+cm = confusion_matrix(y_test, y_pred)
+
+sns.heatmap(cm, annot=True, fmt='d', 
+            xticklabels=iris.target_names, 
+            yticklabels=iris.target_names,
+            cmap='Blues')
+```
+
+# Salvando y cargando modelos
+
+En `PyTorch` se pueden guardar y cargar modelos utilizando el método `save` y `load`.
+
+```{python}
+# Guardar el modelo
+#torch.save(model.state_dict(), 'model.pth')
+
+# Cargar el modelo
+#model.load_state_dict(torch.load('model.pth'))
+```
+
+En `TensorFlow` se pueden guardar y cargar modelos utilizando el método `save` y `load`.
+
+```{python}
+# Guardar el modelo
+model.save('model.keras')
+
+# Cargar el modelo
+#model = keras.models.load_model('path/to/location.keras')
+```
+
+Esto sirve para guardar el modelo y poder utilizarlo en otro momento sin tener que volver a entrenarlo.
+
+# Conclusiones
+
+En este tutorial, hemos visto cómo implementar redes neuronales artificiales en Python utilizando las librerías `scikit-learn`, `PyTorch` y `TensorFlow`. Hemos visto cómo cargar una base de datos, dividirla en entrenamiento y prueba, definir la arquitectura de la red neuronal, entrenar la red neuronal, evaluar la red neuronal y visualizar la matriz de confusión. También hemos visto cómo normalizar los datos y ajustar los hiperparámetros de la red neuronal para mejorar el rendimiento del modelo.

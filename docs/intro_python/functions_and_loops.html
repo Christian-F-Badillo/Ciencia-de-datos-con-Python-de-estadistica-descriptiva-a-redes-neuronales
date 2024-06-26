@@ -269,7 +269,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"options":{"output":"true","comment":"","autorun":"","out-height":"","message":"true","warning":"true","context":"interactive","out-width":"700px","read-only":"false","dpi":72,"fig-height":5,"fig-cap":"","label":"","results":"markup","classes":"","fig-width":7},"id":1,"code":"import numpy as np\nimport matplotlib.pyplot as plt\nfrom typing import Tuple\n\ndef sine_wave(amplitude: float = None, frequency: float = None, phase: float = None, duration: float = None, sample_rate: float = None) -> Tuple[np.ndarray, np.ndarray]:\n    \"\"\"\n    Generate a sine wave signal.\n\n    Parameters:\n    - `amplitude`: The amplitude of the sine wave.\n    - `frequency`: The frequency of the sine wave in Hz.\n    - `phase`: The phase of the sine wave in radians.\n    - `duration`: The duration of the signal in seconds.\n    - `sample_rate`: The sample rate of the signal in Hz.\n\n    Returns:\n    - `t`: An array of time values.\n    - `x`: An array of signal values.\n    \"\"\"\n    t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False) # Generate time values\n    x = amplitude * np.sin(2 * np.pi * frequency * t + phase) # Generate signal values\n    return t, x\n\n# Generate a sine wave signal with amplitude 1, frequency 1 Hz, phase 0, duration 1 second, and sample rate 1000 Hz\nt, x = sine_wave(amplitude=1, frequency=1, phase=0, duration=1, sample_rate=1000) \n\n# Plot the sine wave signal\ndef plot_signal(t: np.ndarray, x: np.ndarray) -> None:\n    \"\"\"\n    Plot a signal.\n\n    Parameters:\n    - `t`: An array of time values.\n    - `x`: An array of signal values.\n    \"\"\"\n\n    plt.figure() # Create a new figure\n    plt.plot(t, x) # Plot the signal\n    plt.xlabel('Time (s)') # Set the x-axis label\n    plt.ylabel('Amplitude') # Set the y-axis label\n    plt.grid(True) # Show grid\n    plt.show() # Show the plot\n\nplot_signal(t, x)"},{"options":{"output":"true","comment":"","autorun":"","out-height":"","message":"true","warning":"true","context":"interactive","out-width":"700px","read-only":"false","dpi":72,"fig-height":5,"fig-cap":"","label":"","results":"markup","classes":"","fig-width":7},"id":2,"code":"# Ejemplo de declaración if con elif\nx = 0 # Cambia el valor de x para probar diferentes casos\nif x > 0:\n    print('El número es positivo')\nelif x < 0:\n    print('El número es negativo')\nelse:\n    print('El número es cero')"},{"options":{"output":"true","comment":"","autorun":"","out-height":"","message":"true","warning":"true","context":"interactive","out-width":"700px","read-only":"false","dpi":72,"fig-height":5,"fig-cap":"","label":"","results":"markup","classes":"","fig-width":7},"id":3,"code":"# Escribe tu código aquí"}];
+globalThis.qpyodideCellDetails = [{"code":"import numpy as np\nimport matplotlib.pyplot as plt\nfrom typing import Tuple\n\ndef sine_wave(amplitude: float = None, frequency: float = None, phase: float = None, duration: float = None, sample_rate: float = None) -> Tuple[np.ndarray, np.ndarray]:\n    \"\"\"\n    Generate a sine wave signal.\n\n    Parameters:\n    - `amplitude`: The amplitude of the sine wave.\n    - `frequency`: The frequency of the sine wave in Hz.\n    - `phase`: The phase of the sine wave in radians.\n    - `duration`: The duration of the signal in seconds.\n    - `sample_rate`: The sample rate of the signal in Hz.\n\n    Returns:\n    - `t`: An array of time values.\n    - `x`: An array of signal values.\n    \"\"\"\n    t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False) # Generate time values\n    x = amplitude * np.sin(2 * np.pi * frequency * t + phase) # Generate signal values\n    return t, x\n\n# Generate a sine wave signal with amplitude 1, frequency 1 Hz, phase 0, duration 1 second, and sample rate 1000 Hz\nt, x = sine_wave(amplitude=1, frequency=1, phase=0, duration=1, sample_rate=1000) \n\n# Plot the sine wave signal\ndef plot_signal(t: np.ndarray, x: np.ndarray) -> None:\n    \"\"\"\n    Plot a signal.\n\n    Parameters:\n    - `t`: An array of time values.\n    - `x`: An array of signal values.\n    \"\"\"\n\n    plt.figure() # Create a new figure\n    plt.plot(t, x) # Plot the signal\n    plt.xlabel('Time (s)') # Set the x-axis label\n    plt.ylabel('Amplitude') # Set the y-axis label\n    plt.grid(True) # Show grid\n    plt.show() # Show the plot\n\nplot_signal(t, x)","id":1,"options":{"label":"","autorun":"","output":"true","read-only":"false","dpi":72,"fig-width":7,"comment":"","classes":"","fig-cap":"","results":"markup","fig-height":5,"out-width":"700px","message":"true","out-height":"","warning":"true","context":"interactive"}},{"code":"# Ejemplo de declaración if con elif\nx = 0 # Cambia el valor de x para probar diferentes casos\nif x > 0:\n    print('El número es positivo')\nelif x < 0:\n    print('El número es negativo')\nelse:\n    print('El número es cero')","id":2,"options":{"label":"","autorun":"","output":"true","read-only":"false","dpi":72,"fig-width":7,"comment":"","classes":"","fig-cap":"","results":"markup","fig-height":5,"out-width":"700px","message":"true","out-height":"","warning":"true","context":"interactive"}},{"code":"# Escribe tu código aquí","id":3,"options":{"label":"","autorun":"","output":"true","read-only":"false","dpi":72,"fig-width":7,"comment":"","classes":"","fig-cap":"","results":"markup","fig-height":5,"out-width":"700px","message":"true","out-height":"","warning":"true","context":"interactive"}}];
 
 
 </script>
@@ -651,7 +651,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../neural_neworks/neural_networks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introducción a Redes Neuronales en Python</span></a>
+ <span class="menu-text">Introducción a Redes Neuronales</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../neural_neworks/ann_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Redes Neuronales Artificiales en Python</span></a>
   </div>
 </li>
       </ul>
@@ -731,7 +737,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">23 de junio de 2024</p>
+      <p class="date">25 de junio de 2024</p>
     </div>
   </div>
   
