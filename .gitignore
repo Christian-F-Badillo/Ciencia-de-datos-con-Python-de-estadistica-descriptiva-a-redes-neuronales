@@ -42,3 +42,8 @@ _extensions/
 # Jupyter Notebook
 .ipynb_checkpoints
 .jupiter_cache/
+
+# Ignore build folder
+*/build/
+*/dist/
+build/
