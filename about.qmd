@@ -29,14 +29,17 @@ Licenciatura en Psicología | Ago 2019 - Ago 2023
 
 ## Experiencia
 
-IIMAS | Servicio Social - Desarrollo de sistemas inteligentes usando deep
-learning | Feb 2024 - presente
+Instituto de Investigaciones en Matemáticas Aplicadas y en Sistemas (IIMAS), UNAM \| Especialidad en Estadística Aplicada \| Ago 2024 - presente
 
-Facultad de Psicología UNAM | Impartición de Curso Intersemestral - Temas Selectos en Estadística | Periodo 2024-1
+Instituto de Investigaciones en Matemáticas Aplicadas y en Sistemas (IIMAS), UNAM \| Servicio Social - Desarrollo de sistemas inteligentes usando deep learning \| Feb 2024 - Ago 2024
 
-UNAM | Curso de Verano - Macroentrenamiento en Inteligencia Artificial (MeIA) 2023. | Jun 2023
+Facultad de Psicología, UNAM \| Impartición de Curso Intersemestral - [Ciencia de Datos con Python: de Estadística Descriptiva a Redes Neuronales](https://christian-f-badillo.github.io/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/) \| Periodo 2024-2
 
-Neuromatch Academy | Curso de Verano - NMA Computational Neuroscience | Jul 2022
+Facultad de Psicología, UNAM \| Impartición de Curso Intersemestral - Temas Selectos en Estadística \| Periodo 2024-1
+
+UNAM \| Curso de Verano - Macroentrenamiento en Inteligencia Artificial (MeIA) 2023. \| Jun 2023
+
+Neuromatch Academy \| Curso de Verano - NMA Computational Neuroscience \| Jul 2022
 
 :::
 

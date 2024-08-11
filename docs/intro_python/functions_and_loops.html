@@ -67,6 +67,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <link href="../intro_python/data_structures.html" rel="next">
 <link href="../intro_python/Variables.html" rel="prev">
+<script src="../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -107,6 +109,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Buscar"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-0QFEMB55EW"></script>
+
+<script type="text/plain" cookie-consent="tracking">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-0QFEMB55EW', { 'anonymize_ip': true});
+</script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"headline",
+  "consent_type":"express",
+  "palette":"light",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  ,
+"language":"es"
+  });
+});
+</script> 
+  
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.46.0/min/vs/editor/editor.main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
   
@@ -269,7 +298,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"id":1,"options":{"fig-height":5,"comment":"","label":"","context":"interactive","read-only":"false","out-height":"","classes":"","message":"true","warning":"true","fig-cap":"","output":"true","out-width":"700px","dpi":72,"results":"markup","autorun":"","fig-width":7},"code":"import numpy as np\nimport matplotlib.pyplot as plt\nfrom typing import Tuple\n\ndef sine_wave(amplitude: float = None, frequency: float = None, phase: float = None, duration: float = None, sample_rate: float = None) -> Tuple[np.ndarray, np.ndarray]:\n    \"\"\"\n    Generate a sine wave signal.\n\n    Parameters:\n    - `amplitude`: The amplitude of the sine wave.\n    - `frequency`: The frequency of the sine wave in Hz.\n    - `phase`: The phase of the sine wave in radians.\n    - `duration`: The duration of the signal in seconds.\n    - `sample_rate`: The sample rate of the signal in Hz.\n\n    Returns:\n    - `t`: An array of time values.\n    - `x`: An array of signal values.\n    \"\"\"\n    t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False) # Generate time values\n    x = amplitude * np.sin(2 * np.pi * frequency * t + phase) # Generate signal values\n    return t, x\n\n# Generate a sine wave signal with amplitude 1, frequency 1 Hz, phase 0, duration 1 second, and sample rate 1000 Hz\nt, x = sine_wave(amplitude=1, frequency=1, phase=0, duration=1, sample_rate=1000) \n\n# Plot the sine wave signal\ndef plot_signal(t: np.ndarray, x: np.ndarray) -> None:\n    \"\"\"\n    Plot a signal.\n\n    Parameters:\n    - `t`: An array of time values.\n    - `x`: An array of signal values.\n    \"\"\"\n\n    plt.figure() # Create a new figure\n    plt.plot(t, x) # Plot the signal\n    plt.xlabel('Time (s)') # Set the x-axis label\n    plt.ylabel('Amplitude') # Set the y-axis label\n    plt.grid(True) # Show grid\n    plt.show() # Show the plot\n\nplot_signal(t, x)"},{"id":2,"options":{"fig-height":5,"comment":"","label":"","context":"interactive","read-only":"false","out-height":"","classes":"","message":"true","warning":"true","fig-cap":"","output":"true","out-width":"700px","dpi":72,"results":"markup","autorun":"","fig-width":7},"code":"# Ejemplo de declaración if con elif\nx = 0 # Cambia el valor de x para probar diferentes casos\nif x > 0:\n    print('El número es positivo')\nelif x < 0:\n    print('El número es negativo')\nelse:\n    print('El número es cero')"},{"id":3,"options":{"fig-height":5,"comment":"","label":"","context":"interactive","read-only":"false","out-height":"","classes":"","message":"true","warning":"true","fig-cap":"","output":"true","out-width":"700px","dpi":72,"results":"markup","autorun":"","fig-width":7},"code":"# Escribe tu código aquí"}];
+globalThis.qpyodideCellDetails = [{"code":"import numpy as np\nimport matplotlib.pyplot as plt\nfrom typing import Tuple\n\ndef sine_wave(amplitude: float = None, frequency: float = None, phase: float = None, duration: float = None, sample_rate: float = None) -> Tuple[np.ndarray, np.ndarray]:\n    \"\"\"\n    Generate a sine wave signal.\n\n    Parameters:\n    - `amplitude`: The amplitude of the sine wave.\n    - `frequency`: The frequency of the sine wave in Hz.\n    - `phase`: The phase of the sine wave in radians.\n    - `duration`: The duration of the signal in seconds.\n    - `sample_rate`: The sample rate of the signal in Hz.\n\n    Returns:\n    - `t`: An array of time values.\n    - `x`: An array of signal values.\n    \"\"\"\n    t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False) # Generate time values\n    x = amplitude * np.sin(2 * np.pi * frequency * t + phase) # Generate signal values\n    return t, x\n\n# Generate a sine wave signal with amplitude 1, frequency 1 Hz, phase 0, duration 1 second, and sample rate 1000 Hz\nt, x = sine_wave(amplitude=1, frequency=1, phase=0, duration=1, sample_rate=1000) \n\n# Plot the sine wave signal\ndef plot_signal(t: np.ndarray, x: np.ndarray) -> None:\n    \"\"\"\n    Plot a signal.\n\n    Parameters:\n    - `t`: An array of time values.\n    - `x`: An array of signal values.\n    \"\"\"\n\n    plt.figure() # Create a new figure\n    plt.plot(t, x) # Plot the signal\n    plt.xlabel('Time (s)') # Set the x-axis label\n    plt.ylabel('Amplitude') # Set the y-axis label\n    plt.grid(True) # Show grid\n    plt.show() # Show the plot\n\nplot_signal(t, x)","id":1,"options":{"label":"","message":"true","output":"true","comment":"","out-width":"700px","fig-height":5,"warning":"true","results":"markup","context":"interactive","autorun":"","out-height":"","read-only":"false","classes":"","fig-width":7,"dpi":72,"fig-cap":""}},{"code":"# Ejemplo de declaración if con elif\nx = 0 # Cambia el valor de x para probar diferentes casos\nif x > 0:\n    print('El número es positivo')\nelif x < 0:\n    print('El número es negativo')\nelse:\n    print('El número es cero')","id":2,"options":{"label":"","message":"true","output":"true","comment":"","out-width":"700px","fig-height":5,"warning":"true","results":"markup","context":"interactive","autorun":"","out-height":"","read-only":"false","classes":"","fig-width":7,"dpi":72,"fig-cap":""}},{"code":"# Escribe tu código aquí","id":3,"options":{"label":"","message":"true","output":"true","comment":"","out-width":"700px","fig-height":5,"warning":"true","results":"markup","context":"interactive","autorun":"","out-height":"","read-only":"false","classes":"","fig-width":7,"dpi":72,"fig-cap":""}}];
 
 
 </script>
@@ -492,11 +521,11 @@ window.Quarto = {
 
 <link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="Ciencia de Datos con Python - Funciones y Bucles de Control">
-<meta property="og:description" content="">
+<meta property="og:description" content="Página web para el curso intersemestral Ciencia de Datos con Python para la Facultad de Psicología, UNAM periodo 2024-1">
 <meta property="og:site_name" content="Ciencia de Datos con Python">
 <meta property="og:locale" content="es_MX">
 <meta name="twitter:title" content="Ciencia de Datos con Python - Funciones y Bucles de Control">
-<meta name="twitter:description" content="">
+<meta name="twitter:description" content="Página web para el curso intersemestral Ciencia de Datos con Python para la Facultad de Psicología, UNAM periodo 2024-1">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -743,7 +772,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">26 de junio de 2024</p>
+      <p class="date">11 de agosto de 2024</p>
     </div>
   </div>
   
@@ -1804,8 +1833,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>Copyright <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 por Christian Francisco Badillo Hernández <br> Contenido con licencia <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></p>
 </div>   
     <div class="nav-footer-center">
-      &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/edit/main/intro_python/functions_and_loops.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></div>
+
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/edit/main/intro_python/functions_and_loops.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
 <p>Hecho con <a href="https://www.python.org/"><i class="fa-brands fa-python" aria-label="python"></i></a> y <a href="https://quarto.org">Quarto</a> <br> Código fuente disponible en <a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales">GitHub</a></p>
 </div>

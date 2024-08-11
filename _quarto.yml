@@ -7,6 +7,15 @@ website:
   title: "Ciencia de Datos con Python"
   site-path: /Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/
   site-url: https://christian-f-badillo.github.io/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/
+  description: "Página web para el curso intersemestral Ciencia de Datos con Python para la Facultad de Psicología, UNAM periodo 2024-1"
+  google-analytics: 
+    tracking-id: "G-0QFEMB55EW"
+    storage: cookies
+    anonymize-ip: true
+  cookie-consent: 
+    type: express
+    style: headline
+    prefs-text: "Preferencias para Cookies"
   page-navigation: true
   back-to-top-navigation: true
   twitter-card: true
@@ -24,6 +33,7 @@ website:
   repo-url: https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales
   
   repo-actions: [edit, issue]
+  reader-mode: true
 
   open-graph: 
     locale: es_MX

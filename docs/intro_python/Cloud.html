@@ -66,6 +66,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../intro_python/Variables.html" rel="next">
+<script src="../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -106,6 +108,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Buscar"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-0QFEMB55EW"></script>
+
+<script type="text/plain" cookie-consent="tracking">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-0QFEMB55EW', { 'anonymize_ip': true});
+</script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"headline",
+  "consent_type":"express",
+  "palette":"light",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  ,
+"language":"es"
+  });
+});
+</script> 
+  
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.46.0/min/vs/editor/editor.main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
   
@@ -268,7 +297,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"msg = \"Hola Mundo\"\nprint(msg)","id":1,"options":{"fig-width":7,"autorun":"","comment":"","read-only":"false","output":"true","label":"","context":"interactive","out-height":"","fig-height":5,"results":"markup","warning":"true","message":"true","out-width":"700px","classes":"","dpi":72,"fig-cap":""}},{"code":"import random\nrandom.seed(42)\n\n## Función para calcular el valor de pi utilizando Monte Carlo\ndef monte_carlo_pi(n):\n    inside = 0\n    for _ in range(n):\n        x = random.random()\n        y = random.random()\n        if x**2 + y**2 <= 1:\n            inside += 1\n    return 4 * inside / n\n\n## Calcular el valor de pi\nn = 1000000\npi = monte_carlo_pi(n)\npi","id":2,"options":{"fig-width":7,"autorun":"","comment":"","read-only":"false","output":"true","label":"","context":"interactive","out-height":"","fig-height":5,"results":"markup","warning":"true","message":"true","out-width":"700px","classes":"","dpi":72,"fig-cap":""}},{"code":"## Importar las librerías necesarias\nimport matplotlib.pyplot as plt\nimport random\n\n## Generar datos aleatorios\nx = [random.random() for _ in range(1000)]\ny = [random.random() for _ in range(1000)]\n\n## Crear una gráfica de dispersión\nplt.scatter(x, y)\nplt.xlabel(\"x\")\nplt.ylabel(\"y\")\nplt.title(\"Gráfica de dispersión\")\nplt.show()","id":3,"options":{"fig-width":7,"autorun":"","comment":"","read-only":"false","output":"true","label":"","context":"interactive","out-height":"","fig-height":5,"results":"markup","warning":"true","message":"true","out-width":"700px","classes":"","dpi":72,"fig-cap":""}},{"code":"## Importar las librerías necesarias\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.neural_network import MLPClassifier\nfrom sklearn.metrics import accuracy_score\nimport pandas as pd\n\n## Cargar el conjunto de datos de iris\niris = load_iris()\nX = iris.data\ny = iris.target\n\n## Crear un DataFrame de pandas\ndf = pd.DataFrame(X, columns=iris.feature_names)\ndf.head()","id":4,"options":{"fig-width":7,"autorun":"","comment":"","read-only":"false","output":"true","label":"","context":"interactive","out-height":"","fig-height":5,"results":"markup","warning":"true","message":"true","out-width":"700px","classes":"","dpi":72,"fig-cap":""}},{"code":"## Dividir los datos en un conjunto de entrenamiento y un conjunto de prueba\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n\n## Crear un clasificador de redes neuronales Multilayer Perceptron\nclf = MLPClassifier(hidden_layer_sizes=(10, 10), max_iter=1000)\nclf.fit(X_train, y_train)\n\n## Predecir las etiquetas de las flores\ny_pred = clf.predict(X_test)\n\n## Calcular la precisión del clasificador\naccuracy = accuracy_score(y_test, y_pred)\naccuracy","id":5,"options":{"fig-width":7,"autorun":"","comment":"","read-only":"false","output":"true","label":"","context":"interactive","out-height":"","fig-height":5,"results":"markup","warning":"true","message":"true","out-width":"700px","classes":"","dpi":72,"fig-cap":""}}];
+globalThis.qpyodideCellDetails = [{"code":"msg = \"Hola Mundo\"\nprint(msg)","options":{"autorun":"","dpi":72,"fig-cap":"","warning":"true","out-height":"","classes":"","fig-width":7,"message":"true","output":"true","label":"","context":"interactive","results":"markup","comment":"","out-width":"700px","read-only":"false","fig-height":5},"id":1},{"code":"import random\nrandom.seed(42)\n\n## Función para calcular el valor de pi utilizando Monte Carlo\ndef monte_carlo_pi(n):\n    inside = 0\n    for _ in range(n):\n        x = random.random()\n        y = random.random()\n        if x**2 + y**2 <= 1:\n            inside += 1\n    return 4 * inside / n\n\n## Calcular el valor de pi\nn = 1000000\npi = monte_carlo_pi(n)\npi","options":{"autorun":"","dpi":72,"fig-cap":"","warning":"true","out-height":"","classes":"","fig-width":7,"message":"true","output":"true","label":"","context":"interactive","results":"markup","comment":"","out-width":"700px","read-only":"false","fig-height":5},"id":2},{"code":"## Importar las librerías necesarias\nimport matplotlib.pyplot as plt\nimport random\n\n## Generar datos aleatorios\nx = [random.random() for _ in range(1000)]\ny = [random.random() for _ in range(1000)]\n\n## Crear una gráfica de dispersión\nplt.scatter(x, y)\nplt.xlabel(\"x\")\nplt.ylabel(\"y\")\nplt.title(\"Gráfica de dispersión\")\nplt.show()","options":{"autorun":"","dpi":72,"fig-cap":"","warning":"true","out-height":"","classes":"","fig-width":7,"message":"true","output":"true","label":"","context":"interactive","results":"markup","comment":"","out-width":"700px","read-only":"false","fig-height":5},"id":3},{"code":"## Importar las librerías necesarias\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.neural_network import MLPClassifier\nfrom sklearn.metrics import accuracy_score\nimport pandas as pd\n\n## Cargar el conjunto de datos de iris\niris = load_iris()\nX = iris.data\ny = iris.target\n\n## Crear un DataFrame de pandas\ndf = pd.DataFrame(X, columns=iris.feature_names)\ndf.head()","options":{"autorun":"","dpi":72,"fig-cap":"","warning":"true","out-height":"","classes":"","fig-width":7,"message":"true","output":"true","label":"","context":"interactive","results":"markup","comment":"","out-width":"700px","read-only":"false","fig-height":5},"id":4},{"code":"## Dividir los datos en un conjunto de entrenamiento y un conjunto de prueba\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n\n## Crear un clasificador de redes neuronales Multilayer Perceptron\nclf = MLPClassifier(hidden_layer_sizes=(10, 10), max_iter=1000)\nclf.fit(X_train, y_train)\n\n## Predecir las etiquetas de las flores\ny_pred = clf.predict(X_test)\n\n## Calcular la precisión del clasificador\naccuracy = accuracy_score(y_test, y_pred)\naccuracy","options":{"autorun":"","dpi":72,"fig-cap":"","warning":"true","out-height":"","classes":"","fig-width":7,"message":"true","output":"true","label":"","context":"interactive","results":"markup","comment":"","out-width":"700px","read-only":"false","fig-height":5},"id":5}];
 
 
 </script>
@@ -491,11 +520,11 @@ window.Quarto = {
 
 <link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="Ciencia de Datos con Python - Instalación de Python">
-<meta property="og:description" content="">
+<meta property="og:description" content="Página web para el curso intersemestral Ciencia de Datos con Python para la Facultad de Psicología, UNAM periodo 2024-1">
 <meta property="og:site_name" content="Ciencia de Datos con Python">
 <meta property="og:locale" content="es_MX">
 <meta name="twitter:title" content="Ciencia de Datos con Python - Instalación de Python">
-<meta name="twitter:description" content="">
+<meta name="twitter:description" content="Página web para el curso intersemestral Ciencia de Datos con Python para la Facultad de Psicología, UNAM periodo 2024-1">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -731,7 +760,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">26 de junio de 2024</p>
+      <p class="date">11 de agosto de 2024</p>
     </div>
   </div>
   
@@ -1561,8 +1590,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>Copyright <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 por Christian Francisco Badillo Hernández <br> Contenido con licencia <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></p>
 </div>   
     <div class="nav-footer-center">
-      &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/edit/main/intro_python/Cloud.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></div>
+
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/edit/main/intro_python/Cloud.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
 <p>Hecho con <a href="https://www.python.org/"><i class="fa-brands fa-python" aria-label="python"></i></a> y <a href="https://quarto.org">Quarto</a> <br> Código fuente disponible en <a href="https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales">GitHub</a></p>
 </div>
