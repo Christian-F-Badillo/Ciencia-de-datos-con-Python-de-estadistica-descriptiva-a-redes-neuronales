@@ -1,0 +1,548 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Visualización de datos\"\n",
+        "author: \"Christian Badillo\"\n",
+        "format: html\n",
+        "date: today\n",
+        "order: 2\n",
+        "filters:\n",
+        "  - pyodide\n",
+        "  - fontawesome\n",
+        "  - iconify\n",
+        "---\n",
+        "\n",
+        "\n",
+        "# Visualización de datos\n",
+        "\n",
+        "La visualización de datos es una herramienta fundamental en el análisis de datos. Nos permite entender de manera rápida y sencilla la información que tenemos a nuestra disposición. En este tutorial vamos a ver cómo podemos visualizar datos en Python utilizando la librería `matplotlib` y `seaborn`, que son las librerías más populares para visualización de datos en Python.\n",
+        "\n",
+        "En Google Colab, podemos visualizar datos utilizando las librerías `matplotlib` y `seaborn` ya que vienen instaladas por defecto. Para instalar estas librerías de forma local, podemos utilizar el siguiente comando en una celda de Jupyter Notebook:\n",
+        "\n",
+        "```bash\n",
+        "!pip install matplotlib seaborn\n",
+        "```\n",
+        "\n",
+        "Si estas usando un archivo con extensión `.py`, puedes instalar las librerías utilizando el comando en la terminal:\n",
+        "\n",
+        "```bash\n",
+        "pip install matplotlib seaborn\n",
+        "```\n",
+        "\n",
+        "## Matplotlib\n",
+        "\n",
+        "`Matplotlib` es una librería de visualización de datos en 2D que produce gráficos de alta calidad en una variedad de formatos y entornos. En este tutorial vamos a ver cómo podemos utilizar `matplotlib` para visualizar datos en Python.\n",
+        "\n",
+        "Utilizaremos los datos de hongos que vimos en el tutorial anterior para hacer una visualización de los datos. Primero, vamos a cargar los datos.\n"
+      ],
+      "id": "0cd3803c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import pandas as pd\n",
+        "\n",
+        "url = \"https://raw.githubusercontent.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/main/data/archive/mushroom_cleaned.csv\"\n",
+        "data = pd.read_csv(url)\n",
+        "data.head()"
+      ],
+      "id": "a0020b51",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Una gran ventaja de usar `pandas` y `matplotlib` juntos es que podemos visualizar los datos directamente desde un `DataFrame`. Por ejemplo, podemos hacer un histograma de la variable `cap-shape`.\n"
+      ],
+      "id": "b8e58215"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import matplotlib.pyplot as plt\n",
+        "\n",
+        "data[\"cap-shape\"].value_counts().plot(kind=\"bar\")\n",
+        "plt.title(\"Distribución de la forma del sombrero\")\n",
+        "plt.show()"
+      ],
+      "id": "b411d8ab",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "En este caso, utilizamos el método `value_counts()` para contar el número de valores únicos en la columna `cap-shape` y luego utilizamos el método `plot()` para hacer un histograma de los valores. Finalmente, utilizamos el método `show()` para mostrar el gráfico.\n",
+        "\n",
+        "El parametro `kind` nos permite especificar el tipo de gráfico que queremos hacer. En este caso, utilizamos `bar` para hacer un histograma de barras. De acuerdo a la documentación de `plot()`, los valores válidos para el parametro `kind` son:\n",
+        "\n",
+        "* `line`: Gráfico de línea.\n",
+        "* `bar`: Gráfico de barras.\n",
+        "* `barh`: Gráfico de barras horizontales.\n",
+        "* `hist`: Histograma.\n",
+        "* `box`: Diagrama de caja.\n",
+        "* `kde`: Estimación de densidad de kernel.\n",
+        "* `density`: Estimación de densidad.\n",
+        "* `area`: Gráfico de área.\n",
+        "* `pie`: Gráfico de pastel.\n",
+        "* `scatter`: Gráfico de dispersión.\n",
+        "* `hexbin`.: Gráfico que puede considerarse una mezcla de un histograma y un gráfico de dispersión.\\\n",
+        "\n",
+        "Además, podemos personalizar el gráfico utilizando los métodos de `matplotlib`. Por ejemplo, podemos cambiar el color de las barras y agregar etiquetas a los ejes. A pesar de la utilidad de `pandas` y `matplotlib`, a veces es necesario utilizar `matplotlib` directamente para hacer gráficos más complejos.\n",
+        "\n",
+        "El primer paso para crear un gráfico con `matplotlib` es crear una figura y un eje. Luego, podemos utilizar los métodos de `matplotlib` para personalizar el gráfico. Por ejemplo, podemos hacer un gráfico de dispersión de las variables `cap-diameter` y `stem-height`.\n"
+      ],
+      "id": "75e2a840"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "fig, ax = plt.subplots()\n",
+        "\n",
+        "ax.scatter(data[\"cap-diameter\"], data[\"stem-height\"])\n",
+        "ax.set_title(\"Gráfico de dispersión de diámetro del sombrero y altura del tallo\")\n",
+        "ax.set_xlabel(\"Diámetro del sombrero\")\n",
+        "ax.set_ylabel(\"Altura del tallo\")\n",
+        "\n",
+        "plt.show()"
+      ],
+      "id": "abc8565d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "En este caso, utilizamos el método `subplots()` para crear una figura y un eje. Luego, utilizamos el método `scatter()` para hacer un gráfico de dispersión de las variables `cap-diameter` y `stem-height`. Finalmente, utilizamos los métodos `set_title()`, `set_xlabel()` y `set_ylabel()` para personalizar el gráfico.\n",
+        "\n",
+        "Editemos aún más el gráfico para que sea más informativo. Podemos cambiar el color de los puntos, agregar una leyenda y cambiar el tamaño de los puntos.\n"
+      ],
+      "id": "e59acc80"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "fig, ax = plt.subplots(figsize=(10, 6))\n",
+        "\n",
+        "ax.scatter(data[\"cap-diameter\"], data[\"stem-height\"], c=data[\"class\"], s=50, alpha=0.25)\n",
+        "ax.set_title(\"Gráfico de dispersión de diámetro del sombrero y altura del tallo\")\n",
+        "ax.set_xlabel(\"Diámetro del sombrero\")\n",
+        "ax.set_ylabel(\"Altura del tallo\")\n",
+        "ax.legend(labels=[\"Comestible\", \"Venenoso\"], title=\"Clase\")\n",
+        "\n",
+        "plt.show()"
+      ],
+      "id": "e90754bb",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "En este caso, utilizamos el parametro `c` para cambiar el color de los puntos de acuerdo a la variable `class`, el parametro `s` para cambiar el tamaño de los puntos y el parametro `alpha` para cambiar la transparencia de los puntos. Además, utilizamos el método `legend()` para agregar una leyenda al gráfico.\n",
+        "\n",
+        "Ahora veamos como hacer un histograma de las variables `cap-diameter` usando los métodos de `matplotlib`.\n"
+      ],
+      "id": "76024ce8"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "fig, ax = plt.subplots()\n",
+        "\n",
+        "ax.hist(data[\"cap-diameter\"], bins=20, color=\"skyblue\", edgecolor=\"black\")\n",
+        "ax.set_title(\"Histograma del diámetro del sombrero\")\n",
+        "ax.set_xlabel(\"Diámetro del sombrero\")\n",
+        "ax.set_ylabel(\"Frecuencia\")\n",
+        "\n",
+        "plt.show()"
+      ],
+      "id": "ed08c208",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "En este caso, utilizamos el método `hist()` para hacer un histograma de la variable `cap-diameter`. El parametro `bins` nos permite especificar el número de contenedores en el histograma. Además, utilizamos los parametros `color` y `edgecolor` para cambiar el color de las barras y el color de los bordes de las barras.\n",
+        "\n",
+        "Ahora filtremos los datos para los hongos comestibles.\n"
+      ],
+      "id": "91c6d677"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "edible = data[data[\"class\"] == 1]\n",
+        "\n",
+        "edible = edible[[\"cap-diameter\", \"stem-height\"]]\n",
+        "\n",
+        "edible.head()"
+      ],
+      "id": "b8159e3d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Hagamos un gráfico de hexbin de las variables `cap-diameter` y `stem-height` para los hongos comestibles.\n"
+      ],
+      "id": "4bd02858"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "fig = plt.figure(figsize=(10, 6))\n",
+        "\n",
+        "ax = edible.plot.hexbin(x=\"cap-diameter\", y=\"stem-height\", gridsize=20, cmap=\"coolwarm\")\n",
+        "\n",
+        "ax.set_title(\"Gráfico de hexbin de diámetro del sombrero y altura del tallo para hongos comestibles\")\n",
+        "ax.set_xlabel(\"Diámetro del sombrero\")\n",
+        "ax.set_ylabel(\"Altura del tallo\")\n",
+        "\n",
+        "plt.show()"
+      ],
+      "id": "51ae43e9",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "En un gráfico de hexbin, los puntos se agrupan en hexágonos y el color de los hexágonos se basa en el número de puntos en cada hexágono. En este caso, utilizamos el parametro `gridsize` para especificar el tamaño de los hexágonos y el parametro `cmap` para cambiar el mapa de colores.\n",
+        "\n",
+        "La sintaxis que usamos aquí es otra forma de hacer los gráficos. Primerop creamos la figura con `plt.figure()` y luego utilizamos el método `plot.hexbin()` para hacer el gráfico de hexbin que nos ofrece la clase `DataFrame` de pandas. Finalmente, utilizamos los métodos `set_title()`, `set_xlabel()` y `set_ylabel()` para personalizar el gráfico.\n",
+        "\n",
+        "## Seaborn\n",
+        "\n",
+        "`Seaborn` es una librería de visualización de datos en Python que se basa en `matplotlib` y proporciona una interfaz de alto nivel para crear gráficos atractivos y informativos. En este tutorial vamos a ver cómo podemos utilizar `seaborn` para visualizar datos en Python.\n",
+        "\n",
+        "Primero, hagamos un gráfico de cajas de las variables `cap-diameter` para los hongos comestibles y venenosos.\n"
+      ],
+      "id": "a72dcdb0"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import seaborn as sns\n",
+        "\n",
+        "fig, ax = plt.subplots(figsize=(10, 6))\n",
+        "\n",
+        "sns.boxplot(x=\"class\", y=\"cap-diameter\", data=data, ax=ax)\n",
+        "ax.set_title(\"Diagrama de caja del diámetro del sombrero por clase\")\n",
+        "ax.set_xlabel(\"Clase\")\n",
+        "ax.set_ylabel(\"Diámetro del sombrero\")\n",
+        "\n",
+        "plt.show()"
+      ],
+      "id": "42a6292a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Personalicemos el gráfico para que sea más informativo. Podemos cambiar el color de las cajas y los bigotes, agregar una leyenda y cambiar el tamaño de las cajas.\n"
+      ],
+      "id": "dc8afd33"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "fig, ax = plt.subplots(figsize=(10, 6))\n",
+        "\n",
+        "sns.boxplot(hue=\"class\", x=\"class\", y=\"cap-diameter\", data=data, ax=ax, palette=\"Set2\", linewidth=2)\n",
+        "\n",
+        "ax.set_title(\"Diagrama de caja del diámetro del sombrero por clase\")\n",
+        "ax.set_xlabel(\"Clase\")\n",
+        "ax.set_ylabel(\"Diámetro del sombrero\")\n",
+        "\n",
+        "plt.show()"
+      ],
+      "id": "4837512a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Ahora aumentemos el tamaño de la letra de las etiquetas de los ejes, agreguemos que los valores atípicos se muestren como puntos y cambiemos el estilo de las cajas.\n"
+      ],
+      "id": "365b412a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "fig, ax = plt.subplots(figsize=(10, 6))\n",
+        "\n",
+        "sns.boxplot(hue=\"class\", x=\"class\", y=\"cap-diameter\", data=data, ax=ax, \n",
+        "            palette=\"Set2\", linewidth=2, fliersize=5, notch=True)\n",
+        "\n",
+        "ax.set_title(\"Diagrama de caja del diámetro del sombrero por clase\", fontsize=16)\n",
+        "ax.set_xlabel(\"Clase\", fontsize=14)\n",
+        "ax.set_ylabel(\"Diámetro del sombrero\", fontsize=14)\n",
+        "\n",
+        "plt.show()"
+      ],
+      "id": "03078258",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Usemos los mismos datos para crear un gráfico de violín de las variables `cap-diameter` para los hongos comestibles y venenosos.\n"
+      ],
+      "id": "4fc77677"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "fig, ax = plt.subplots(figsize=(10, 6))\n",
+        "\n",
+        "sns.violinplot(x=\"class\", y=\"cap-diameter\", data=data, ax=ax, hue=\"class\", palette=\"Set1\")\n",
+        "\n",
+        "ax.set_title(\"Gráfico de violín del diámetro del sombrero por clase\", fontsize=16, fontweight=\"bold\")\n",
+        "ax.set_xlabel(\"Clase\", fontsize=14)\n",
+        "ax.set_ylabel(\"Diámetro del sombrero\", fontsize=14)\n",
+        "\n",
+        "plt.show()"
+      ],
+      "id": "d67a4138",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "En un gráfico de violín, la forma del violín representa la distribución de los datos. En este caso, utilizamos el parametro `hue` para cambiar el color de los violines de acuerdo a la variable `class` y el parametro `palette` para cambiar la paleta de colores. Nos incluye un gráfico de caja en el interior del violín, que nos permite ver la distribución de los datos de una manera más detallada. Modifiquemos el gráfico para que sea más informativo.\n"
+      ],
+      "id": "1247227e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "fig, ax = plt.subplots(figsize=(10, 6))\n",
+        "\n",
+        "sns.violinplot(x=\"class\", y=\"cap-diameter\", data=data, ax=ax, \n",
+        "                hue=\"class\", palette=\"Set1\", inner=\"box\", fill=False,\n",
+        "                inner_kws={\"linewidth\": 1.5, \"box_width\": 17, \"whis_width\":2})\n",
+        "\n",
+        "ax.set_title(\"Gráfico de violín del diámetro del sombrero por clase\", fontsize=16, fontweight=\"bold\")\n",
+        "ax.set_xlabel(\"Clase\", fontsize=14)\n",
+        "ax.set_ylabel(\"Diámetro del sombrero\", fontsize=14)\n",
+        "\n",
+        "plt.show()"
+      ],
+      "id": "37760061",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Aquí hemos especificado que el interior del violín sea un gráfico de caja con el parametro `inner=\"box\"`. Además, hemos cambiado el ancho de las cajas con el parametro `inner_kws={\"box_width\": 17}` y el ancho de los bigotes con el parametro `inner_kws={\"whis_width\": 2}`. Con el parametro `fill=False`, hemos eliminado el relleno del violín.\n",
+        "\n",
+        "Un gráfico útil a la hora de analizar datos es la matriz de correlación. La matriz de correlación nos permite ver cómo se relacionan las variables entre sí. En `seaborn`, podemos hacer una matriz de correlación utilizando el método `heatmap()`.\n"
+      ],
+      "id": "34ef82d5"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "fig, ax = plt.subplots(figsize=(10, 6))\n",
+        "\n",
+        "corr = data.corr()\n",
+        "\n",
+        "sns.heatmap(corr, annot=True, cmap=\"coolwarm\", ax=ax, vmax=1, vmin=-1)\n",
+        "\n",
+        "ax.set_title(\"Matriz de correlación de las variables\", fontsize=16, fontweight=\"bold\")\n",
+        "\n",
+        "plt.show()"
+      ],
+      "id": "8ee5ae13",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "En este caso, utilizamos el método `corr()` para calcular la matriz de correlación de los datos y luego utilizamos el método `heatmap()` para hacer una matriz de correlación. El parametro `annot=True` nos permite mostrar los valores de la correlación en los cuadros y el parametro `cmap=\"coolwarm\"` nos permite cambiar el mapa de colores. Los parametros `vmax` y `vmin` nos permiten especificar los valores máximos y mínimos de la escala de colores, sino se dan, se toman los valores máximos y mínimos de la matriz de correlación.\n",
+        "\n",
+        "Una buena forma de presentar los datos de dos variables es juntar un gráfico de dispersión con un histograma. En `seaborn`, podemos hacer un gráfico de dispersión con histogramas utilizando el método `jointplot()`.\n"
+      ],
+      "id": "112214a6"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "fig = plt.figure(figsize=(10, 6))\n",
+        "\n",
+        "sns.jointplot(x=\"cap-diameter\", y=\"stem-height\", data=data, kind=\"scatter\", color=\"skyblue\")\n",
+        "\n",
+        "plt.show()"
+      ],
+      "id": "62a2fb49",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "En este caso, utilizamos el parametro `kind=\"scatter\"` para hacer un gráfico de dispersión. Los valores válidos para el parametro `kind` son:\n",
+        "\n",
+        "* `scatter`: Gráfico de dispersión.\n",
+        "* `kde`: Estimación de densidad de kernel.\n",
+        "* `hist`: Histograma.\n",
+        "* `hex`: Gráfico de hexbin.\n",
+        "* `reg`: Gráfico de regresión.\n",
+        "* `resid`: Gráfico de residuos.\n",
+        "\n",
+        "Además con el parámetro `hue` podemos cambiar el color de los puntos de acuerdo a una variable categórica.\n"
+      ],
+      "id": "89500b00"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "fig = plt.figure(figsize=(10, 6))\n",
+        "\n",
+        "ax = sns.jointplot(x=\"cap-diameter\", y=\"stem-height\", data=data, \n",
+        "                    kind=\"scatter\", color=\"skyblue\", hue=\"class\")\n",
+        "\n",
+        "ax.set_axis_labels(\"Diámetro del sombrero\", \"Altura del tallo\", fontsize=12)\n",
+        "ax.fig.suptitle(\"Gráfico de dispersión de diámetro del sombrero y altura del tallo\", \n",
+        "                fontsize=14, fontweight=\"bold\", y = 1.02)\n",
+        "\n",
+        "plt.show()"
+      ],
+      "id": "f5a8613d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Este gráfico nos permite ver la relación entre dos variables y la distribución de cada variable de forma simultánea. Vemos que no hay diferencias claras entre las variables `cap-diameter` y `stem-height` para los hongos comestibles y venenosos.\n",
+        "\n",
+        "Seaborn tiene una función para mostrar gráficos con la relación entre todas las variables de un `DataFrame`. Esta función se llama `pairplot()`.\n"
+      ],
+      "id": "70e594e6"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "fig = plt.figure(figsize=(10, 6))\n",
+        "\n",
+        "sns.pairplot(data, hue=\"class\", palette=\"Set1\")\n",
+        "\n",
+        "plt.show()"
+      ],
+      "id": "fbfd8c4d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Si son muchas variables, podemos seleccionar solo algunas para hacer el gráfico. En este caso, seleccionamos las variables `cap-diameter`, `stem-height`, `cap-surface` y `cap-color`.\n"
+      ],
+      "id": "4ce937a3"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "fig = plt.figure(figsize=(10, 6))\n",
+        "\n",
+        "sns.pairplot(data[[\"cap-diameter\", \"stem-height\", \"class\"]], hue=\"class\", palette=\"Set1\")\n",
+        "\n",
+        "plt.show()"
+      ],
+      "id": "e29132e0",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Nos mostrará un gráfico de dispersión de todas las variables seleccionadas y un histograma de cada variable en la diagonal. Además, podemos cambiar el color de los puntos de acuerdo a una variable categórica con el parametro `hue`.\n",
+        "\n",
+        "# Ejercicios\n",
+        "\n",
+        "1. Usando los datos de Iris, haz un gráfico de dispersión de las variables `sepal_length` y `sepal_width` con los puntos de acuerdo a la variable `species`.\n",
+        "\n",
+        "2. Realiza un gráfico de caja de las variables `petal_length` y `petal_width` para las especies de Iris. Personaliza el gráfico.\n",
+        "   \n",
+        "3. Haz un gráfico de violín de las variables `petal_length` y `petal_width` para las especies de Iris. Otro gráfico de violín de las variables `sepal_length` y `sepal_width` para las especies de Iris. Personaliza los gráficos.\n",
+        "\n",
+        "4. Crea una matriz de correlación de las variables de los datos de Iris. Personaliza el gráfico.\n",
+        "\n",
+        "5. Combina un gráfico de dispersión con un histograma de las variables `sepal_length` y `sepal_width` de los datos de Iris. Personaliza el gráfico.\n",
+        "\n",
+        "6. Crea un pairplot de las variables `sepal_length`, `sepal_width`, `petal_length` y `petal_width` de los datos de Iris, con los puntos de acuerdo a la variable `species`.\n",
+        "\n",
+        "7. Selecciona dos variables y crea un histograma para cada una de ellas. Personaliza el gráfico.\n",
+        "\n",
+        "## Conclusiones\n",
+        "\n",
+        "En este tutorial, hemos visto cómo podemos visualizar datos en Python utilizando las librerías `matplotlib` y `seaborn`. Hemos visto cómo hacer gráficos de barras, gráficos de dispersión, histogramas, diagramas de caja, gráficos de violín, matrices de correlación, gráficos de dispersión con histogramas y gráficos de pares. Estas son solo algunas de las muchas formas en que podemos visualizar datos en Python. La visualización de datos es una herramienta poderosa que nos permite entender de manera rápida y sencilla la información que tenemos a nuestra disposición.\n",
+        "\n",
+        "Para más información sobre `matplotlib` y `seaborn`, puedes consultar la documentación oficial:\n",
+        "\n",
+        "* [Documentación de Matplotlib](https://matplotlib.org/stable/contents.html)\n",
+        "* [Documentación de Seaborn](https://seaborn.pydata.org/)"
+      ],
+      "id": "29d0088d"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "C:\\Users\\crish\\AppData\\Local\\Programs\\Python\\Python313\\share\\jupyter\\kernels\\python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

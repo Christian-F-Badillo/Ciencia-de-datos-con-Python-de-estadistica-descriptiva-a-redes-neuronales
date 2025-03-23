@@ -24,7 +24,9 @@ website:
       Copyright {{< fa brands creative-commons >}} 2024 por Christian Francisco Badillo Hernández <br>
       Contenido con licencia {{< fa brands creative-commons >}}
       {{< fa brands creative-commons-by >}} {{< fa brands creative-commons-nc >}}
-      [Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/) 
+      [Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/)
+    center: |
+      Proyecto Apoyado por el Proyecto PAPIME PE309624
     right: |
       Hecho con [{{< fa brands python >}}](https://www.python.org/) y [Quarto](https://quarto.org) <br>
       Código fuente disponible en [GitHub](https://github.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales)

@@ -1,0 +1,1356 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Redes Neuronales Artificiales en Python\"\n",
+        "author: \"Christian Badillo\"\n",
+        "format: html\n",
+        "date: today\n",
+        "order: 3\n",
+        "---\n",
+        "\n",
+        "\n",
+        "Existen muchas librerías en Python que permiten implementar redes neuronales artificiales. En este tutorial, vamos a utilizar la librería `scikit-learn`, `keras` y `tensorflow` para implementar una red neuronal artificial para resolver problemas de clasificación y regresión.\n",
+        "\n",
+        "## `scikit-learn`\n",
+        "\n",
+        "`scikit-learn` es una librería de Python que permite implementar algoritmos de aprendizaje supervisado y no supervisado. En particular, `scikit-learn` incluye una clase llamada `MLPClassifier` que permite implementar redes neuronales artificiales para problemas de clasificación.\n",
+        "\n",
+        "### Ejemplo de clasificación\n",
+        "\n",
+        "En este ejemplo, vamos a utilizar la base de datos `iris` para entrenar una red neuronal artificial que permita clasificar las flores en tres categorías: `setosa`, `versicolor` y `virginica`.\n"
+      ],
+      "id": "0b77899b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import numpy as np\n",
+        "import pandas as pd\n",
+        "from sklearn.datasets import load_iris\n",
+        "from sklearn.model_selection import train_test_split\n",
+        "from sklearn.neural_network import MLPClassifier\n",
+        "\n",
+        "# Cargar la base de datos iris\n",
+        "iris = load_iris()\n",
+        "X = iris.data\n",
+        "y = iris.target\n",
+        "\n",
+        "print(iris.target_names)\n",
+        "print(iris.feature_names)\n",
+        "print(X.shape)\n",
+        "print(y.shape)"
+      ],
+      "id": "3dd390a5",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Implementamos la red neuronal artificial y la entrenamos con la base de datos `iris`.\n"
+      ],
+      "id": "b9eefa2b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Dividir la base de datos en entrenamiento y prueba\n",
+        "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n",
+        "\n",
+        "# Crear la red neuronal artificial\n",
+        "clf = MLPClassifier(hidden_layer_sizes=(10, 10), max_iter=1000, random_state=42, \n",
+        "                    activation='relu', solver='sgd', learning_rate='adaptive', \n",
+        "                    learning_rate_init=0.001)\n",
+        "\n",
+        "# Entrenar la red neuronal artificial\n",
+        "clf.fit(X_train, y_train)\n",
+        "\n",
+        "# Evaluar la red neuronal artificial\n",
+        "score = clf.score(X_test, y_test)\n",
+        "print(score)"
+      ],
+      "id": "0abe000e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "La clase `MLPClassifier` tiene varios parámetros que permiten configurar la red neuronal artificial. En este ejemplo, utilizamos los siguientes parámetros:\n",
+        "\n",
+        "- `hidden_layer_sizes`: Número de neuronas en cada capa oculta.\n",
+        "- `max_iter`: Número máximo de iteraciones para entrenar la red neuronal artificial.\n",
+        "- `random_state`: Semilla para la generación de números aleatorios.\n",
+        "- `solver`: Algoritmo de optimización para entrenar la red neuronal artificial.\n",
+        "- `activation`: Función de activación para las neuronas en las capas ocultas.\n",
+        "- `learning_rate`: Tasa de aprendizaje para actualizar los pesos de la red neuronal artificial.\n",
+        "- `learning_rate_init`: Tasa de aprendizaje inicial para actualizar los pesos de la red neuronal artificial.\n",
+        "\n",
+        "El método `score` permite evaluar la precisión de la red neuronal artificial en la base de datos de prueba.\n",
+        "\n",
+        "Podemos obtener las predicciones de la red neuronal artificial para la base de datos de prueba.\n"
+      ],
+      "id": "151ee75a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Obtener las predicciones de la red neuronal artificial\n",
+        "y_pred = clf.predict(X_test)\n",
+        "print(y_pred)"
+      ],
+      "id": "7cfa31d6",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Para evaluar la red neuronal artificial, podemos calcular la matriz de confusión.\n"
+      ],
+      "id": "1f46c90a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from sklearn.metrics import confusion_matrix\n",
+        "\n",
+        "# Calcular la matriz de confusión\n",
+        "cm = confusion_matrix(y_test, y_pred)\n",
+        "print(cm)"
+      ],
+      "id": "2603dc24",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Podemos visualizar la matriz de confusión utilizando la librería `seaborn`.\n"
+      ],
+      "id": "e95b608a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import seaborn as sns\n",
+        "import matplotlib.pyplot as plt\n",
+        "\n",
+        "# Visualizar la matriz de confusión\n",
+        "sns.heatmap(cm, annot=True, fmt='d', \n",
+        "            xticklabels=iris.target_names, \n",
+        "            yticklabels=iris.target_names,\n",
+        "            cmap='Blues')\n",
+        "plt.xlabel('Predicción')\n",
+        "plt.ylabel('Real')\n",
+        "plt.show()"
+      ],
+      "id": "57bb7200",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Con este mapa de color podemos visualizar la matriz de confusión. Las filas representan las categorías reales y las columnas representan las categorías predichas. Los valores en la diagonal principal representan las predicciones correctas y esperamos que un buen modelo tenga valores altos en la diagonal principal.\n",
+        "\n",
+        "POdemos usar el área bajo la curva ROC para evaluar la red neuronal artificial.\n"
+      ],
+      "id": "03e4c2b6"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from sklearn.metrics import roc_auc_score\n",
+        "\n",
+        "# Calcular el área bajo la curva ROC\n",
+        "y_prob = clf.predict_proba(X_test)\n",
+        "roc_auc = roc_auc_score(y_test, y_prob, multi_class='ovr')\n",
+        "print(roc_auc)"
+      ],
+      "id": "67af5954",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Aquí el parámetro `multi_class` se refiere a la estrategia de codificación de clases. En este caso, utilizamos `ovr` que significa \"one-vs-rest\", que evalúa cada clase en comparación con el resto de las clases y es sensible a datos desequilibrados.\n",
+        "\n",
+        "Entre más cercano a 1 sea el valor del área bajo la curva ROC, mejor será el modelo, ya que significa que el modelo es capaz de distinguir entre las diferentes clases.\n",
+        "\n",
+        "## `PyTorch`\n",
+        "\n",
+        "`PyTorch` es una librería de Python que permite implementar redes neuronales artificiales de manera eficiente. En particular, `PyTorch` incluye una clase llamada `nn.Module` que permite definir la arquitectura de la red neuronal artificial.\n",
+        "\n",
+        "### Uso básico de PyTorch\n",
+        "\n",
+        "Para utilizar `PyTorch`, primero debemos instalar la librería, el comando que recomienda la página de `PyTorch` es el siguiente para Windows y sin el uso de GPU.\n",
+        "\n",
+        "\n",
+        "```{bash}\n",
+        "!pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu\n",
+        "```\n",
+        "\n",
+        "\n",
+        "#### Tensores\n",
+        "\n",
+        "En `PyTorch`, los datos se almacenan en tensores, que son arreglos multidimensionales similares a los arreglos de `NumPy`. Podemos crear tensores en `PyTorch` de la siguiente manera.\n"
+      ],
+      "id": "05bbedfa"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import torch\n",
+        "\n",
+        "# Crear un tensor de ceros\n",
+        "x = torch.zeros(2, 3)\n",
+        "\n",
+        "print(x)"
+      ],
+      "id": "51515577",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Podemos crear tensores a partir de arreglos de `NumPy`.\n"
+      ],
+      "id": "a014c42a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import numpy as np\n",
+        "\n",
+        "# Crear un arreglo de NumPy\n",
+        "arr = np.array([[1, 2, 3], [4, 5, 6]])\n",
+        "\n",
+        "# Crear un tensor de PyTorch a partir de un arreglo de NumPy\n",
+        "x = torch.tensor(arr)\n",
+        "\n",
+        "print(x)"
+      ],
+      "id": "f4cb46a7",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Los tensores pueden ser de diferentes tipos de datos, como `float32`, `int64`, `bool`, etc.\n"
+      ],
+      "id": "5df4e69b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Crear un tensor de enteros\n",
+        "x = torch.tensor([[1, 2, 3], [4, 5, 6]], dtype=torch.int64)\n",
+        "\n",
+        "print(x)\n",
+        "\n",
+        "# Crear un tensor de booleanos\n",
+        "x = torch.tensor([[True, False], [False, True]])\n",
+        "\n",
+        "print(x)\n",
+        "\n",
+        "# Crear un tensor de punto flotante\n",
+        "x = torch.tensor([[1.0, 2.0], [3.0, 4.0]], dtype=torch.float32)\n",
+        "\n",
+        "print(x)"
+      ],
+      "id": "5af33aec",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Podemos tener tensores de cualquier dimensión.\n"
+      ],
+      "id": "1bbf48e2"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Crear un tensor de 3 dimensiones\n",
+        "x = torch.tensor([[[1, 2], [3, 4]], [[5, 6], [7, 8]]])\n",
+        "\n",
+        "print(x)"
+      ],
+      "id": "177446af",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "#### Operaciones con tensores\n",
+        "\n",
+        "Podemos realizar operaciones matemáticas con tensores en `PyTorch`.\n"
+      ],
+      "id": "0a7941a4"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Crear dos tensores\n",
+        "x = torch.tensor([[1, 2], [3, 4]], dtype=torch.float32)\n",
+        "y = torch.tensor([[5, 6], [7, 8]], dtype=torch.float32)\n",
+        "\n",
+        "# Sumar los tensores\n",
+        "z = x + y\n",
+        "\n",
+        "print(z)\n",
+        "\n",
+        "# Multiplicar los tensores\n",
+        "z = x * y\n",
+        "print(z)\n",
+        "\n",
+        "# Multiplicar un tensor por un escalar\n",
+        "z = 2 * x\n",
+        "print(z)\n",
+        "\n",
+        "# Calcular la transpuesta de un tensor\n",
+        "z = x.t()\n",
+        "print(z)\n",
+        "\n",
+        "# Calcular el producto punto de dos tensores\n",
+        "z = torch.dot(x.view(-1), y.view(-1))\n",
+        "print(z)\n",
+        "\n",
+        "# Calcular el producto matricial de dos tensores\n",
+        "z = torch.mm(x, y)\n",
+        "\n",
+        "print(z)\n",
+        "\n",
+        "# Calcular la inversa de un tensor\n",
+        "z = torch.inverse(x)\n",
+        "\n",
+        "print(z)\n",
+        "\n",
+        "# Calcular la norma de un tensor\n",
+        "z = torch.norm(x)\n",
+        "\n",
+        "print(z)\n",
+        "\n",
+        "# Calcular la media de un tensor\n",
+        "z = torch.mean(x)\n",
+        "\n",
+        "print(z)\n",
+        "\n",
+        "# Calcular la desviación estándar de un tensor\n",
+        "z = torch.std(x)\n",
+        "\n",
+        "print(z)"
+      ],
+      "id": "1020c96b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "#### Métodos de tensores\n",
+        "\n",
+        "Los tensores en `PyTorch` tienen varios métodos útiles.\n"
+      ],
+      "id": "eb934795"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Crear un tensor de 3 dimensiones\n",
+        "x = torch.tensor([[[1, 2], [3, 4]], [[5, 6], [7, 8]]])\n",
+        "\n",
+        "# Obtener la forma del tensor\n",
+        "print(f\"Shape: {x.shape}\")\n",
+        "\n",
+        "# Obtener el número de elementos en el tensor\n",
+        "print(f\"Size: {x.size()}\")\n",
+        "\n",
+        "# Obtener el tipo de datos del tensor\n",
+        "print(f\"Data type: {x.dtype}\")\n",
+        "\n",
+        "# Obtener el dispositivo en el que se almacena el tensor\n",
+        "print(f\"Device: {x.device}\")\n",
+        "\n",
+        "# Obtener el número de dimensiones del tensor\n",
+        "print(f\"Number of dimensions: {x.dim()}\")\n",
+        "\n",
+        "# Obtener el número de elementos en una dimensión específica\n",
+        "print(f\"Number of elements in the first dimension: {x.size(0)}\")\n",
+        "\n",
+        "# Obtener el elemento en una posición específica\n",
+        "print(f\"Element at position (0, 1, 1): {x[0, 1, 1]}\")\n",
+        "\n",
+        "# Obtener un subtensor\n",
+        "print(f\"Subtensor: {x[0, :, :]}\")\n",
+        "\n",
+        "# Cambiar la forma del tensor\n",
+        "print(f\"Reshape: {x.view(2, 4)}\")\n",
+        "\n",
+        "# Aplanar el tensor\n",
+        "print(f\"Flatten: {x.view(-1)}\")\n",
+        "\n",
+        "# Concatenar tensores\n",
+        "y = torch.tensor([[[9, 10], [11, 12]], [[13, 14], [15, 16]]])\n",
+        "z = torch.cat((x, y), dim=0)\n",
+        "\n",
+        "print(z)\n",
+        "\n",
+        "# Dividir un tensor\n",
+        "z1, z2 = torch.chunk(z, 2, dim=0)\n",
+        "\n",
+        "print(f\"z1: {z1}\")\n",
+        "print(f\"z2: {z2}\")\n",
+        "\n",
+        "# Calcular la suma acumulada de un tensor\n",
+        "z = torch.cumsum(x, dim=0)\n",
+        "\n",
+        "print(f\"Cumulative sum: {z}\")"
+      ],
+      "id": "7be582d8",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Estructura de una red neuronal artificial en PyTorch\n",
+        "\n",
+        "Veamos las distintas partes de una red neuronal artificial en `PyTorch`.\n",
+        "\n",
+        "#### Ejemplo de clasificación\n",
+        "\n",
+        "En este ejemplo, vamos a utilizar la base de datos `iris` para entrenar una red neuronal artificial que permita clasificar las flores en tres categorías: `setosa`, `versicolor` y `virginica`.\n"
+      ],
+      "id": "d6780aa0"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import torch\n",
+        "import torch.nn as nn\n",
+        "\n",
+        "# Crear la red neuronal artificial\n",
+        "\n",
+        "class MLP(nn.Module):\n",
+        "    def __init__(self):\n",
+        "        super(MLP, self).__init__()\n",
+        "        self.fc1 = nn.Linear(4, 10)\n",
+        "        self.fc2 = nn.Linear(10, 10)\n",
+        "        self.fc3 = nn.Linear(10, 3)\n",
+        "        self.relu = nn.ReLU()\n",
+        "        self.softmax = nn.Softmax(dim=1)\n",
+        "        \n",
+        "    def forward(self, x):\n",
+        "        x = self.relu(self.fc1(x))\n",
+        "        x = self.relu(self.fc2(x))\n",
+        "        x = self.fc3(x)\n",
+        "        x = self.softmax(x)\n",
+        "        return x\n",
+        "\n",
+        "model = MLP()\n",
+        "\n",
+        "print(model)"
+      ],
+      "id": "24de974b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Para crear la red neuronal artificial, definimos una clase llamada `MLP` que hereda de `nn.Module`. En el método `__init__`, definimos las capas de la red neuronal artificial y las funciones de activación. En el método `forward`, definimos la arquitectura de la red neuronal artificial.\n",
+        "\n",
+        "Dentro del método `__init__`, usamos la función `super` para inicializar la clase base `nn.Module`. Luego, definimos las capas de la red neuronal artificial utilizando la clase `nn.Linear` que representa una capa de neuronas completamente conectada. En este caso, definimos tres capas de neuronas con 4, 10 y 3 neuronas respectivamente.\n",
+        "\n",
+        "También definimos las funciones de activación `nn.ReLU` y `nn.Softmax` para las capas ocultas y de salida respectivamente. La función de activación `ReLU` se utiliza para introducir no linealidades en la red neuronal artificial, mientras que la función de activación `Softmax` se utiliza para obtener probabilidades de las clases y recive como argumento la dimensión en la que se calcula el softmax.\n",
+        "\n",
+        "En el método `forward`, definimos la arquitectura de la red neuronal artificial. Primero aplicamos la capa `fc1` seguida de la función de activación `ReLU`. Luego aplicamos la capa `fc2` seguida de la función de activación `ReLU`. Finalmente aplicamos la capa `fc3` seguida de la función de activación `Softmax`.\n",
+        "\n",
+        "La función `Linear` aplicará una transformación lineal a los datos de entrada: $y = xA^T + b$, donde $x$ es la entrada, $A$ es la matriz de pesos y $b$ es el vector de sesgos.\n",
+        "\n",
+        "Es importante que las neuronas entre capas tengan la misma cantidad de neuronas que la capa anterior y la capa siguiente. En este caso, la capa de entrada tiene 4 neuronas, la capa oculta tiene 10 neuronas y la capa de salida tiene 3 neuronas.\n",
+        "\n",
+        "Vamos a usar la base de datos `iris` para ver que resultados obtenemos.\n"
+      ],
+      "id": "15f452c1"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import numpy as np\n",
+        "import pandas as pd\n",
+        "from sklearn.datasets import load_iris\n",
+        "\n",
+        "# Cargar la base de datos iris\n",
+        "iris = load_iris()\n",
+        "X = iris.data\n",
+        "y = iris.target\n",
+        "\n",
+        "model = MLP()\n",
+        "\n",
+        "# Convertir los datos a tensores de PyTorch\n",
+        "X = torch.tensor(X, dtype=torch.float32)\n",
+        "y = torch.tensor(y, dtype=torch.long)\n",
+        "\n",
+        "print(X.shape)\n",
+        "print(y.shape)\n",
+        "\n",
+        "# Obtener las predicciones de la red neuronal artificial\n",
+        "y_pred = model(X)\n",
+        "\n",
+        "print(y_pred)"
+      ],
+      "id": "46098a83",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Que nos regresa un tensor con las probabilidades de cada clase para cada observación. Para obtener la clase predicha, podemos usar la función `argmax` de PyTorch.\n"
+      ],
+      "id": "ad0a0d7e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Obtener la clase predicha\n",
+        "y_pred = torch.argmax(y_pred, dim=1)\n",
+        "\n",
+        "print(y_pred)"
+      ],
+      "id": "ecd8295e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "#### Funciones de activación en PyTorch\n",
+        "\n",
+        "En `PyTorch`, las funciones de activación se pueden utilizar como capas en una red neuronal artificial. Las funciones de activación más comunes son `ReLU`, `Sigmoid` y `Softmax`.\n"
+      ],
+      "id": "e26f154a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import torch\n",
+        "\n",
+        "# Crear un tensor de entrada\n",
+        "x = torch.tensor([[1.0, -1.0], [-1.0, 1.0]])\n",
+        "\n",
+        "# Función de activación ReLU\n",
+        "relu = torch.nn.ReLU()\n",
+        "y = relu(x)\n",
+        "\n",
+        "print(f\"ReLU: {y}\")\n",
+        "\n",
+        "# Función de activación Sigmoid\n",
+        "sigmoid = torch.nn.Sigmoid()\n",
+        "y = sigmoid(x)\n",
+        "\n",
+        "print(f\"Sigmoid: {y}\")\n",
+        "\n",
+        "# Función de activación Softmax\n",
+        "softmax = torch.nn.Softmax(dim=1)\n",
+        "y = softmax(x)\n",
+        "\n",
+        "print(f\"Softmax: {y}\")\n",
+        "\n",
+        "# Función de activación Tanh\n",
+        "tanh = torch.nn.Tanh()\n",
+        "y = tanh(x)\n",
+        "\n",
+        "print(f\"Tanh: {y}\")\n",
+        "\n",
+        "# Función de activación LeakyReLU\n",
+        "leaky_relu = torch.nn.LeakyReLU(negative_slope=0.01)\n",
+        "y = leaky_relu(x)\n",
+        "\n",
+        "print(f\"LeakyReLU: {y}\")"
+      ],
+      "id": "c11c963e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Entrenamiento de la red neuronal\n",
+        "\n",
+        "Para entrenar la red neuronal artificial, primero debemos definir una función de pérdida y un optimizador.\n",
+        "\n",
+        "#### Función de pérdida\n",
+        "\n",
+        "La función de pérdida mide la diferencia entre las predicciones de la red neuronal artificial y las etiquetas reales. Existen diversas funciones de pérdida para problemas de clasificación y regresión.\n",
+        "\n",
+        "- Funciones de pérdida para problemas de clasificación:\n",
+        "    - `nn.CrossEntropyLoss`: Utilizada para problemas de clasificación multiclase.\n",
+        "    - `nn.BCELoss`: Utilizada para problemas de clasificación binaria.\n",
+        "    - `nn.NLLLoss`: Utilizada para problemas de clasificación multiclase con salida logarítmica.\n",
+        "- Funciones de pérdida para problemas de regresión:\n",
+        "    - `nn.MSELoss`: Utilizada para problemas de regresión de mínimos cuadrados.\n",
+        "    - `nn.L1Loss`: Utilizada para problemas de regresión de mínimos absolutos.\n",
+        "    - `nn.SmoothL1Loss`: Utilizada para problemas de regresión de mínimos suavizados.\n"
+      ],
+      "id": "554cabaa"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import torch.nn as nn\n",
+        "\n",
+        "y_pred = torch.tensor([[0.1, 0.2, 0.7], [0.8, 0.1, 0.1], [0.2, 0.6, 0.2]])\n",
+        "y = torch.tensor([2, 0, 1])\n",
+        "\n",
+        "# Crear la función de pérdida\n",
+        "criterion = nn.CrossEntropyLoss()\n",
+        "\n",
+        "# Calcular la pérdida\n",
+        "loss = criterion(y_pred, y)\n",
+        "\n",
+        "print(loss)"
+      ],
+      "id": "3a5719af",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Nos regresa el error de la red neuronal. Para minimizar la función de pérdida, utilizamos un optimizador.\n",
+        "\n",
+        "#### Optimizador\n",
+        "\n",
+        "El optimizador ajusta los pesos de la red neuronal artificial para minimizar la función de pérdida. Existen diversos optimizadores que se pueden utilizar para entrenar una red neuronal artificial.\n",
+        "\n",
+        "- Optimizadores basados en gradiente:\n",
+        "    - `torch.optim.SGD`: Descenso de gradiente estocástico.\n",
+        "    - `torch.optim.Adam`: Algoritmo de optimización basado en el método de Adam.\n",
+        "    - `torch.optim.RMSprop`: Algoritmo de optimización basado en el método de RMSprop.\n",
+        "\n",
+        "Cadad optimizador tiene sus propios hiperparámetros que se pueden ajustar para mejorar el rendimiento de la red neuronal artificial.\n"
+      ],
+      "id": "8213abeb"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import torch.optim as optim\n",
+        "\n",
+        "# Crear el optimizador\n",
+        "optimizer = optim.SGD(model.parameters(), lr=0.01)\n",
+        "\n",
+        "# Realizar la retropropagación\n",
+        "optimizer.zero_grad()\n",
+        "\n",
+        "# loss.backward()\n",
+        "\n",
+        "# Actualizar los pesos\n",
+        "optimizer.step()"
+      ],
+      "id": "e835d7b9",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "En este caso, utilizamos el optimizador `SGD` con una tasa de aprendizaje de 0.01. Primero, llamamos al método `zero_grad` para restablecer los gradientes de los pesos de la red neuronal artificial. Luego, llamamos al método `backward` para calcular los gradientes de la función de pérdida con respecto a los pesos. Finalmente, llamamos al método `step` para actualizar los pesos de la red neuronal artificial utilizando el algoritmo de optimización.\n",
+        "\n",
+        "Estos pasos se repiten varias veces para entrenar la red neuronal artificial en un conjunto de datos.\n",
+        "\n",
+        "### Preparación de los datos\n",
+        "\n",
+        "Para entrenar una red neuronal artificial, primero debemos preparar los datos en tensores de PyTorch.\n"
+      ],
+      "id": "b42bab87"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import numpy as np\n",
+        "import pandas as pd\n",
+        "from sklearn.datasets import load_iris\n",
+        "from sklearn.model_selection import train_test_split\n",
+        "\n",
+        "# Cargar la base de datos iris\n",
+        "iris = load_iris()\n",
+        "X = iris.data\n",
+        "y = iris.target\n",
+        "\n",
+        "# Dividir la base de datos en entrenamiento y prueba\n",
+        "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1014)\n",
+        "\n",
+        "# Convertir los datos a tensores de PyTorch\n",
+        "X_train = torch.tensor(X_train, dtype=torch.float32)\n",
+        "X_test = torch.tensor(X_test, dtype=torch.float32)\n",
+        "y_train = torch.tensor(y_train, dtype=torch.long)\n",
+        "y_test = torch.tensor(y_test, dtype=torch.long)\n",
+        "\n",
+        "print(X_train.shape)\n",
+        "print(X_test.shape)\n",
+        "print(y_train.shape)\n",
+        "print(y_test.shape)"
+      ],
+      "id": "68274d24",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Los datos tipo `torch.long` es equivalente a `int64` en `NumPy` y se utiliza para representar las etiquetas de las clases. \n",
+        "\n",
+        "\n",
+        "### Red Neuronal con PyTorch\n",
+        "\n",
+        "Vamos a definir una red neuronal de 2 capas ocultas con 4 neuronas cada capa y una capa de salida con 3 neuronas.\n"
+      ],
+      "id": "47484f08"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "class NeuralNetwork(nn.Module):\n",
+        "    def __init__(self):\n",
+        "        super(NeuralNetwork, self).__init__()\n",
+        "        self.fc1 = nn.Linear(4, 4)\n",
+        "        self.fc2 = nn.Linear(4, 4)\n",
+        "        self.fc3 = nn.Linear(4, 3)\n",
+        "        self.relu = nn.ReLU()\n",
+        "        self.softmax = nn.Softmax(dim=1)\n",
+        "        \n",
+        "    def forward(self, x):\n",
+        "        x = self.relu(self.fc1(x))\n",
+        "        x = self.relu(self.fc2(x))\n",
+        "        x = self.fc3(x)\n",
+        "        x = self.softmax(x)\n",
+        "        return x\n",
+        "    \n",
+        "    def predict(self, x):\n",
+        "        with torch.no_grad():\n",
+        "            y = self.forward(x)\n",
+        "            return torch.argmax(y, dim=1)\n",
+        "    \n",
+        "model = NeuralNetwork()\n",
+        "\n",
+        "print(model)"
+      ],
+      "id": "b62badaa",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Ahora creemos una función para entrenar la red neuronal.\n"
+      ],
+      "id": "a9783f44"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "def train(model, X_train, y_train, criterion, optimizer, epochs):\n",
+        "    for epoch in range(epochs):\n",
+        "        optimizer.zero_grad()\n",
+        "        y_pred = model(X_train)\n",
+        "        loss = criterion(y_pred, y_train)\n",
+        "        loss.backward()\n",
+        "        optimizer.step()\n",
+        "        \n",
+        "        if (epoch + 1) % 50 == 0:\n",
+        "            print(f\"Epoch {epoch + 1}/{epochs}, Loss: {loss.item()}\")"
+      ],
+      "id": "e59a5629",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Ahora vamos a entrenar la red neuronal.\n"
+      ],
+      "id": "7b2f1eb5"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "criterion = nn.CrossEntropyLoss()\n",
+        "optimizer = optim.SGD(model.parameters(), lr=0.01)\n",
+        "\n",
+        "train(model, X_train, y_train, criterion, optimizer, epochs=1000)"
+      ],
+      "id": "bc123d7e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Finalmente, vamos a evaluar la red neuronal en la base de datos de prueba.\n"
+      ],
+      "id": "903d1a36"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "y_pred = model.predict(X_test)\n",
+        "\n",
+        "print(y_pred)"
+      ],
+      "id": "1cae325b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Calculamos la precisión de la red neuronal.\n"
+      ],
+      "id": "751c65e5"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "accuracy = torch.sum(y_pred == y_test).item() / len(y_test)\n",
+        "\n",
+        "print(f\"Accuracy: {accuracy}\")"
+      ],
+      "id": "75587340",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Como vemos, la red tiene un precisión muy baja, esto se debe a que la red neuronal es muy compleja para el problema que estamos tratando de resolver. Dismunuyamos la complejidad de la red neuronal.\n"
+      ],
+      "id": "096f6a62"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "class NeuralNetwork(nn.Module):\n",
+        "    def __init__(self):\n",
+        "        super(NeuralNetwork, self).__init__()\n",
+        "        self.fc1 = nn.Linear(4, 2)\n",
+        "        self.fc2 = nn.Linear(2, 3)\n",
+        "        self.relu = nn.ReLU()\n",
+        "        self.softmax = nn.Softmax(dim=1)\n",
+        "        \n",
+        "    def forward(self, x):\n",
+        "        x = self.relu(self.fc1(x))\n",
+        "        x = self.fc2(x)\n",
+        "        x = self.softmax(x)\n",
+        "        return x\n",
+        "    \n",
+        "    def predict(self, x):\n",
+        "        with torch.no_grad():\n",
+        "            y = self.forward(x)\n",
+        "            return torch.argmax(y, dim=1)\n",
+        "\n",
+        "model = NeuralNetwork()\n",
+        "\n",
+        "print(model)"
+      ],
+      "id": "b3f98446",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Entrenamos la red neuronal.\n"
+      ],
+      "id": "6e6f70b8"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "criterion = nn.CrossEntropyLoss()\n",
+        "optimizer = optim.SGD(model.parameters(), lr=0.1)\n",
+        "\n",
+        "train(model, X_train, y_train, criterion, optimizer, epochs=1500)"
+      ],
+      "id": "b2cbfd49",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Evaluamos la red neuronal.\n"
+      ],
+      "id": "cc747e24"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "y_pred = model.predict(X_test)\n",
+        "\n",
+        "accuracy = torch.sum(y_pred == y_test).item() / len(y_test)\n",
+        "\n",
+        "print(f\"Accuracy: {accuracy}\")"
+      ],
+      "id": "0a3dee51",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Esto mejora la precisión de la red neuronal. Podemos visualizar la matriz de confusión.\n"
+      ],
+      "id": "7c534cb1"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from sklearn.metrics import confusion_matrix\n",
+        "import seaborn as sns\n",
+        "\n",
+        "cm = confusion_matrix(y_test, y_pred)\n",
+        "\n",
+        "sns.heatmap(cm, annot=True, fmt='d', \n",
+        "            xticklabels=iris.target_names, \n",
+        "            yticklabels=iris.target_names,\n",
+        "            cmap='Blues')"
+      ],
+      "id": "4975d27c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Aspectos importantes\n",
+        "\n",
+        "La inicialización de los pesos de la red neuronal puede afectar significativamente el rendimiento del modelo. En general, es importante inicializar los pesos de la red neuronal de manera que no se saturen las neuronas y se evite el problema del desvanecimiento o explosión del gradiente. Existen diversas técnicas de inicialización de pesos que se pueden utilizar para mejorar el rendimiento de la red neuronal artificial. Una de ellas es la **inicialización de Xavier**, que ajusta los pesos de la red neuronal de manera que la varianza de las salidas de las neuronas sea igual a la varianza de las entradas de las neuronas.\n",
+        "\n",
+        "Otro aspecto importante es la **regularización de la red neuronal**, que se utiliza para evitar el sobreajuste de la red neuronal a los datos de entrenamiento. Existen diversas técnicas de regularización que se pueden utilizar para mejorar el rendimiento de la red neuronal artificial. Una de ellas es la **regularización L2**, que penaliza los pesos de la red neuronal para evitar que se vuelvan demasiado grandes.\n",
+        "\n",
+        "Además, es importante ajustar los hiperparámetros de la red neuronal, como el número de capas ocultas, el número de neuronas en cada capa oculta, la tasa de aprendizaje, el número de épocas de entrenamiento, etc. para mejorar el rendimiento de la red neuronal artificial.\n",
+        "\n",
+        "Es importante la escala de los datos, ya que si los datos no están normalizados, la red neuronal puede tener dificultades para converger. Por lo tanto, es importante normalizar los datos antes de entrenar la red neuronal artificial.\n",
+        "\n",
+        "Existen diversas formas de normalizar los datos, como la normalización min-max, la normalización z-score, la normalización por rango, etc. En python, podemos utilizar la librería `scikit-learn` para normalizar los datos.\n"
+      ],
+      "id": "4c7eaaa7"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from sklearn.preprocessing import MinMaxScaler\n",
+        "from sklearn.preprocessing import StandardScaler\n",
+        "from sklearn.preprocessing import RobustScaler\n",
+        "\n",
+        "# Normalizar los datos utilizando la normalización min-max\n",
+        "scaler = MinMaxScaler()\n",
+        "X_train = scaler.fit_transform(X_train)\n",
+        "X_test = scaler.transform(X_test)\n",
+        "\n",
+        "df = pd.DataFrame(X_train, columns=iris.feature_names)\n",
+        "print(df.head())\n",
+        "\n",
+        "# Normalizar los datos utilizando la normalización z-score\n",
+        "scaler = StandardScaler()\n",
+        "\n",
+        "X_train = scaler.fit_transform(X_train)\n",
+        "X_test = scaler.transform(X_test)\n",
+        "\n",
+        "df = pd.DataFrame(X_train, columns=iris.feature_names)\n",
+        "print(df.head())\n",
+        "\n",
+        "# Normalizar los datos utilizando la normalización por rango\n",
+        "scaler = RobustScaler()\n",
+        "\n",
+        "X_train = scaler.fit_transform(X_train)\n",
+        "X_test = scaler.transform(X_test)\n",
+        "\n",
+        "df = pd.DataFrame(X_train, columns=iris.feature_names)\n",
+        "print(df.head())"
+      ],
+      "id": "a5e68b01",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Es importante realizar este proceso **después** de haber dividido los datos en entrenamiento y prueba, para evitar el sesgo en la evaluación del modelo, ya que si se realiza antes de dividir los datos, se estaría utilizando información de la base de datos de prueba para normalizar los datos de entrenamiento y dar de forma indirecta información de la base de datos de prueba a la red neuronal.\n",
+        "\n",
+        "# `TensorFlow`\n",
+        "\n",
+        "`TensorFlow` es una librería de Python que permite implementar redes neuronales artificiales de manera eficiente. En particular, `TensorFlow` incluye una clase llamada `tf.keras.Sequential` que permite definir la arquitectura de la red neuronal artificial.\n",
+        "\n",
+        "### Uso básico de TensorFlow\n",
+        "\n",
+        "Para utilizar `TensorFlow`, primero debemos instalar la librería.\n",
+        "\n",
+        "\n",
+        "```{bash}\n",
+        "!pip install tensorflow\n",
+        "```\n",
+        "\n",
+        "\n",
+        "`Tensorflow` se basa igualmente en el uso de tensores para realizar operaciones matemáticas.\n"
+      ],
+      "id": "f28df0bc"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import tensorflow as tf\n",
+        "\n",
+        "# Crear un tensor de ceros\n",
+        "x = tf.zeros((2, 3))\n",
+        "\n",
+        "print(x)"
+      ],
+      "id": "cdf74715",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Podemos realizar operaciones matemáticas con tensores en `TensorFlow`.\n"
+      ],
+      "id": "926fc07b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Crear dos tensores\n",
+        "x = tf.constant([[1, 2], [3, 4]], dtype=tf.float32)\n",
+        "y = tf.constant([[5, 6], [7, 8]], dtype=tf.float32)\n",
+        "\n",
+        "# Sumar los tensores\n",
+        "z = x + y\n",
+        "\n",
+        "print(z)\n",
+        "\n",
+        "# Multiplicar los tensores\n",
+        "z = x * y\n",
+        "\n",
+        "print(z)\n",
+        "\n",
+        "# Multiplicar un tensor por un escalar\n",
+        "z = 2 * x\n",
+        "\n",
+        "print(z)\n",
+        "\n",
+        "# Calcular la transpuesta de un tensor\n",
+        "z = tf.transpose(x)"
+      ],
+      "id": "1d6673a6",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Todo las operaciones que se pueden realizar en `PyTorch` se pueden realizar en `TensorFlow`.\n",
+        "\n",
+        "### Estructura de una red neuronal artificial en TensorFlow\n",
+        "\n",
+        "Veamos las distintas partes de una red neuronal artificial en `TensorFlow`.\n",
+        "\n",
+        "#### Ejemplo de clasificación\n",
+        "\n",
+        "En este ejemplo, vamos a utilizar la base de datos `iris` para entrenar una red neuronal artificial que permita clasificar las flores en tres categorías: `setosa`, `versicolor` y `virginica`.\n"
+      ],
+      "id": "c5f719a5"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import tensorflow as tf\n",
+        "\n",
+        "# Crear la red neuronal artificial\n",
+        "model = tf.keras.Sequential([\n",
+        "    tf.keras.Input(shape=(4,)),\n",
+        "    tf.keras.layers.Dense(10, activation='relu'),\n",
+        "    tf.keras.layers.Dense(10, activation='relu'),\n",
+        "    tf.keras.layers.Dense(3, activation='softmax')\n",
+        "])\n",
+        "\n",
+        "model.summary()"
+      ],
+      "id": "37488e8d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Con `TensorFlow` se puede definir la red neuronal de manera más sencilla que con `PyTorch`. En este caso, utilizamos la clase `tf.keras.Sequential` para definir la arquitectura de la red neuronal artificial. La clase `tf.keras.layers.Dense` representa una capa de neuronas completamente conectada. En este caso, definimos tres capas de neuronas con 10, 10 y 3 neuronas respectivamente. La función `tf.keras.Input` define la capa de entrada de la red neuronal.\n",
+        "\n",
+        "Vamos a entrenar la red neuronal.\n"
+      ],
+      "id": "ddf5afbb"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import numpy as np\n",
+        "import pandas as pd\n",
+        "from sklearn.datasets import load_iris\n",
+        "from sklearn.model_selection import train_test_split\n",
+        "\n",
+        "# Cargar la base de datos iris\n",
+        "iris = load_iris()\n",
+        "X = iris.data\n",
+        "y = iris.target\n",
+        "\n",
+        "# Dividir la base de datos en entrenamiento y prueba\n",
+        "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1014)\n",
+        "\n",
+        "# Convertir los datos a tensores de TensorFlow\n",
+        "X_train = tf.constant(X_train, dtype=tf.float32)\n",
+        "X_test = tf.constant(X_test, dtype=tf.float32)\n",
+        "\n",
+        "y_train = tf.constant(y_train, dtype=tf.int64)\n",
+        "y_test = tf.constant(y_test, dtype=tf.int64)\n",
+        "\n",
+        "print(X_train.shape)\n",
+        "print(X_test.shape)\n",
+        "\n",
+        "print(y_train.shape)\n",
+        "print(y_test.shape)\n",
+        "\n",
+        "# Compilar la red neuronal\n",
+        "model.compile(optimizer='sgd', loss='sparse_categorical_crossentropy', metrics=['accuracy'])\n",
+        "\n",
+        "# Entrenar la red neuronal\n",
+        "model.fit(X_train, y_train, epochs=1000, verbose=0)\n",
+        "\n",
+        "# Evaluar la red neuronal\n",
+        "loss, accuracy = model.evaluate(X_test, y_test)\n",
+        "\n",
+        "print(f\"Loss: {loss}, Accuracy: {accuracy}\")"
+      ],
+      "id": "f9bc97e8",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Con el método `compile` se compila la red neuronal con un optimizador, una función de pérdida y métricas de evaluación. En este caso, utilizamos el optimizador `sgd` (descenso de gradiente estocástico), la función de pérdida `sparse_categorical_crossentropy` y la métrica `accuracy` para evaluar la precisión de la red neuronal.\n",
+        "\n",
+        "Con el método `fit` se entrena la red neuronal con los datos de entrenamiento. En este caso, utilizamos 1000 épocas de entrenamiento. El argumento `verbose=0` indica que no se mostrará información sobre el entrenamiento, para mostrar la información se puede cambiar a `verbose=1`.\n",
+        "\n",
+        "Con el método `evaluate` se evalúa la red neuronal con los datos de prueba. El método `evaluate` devuelve la pérdida y la precisión de la red neuronal en los datos de prueba. \n",
+        "\n",
+        "Podemos obtener las predicciones de la red neuronal para la base de datos de prueba.\n"
+      ],
+      "id": "139ce92b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "y_pred = model.predict(X_test)\n",
+        "\n",
+        "print(y_pred)"
+      ],
+      "id": "02e9a6e1",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Para obtener la clase predicha, podemos usar la función `argmax` de `NumPy`.\n"
+      ],
+      "id": "e06b8759"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "y_pred = np.argmax(y_pred, axis=1)\n",
+        "\n",
+        "print(y_pred)"
+      ],
+      "id": "0b81033c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Podemos visualizar la matriz de confusión.\n"
+      ],
+      "id": "daef45d1"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from sklearn.metrics import confusion_matrix\n",
+        "import seaborn as sns\n",
+        "\n",
+        "cm = confusion_matrix(y_test, y_pred)\n",
+        "\n",
+        "sns.heatmap(cm, annot=True, fmt='d', \n",
+        "            xticklabels=iris.target_names, \n",
+        "            yticklabels=iris.target_names,\n",
+        "            cmap='Blues')"
+      ],
+      "id": "153b078d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Salvando y cargando modelos\n",
+        "\n",
+        "En `PyTorch` se pueden guardar y cargar modelos utilizando el método `save` y `load`.\n"
+      ],
+      "id": "9931a607"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Guardar el modelo\n",
+        "#torch.save(model.state_dict(), 'model.pth')\n",
+        "\n",
+        "# Cargar el modelo\n",
+        "#model.load_state_dict(torch.load('model.pth'))"
+      ],
+      "id": "9badf164",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "En `TensorFlow` se pueden guardar y cargar modelos utilizando el método `save` y `load`.\n"
+      ],
+      "id": "9f32cfe9"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Guardar el modelo\n",
+        "model.save('model.keras')\n",
+        "\n",
+        "# Cargar el modelo\n",
+        "#model = keras.models.load_model('path/to/location.keras')"
+      ],
+      "id": "345d8709",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Esto sirve para guardar el modelo y poder utilizarlo en otro momento sin tener que volver a entrenarlo.\n",
+        "\n",
+        "# Conclusiones\n",
+        "\n",
+        "En este tutorial, hemos visto cómo implementar redes neuronales artificiales en Python utilizando las librerías `scikit-learn`, `PyTorch` y `TensorFlow`. Hemos visto cómo cargar una base de datos, dividirla en entrenamiento y prueba, definir la arquitectura de la red neuronal, entrenar la red neuronal, evaluar la red neuronal y visualizar la matriz de confusión. También hemos visto cómo normalizar los datos y ajustar los hiperparámetros de la red neuronal para mejorar el rendimiento del modelo."
+      ],
+      "id": "812d13eb"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "C:\\Users\\crish\\AppData\\Local\\Programs\\Python\\Python313\\share\\jupyter\\kernels\\python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

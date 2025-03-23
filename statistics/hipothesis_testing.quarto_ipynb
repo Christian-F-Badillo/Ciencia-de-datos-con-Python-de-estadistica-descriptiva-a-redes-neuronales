@@ -1,0 +1,562 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Prueba de Hipótesis\"\n",
+        "author: \"Christian Badillo\"\n",
+        "format: html\n",
+        "date: today\n",
+        "order: 4\n",
+        "---\n",
+        "\n",
+        "\n",
+        "Dentro del quehacer de la ciencia, una de las tareas más comunes es la de probar hipótesis. En términos generales, una hipótesis es una afirmación que se hace sobre el valor de un parámetro poblacional. Por ejemplo, una hipótesis podría ser que la media de una población es igual a un valor específico. Para probar esta hipótesis, se recolecta una muestra de la población y se calcula la media muestral. Si la media muestral es muy diferente de la media hipotética, entonces se puede concluir que la hipótesis es falsa. En este caso, se dice que la hipótesis es rechazada. Por otro lado, si la media muestral es muy similar a la media hipotética, entonces se puede concluir que la hipótesis es verdadera. En este caso, se dice que la hipótesis es aceptada.\n",
+        "\n",
+        "No debemos tomar tan a la ligera la decisión de rechazar o aceptar una hipótesis. Siempre existe la posibilidad de que la muestra que se recolectó no sea representativa de la población. Por lo tanto, es importante tener en cuenta el error que se comete al rechazar una hipótesis verdadera. Este error se conoce como **error de tipo I**. Por otro lado, también es importante tener en cuenta el error que se comete al aceptar una hipótesis falsa. Este error se conoce como **error de tipo II**. En general, se busca minimizar ambos errores. Sin embargo, es imposible minimizar ambos errores al mismo tiempo. Por lo tanto, se debe tomar una decisión sobre cuál de los dos errores es más grave. Esta decisión depende del contexto en el que se esté trabajando. Pero en general, se prefiere minimizar el error de tipo I.\n",
+        "\n",
+        "Para probar una hipótesis, se sigue un procedimiento estándar. \n",
+        "\n",
+        "1. Plantear un modelo base o hipótesis nula, normalmente es que el valor de un parámetro poblacional es igual a cero o que la diferencia entre parametros poblacionales es igual a cero. Se denota como $H_0$.\n",
+        "\n",
+        "2. Plantear un modelo alternativo o hipótesis alterna, que puede ser que el valor de un parámetro poblacional es diferente de cero o que la diferencia entre parametros poblacionales es diferente de cero. Se denota como $H_1$.\n",
+        "\n",
+        "3. Recolectar una muestra de la población y calcular el estadístico de prueba. Esto depende de la hipótesis que se esté probando, el tipo de datos que se tengan y el tamaño de la muestra.\n",
+        "\n",
+        "4. Calcular el valor p. El valor p es la probabilidad de obtener un estadístico de prueba tan extremo como el que se obtuvo dado que la hipótesis nula es verdadera. Si el valor p es menor que un nivel de significancia predefinido, entonces se dice que hay evidencia para rechazar la hipótesis nula.\n",
+        "\n",
+        "El valor p depende directamente de los datos y del procedimiento de su recolección. Por si mismo no es suficiente para tomar una decisión. Por lo tanto, es importante tener en cuenta el contexto en el que se está trabajando. Una medida auxiliar es el **poder** de la prueba. El poder de una prueba es la probabilidad de rechazar la hipótesis nula dado que la hipótesis nula es falsa. En general, se busca que el poder de la prueba sea lo más alto posible. Sin embargo, el poder de la prueba depende de varios factores, como el tamaño de la muestra, el nivel de significancia y la magnitud del efecto.\n",
+        "\n",
+        "De mayor importancia que obtener valores p bajos es tener un buen diseño experimental. Un buen diseño experimental es aquel que permite obtener resultados confiables y válidos. Para ello, es importante tener en cuenta varios factores, como el tamaño de la muestra, la selección de la muestra, la recolección de los datos y el análisis de los datos. En general, se busca que el diseño experimental sea lo más simple posible. Sin embargo, es importante tener en cuenta que un diseño experimental simple no siempre es el mejor.\n",
+        "\n",
+        "Una medida que se sugiera reportar el **tamaño del efecto** de la prueba. El tamaño del efecto es una medida de la magnitud del efecto que se está estudiando, es de gran importancia en la interpretación de los resultados. Puede ser absoluta o relativo.\n",
+        "\n",
+        "Existen distintas medidas del tamaño del efecto, como la diferencia de medias, la razón de medias, la diferencia de proporciones, la razón de proporciones, la correlación, la regresión, entre otras. La elección de la medida del tamaño del efecto depende del contexto en el que se esté trabajando. En general, se busca que el tamaño del efecto sea lo más grande posible. Sin embargo, es importante tener en cuenta que un tamaño del efecto grande no siempre es mejor. Por ejemplo, un tamaño del efecto grande puede ser el resultado de un error en la recolección de los datos.\n",
+        "\n",
+        "## Prueba de Hipótesis para la Media de una Población.\n",
+        "\n",
+        "Supongamos que tenemos los datos de la estatura de 1000 personas y queremos saber si la media es distinta de 1.70 m. Para ello, planteamos las siguientes hipótesis:\n",
+        "\n",
+        "$$H_0: \\mu = 1.70$$\n",
+        "\n",
+        "$$H_1: \\mu \\neq 1.70$$\n",
+        "\n",
+        "Donde $\\mu$ es la media de la población. Supongamos que la media muestral es de 1.75 m y la desviación estándar es de 0.10 m. Para probar estas hipótesis, calculamos el estadístico de prueba:\n",
+        "\n",
+        "$$t = \\frac{\\bar{x} - \\mu}{s/\\sqrt{n}}$$\n",
+        "\n",
+        "Donde $\\bar{x}$ es la media muestral, $s$ es la desviación estándar muestral y $n$ es el tamaño de la muestra. En este caso, el valor del estadístico de prueba es:\n",
+        "\n",
+        "$$t = \\frac{1.75 - 1.70}{0.10/\\sqrt{1000}} = 15.81$$\n",
+        "\n",
+        "Para calcular el valor p, necesitamos la distribución del estadístico de prueba. En este caso, la distribución del estadístico de prueba es una distribución t de Student con 999 grados de libertad. El valor p es la probabilidad de obtener un estadístico de prueba tan extremo como el que se obtuvo dado que la hipótesis nula es verdadera. En este caso, el valor p es:\n"
+      ],
+      "id": "7b5906dc"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import scipy.stats as stats\n",
+        "\n",
+        "t = 15.81\n",
+        "p = 2 * (1 - stats.t.cdf(t, 999))\n",
+        "\n",
+        "print(f'El valor p es {p}')"
+      ],
+      "id": "cbef99df",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Visualizemos la distribución del estadístico de prueba:\n"
+      ],
+      "id": "6b3e4c59"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import matplotlib.pyplot as plt\n",
+        "import numpy as np\n",
+        "\n",
+        "x = np.linspace(-20, 20, 1000)\n",
+        "y = stats.t.pdf(x, 999)\n",
+        "\n",
+        "plt.plot(x, y)\n",
+        "plt.axvline(t, color='red', linestyle='--')\n",
+        "plt.xlabel('Estadístico de Prueba')\n",
+        "plt.ylabel('Densidad')\n",
+        "plt.title('Distribución del Estadístico de Prueba')\n",
+        "\n",
+        "plt.show()"
+      ],
+      "id": "473d2243",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Si definimos un nivel de significancia de 0.05, entonces podemos concluir que hay evidencia para rechazar la hipótesis nula. Por lo tanto, podemos concluir que la media de la población es distinta de 1.70 m.\n",
+        "\n",
+        "La regigión crítica es aquella en la que se rechaza la hipótesis nula, debe sumar el nivel de significancia. Visualicemos la región crítica:\n"
+      ],
+      "id": "82d0d1ce"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "x = np.linspace(-20, 20, 1000)\n",
+        "y = stats.t.pdf(x, 999)\n",
+        "\n",
+        "plt.plot(x, y)\n",
+        "plt.axvline(t, color='red', linestyle='--')\n",
+        "\n",
+        "t1 = stats.t.ppf(0.025, 999) # 0.025 porque es una prueba de dos colas\n",
+        "t2 = stats.t.ppf(0.975, 999) # 0.975 porque es una prueba de dos colas\n",
+        "\n",
+        "plt.fill_between(x, y, where=(x < t1), color='green', alpha=0.5)\n",
+        "plt.fill_between(x, y, where=(x > t2), color='green', alpha=0.5)\n",
+        "\n",
+        "\n",
+        "plt.xlabel('Estadístico de Prueba')\n",
+        "plt.ylabel('Densidad')\n",
+        "plt.title('Distribución del Estadístico de Prueba')\n",
+        "\n",
+        "plt.show()"
+      ],
+      "id": "94e85192",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Observamos que el estadístico de prueba cae en la región crítica. Por lo tanto, podemos concluir que hay evidencia para rechazar la hipótesis nula.\n",
+        "\n",
+        "Podemos hacer este test con la función `ttest_1samp` de `scipy.stats`:\n"
+      ],
+      "id": "19745f02"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "np.random.seed(123)\n",
+        "x = np.random.normal(1.75, 0.10, 1000)\n",
+        "\n",
+        "result = stats.ttest_1samp(x, 1.70)\n",
+        "lower, upper = result.confidence_interval(confidence_level=0.95)\n",
+        "\n",
+        "print(f'El valor p es {result.pvalue}')\n",
+        "print(f'El estadístico de prueba es {result.statistic}')\n",
+        "print(f\"Los grado de libertad son {result.df}\")\n",
+        "print(f\"El intervalo de confianza para la media es [{lower}, {upper}]\")"
+      ],
+      "id": "05841fff",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Prueba de Hipótesis para la Diferencia de Medias de dos Poblaciones.\n",
+        "\n",
+        "Supongamos que tenemos los datos de la estatura de 1000 hombres y 1000 mujeres y queremos saber si la media de los hombres es distinta de la media de las mujeres. Para ello, planteamos las siguientes hipótesis:\n",
+        "\n",
+        "$$H_0: \\mu_1 - \\mu_2 = 0$$\n",
+        "\n",
+        "$$H_1: \\mu_1 - \\mu_2 \\neq 0$$\n",
+        "\n",
+        "Donde $\\mu_1$ es la media de los hombres y $\\mu_2$ es la media de las mujeres. Supongamos que la media de los hombres es de 1.75 m, la desviación estándar de los hombres es de 0.10 m, la media de las mujeres es de 1.55 m y la desviación estándar de las mujeres es de 0.10 m. Para probar estas hipótesis, calculamos el estadístico de prueba:\n",
+        "\n",
+        "$$t = \\frac{\\bar{x}_1 - \\bar{x}_2}{\\sqrt{s_1^2/n_1 + s_2^2/n_2}}$$\n",
+        "\n",
+        "Donde $\\bar{x}_1$ es la media de los hombres, $\\bar{x}_2$ es la media de las mujeres, $s_1$ es la desviación estándar de los hombres, $s_2$ es la desviación estándar de las mujeres, $n_1$ es el tamaño de la muestra de los hombres y $n_2$ es el tamaño de la muestra de las mujeres. En este caso, el valor del estadístico de prueba es:\n",
+        "\n",
+        "$$t = \\frac{1.75 - 1.55}{\\sqrt{0.10^2/1000 + 0.10^2/1000}} = 31.62$$\n",
+        "\n",
+        "Generemos datos con python y calculemos el estadístico de prueba:\n"
+      ],
+      "id": "fef84c58"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "np.random.seed(123)\n",
+        "x1 = np.random.normal(1.75, 0.10, 1000)\n",
+        "\n",
+        "np.random.seed(123)\n",
+        "x2 = np.random.normal(1.55, 0.10, 1000)\n",
+        "\n",
+        "t = (x1.mean() - x2.mean()) / np.sqrt((x1.var() / 1000) + (x2.var() / 1000))\n",
+        "\n",
+        "print(f'El estadístico de prueba es {t}')"
+      ],
+      "id": "8a5cc08a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Para calcular el valor p, necesitamos la distribución del estadístico de prueba. En este caso, la distribución del estadístico de prueba es una distribución t de Student con 1998 grados de libertad. Los grados se calculan como $n_1 + n_2 - 2$. Visualicemos la distribución del estadístico de prueba, la región crítica y el valor p:\n"
+      ],
+      "id": "bf0861ab"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "x = np.linspace(-50, 50, 5000)\n",
+        "y = stats.t.pdf(x, 1998)\n",
+        "\n",
+        "fig, ax = plt.subplots(figsize=(10, 5))\n",
+        "\n",
+        "ax.plot(x, y)\n",
+        "ax.axvline(t, color='red', linestyle='--')\n",
+        "\n",
+        "t1 = stats.t.ppf(0.025, 1998) \n",
+        "t2 = stats.t.ppf(0.975, 1998)\n",
+        "\n",
+        "ax.fill_between(x, y, where=(x < t1), color='green', alpha=0.5)\n",
+        "ax.fill_between(x, y, where=(x > t2), color='green', alpha=0.5)\n",
+        "\n",
+        "plt.xlabel('Estadístico de Prueba')\n",
+        "plt.ylabel('Densidad')\n",
+        "plt.title('Distribución del Estadístico de Prueba')\n",
+        "\n",
+        "plt.show()"
+      ],
+      "id": "a4bfe44b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Como el valor p es muy pequeño, podemos concluir que hay evidencia para rechazar la hipótesis nula. Por lo tanto, podemos concluir que la media de los hombres es distinta de la media de las mujeres.\n",
+        "\n",
+        "Podemos hacer este test con la función `ttest_ind` de `scipy.stats`:\n"
+      ],
+      "id": "144cf9f5"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "result = stats.ttest_ind(x1, x2)\n",
+        "\n",
+        "lower, upper = result.confidence_interval(confidence_level=0.95)\n",
+        "\n",
+        "print(f'El valor p es {result.pvalue}')\n",
+        "print(f'El estadístico de prueba es {result.statistic}')\n",
+        "print(f\"Los grado de libertad son {result.df}\")\n",
+        "print(f\"El intervalo de confianza para la diferencia de medias es [{lower}, {upper}]\")\n",
+        "print(f\"Diff de medias {x1.mean() - x2.mean()}\")"
+      ],
+      "id": "e2d11a12",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Con `statsmodels` igualmente podemos hacer este test:\n"
+      ],
+      "id": "b5a4b838"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import statsmodels.api as sm\n",
+        "\n",
+        "ttest = sm.stats.ttest_ind(x1, x2)\n",
+        "\n",
+        "print(f'El estadístico de prueba es {ttest[0]}')\n",
+        "print(f'El valor p es {ttest[1]}')\n",
+        "print(f\"Los grado de libertad son {ttest[2]}\")"
+      ],
+      "id": "bea87d97",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Tamaño del Efecto\n",
+        "\n",
+        "El tamaño del efecto es una medida de la magnitud del efecto que se está estudiando. En este caso, el tamaño del efecto es:\n",
+        "\n",
+        "$$d = \\frac{\\bar{x}_1 - \\bar{x}_2}{s}$$\n",
+        "\n",
+        "Donde $\\bar{x}_1$ es la media de los hombres, $\\bar{x}_2$ es la media de las mujeres, $s$ es la desviación estándár combinada, que Jacob Cohen sugiere que se calcule como:\n",
+        "\n",
+        "$$s = \\sqrt{\\frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}}$$\n",
+        "\n",
+        "La varianza para cada grupo se calcula como:\n",
+        "\n",
+        "$$s_i^2 = \\frac{\\sum_{j=1}^{n_1}(x_{ij} - \\bar{x}_i)^2}{n_i - 1}$$\n",
+        "\n",
+        "En esta tabla podemos ver el tamaño del efecto para distintos valores de $d$:\n",
+        "\n",
+        "| Tamaño del Efecto | d |\n",
+        "|-------------------|---|\n",
+        "| Muy Pequeño | 0.01 |\n",
+        "| Pequeño | 0.20 |\n",
+        "| Mediano | 0.50 |\n",
+        "| Grande | 0.80 |\n",
+        "| Muy Grande | 1.20 |\n",
+        "| Enorme | 2.00 |\n",
+        "\n",
+        "Vamos a crear una función que calcule el tamaño del efecto:\n"
+      ],
+      "id": "72793e37"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "def effect_size(x1, x2):\n",
+        "    n1 = len(x1)\n",
+        "    n2 = len(x2)\n",
+        "    \n",
+        "    s1 = np.sqrt(np.sum((x1 - x1.mean())**2) / (n1 - 1))\n",
+        "    s2 = np.sqrt(np.sum((x2 - x2.mean())**2) / (n2 - 1))\n",
+        "    \n",
+        "    s = np.sqrt(((n1 - 1) * s1**2 + (n2 - 1) * s2**2) / (n1 + n2 - 2))\n",
+        "    \n",
+        "    d = (x1.mean() - x2.mean()) / s\n",
+        "    \n",
+        "    return d\n",
+        "\n",
+        "d = effect_size(x1, x2)\n",
+        "\n",
+        "print(f'El tamaño del efecto es {d}')"
+      ],
+      "id": "69b740f1",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "El efecto es muy grande, por lo que podemos concluir que la diferencia entre las medias de los hombres y las mujeres es muy grande.\n",
+        "\n",
+        "## Prueba de Hipótesis para más de dos Poblaciones.\n",
+        "\n",
+        "Supongamos que tenemos los datos de la estatura de 1000 personas de tres países distintos y queremos saber si la media de las tres poblaciones es distinta. Para ello, planteamos las siguientes hipótesis:\n",
+        "\n",
+        "$$H_0: \\mu_1 = \\mu_2 = \\mu_3$$\n",
+        "\n",
+        "$$H_1: \\mu_1 \\neq \\mu_2 \\neq \\mu_3$$\n",
+        "\n",
+        "Donde $\\mu_1$ es la media de las personas del país 1, $\\mu_2$ es la media de las personas del país 2 y $\\mu_3$ es la media de las personas del país 3. Supongamos que la media de las personas del país 1 es de 1.75 m, la desviación estándar de las personas del país 1 es de 0.10 m, la media de las personas del país 2 es de 1.55 m, la desviación estándar de las personas del país 2 es de 0.10 m, la media de las personas del país 3 es de 1.65 m y la desviación estándar de las personas del país 3 es de 0.10 m. Para probar estas hipótesis, calculamos el estadístico de prueba:\n",
+        "\n",
+        "$$F = \\frac{MS_{\\text{entre}}}{MS_{\\text{dentro}}}$$\n",
+        "\n",
+        "Donde $MS_{\\text{entre}}$ es la media de las varianzas entre las poblaciones y $MS_{\\text{dentro}}$ es la media de las varianzas dentro de las poblaciones. \n",
+        "\n",
+        "$$MS_{\\text{entre}} = \\frac{\\sum_{i=1}^{k}n_i(\\bar{x}_i - \\bar{x})^2}{k - 1}$$\n",
+        "\n",
+        "$$MS_{\\text{dentro}} = \\frac{\\sum_{i=1}^{k}\\sum_{j=1}^{n_i}(x_{ij} - \\bar{x}_i)^2}{n - k}$$\n",
+        "\n",
+        "En este caso, el valor del estadístico de prueba es:\n"
+      ],
+      "id": "e069f8eb"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "np.random.seed(123)\n",
+        "x1 = np.random.normal(1.75, 0.10, 1000)\n",
+        "x2 = np.random.normal(1.55, 0.10, 1000)\n",
+        "x3 = np.random.normal(1.65, 0.10, 1000)\n",
+        "\n",
+        "x = np.concatenate([x1, x2, x3])\n",
+        "\n",
+        "Ms_between = (1000 * (x1.mean() - x.mean())**2 + 1000 * (x2.mean() - x.mean())**2 + 1000 * (x3.mean() - x.mean())**2) / 2\n",
+        "\n",
+        "Ms_within = (np.sum((x1 - x1.mean())**2) + np.sum((x2 - x2.mean())**2) + np.sum((x3 - x3.mean())**2)) / 2997\n",
+        "\n",
+        "F = Ms_between / Ms_within\n",
+        "\n",
+        "print(f'El estadístico de prueba es {F}')"
+      ],
+      "id": "3071ffb4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Para calcular el valor p, necesitamos la distribución del estadístico de prueba. En este caso, la distribución del estadístico de prueba es una distribución F de Fisher con 2 y 2998 grados de libertad. Los grados de libertad se calculan como $k - 1$ y $n - k$, donde $k$ es el número de poblaciones y $n$ es el número total de observaciones. Visualicemos la distribución del estadístico de prueba, la región crítica y el valor p:\n"
+      ],
+      "id": "3785f35b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "x = np.linspace(0, 10, 1000)\n",
+        "y = stats.f.pdf(x, 2, 2998)\n",
+        "\n",
+        "fig, ax = plt.subplots(figsize=(10, 5))\n",
+        "\n",
+        "ax.plot(x, y, label=f'F(2, 2998), F = {round(F, 2)}')\n",
+        "\n",
+        "f1 = stats.f.ppf(0.025, 2, 2998)\n",
+        "f2 = stats.f.ppf(0.975, 2, 2998)\n",
+        "\n",
+        "ax.fill_between(x, y, where=(x < f1), color='green', alpha=0.5)\n",
+        "ax.fill_between(x, y, where=(x > f2), color='green', alpha=0.5)\n",
+        "\n",
+        "plt.xlabel('Estadístico de Prueba')\n",
+        "plt.ylabel('Densidad')\n",
+        "plt.title('Distribución del Estadístico de Prueba')\n",
+        "\n",
+        "plt.legend()\n",
+        "plt.show()"
+      ],
+      "id": "1c7a28bb",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Podemos concluir que hay evidencia para rechazar la hipótesis nula. Por lo tanto, podemos concluir que la media de las tres poblaciones es distinta.\n",
+        "\n",
+        "Podemos hacer este test con la función `f_oneway` de `scipy.stats`:\n"
+      ],
+      "id": "af660b2a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "result = stats.f_oneway(x1, x2, x3)\n",
+        "\n",
+        "print(f'El valor p es {result.pvalue}')\n",
+        "print(f'El estadístico de prueba es {result.statistic}')"
+      ],
+      "id": "345b177f",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Con `statsmodels` igualmente podemos hacer este test:\n"
+      ],
+      "id": "6d23d26b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import statsmodels.api as sm\n",
+        "import pandas as pd\n",
+        "x = np.concatenate([x1, x2, x3])\n",
+        "\n",
+        "df = pd.DataFrame({'x': x, 'group': ['x1'] * 1000 + ['x2'] * 1000 + ['x3'] * 1000})\n",
+        "\n",
+        "linear_model = sm.formula.ols('x ~ group', data=df).fit()\n",
+        "\n",
+        "anova = sm.stats.anova_lm(linear_model)\n",
+        "\n",
+        "print(anova)"
+      ],
+      "id": "29a8272e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "La interpretación es que hay evidencia para rechazar la hipótesis nula de igualdad de medias.\n",
+        "\n",
+        "Para averiguar cuales medias son distintas podemos hacer un test post-hoc, como el test de Tukey:\n"
+      ],
+      "id": "ac399f5a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from statsmodels.stats.multicomp import pairwise_tukeyhsd\n",
+        "\n",
+        "tukey = pairwise_tukeyhsd(df['x'], df['group'])\n",
+        "\n",
+        "print(tukey)"
+      ],
+      "id": "83592356",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "El resultado nos dice que las medias de las tres poblaciones son distintas entre sí de manera significativa.\n",
+        "\n",
+        "Si tuvieramos un grupo de control y varios grupos de tratamiento, podríamos hacer un test de Dunnett:\n"
+      ],
+      "id": "d0c872d7"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from scipy.stats import dunnett\n",
+        "\n",
+        "result = dunnett(x2, x3, control=x1)\n",
+        "\n",
+        "print(result)"
+      ],
+      "id": "c514c1d2",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Existen otros test post-hoc, como el test de Bonferroni, el test de Scheffé, el test de Holm, entre otros. La elección del test post-hoc depende del objetivo del estudio."
+      ],
+      "id": "4dffe07f"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "C:\\Users\\crish\\AppData\\Local\\Programs\\Python\\Python313\\share\\jupyter\\kernels\\python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

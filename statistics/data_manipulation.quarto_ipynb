@@ -1,0 +1,645 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Manipulación de datos con Pandas\"\n",
+        "author: \"Christian Badillo\"\n",
+        "format: html\n",
+        "date: today\n",
+        "order: 1\n",
+        "filters:\n",
+        "  - pyodide\n",
+        "  - fontawesome\n",
+        "  - iconify\n",
+        "---\n",
+        "\n",
+        "\n",
+        "# Bases de datos\n",
+        "\n",
+        "Una base de datos es un conjunto de datos organizados y relacionados entre sí. Existen diferentes tipos de bases de datos, como las bases de datos relacionales y las bases de datos no relacionales. \n",
+        "\n",
+        "Las **bases de datos relacionales** son las más comunes y se basan en el modelo relacional, que organiza los datos en tablas. Cada tabla tiene filas y columnas, donde cada fila representa un registro y cada columna representa un campo. \n",
+        "\n",
+        "Las **bases de datos no relacionales** son aquellas que no se basan en el modelo relacional y pueden tener diferentes estructuras, como documentos, gráficos, clave-valor, entre otros.\n",
+        "\n",
+        "Existen lenguajes de consulta para interactuar con las bases de datos, como SQL (Structured Query Language) para las bases de datos relacionales y NoSQL (*Not only SQL*) para las bases de datos no relacionales.\n",
+        "\n",
+        "Aunque existen paqueterias en Python para interactuar con bases de datos, en este curso nos enfocaremos en la manipulación de datos con Pandas, una librería de Python que nos permite manipular datos de manera sencilla y eficiente. Los datos que cargarémos en este curso son datos en formato CSV, que es un formato de archivo que se utiliza para almacenar datos en forma de tabla.\n",
+        "\n",
+        "A diferencia de las bases de datos, los datos en formato CSV no tienen un motor de base de datos que nos permita interactuar con ellos. Por lo tanto, no podemos hacer consultas con SQL, pero podemos manipular los datos con Pandas.\n",
+        "\n",
+        "\n",
+        "# Manipulación de datos con Pandas\n",
+        "\n",
+        "Pandas es una librería de Python que nos permite manipular datos de manera sencilla y eficiente. En este tutorial aprenderemos a leer, escribir y manipular datos con Pandas. Para leer datos, Pandas soporta una gran variedad de formatos, entre los que se encuentran CSV, Excel, JSON, entre otros.\n",
+        "\n",
+        "Podemos leer los datos de manera local o por medio de una url que contenga los datos en bruto, en otro caso tendremos que ya sea descargar el archivo o usar librerias como requests para obtener los datos. En este caso leeremos los datos de una url desde el github de este curso. Para leer los datos en formato CSV, usamos la función `pd.read_csv()` de Pandas.\n"
+      ],
+      "id": "084f5502"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import pandas as pd # Primero importamos la librería\n",
+        "\n",
+        "url = 'https://raw.githubusercontent.com/Christian-F-Badillo/Ciencia-de-datos-con-Python-de-estadistica-descriptiva-a-redes-neuronales/main/data/archive/mushroom_cleaned.csv' # Definimos la URL del archivo CSV\n",
+        "\n",
+        "data = pd.read_csv(url) # Leemos el archivo CSV"
+      ],
+      "id": "67254720",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Si tuvieramos un archivo CSV en nuestra computadora, podríamos leerlo de la siguiente manera:\n",
+        "\n",
+        "```python\n",
+        "archivo = 'directorio/subdirectorio/archivo.csv' # Definimos la ruta del archivo CSV\n",
+        "\n",
+        "data = pd.read_csv(archivo) # Leemos el archivo CSV\n",
+        "```\n",
+        "\n",
+        "## Explorando los datos\n",
+        "\n",
+        "Primero como ya vimos en la lección anterior, podemos ver las primeras filas de los datos con el método `head()`. En este caso tenemos datos de hongos, donde cada fila representa un hongo y cada columna una característica del hongo.\n",
+        "\n",
+        "Las columnas son las siguientes:\n",
+        "\n",
+        "- **Cap Diameter**: Diámetro del sombrero.\n",
+        "- **Cap Shape**: Forma del sombrero.\n",
+        "- **Gill Attachment**: Tipo de unión de las branquias.\n",
+        "- **Gill Color**: Color de las branquias.\n",
+        "- **Stem Height**: Altura del tallo.\n",
+        "- **Stem Width**: Ancho del tallo.\n",
+        "- **Stem Color**: Color del tallo.\n",
+        "- **Season**: Temporada en la que se encontró el hongo.\n",
+        "- **Class**: Si es comestible (0) o venerenoso (1).\n"
+      ],
+      "id": "6f11382e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "data.head()"
+      ],
+      "id": "09d1b6e6",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Lo primero que podemos hacer es ver la forma de los datos, es decir, cuántas filas y columnas tenemos. Para esto usamos el atributo `shape`.\n"
+      ],
+      "id": "18c40594"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "data.shape"
+      ],
+      "id": "f1c06cdf",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Tenemos 54039 y 9 columnas en nuestros datos. Podemos ver los nombres de las columnas con el atributo `columns`.\n"
+      ],
+      "id": "03325eef"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "data.columns"
+      ],
+      "id": "0f4badb3",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "También podemos ver los tipos de datos de las columnas con el atributo `dtypes`.\n"
+      ],
+      "id": "f05f4c7d"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "data.dtypes"
+      ],
+      "id": "673d1185",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "El tipo de dato es muy importante, ya que restringe las cosas que podemos hacer con los datos. En este dataset, tenemos datos tipo `int64` y `float64` que son enteros y décimales respectivamente. El tipo de dato más común en Pandas es `object`, que es un tipo de dato genérico que puede contener cualquier tipo de dato, no es recomendable tener columnas con este tipo de dato, ya que puede ser un indicio de que los datos no están limpios.\n",
+        "\n",
+        "Con el metodo `info()` podemos ver un resumen de los datos, incluyendo el número de valores no nulos y el uso de memoria.\n"
+      ],
+      "id": "3adfd546"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "data.info()"
+      ],
+      "id": "034616ba",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Gracias a este método podemos ver que no tenemos valores nulos en nuestro dataset. Si tuvieramos valores nulos, tendríamos que decidir si eliminarlos, reemplazarlos o imputarlos (usar un valor promedio, mediana, moda, etc. para reemplazar los valores nulos).\n",
+        "\n",
+        "Para identificar los valores `NA` en los datos, podemos usar el método `isna()`, combinado con el método `sum()` para ver el número de valores `NA` en cada columna.\n"
+      ],
+      "id": "140948b7"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "data.isna().sum()"
+      ],
+      "id": "258f1f1f",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Podemos identificar los valores únicos de una columna con el método `unique()`. Por ejemplo, si queremos ver los valores únicos de la columna `class`, podemos hacer lo siguiente:\n"
+      ],
+      "id": "f45f841d"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "data['class'].unique()"
+      ],
+      "id": "94aaf0e8",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "En este caso, los valores únicos son 0 y 1, que representan si el hongo es comestible o venenoso. Podemos ver los valores únicos de todas las columnas con el método `unique()`.\n",
+        "\n",
+        "## Estadísticas descriptivas\n",
+        "\n",
+        "Podemos obtener estadísticas descriptivas de los datos numéricos con el método `describe()`.\n"
+      ],
+      "id": "cc3ad77e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "data.describe()"
+      ],
+      "id": "b9d5a44e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Por comodidad se suele usar el método `transpose()` para ver las estadísticas descriptivas de manera vertical, una abreviatura de esto es `.T`.\n"
+      ],
+      "id": "043ff6f2"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "data.describe().T"
+      ],
+      "id": "615fdd2b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Algunas estadísticas descriptivas que obtenemos son:\n",
+        "\n",
+        "- **count**: Número de valores no nulos.\n",
+        "- **mean**: Media de los valores.\n",
+        "- **std**: Desviación estándar de los valores.\n",
+        "- **min**: Valor mínimo.\n",
+        "- **25%**: Primer cuartil.\n",
+        "- **50%**: Mediana.\n",
+        "- **75%**: Tercer cuartil.\n",
+        "- **max**: Valor máximo.\n",
+        "\n",
+        "Podemos guardar estas estadísticas en un nuevo DataFrame para manipularlas más adelante.\n"
+      ],
+      "id": "786f83b1"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "estadisticas = data.describe().T"
+      ],
+      "id": "77f4d956",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Si recuerdan sus cursos de estadística una medida de dispersión es el rango, que es la diferencia entre el valor máximo y el valor mínimo. Podemos calcular el rango de los datos restándo el valor máximo y el valor mínimo de cada columna y guardarlo en una nueva columna llamada `rango`.\n"
+      ],
+      "id": "ebcf1469"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "estadisticas['rango'] = estadisticas['max'] - estadisticas['min']\n",
+        "estadisticas.head(9)"
+      ],
+      "id": "2a71d512",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Otro estadístico importante es la varianza, que es una medida de dispersión que nos indica qué tan dispersos están los datos. Podemos calcular la varianza de los datos con el método `var()` y guardarla en una nueva columna llamada `varianza`.\n"
+      ],
+      "id": "f0f58754"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "estadisticas['varianza'] = data.var()\n",
+        "estadisticas.head(9)"
+      ],
+      "id": "6239694c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Un último estadístico es el rango intercuartil (IQR), que es la diferencia entre el tercer cuartil y el primer cuartil. Podemos calcular el IQR de los datos al restar las columnas `75%` y `25%` y guardar el resultado en una nueva columna llamada `IQR`.\n"
+      ],
+      "id": "4a9e9ea1"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "estadisticas['IQR'] = estadisticas['75%'] - estadisticas['25%']\n",
+        "\n",
+        "estadisticas.head(9)"
+      ],
+      "id": "6adcc835",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Podemos ver que hemos calculado el rango, la varianza y el IQR de los datos. Estos estadísticos nos dan una idea de la dispersión de los datos y nos ayudan a entender mejor los datos.\n",
+        "\n",
+        "Otro estadtico importante es la correlación, que nos indica la relación entre dos variables. Podemos calcular la correlación de los datos con el método `corr()`.\n"
+      ],
+      "id": "345c3986"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "correlacion = data.corr()\n",
+        "correlacion"
+      ],
+      "id": "56c092a9",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Filtrando datos\n",
+        "\n",
+        "Podemos filtrar los datos de acuerdo a una condición. Por ejemplo, si queremos ver los hongos que son venenosos, podemos filtrar los datos de la siguiente manera:\n"
+      ],
+      "id": "37ff81d9"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "venenosos = data[data['class'] == 1]\n",
+        "venenosos.head()"
+      ],
+      "id": "1802d97f",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "La notación para realizar filtrado en pandas es `df[df['columna'] == valor]`, donde `df` es el DataFrame, `columna` es la columna que queremos filtrar y `valor` es el valor que queremos filtrar.\n",
+        "\n",
+        "Podemos hacer filtrados más complejos, por ejemplo, si queremos ver los hongos venenosos que tienen un diámetro de sombrero mayor a su media, podemos hacer lo siguiente:\n"
+      ],
+      "id": "a165030c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "venenosos_grandes = data[(data['class'] == 1) & (data['cap-diameter'] > data['cap-diameter'].mean())]\n",
+        "\n",
+        "venenosos_grandes.head()"
+      ],
+      "id": "109dddd4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "La sintaxis en este caso es `df[(df['columna1'] == valor1) & (df['columna2'] > valor2)]`, donde `&` es el operador lógico `AND` y cada condición va entre paréntesis. Es recomendable no usar más de dos condiciones en un filtro, ya que puede ser difícil de leer.\n",
+        "\n",
+        "Otras operaciones lógicas que podemos usar son `|` para el operador `OR` y `~` para el operador `NOT`. Por ejemplo, si queremos ver los hongos que son venenosos o que tienen un diámetro de sombrero mayor a su media, podemos hacer lo siguiente:\n"
+      ],
+      "id": "f4996ae5"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "venenosos_o_grandes = data[(data['class'] == 1) | (data['cap-diameter'] > data['cap-diameter'].mean())]\n",
+        "\n",
+        "venenosos_o_grandes.head()"
+      ],
+      "id": "456c67ee",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Ordenando datos\n",
+        "\n",
+        "Podemos ordenar los datos de acuerdo a una columna. Por ejemplo, si queremos ordenar los hongos por su diámetro de sombrero de manera ascendente, podemos hacer lo siguiente:\n"
+      ],
+      "id": "9eb2c809"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "data.sort_values(by='cap-diameter').head()"
+      ],
+      "id": "214c2d58",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Hemos utilizado el método `sort_values()` para ordenar los datos de acuerdo a la columna `cap-diameter`. Por defecto, el método ordena de manera ascendente, pero podemos cambiarlo a descendente con el argumento `ascending=False`. El argumento `by` es la columna por la que queremos ordenar los datos. Si queremos ordenar los datos de manera descendente, podemos hacer lo siguiente:\n"
+      ],
+      "id": "1e8a6d0f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "data.sort_values(by='cap-diameter', ascending=False).head()"
+      ],
+      "id": "3c23e366",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Para ordenar con múltiples columnas, podemos pasar una lista de columnas al argumento `by`. Por ejemplo, si queremos ordenar los hongos por su diámetro de sombrero de manera ascendente y por su altura de tallo de manera descendente, podemos hacer lo siguiente:\n"
+      ],
+      "id": "fb705161"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "data.sort_values(by=['cap-diameter', 'stem-height'], ascending=[True, False], kind=\"mergesort\").head(10)"
+      ],
+      "id": "f7ddfa9a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Con el argumento `kind` podemos especificar el algoritmo de ordenamiento. En este caso hemos usado `mergesort`, que es un algoritmo de ordenamiento estable y eficiente. Otros algoritmos que podemos usar son `quicksort` y `heapsort`.\n",
+        "\n",
+        "El ordenamiento con más de una columna es útil cuando queremos ordenar los datos de acuerdo a una columna y en caso de empate, ordenarlos de acuerdo a otra columna. En este caso, primero ordenamos los datos de acuerdo a la columna `cap-diameter` y en caso de empate, ordenamos los datos de acuerdo a la columna `stem-height`. Podemos comprobarlo viendo los primeros 10 datos.\n",
+        "\n",
+        "## Agrupando datos\n",
+        "\n",
+        "Podemos agrupar los datos de acuerdo a una columna. Por ejemplo, si queremos agrupar los hongos por su color de tallo y ver cuántos hongos hay de cada color, podemos hacer lo siguiente:\n"
+      ],
+      "id": "db7a00d1"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "data.groupby('stem-color').size()"
+      ],
+      "id": "a4fb92dc",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "El método `groupby()` agrupa los datos de acuerdo a una columna y el método `size()` nos da el tamaño de cada grupo. En este caso, hemos agrupado los hongos por su color de tallo y hemos obtenido el tamaño de cada grupo.\n",
+        "\n",
+        "Otro método que podemos usar es `count()`, que nos da el número de valores no nulos de cada columna.\n"
+      ],
+      "id": "da5d9b0d"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "data.groupby('stem-color').count()"
+      ],
+      "id": "14a40275",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "La diferencia es que `size()` nos da el tamaño de cada grupo, mientras que `count()` nos da el número de valores no nulos de cada columna.\n",
+        "\n",
+        "Para hacer operaciones más complejas, podemos usar el método `agg()`, que nos permite aplicar una o más funciones a cada grupo. Por ejemplo, si queremos obtener la media y la mediana del diámetro de sombrero de cada grupo, podemos hacer lo siguiente:\n"
+      ],
+      "id": "2e561eee"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "data.groupby('stem-color')['cap-diameter'].agg(['mean', 'median'])"
+      ],
+      "id": "39f148fe",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "En este caso, hemos agrupado los hongos por su color de tallo y hemos obtenido la media y la mediana del diámetro de sombrero de cada grupo.\n",
+        "\n",
+        "## Guardando datos\n",
+        "\n",
+        "Podemos guardar los datos en un archivo CSV con el método `to_csv()`. Por ejemplo, si queremos guardar los datos en un archivo llamado `mushroom.csv`, podemos hacer lo siguiente:\n"
+      ],
+      "id": "4b4f8113"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#data.to_csv('mushroom.csv', index=False)"
+      ],
+      "id": "6f2bc97b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "El argumento `index=False` evita que se guarde el índice en el archivo CSV. Existen otros formatos en los que podemos guardar los datos, como Excel, JSON, entre otros. Para guardar los datos en un archivo Excel, podemos usar el método `to_excel()`."
+      ],
+      "id": "f7353df9"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#data.to_excel('mushroom.xlsx', index=False)"
+      ],
+      "id": "9e3db4e7",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Para guardar los datos en un archivo JSON, podemos usar el método `to_json()`. \n"
+      ],
+      "id": "e9c96bbc"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#data.to_json('mushroom.json', orient='records')"
+      ],
+      "id": "699f2e51",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Ejercicios\n",
+        "\n",
+        "Creen un documento de Jupyter Notebook por equipo y resuelvan los siguientes ejercicios, utilicen Markdown para explicar sus respuestas y comentarios en el código. Se sugiere la creación de funciones para resolver los ejercicios.\n",
+        "\n",
+        "1. Carga los datos de Iris desde la siguiente liga \"https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv\" y muestra las primeras 10 filas, muestra la forma de los datos, los nombres de las columnas, los tipos de datos, el tamaño de los datos y si hay valores nulos (`NA`).\n",
+        "   \n",
+        "2. Calcula las estadísticas descriptivas de los datos.\n",
+        "\n",
+        "3. Filtra los datos para obtener las flores que tienen un ancho de pétalo mayor a su media, mediana, media y mediana. Impreme las primeras 10 filas.\n",
+        "\n",
+        "4. Ordena los datos de acuerdo a la longitud de sépalo de manera ascendente y de acuerdo a la longitud de pétalo de manera descendente. Muestra las primeras 10 filas.\n",
+        "\n",
+        "5. Filtra los datos para obtener las flores que tienen un ancho de pétalo mayor a su media y que son de la especie `setosa`. Muestra las primeras 10 filas.\n",
+        "\n",
+        "6. Agrupa los datos por especie y calcula los estadísticos descriptivos de cada grupo (media, mediana, moda, varianza, rango, IQR). Muestra los resultados.\n",
+        "\n",
+        "7. Guarda los datos de los estadísticos descriptivos del ejercicio 2 en un archivo CSV, Excel y JSON.\n",
+        "\n",
+        "8. Calcula la correlación de los datos y muestra los resultados.\n",
+        "\n",
+        "9. Sugiere que gráficos podrías hacer con los datos y que información podrías obtener de ellos.\n",
+        "\n",
+        "10. Explica ¿qué análisis podrías hacer con los datos?, ¿qué preguntas podrías responder con los datos?\n",
+        "\n",
+        "# Conclusiones\n",
+        "\n",
+        "La manipulación de datos es una parte fundamental de la ciencia de datos, ya que nos permite limpiar, transformar y analizar los datos para obtener información útil. En este tutorial hemos aprendido a leer, escribir y manipular datos con Pandas. Hemos visto cómo explorar los datos, obtener estadísticas descriptivas, filtrar los datos, ordenar los datos, agrupar los datos y guardar los datos en diferentes formatos. Estas son habilidades básicas que nos permiten trabajar con los datos de manera eficiente y efectiva."
+      ],
+      "id": "2079ae43"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "C:\\Users\\crish\\AppData\\Local\\Programs\\Python\\Python313\\share\\jupyter\\kernels\\python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

@@ -1,0 +1,589 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Funciones y Bucles de Control\"\n",
+        "author: \"Christian Badillo\"\n",
+        "format: html\n",
+        "date: today\n",
+        "order: 3\n",
+        "jupyter: python3\n",
+        "filters:\n",
+        "  - pyodide\n",
+        "  - fontawesome\n",
+        "  - iconify\n",
+        "---\n",
+        "\n",
+        "\n",
+        "# Introducción\n",
+        "\n",
+        "En esta lección, aprenderemos sobre funciones y estructuras de control en Python. Las funciones son bloques de código que se pueden reutilizar en diferentes partes de un programa, permitiendo que el código sea más modular y fácil de mantener. Las estructuras de control son bloques de código que permiten controlar el flujo de ejecución de un programa, como bucles y declaraciones condicionales. Son dos conceptos fundamentales en programación que nos permiten escribir código más eficiente y legible.\n",
+        "\n",
+        "# Tabulación en Python\n",
+        "\n",
+        "Antes de proceder, hay que explicar la tabulación en Python. A diferencia de otros lenguajes de programación que utilizan llaves `{}` para delimitar bloques de código, Python utiliza la tabulación para indicar la estructura del código. Esto significa que los bloques de código se definen por la cantidad de espacios o tabulaciones al principio de una línea. Es importante mantener la consistencia en la tabulación para que el código funcione correctamente. Por ejemplo, en una función, el cuerpo de la función debe estar tabulado con 4 espacios o una tabulación.\n",
+        "\n",
+        "```python\n",
+        "def funcion():\n",
+        "    # Cuerpo de la función\n",
+        "    print('Hola, mundo!')\n",
+        "```\n",
+        "\n",
+        "Si no se mantiene la consistencia en la tabulación, Python generará un error de indentación. Por ejemplo, si el cuerpo de la función no está tabulado correctamente, se generará un error de sintaxis.\n",
+        "\n",
+        "# Funciones\n",
+        "\n",
+        "Las ***funciones*** son bloques de código que se pueden reutilizar en diferentes partes de un programa, permitiendo que el código sea más modular y fácil de mantener. En Python, las funciones se definen con la palabra clave `def`, seguida del nombre de la función y una lista de parámetros entre paréntesis. El cuerpo de la función se define con una tabulación (4 espacios) y puede contener cualquier número de instrucciones.\n",
+        "\n",
+        "Primero elaboremos una función sencilla, la cual se llamará `saludo` y recibirá un parámetro `nombre`:\n"
+      ],
+      "id": "1ec38cc8"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "def saludo(nombre):\n",
+        "    print(f'Hola, {nombre}!')\n",
+        "\n",
+        "saludo('Christian')"
+      ],
+      "id": "011fa03e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "En nuestra función usamos una f-string para imprimir un saludo personalizado, las ***f-strings*** son una forma de formatear cadenas de texto en Python, permitiendo la interpolación de variables dentro de una cadena. Para definir una f-string, se coloca una `f` antes de las comillas de apertura y se encierra la variable entre llaves `{}`. Es decir, le estamos diciendo a Python que reemplace `{nombre}` con el valor de la variable `nombre` que en este caso es `'Christian'`.\n",
+        "\n",
+        "Las funciones pueden devolver un valor usando la palabra clave `return`. Por ejemplo, la siguiente función `cuadrado` recibe un número `x` y devuelve su cuadrado:\n"
+      ],
+      "id": "0a00723c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "def cuadrado(x):\n",
+        "    return x ** 2\n",
+        "\n",
+        "print(cuadrado(5))"
+      ],
+      "id": "b82018e5",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Como habrás notado en los ejemplos anteriores, hemos usado el nombre de la función seguido de paréntesis para llamarla. En el caso de la función `saludo`, hemos pasado un argumento `nombre` entre los paréntesis. En el caso de la función `cuadrado`, hemos pasado el número `5`. Estos argumentos se llaman ***parámetros*** y son los valores que la función espera recibir para realizar su tarea.\n",
+        "\n",
+        "Hay varias formas de poner los argumentos en una función:\n",
+        "\n",
+        "- **Argumentos posicionales**: Los argumentos se pasan en el orden en que se definen en la función.\n",
+        "- **Argumentos con nombre**: Los argumentos se pasan con el nombre del parámetro al que corresponden.\n",
+        "- **Argumentos por defecto**: Los argumentos tienen un valor por defecto que se usa si no se proporciona un valor.\n",
+        "- **Argumentos variables**: Los argumentos se pasan como una lista o un diccionario.\n",
+        "\n",
+        "En los ejemplos hemos utilizado argumentos posicionales. A continuación, veremos cómo usar argumentos con nombre:\n"
+      ],
+      "id": "e7757941"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "def resta(num1, num2):\n",
+        "    return num1 - num2\n",
+        "\n",
+        "print(resta(num1=10, num2=5))"
+      ],
+      "id": "f41d4bc8",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "En este caso, hemos pasado los argumentos `num1` y `num2` con sus nombres correspondientes y les hemos asignado valores. Esto nos permite pasar los argumentos en cualquier orden, siempre y cuando especifiquemos el nombre del parámetro al que corresponden.\n",
+        "\n",
+        "Ahora veamos cómo usar argumentos por defecto:\n"
+      ],
+      "id": "4f701964"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "def potencia(base, exponente=2):\n",
+        "    return base ** exponente\n",
+        "\n",
+        "print(potencia(2))\n",
+        "print(potencia(2, 3))"
+      ],
+      "id": "a178e4cb",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "En este caso, la función `potencia` tiene un argumento `exponente` con un valor por defecto de `2`. Si no se proporciona un valor para `exponente`, se usará el valor por defecto. Si se proporciona un valor, se usará ese valor en su lugar.\n",
+        "\n",
+        "## Funciones Lambda\n",
+        "\n",
+        "Las funciones lambda son funciones anónimas que se pueden definir en una sola línea. Se definen con la palabra clave `lambda`, seguida de una lista de parámetros y una expresión que se evalúa y devuelve el resultado. Por ejemplo, la siguiente función lambda calcula el cuadrado de un número:\n"
+      ],
+      "id": "1301f756"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "cuadrado_lamda = lambda x: x ** 2\n",
+        "\n",
+        "print(cuadrado_lamda(5))"
+      ],
+      "id": "4b5bab5c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Las funciones lambda son útiles cuando se necesita una función simple y no es necesario definirla con una declaración `def`. \n",
+        "\n",
+        "Ahora definamos una función lambda un poco más compleja para sumar dos números:\n"
+      ],
+      "id": "4937d665"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "suma_lambda = lambda x, y: x + y\n",
+        "\n",
+        "print(suma_lambda(3, 4))"
+      ],
+      "id": "9f492a9e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Paquetes y Módulos\n",
+        "\n",
+        "En Python, las funciones se pueden organizar en módulos y paquetes para facilitar la reutilización y la organización del código. Un ***módulo*** es un archivo que contiene definiciones y declaraciones de Python, como funciones, clases y variables. Un ***paquete*** es una colección de módulos organizados en un directorio. Es decir, que un paquete es una carpeta que contiene archivos de python (módulos) que contienen funciones, clases y variables que puedes utilizar en tu programa.\n",
+        "\n",
+        "Hay paqueterias y modulos muy útiles que se pueden importar en Python, por ejemplo, la paquetería `math` que contiene funciones matemáticas comunes, como `sqrt` para calcular la raíz cuadrada de un número. Para importar un módulo o una función de un módulo, se utiliza la palabra clave `import` seguida del nombre del módulo.\n",
+        "\n",
+        "```python\n",
+        "import math\n",
+        "```\n",
+        "\n",
+        "Una vez que se ha importado un módulo, se puede acceder a sus funciones y variables utilizando la notación de punto. Por ejemplo, para calcular la raíz cuadrada de un número, se puede utilizar la función `sqrt` del módulo `math`.\n"
+      ],
+      "id": "e1427a4b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import math\n",
+        "print(math.sqrt(16))"
+      ],
+      "id": "892fa17a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "También es posible importar funciones específicas de un módulo utilizando la palabra clave `from`. Por ejemplo, para importar solo la función `sqrt` del módulo `math`, se puede hacer lo siguiente:\n"
+      ],
+      "id": "0f5b4583"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from math import sqrt\n",
+        "\n",
+        "print(sqrt(16))"
+      ],
+      "id": "1f498902",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Muchas veces las paqueterias tienen nombres muy largos, por lo que se pueden importar con un alias utilizando la palabra clave `as`, las paqueterias más comunes en python tienen alias ya acordados en la comunidad, por ejemplo, `pandas` una paquetería muy utilizada para el análisis de datos se importa con el alias `pd`.\n",
+        "\n",
+        "```python\n",
+        "import pandas as pd\n",
+        "```\n",
+        "\n",
+        "De esta forma, se puede acceder a las funciones y variables de la paquetería `pandas` utilizando el alias `pd`.\n",
+        "\n",
+        "Existe un gran número de paqueterías y módulos disponibles en Python que proporcionan funcionalidades adicionales para tareas específicas, como el análisis de datos, la visualización, el aprendizaje automático, etc. Estas paqueterías pueden ser muy útiles para acelerar el desarrollo de aplicaciones y realizar tareas complejas de manera eficiente.\n",
+        "\n",
+        "No todas las paqueterias vienen preinstaladas con Python, por lo que es necesario instalarlas con un administrador de paquetes, el más común es `pip`. Para instalar una paquetería con `pip`, se utiliza el siguiente comando en la terminal:\n",
+        "\n",
+        "```bash\n",
+        "pip install nombre_paqueteria\n",
+        "```\n",
+        "\n",
+        "O si se usa jupyter notebook o jupyter lab, se puede instalar una paquetería con el comando `!pip install nombre_paqueteria`.\n",
+        "\n",
+        "Cada paqueteria tiene su propia documentación, por lo que es recomendable revisarla para conocer todas las funciones y características que ofrece. \n",
+        "\n",
+        "## Legibilidad y Documentación de Funciones\n",
+        "\n",
+        "Es importante que las funciones sean fáciles de leer y entender. Para ello, es recomendable seguir las siguientes buenas prácticas:\n",
+        "\n",
+        "- **Nombres descriptivos**: Usa nombres descriptivos para las funciones y los parámetros.\n",
+        "- **Comentarios**: Añade comentarios para explicar lo que hace cada parte de la función.\n",
+        "- **Documentación**: Usa [docstrings](https://peps.python.org/pep-0257/) para documentar la función y proporcionar información sobre su propósito, los parámetros que espera y el valor que devuelve.\n",
+        "- **Dividir en funciones más pequeñas**: Si una función es demasiado larga o hace demasiadas cosas, divídela en funciones más pequeñas que realicen tareas específicas.\n",
+        "\n",
+        "Veamos un ejemplo de una función bien documentada y legible:\n",
+        "\n",
+        "```{pyodide-python}\n",
+        "import numpy as np\n",
+        "import matplotlib.pyplot as plt\n",
+        "from typing import Tuple\n",
+        "\n",
+        "def sine_wave(amplitude: float = None, frequency: float = None, phase: float = None, duration: float = None, sample_rate: float = None) -> Tuple[np.ndarray, np.ndarray]:\n",
+        "    \"\"\"\n",
+        "    Generate a sine wave signal.\n",
+        "\n",
+        "    Parameters:\n",
+        "    - `amplitude`: The amplitude of the sine wave.\n",
+        "    - `frequency`: The frequency of the sine wave in Hz.\n",
+        "    - `phase`: The phase of the sine wave in radians.\n",
+        "    - `duration`: The duration of the signal in seconds.\n",
+        "    - `sample_rate`: The sample rate of the signal in Hz.\n",
+        "\n",
+        "    Returns:\n",
+        "    - `t`: An array of time values.\n",
+        "    - `x`: An array of signal values.\n",
+        "    \"\"\"\n",
+        "    t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False) # Generate time values\n",
+        "    x = amplitude * np.sin(2 * np.pi * frequency * t + phase) # Generate signal values\n",
+        "    return t, x\n",
+        "\n",
+        "# Generate a sine wave signal with amplitude 1, frequency 1 Hz, phase 0, duration 1 second, and sample rate 1000 Hz\n",
+        "t, x = sine_wave(amplitude=1, frequency=1, phase=0, duration=1, sample_rate=1000) \n",
+        "\n",
+        "# Plot the sine wave signal\n",
+        "def plot_signal(t: np.ndarray, x: np.ndarray) -> None:\n",
+        "    \"\"\"\n",
+        "    Plot a signal.\n",
+        "\n",
+        "    Parameters:\n",
+        "    - `t`: An array of time values.\n",
+        "    - `x`: An array of signal values.\n",
+        "    \"\"\"\n",
+        "\n",
+        "    plt.figure() # Create a new figure\n",
+        "    plt.plot(t, x) # Plot the signal\n",
+        "    plt.xlabel('Time (s)') # Set the x-axis label\n",
+        "    plt.ylabel('Amplitude') # Set the y-axis label\n",
+        "    plt.grid(True) # Show grid\n",
+        "    plt.show() # Show the plot\n",
+        "\n",
+        "plot_signal(t, x)\n",
+        "```\n",
+        "\n",
+        "En este ejemplo, hemos definido una función `sine_wave` que genera una señal de onda sinusoidal con los parámetros de amplitud, frecuencia, fase, duración y tasa de muestreo especificados. Hemos documentado la función con un docstring que explica los parámetros que espera y el valor que devuelve. También hemos definido una función `plot_signal` que traza la señal generada. Esta función es más legible y fácil de entender gracias a los comentarios y la documentación.\n",
+        "\n",
+        "Un ejemplo profesional de documentación de funciones es la documentación de la paquetería `numpy`, que proporciona una descripción detallada de cada función, los parámetros que espera y el valor que devuelve. Puedes consultar la documentación de `numpy` en el siguiente enlace: [https://numpy.org/doc/stable/](https://numpy.org/doc/stable/).\n",
+        "\n",
+        "# Estrucutras de Control\n",
+        "\n",
+        "Las estructuras de control son bloques de código que permiten controlar el flujo de ejecución de un programa. En Python, las estructuras de control más comunes son los bucles `for` y `while`, y las declaraciones `if`, `elif` y `else`.\n",
+        "\n",
+        "## Estrucutras de Control: `if`, `elif` y `else`\n",
+        "\n",
+        "La declaración `if` se utiliza para ejecutar un bloque de código si una condición es verdadera. La declaración `elif` se utiliza para comprobar múltiples condiciones si la condición anterior es falsa. La declaración `else` se utiliza para ejecutar un bloque de código si ninguna de las condiciones anteriores es verdadera.\n",
+        "\n",
+        "![Estructura de Control `if`](/img/fund_python/diagramaif-else1.png){width=75%}\n",
+        "\n",
+        "La sintaxis de la declaración `if` en python es la siguiente:\n",
+        "\n",
+        "```python\n",
+        "if condicion:\n",
+        "    # Código a ejecutar si la condición es verdadera\n",
+        "elif otra_condicion:\n",
+        "    # Código a ejecutar si la condición anterior es falsa y esta condición es verdadera\n",
+        "else:\n",
+        "    # Código a ejecutar si ninguna de las condiciones anteriores es verdadera\n",
+        "```\n",
+        "\n",
+        "### Ejemplo\n",
+        "\n",
+        "Si tenemos varias condiciones que queremos comprobar, podemos usar la declaración `elif` para comprobarlas en orden. A continuación, se muestra un ejemplo de una declaración `if` con `elif` que comprueba si un número es positivo, negativo o cero:\n",
+        "\n",
+        "```{pyodide-python}\n",
+        "# Ejemplo de declaración if con elif\n",
+        "x = 0 # Cambia el valor de x para probar diferentes casos\n",
+        "if x > 0:\n",
+        "    print('El número es positivo')\n",
+        "elif x < 0:\n",
+        "    print('El número es negativo')\n",
+        "else:\n",
+        "    print('El número es cero')\n",
+        "```\n",
+        "\n",
+        "## Estrucutras de Control: Bucles `for`\n",
+        "\n",
+        "El bucle `for` se utiliza para iterar sobre una secuencia de elementos, como una lista, una tupla o un rango de números. La sintaxis de un bucle `for` en Python es la siguiente:\n",
+        "\n",
+        "```python\n",
+        "for elemento in secuencia:\n",
+        "    # Código a ejecutar en cada iteración\n",
+        "```\n",
+        "\n",
+        "![Estructura de Control `for`](/img/fund_python/estructura_for.png){width=30%}\n",
+        "\n",
+        "Son muy útiles cuando se necesita realizar una tarea repetitiva, como recorrer una lista de elementos o realizar una operación en cada elemento de una secuencia, serán vitales para el análisis de datos.\n",
+        "\n",
+        "### Ejemplo\n",
+        "\n",
+        "Veamos un ejemplo donde imprimimos una cuenta regresiva desde 10 hasta 1:\n"
+      ],
+      "id": "5819fc7b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Ejemplo de bucle for\n",
+        "for i in range(10, 0, -1):\n",
+        "    print(i)"
+      ],
+      "id": "de23284a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "La función `range` genera una secuencia de números desde el primer argumento hasta el segundo argumento, con un paso especificado por el tercer argumento. En este caso, estamos generando una secuencia de números desde 10 hasta 1 con un paso de -1. Es muy común usar `range` en bucles `for`. Otra forma de usar `range` es con un solo argumento, que genera una secuencia de números desde 0 hasta el argumento especificado.\n"
+      ],
+      "id": "3208e075"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Ejemplo de bucle for con un solo argumento\n",
+        "for i in range(5):\n",
+        "    print(i)"
+      ],
+      "id": "8583714a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Como habras notado, la función `range` genera una secuencia de números desde 0 hasta 4, ya que el argumento especificado es 5, si cuentas los números, verás que son 5 números, si quieres hasta 5, debes poner 6.\n",
+        "\n",
+        "En el siguiente tema abordaremos más los usos del ciclo `for` cuando trabajamos con listas y diccionarios o en general con *objetos iterables*.\n",
+        "\n",
+        "## Estrucutras de Control: Bucles `while`\n",
+        "\n",
+        "El bucle `while` se utiliza para ejecutar un bloque de código mientras una condición sea verdadera. La sintaxis de un bucle `while` en Python es la siguiente:\n",
+        "\n",
+        "```python\n",
+        "while condicion:\n",
+        "    # Código a ejecutar mientras la condición sea verdadera\n",
+        "```\n",
+        "\n",
+        "![Estructura de Control `while`](/img/fund_python/while.jpg){width=40%}\n",
+        "\n",
+        "Los bucles `while` son útiles cuando no se sabe cuántas veces se debe ejecutar un bloque de código y se necesita comprobar una condición en cada iteración. \n",
+        "\n",
+        "> {{< fa triangle-exclamation >}} ***ADVERTENCIA.*** Es importante tener cuidado al usar bucles `while`, ya que si la condición nunca se vuelve falsa, el bucle se ejecutará indefinidamente, lo que puede provocar un bucle infinito y bloquear el programa.\n",
+        "\n",
+        "### Ejemplo\n",
+        "\n",
+        "Ahora intentemos algo más complicado, crearemos una función que nos diga cuantas vecces se repite una letra dada en una cadena de texto:\n"
+      ],
+      "id": "28d336e6"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "def contar_letra(cadena, letra):\n",
+        "    contador = 0\n",
+        "    i = 0\n",
+        "    while i < len(cadena):\n",
+        "        if cadena[i] == letra:\n",
+        "            contador += 1\n",
+        "        i += 1\n",
+        "    return contador\n",
+        "\n",
+        "# Primer verso y coro de \"Army of One\" de Coldplay \n",
+        "cadena = \"\"\"\n",
+        "Been around the world, wonders to view\n",
+        "Been around the world looking for someone like you\n",
+        "Pyramids try, Babylon too\n",
+        "But the beautifulest treasures lie in the deepest blue\n",
+        "\n",
+        "So I never say die, aim never untrue\n",
+        "I'm never so high as when I'm with you\n",
+        "And there isn't a fire that I wouldn't walk through\n",
+        "My army of one is gonna fight for you\n",
+        "\"\"\"\n",
+        "\n",
+        "letra = 'a'\n",
+        "print(f'La letra \"{letra}\" se repite {contar_letra(cadena, letra)} veces en la cadena de texto.')"
+      ],
+      "id": "24c0dfa9",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Hemos combinado el uso de un bucle `while` con una declaración `if` para contar cuántas veces se repite una letra en una cadena de texto. En general siempre podemos usar un bucle `for` en lugar de un `while`, pero en este caso, queríamos mostrar cómo se puede usar un bucle `while` para realizar la misma tarea.\n",
+        "\n",
+        "Combinar funciones, bucles y estructuras de control es una de las formas más poderosas de programar en cualquier lenguaje, y Python no es la excepción.\n",
+        "\n",
+        "# Ejercicios\n",
+        "\n",
+        "1. Escribe una función que tome dos números como argumentos y devuelva el mayor de los dos.\n",
+        "\n",
+        "2. Escribe una función que te diga si un número es par o impar.\n",
+        "\n",
+        "3. Crea una función que diga si una palabra es palíndroma o no.\n",
+        "\n",
+        "4. Crea una función que diga si un año es bisiesto o no. ( {{< fa magnifying-glass size=footnotesize >}} ***PISTA:*** un año es bisiesto si es divisible entre $4$, excepto los años que son divisibles entre $100$ pero no entre $400$).\n",
+        "\n",
+        "5. Escribe una función que cuente en reversa hasta 0 desde un número dado y si el número es divisible entre $3$, imprime \"Fizz\", si es divisible entre $5$, imprime \"Buzz\" y si es divisible entre $3$ y $5$, imprime \"FizzBuzz\". Por ejemplo, el número $15$ debería imprimir \"FizzBuzz\", el número $9$ debería imprimir \"Fizz\" y el número $10$ debería imprimir \"Buzz\".\n",
+        "\n",
+        "```{pyodide-python}\n",
+        "# Escribe tu código aquí\n",
+        "```\n",
+        "\n",
+        "# Manejando Bucles de Control\n",
+        "\n",
+        "Hay ocasiones en las que necesitamos salir de un bucle antes de que se complete o saltar a la siguiente iteración sin ejecutar el resto del código. En Python, podemos hacer esto con las declaraciones `break` y `continue`.\n",
+        "\n",
+        "## Declaración `break`\n",
+        "\n",
+        "La declaración `break` se utiliza para salir de un bucle antes de que se complete. Cuando se encuentra una declaración `break`, el bucle se detiene y la ejecución continúa con la siguiente instrucción después del bucle. La declaración `break` se puede utilizar en bucles `for` y `while`. Se suele utilizar para salir de un bucle cuando se cumple una condición específica utilizando una declaración `if`.\n",
+        "\n",
+        "Supongamos que queremos encontrar el primer número divisible entre $7$ y $5$ en un rango de números del $1$ al $100$. Podemos usar un bucle `for` y la declaración `break` para salir del bucle cuando se encuentre el número deseado.\n"
+      ],
+      "id": "9cdc1e46"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "for i in range(1, 101):\n",
+        "    if i % 7 == 0 and i % 5 == 0:\n",
+        "        print(f'El primer número divisible entre 7 y 5 es {i}')\n",
+        "        break\n",
+        "    else:\n",
+        "        print(f'{i} no es divisible entre 7 y 5')"
+      ],
+      "id": "b8dd6b37",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Podemos ver que el bucle se detiene en el número $35$, que es el primer número divisible entre $7$ y $5$ en el rango de números del $1$ al $100$.\n",
+        "\n",
+        "## Declaración `continue`\n",
+        "\n",
+        "La declaración `continue` se utiliza para saltar a la siguiente iteración de un bucle sin ejecutar el resto del código en el bloque de bucle. Se suele utilizar para omitir ciertas iteraciones de un bucle basándose en una condición.\n",
+        "\n",
+        "Por ejemplo, supongamos que queremos imprimir todos los números del $1$ al $10$ excepto el número $5$. Podemos usar un bucle `for` y la declaración `continue` para saltar la iteración cuando el número es $5$.\n"
+      ],
+      "id": "43e7d706"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "for i in range(1, 11):\n",
+        "    if i == 5:\n",
+        "        continue\n",
+        "    print(i)"
+      ],
+      "id": "b1fbe848",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Otra declaración que se puede usar en bucles es `pass`, que no hace nada y se utiliza como marcador de posición cuando no se necesita ejecutar ninguna instrucción en un bloque de código. Pero el resultado no es el mismo que `continue`, ya que `pass` no salta a la siguiente iteración, simplemente no hace nada.\n"
+      ],
+      "id": "7563baf0"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "for i in range(1, 11):\n",
+        "    if i == 5:\n",
+        "        pass\n",
+        "    print(i)"
+      ],
+      "id": "2a6be0d8",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "En este caso, el número $5$ se imprimirá, pero no se ejecutará ninguna instrucción cuando `i == 5`. Es una forma de evitar errores de sintaxis cuando se necesita un bloque de código vacío (por ejemplo, en una declaración `if` o una función que aún no se ha implementado).\n",
+        "\n",
+        "# Conclusiones\n",
+        "\n",
+        "En el contexto del análisis y el modelado de datos, ¿cómo crees que las funciones y las estructuras de control pueden ser útiles? ¿Qué tipos de tareas o problemas crees que se pueden abordar de manera más eficiente con funciones y estructuras de control? \n",
+        "\n",
+        "En la próxima lección, exploraremos cómo trabajar con listas, tuplas, conjuntos y diccionarios en Python, que son estructuras de datos fundamentales para el análisis de datos y la programación en general. ¡Nos vemos en la próxima lección!"
+      ],
+      "id": "bd76c3c7"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "C:\\Users\\crish\\AppData\\Local\\Programs\\Python\\Python313\\share\\jupyter\\kernels\\python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}
